@@ -1,4 +1,4 @@
-package com.example.demo;
+package moe.xmdecro.catsero;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiFriendMessageEvent;
@@ -7,11 +7,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.configuration;
 
 public class CommandExample extends JavaPlugin implements Listener {
 
     @Override // 加载插件
-    public void onLoad() { }
+    public void onLoad(PluginLogger logger) { }
 
     @Override // 启用插件
     public void onEnable() {
@@ -23,14 +24,14 @@ public class CommandExample extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onFriendMessageReceive(MiraiFriendMessageEvent e){
-        if(e.getMessage().equals("在线人数")) {
+        if(e.getMessage().equals("ban")) {
             MiraiBot.getBot(e.getBotID()).getFriend(e.getSenderID()).sendMessage("当前在线人数：" + Bukkit.getServer().getOnlinePlayers().size()+"人");
         }
     }
 
     @EventHandler
     public void onGroupMessageReceive(MiraiGroupMessageEvent e){
-        if(e.getMessage().equals("在线人数")) {
+        if(e.getMessage().equals("player online")) {
             MiraiBot.getBot(e.getBotID()).getGroup(e.getGroupID()).sendMessage("当前在线人数：" + Bukkit.getServer().getOnlinePlayers().size()+"人");
         }
     }

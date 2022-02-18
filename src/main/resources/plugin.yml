@@ -1,7 +1,7 @@
-name: MyPlugin
-main: com.example.demo.Main
+name: QAdminBan
+main: moe.xmdecro.catsero.Main
 version: 1.0
-author: DreamVoid
+author: XiaMoHuaHuo_CN
 api-version: 1.16
 depend:
   - MiraiMC
