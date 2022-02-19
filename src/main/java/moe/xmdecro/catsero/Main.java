@@ -16,19 +16,19 @@ public class Main extends JavaPlugin implements Listener {
 
     @Override // 加载插件
     public void onLoad() {
-        Bukkit.getLogger().info(ChatColor.translateAlternateColorCodes('&', "CatSero加载中..."));
+        Bukkit.getLogger().info(ChatColor.translateAlternateColorCodes('&', "[&bCatSero&r] CatSero加载中..."));
     }
 
     @Override // 启用插件
     public void onEnable() {
         this.getCommand("catsero").setExecutor(new CatSero());
         Bukkit.getPluginManager().registerEvents(this, this);
-        Bukkit.getLogger().info(ChatColor.translateAlternateColorCodes('&', "插件加载完毕！"));
+        Bukkit.getLogger().info(ChatColor.translateAlternateColorCodes('&', "[&bCatSero&r] 插件加载完毕！"));
     }
 
     @Override // 禁用插件
     public void onDisable() {
-        Bukkit.getLogger().info(ChatColor.translateAlternateColorCodes('&', "&c关闭CatSero"));
+        Bukkit.getLogger().info(ChatColor.translateAlternateColorCodes('&', "[&bCatSero&r] &c关闭CatSero"));
     }
 
     @EventHandler
