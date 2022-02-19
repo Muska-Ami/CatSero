@@ -1,6 +1,6 @@
-name: QAdminBan
+name: CatSero
 main: moe.xmdecro.catsero.Main
-version: 1.0
+version: 1.0-pre1
 author: XiaMoHuaHuo_CN
 api-version: 1.16
 depend:
