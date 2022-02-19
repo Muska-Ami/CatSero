@@ -45,12 +45,7 @@
             <version>1.18-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <!-- MiraiMC Integration 1.6 -->
-        <dependency>
-            <groupId>io.github.dreamvoid</groupId>
-            <artifactId>MiraiMC-Integration</artifactId>
-            <version>1.6</version>
-        </dependency>
+        <!-- MiraiMC Integration 1.6(实际上是1.5-pre1) -->
         <dependency>
             <groupId>io.github.dreamvoid</groupId>
             <artifactId>MiraiMC-Base</artifactId>
