@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# MCServer
+MCServer/
+
 # Log file
 *.log
 
