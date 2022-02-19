@@ -24,12 +24,12 @@
             <id>lss233-minecraft</id>
             <url>http://lss233.littleservice.cn/repositories/minecraft</url>
         </repository>
-        <!-- MvnMavenRepo -->
+        <!-- Mvn Maven Repo -->
         <repository>
             <id>mvn-repository</id>
             <url>http://maven.nuxeo.org/nexus/content/groups/public</url>
         </repository>
-        <!-- SpigotMavenRepo -->
+        <!-- Spigot Maven Repo -->
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
