@@ -20,7 +20,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Rename Artifacts
+    - name: Rename Artifact
       run: cd target/ && mv CatSero.jar CatSero-SNAPSHOT.jar
     
     - name: Upload a Build Artifact
