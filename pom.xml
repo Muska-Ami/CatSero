@@ -24,12 +24,12 @@
             <id>lss233-minecraft</id>
             <url>http://lss233.littleservice.cn/repositories/minecraft</url>
         </repository>
-        <!-- MvnMavenRepo -->
+        <!-- Mvn Maven Repo -->
         <repository>
             <id>mvn-repository</id>
             <url>http://maven.nuxeo.org/nexus/content/groups/public</url>
         </repository>
-        <!-- SpigotMavenRepo -->
+        <!-- Spigot Maven Repo -->
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
@@ -45,12 +45,7 @@
             <version>1.18-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <!-- MiraiMC Integration 1.6 -->
-        <dependency>
-            <groupId>io.github.dreamvoid</groupId>
-            <artifactId>MiraiMC-Integration</artifactId>
-            <version>1.6</version>
-        </dependency>
+        <!-- MiraiMC Integration 1.6(实际上是1.5-pre1) -->
         <dependency>
             <groupId>io.github.dreamvoid</groupId>
             <artifactId>MiraiMC-Base</artifactId>
