@@ -50,7 +50,22 @@
             <groupId>io.github.dreamvoid</groupId>
             <artifactId>MiraiMC-Integration</artifactId>
             <version>1.6</version>
-            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.dreamvoid</groupId>
+            <artifactId>MiraiMC-Base</artifactId>
+            <version>1.5-pre1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.dreamvoid</groupId>
+            <artifactId>MiraiMC-Bukkit</artifactId>
+            <version>1.5-pre1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.dreamvoid</groupId>
+            <artifactId>MiraiMC</artifactId>
+            <version>1.5-pre1</version>
+            <type>pom</type>
         </dependency>
     </dependencies>
 
