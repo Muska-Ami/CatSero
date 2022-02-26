@@ -8,3 +8,4 @@ Spigot版本: 1.16.5-R0.1-SNAPSHOT
 - [ ] QQ群娱乐功能
 - [ ] Ping功能
 - [ ] QQ群给予OP
+- [ ] 天气获取
