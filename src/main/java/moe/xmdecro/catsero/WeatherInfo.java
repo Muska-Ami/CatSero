@@ -15,7 +15,7 @@ public class Test03 {
 		
 		for (String s : aos.getString()) {   
 			//System.out.println(s);
-			MiraiBot
+			getBot(e.getBotID()).getGroup(e.getGroupID()).sendMessage(s);
 		}
 		
 	}
