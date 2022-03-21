@@ -1,4 +1,4 @@
-package com.zf.weatherservice;
+package moe.xmdecro.catsero;
  
 import com.zf.warther_ws.ArrayOfString;
 import com.zf.warther_ws.WeatherWebService;
