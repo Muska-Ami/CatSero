@@ -1,6 +1,6 @@
 package moe.xmcn.catsero.extra.chatForward;
 
-import me.dreamvoid.chat2qq.bukkit.BukkitPlugin;
+import moe.xmcn.catsero.extra.chatForward.BukkitPlugin;
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.internal.httpapi.MiraiHttpAPI;
 import me.dreamvoid.miraimc.internal.httpapi.exception.AbnormalStatusException;

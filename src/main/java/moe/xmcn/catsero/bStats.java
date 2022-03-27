@@ -3,7 +3,7 @@ package moe.xmcn.catsero;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ExamplePlugin extends JavaPlugin {
+public class bStats extends JavaPlugin {
 
     @Override
     public void onEnable() {
