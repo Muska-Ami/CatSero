@@ -1,11 +1,10 @@
 package moe.xmcn.catsero.extra.chatForward;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import me.dreamvoid.chat2qq.bukkit.listener.onGroupMessage;
-import me.dreamvoid.chat2qq.bukkit.listener.onPlayerJoin;
-import me.dreamvoid.chat2qq.bukkit.listener.onPlayerMessage;
-import me.dreamvoid.chat2qq.bukkit.listener.onPlayerQuit;
-import me.dreamvoid.chat2qq.bukkit.utils.Metrics;
+import moe.xmcn.catsero.extra.chatForward.listener.onGroupMessage;
+import moe.xmcn.catsero.extra.chatForward.listener.onPlayerJoin;
+import moe.xmcn.catsero.extra.chatForward.listener.onPlayerMessage;
+import moe.xmcn.catsero.extra.chatForward.listener.onPlayerQuit;
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.internal.httpapi.MiraiHttpAPI;
 import me.dreamvoid.miraimc.internal.httpapi.exception.AbnormalStatusException;
@@ -21,7 +20,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.NoSuchElementException;
 
 public class BukkitPlugin extends JavaPlugin implements Listener, CommandExecutor {
 

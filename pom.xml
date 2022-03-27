@@ -50,8 +50,9 @@
         <!-- MiraiMC 1.6 -->
         <dependency>
             <groupId>io.github.dreamvoid</groupId>
-            <artifactId>MiraiMC-Bukkit</artifactId>
-            <version>1.5-pre1</version>
+            <artifactId>MiraiMC-Integration</artifactId>
+            <version>1.6</version>
+            <scope>provided</scope>
         </dependency>
 
 
@@ -60,6 +61,7 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>3.0.0</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- org.jetbrains.annotations -->
