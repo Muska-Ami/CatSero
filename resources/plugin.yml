@@ -1,0 +1,11 @@
+name: CatSero
+main: moe.xmcn.catsero.Loader
+version: 1.0-pre1
+author: XiaMoHuaHuo_CN
+api-version: 1.16
+depend:
+  - MiraiMC
+commands:
+  catsero:
+    description: CatSero帮助
+    usage: /catsero
