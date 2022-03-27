@@ -19,15 +19,15 @@
     </build>
 
     <repositories>
-        <!-- Lss233 Maven repo -->
+        <!-- Lss233 Maven Repo -->
         <repository>
             <id>lss233-minecraft</id>
-            <url>http://lss233.littleservice.cn/repositories/minecraft</url>
+            <url>https://lss233.littleservice.cn/repositories/minecraft</url>
         </repository>
         <!-- Mvn Maven Repo -->
         <repository>
             <id>mvn-repository</id>
-            <url>http://maven.nuxeo.org/nexus/content/groups/public</url>
+            <url>https://maven.nuxeo.org/nexus/content/groups/public</url>
         </repository>
         <!-- Spigot Maven Repo -->
         <repository>
@@ -47,31 +47,36 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- 原生Mirai -->
-        <dependency>
-            <groupId>net.mamoe</groupId>
-            <artifactId>mirai-core-jvm</artifactId>
-            <version>2.10.0</version>
-            <type>pom</type>
-        </dependency>
-
-        <!-- MiraiMC 1.6(实际上是1.5-pre1) -->
-        <dependency>
-            <groupId>io.github.dreamvoid</groupId>
-            <artifactId>MiraiMC-Base</artifactId>
-            <version>1.5-pre1</version>
-        </dependency>
+        <!-- MiraiMC 1.6 -->
         <dependency>
             <groupId>io.github.dreamvoid</groupId>
             <artifactId>MiraiMC-Bukkit</artifactId>
             <version>1.5-pre1</version>
         </dependency>
+
+
+        <!-- bStats -->
         <dependency>
-            <groupId>io.github.dreamvoid</groupId>
-            <artifactId>MiraiMC</artifactId>
-            <version>1.5-pre1</version>
-            <type>pom</type>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.0.0</version>
         </dependency>
+
+        <!-- org.jetbrains.annotations -->
+        <dependency>
+            <groupId>org.realityforge.org.jetbrains.annotations</groupId>
+            <artifactId>org.jetbrains.annotations</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+        <!-- placeholderapi -->
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>0.2.2</version>
+        </dependency>
+
+
+
     </dependencies>
 
 </project>
