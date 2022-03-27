@@ -24,6 +24,11 @@
             <id>lss233-minecraft</id>
             <url>https://lss233.littleservice.cn/repositories/minecraft</url>
         </repository>
+        <!-- PlaceholderAPI Repo -->
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
         <!-- Mvn Maven Repo -->
         <repository>
             <id>mvn-repository</id>
