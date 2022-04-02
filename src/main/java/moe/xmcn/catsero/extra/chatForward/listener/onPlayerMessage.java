@@ -3,8 +3,6 @@ package moe.xmcn.catsero.extra.chatForward;
 import me.clip.placeholderapi.PlaceholderAPI;
 import moe.xmcn.catsero.extra.chatForward.BukkitPlugin;
 import me.dreamvoid.miraimc.api.MiraiBot;
-import me.dreamvoid.miraimc.internal.httpapi.MiraiHttpAPI;
-import me.dreamvoid.miraimc.internal.httpapi.exception.AbnormalStatusException;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
