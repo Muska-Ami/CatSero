@@ -6,8 +6,6 @@ import moe.xmcn.catsero.extra.chatForward.listener.onPlayerJoin;
 import moe.xmcn.catsero.extra.chatForward.listener.onPlayerMessage;
 import moe.xmcn.catsero.extra.chatForward.listener.onPlayerQuit;
 import me.dreamvoid.miraimc.api.MiraiBot;
-import me.dreamvoid.miraimc.internal.httpapi.MiraiHttpAPI;
-import me.dreamvoid.miraimc.internal.httpapi.exception.AbnormalStatusException;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
