@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.extra.chatForward;
+package moe.xmcn.catsero.extra.chatForward.listener;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import moe.xmcn.catsero.extra.chatForward.BukkitPlugin;
