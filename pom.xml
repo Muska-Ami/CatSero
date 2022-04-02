@@ -56,7 +56,7 @@
         <dependency>
             <groupId>io.github.dreamvoid</groupId>
             <artifactId>MiraiMC-Bukkit</artifactId>
-            <version>1.5-pre</version>
+            <version>1.5-pre1</version>
             <scope>provided</scope>
         </dependency>
 
