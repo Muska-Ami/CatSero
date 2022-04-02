@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.extra.chatForward;
+package moe.xmcn.catsero.extra.chatForward.listener;
 
 import moe.xmcn.catsero.extra.chatForward.BukkitPlugin;
 import me.dreamvoid.miraimc.api.MiraiBot;
