@@ -38,7 +38,7 @@ public class BukkitPlugin extends JavaPlugin implements Listener, CommandExecuto
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if(command.getName().equalsIgnoreCase("csfwd")){
+        if(command.getName().equalsIgnoreCase("qchat")){
             String playerName;
             boolean allowWorld = false;
             boolean isPlayer = false;
@@ -80,13 +80,7 @@ public class BukkitPlugin extends JavaPlugin implements Listener, CommandExecuto
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        getConfig().getLongList("bot.bot-accounts").forEach(bot -> getConfig().getLongList("bot.group-ids").forEach(group -> {
-                            try {
-                                MiraiHttpAPI.INSTANCE.sendGroupMessage(MiraiHttpAPI.Bots.get(bot), group, finalFormatText);
-                            } catch (IOException | AbnormalStatusException ex) {
-                                getLogger().warning("使用" + bot + "发送消息时出现异常，原因: " + ex);
-                            }
-                        }));
+                        MiraiBot.getBot(getConfig().getLong("bot.botaccount")).getGroup(getConfig().getLong("bot.groupid")).sendMessageMirai(finalFormatText);
                     }
                 }.runTaskAsynchronously(this);
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&a已发送QQ群聊天消息！"));
@@ -96,9 +90,9 @@ public class BukkitPlugin extends JavaPlugin implements Listener, CommandExecuto
                 }
             }
         }
-        if(command.getName().equalsIgnoreCase("csfwd")){
+        if(command.getName().equalsIgnoreCase("chat2qq")){
             if(args.length>=1 && args[0].equalsIgnoreCase("reload")){
-                if(sender.hasPermission("catsero.cmd.cfwd")){
+                if(sender.hasPermission("miraimc.command.chat2qq")){
                     reloadConfig();
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&a配置文件已经重新载入！"));
                 } else sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&c你没有足够的权限使用此命令！"));
@@ -109,3 +103,4 @@ public class BukkitPlugin extends JavaPlugin implements Listener, CommandExecuto
         return true;
     }
 }
+
