@@ -52,11 +52,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- MiraiMC 1.6 -->
+        <!-- MiraiMC 1.5 -->
         <dependency>
             <groupId>io.github.dreamvoid</groupId>
-            <artifactId>MiraiMC-Integration</artifactId>
-            <version>1.5</version>
+            <artifactId>MiraiMC-Bukkit</artifactId>
+            <version>1.5-pre</version>
             <scope>provided</scope>
         </dependency>
 
