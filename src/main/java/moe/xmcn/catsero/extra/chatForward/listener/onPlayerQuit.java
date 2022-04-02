@@ -22,18 +22,7 @@ public class onPlayerQuit implements Listener {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    String message = plugin.getConfig().getString("bot.player-quit-message").replace("%player%", e.getPlayer().getName());
-                    plugin.getConfig().getLongList("bot.bot-accounts").forEach(bot -> plugin.getConfig().getLongList("bot.group-ids").forEach(group -> {
-                        try {
-                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message);
-                        } catch (NoSuchElementException e) {
-                            try {
-                                MiraiHttpAPI.INSTANCE.sendGroupMessage(MiraiHttpAPI.Bots.get(bot), group, message);
-                            } catch (IOException | AbnormalStatusException ex) {
-                                plugin.getLogger().warning("使用" + bot + "发送消息时出现异常，原因: " + ex);
-                            }
-                        }
-                    }));
+                    MiraiBot.getBot(plugin.getConfig().getLong("bot.botaccount")).getGroup(plugin.getConfig().getLong("bot.groupid")).sendMessageMirai(plugin.getConfig().getString("bot.player-quit-message").replace("%player%",e.getPlayer().getName()));
                 }
             }.runTaskAsynchronously(plugin);
         }
