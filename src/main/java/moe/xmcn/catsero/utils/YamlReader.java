@@ -20,7 +20,7 @@ public class YamlReader {
  
 	static {
 		Yaml yaml = new Yaml();
-		try (InputStream in = YamlReader.class.getClassLoader().getResourceAsStream("bstats.yml");) {
+		try (InputStream in = YamlReader.class.getClassLoader().getResourceAsStream("CatSero/bstats.yml");) {
 			properties = yaml.loadAs(in, HashMap.class);
 		} catch (Exception e) {
 			log.error("Init yaml failed !", e);
