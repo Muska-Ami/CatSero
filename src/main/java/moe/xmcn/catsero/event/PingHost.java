@@ -172,6 +172,7 @@ public class PingHost implements Listener, CommandExecutor {
                         address = InetAddress.getByName(new Punycode().encodeURL(args[1]));
                     } catch (UnknownHostException e) {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&c无法解析主机名/IP"));
+                        return false;
                     }
                     int flag = 0;
                     for (int i = 0; i < 4; i++) {
@@ -180,6 +181,7 @@ public class PingHost implements Listener, CommandExecutor {
                             b = address.isReachable(1000);
                         } catch (IOException e) {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&cPing时发生错误"));
+                            return false;
                         }
                         if (b)
                             flag++;
@@ -187,6 +189,7 @@ public class PingHost implements Listener, CommandExecutor {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&cPing时发生错误"));
+                            return false;
                         }
                     }
                     sender.sendMessage(args[1] + "(" + (new Punycode().encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) / 4 * 100 + "% 丢失)");
