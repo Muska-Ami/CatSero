@@ -6,4 +6,13 @@ depend:
   - MiraiMC
 commands:
   catsero:
-    description: CatSero 基础方法
+    description: "CatSero 基础方法"
+    usage: "/catsero <value>"
+    permission: catsero.admin
+    permission-message: "你没有权限执行该命令"
+permissions:
+  catsero.*:
+    description: "CatSero 权限组"
+    default: op
+    children:
+      - catsero.admin

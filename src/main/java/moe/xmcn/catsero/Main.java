@@ -1,8 +1,8 @@
 package moe.xmcn.catsero;
 
+import moe.xmcn.catsero.event.Help;
 import moe.xmcn.catsero.event.PingHost;
 import moe.xmcn.catsero.qmsg.QChatMessage;
-import moe.xmcn.catsero.qmsg.listener.onGroupMessage;
 import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -16,19 +16,19 @@ public class Main extends JavaPlugin {
     FileConfiguration config = getConfig();
     @Override // 加载插件
     public void onLoad() {
-        getServer().getPluginManager().registerEvents(new PingHost(), this);
-        getServer().getPluginManager().registerEvents(new QChatMessage(), this);
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         System.out.println("[CatSero] 正在加载CatSero插件");
         if (config.getString("utils.allow-start-warn") == "true") {
             System.out.println(ChatColor.YELLOW + "请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
         }
-
     }
 
     @Override
     public void onEnable() {
+        getServer().getPluginManager().registerEvents(new Help(), this);
+        getServer().getPluginManager().registerEvents(new PingHost(), this);
+        getServer().getPluginManager().registerEvents(new QChatMessage(), this);
         System.out.println("[CatSero] CatSero插件加载成功");
         if (config.getString("utils.allow-bstats") == "true") {
             // All you have to do is adding the following two lines in your onEnable method.
