@@ -3,6 +3,10 @@ package moe.xmcn.catsero;
 import moe.xmcn.catsero.event.Help;
 import moe.xmcn.catsero.event.PingHost;
 import moe.xmcn.catsero.qmsg.QChatMessage;
+import moe.xmcn.catsero.qmsg.listener.onGroupMessage;
+import moe.xmcn.catsero.qmsg.listener.onPlayerJoin;
+import moe.xmcn.catsero.qmsg.listener.onPlayerMessage;
+import moe.xmcn.catsero.qmsg.listener.onPlayerQuit;
 import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -29,6 +33,12 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Help(), this);
         getServer().getPluginManager().registerEvents(new PingHost(), this);
         getServer().getPluginManager().registerEvents(new QChatMessage(), this);
+
+        getServer().getPluginManager().registerEvents(new onGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new onPlayerJoin(), this);
+        getServer().getPluginManager().registerEvents(new onPlayerMessage(), this);
+        getServer().getPluginManager().registerEvents(new onPlayerQuit(), this);
+
         System.out.println("[CatSero] CatSero插件加载成功");
         if (config.getString("utils.allow-bstats") == "true") {
             // All you have to do is adding the following two lines in your onEnable method.
