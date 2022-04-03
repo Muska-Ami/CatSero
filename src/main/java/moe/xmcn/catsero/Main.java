@@ -1,7 +1,8 @@
 package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.event.PingHost;
-import moe.xmcn.catsero.listener.QChatMessage;
+import moe.xmcn.catsero.qmsg.QChatMessage;
+import moe.xmcn.catsero.qmsg.listener.onGroupMessage;
 import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

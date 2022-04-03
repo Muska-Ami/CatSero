@@ -2,12 +2,65 @@
 
 # Utils
 utils:
+  # 接受bStats统计
   allow-bstats: true
+  # 接受插件启动时的警告
   allow-start-warn: true
 
 # 主设置
-genal:
+general:
+  #在插件中控制台应该叫什么
+  console-name: 控制台
+  # 使用MiraiMC内置的绑定功能
+  use-bind: true
+
+  # QMsg扩展
   ext-qmsg:
+
+    # 是否打印Bot收到的群消息到控制台
     print-group-message-console: false
-    forward-message: false
-    forward-message-format:
+
+    # QQ&Minecraft消息同步
+    forward-message:
+      # 启用此功能
+      enabled: false
+      # 消息同步到Minecraft格式
+      ## PlaceholderAPI变量:
+      ## | %message% 收到的消息 |
+      ## | %player% 已绑定QQ的玩家名(需启用绑定) |
+      ## | %groupname% 收到消息的群名称 |
+      ## | %groupid% 收到消息的群号 |
+      ## | %nick% 发消息的人名称 |
+      ## | %qq% 发消息的人的QQ号|
+      forward-message-format:
+        # 发到QQ的格式
+        to-tencentqq: "[MC]%%"
+        # 发到Minecraft的格式
+        to-minecraft:
+          default: "&6[&aQQ&6]&6[&e未绑定&6]&b%player%&8(&f%qq%&8)&r: %message%"
+          bind: "&6[&aQQ&6]&b%player%&8(&f%qq%&8)&r: %message%"
+
+        # 是否需要特定前缀才能转发
+        requite-special-word-prefix:
+          enabled: false
+          prefix: "#"
+
+      # 使用命令发送消息的同时向游戏发送消息
+      command-also-broadcast-to-chat: true
+      # 要转发消息的世界
+      available-worlds:
+        list:
+          - world
+          - world_the_end
+          - world_nether
+        # 将世界列表作为黑名单使用
+        use-as-blacklist: false
+    # CatSero使用的QQ Bot的QQ号(注意：所有bot都会启用相关功能)
+    bots:
+      - 123456
+      - 654321
+      -
+    # 启用CatSero QQ相关功能的群聊
+    groups:
+      - 123456
+      - 654321
