@@ -1,5 +1,6 @@
 package moe.xmcn.catsero;
 
+import me.dreamvoid.miraimc.bukkit.Commands;
 import moe.xmcn.catsero.event.Help;
 import moe.xmcn.catsero.event.PingHost;
 import moe.xmcn.catsero.qmsg.QChatMessage;
@@ -8,6 +9,7 @@ import moe.xmcn.catsero.qmsg.listener.onPlayerJoin;
 import moe.xmcn.catsero.qmsg.listener.onPlayerMessage;
 import moe.xmcn.catsero.qmsg.listener.onPlayerQuit;
 import moe.xmcn.catsero.utils.Metrics;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -30,7 +32,9 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(new Help(), this);
+
+        Bukkit.getPluginCommand("catsero").setExecutor(new Help());
+        Bukkit.getPluginCommand("catsero").setExecutor(new PingHost());
         getServer().getPluginManager().registerEvents(new PingHost(), this);
         getServer().getPluginManager().registerEvents(new QChatMessage(), this);
 

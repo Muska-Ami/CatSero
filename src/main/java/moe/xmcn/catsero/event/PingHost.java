@@ -1,5 +1,6 @@
 package moe.xmcn.catsero.event;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,10 +19,11 @@ public class PingHost implements Listener, CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (plugin.getConfig().getString("general.ext-pinghost.enabled") == "true") {
-            if (args[0].equalsIgnoreCase("ping") && args.length == 3) {
+            if (args.length > 0 && args[0].equalsIgnoreCase("ping")) {
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]Ping进行中，请耐心等待..."));
                 InetAddress address = null;
                 try {
-                    address = InetAddress.getByName(args[2]);
+                    address = InetAddress.getByName(args[1]);
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                 }
@@ -41,7 +43,7 @@ public class PingHost implements Listener, CommandExecutor {
                         e.printStackTrace();
                     }
                 }
-                sender.sendMessage(args[2] + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) / 4 * 100 + "% 丢失)");
+                sender.sendMessage(args[1] + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) / 4 * 100 + "% 丢失)");
             } else {
                 return false;
             }
