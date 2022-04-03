@@ -197,14 +197,18 @@ public class PingHost implements Listener, CommandExecutor {
             }
         }
 
-        //@EventHandler
-        //public void onGroupMessageReceive(MiraiGroupMessageEvent e) {
+        /**
+        @EventHandler
+        public void onGroupMessageReceive(MiraiGroupMessageEvent e) {
+        String Colors="Red,Black,White,Yellow,Blue";
+        String[] arr1=Colors.split(",");    //不限制元素个数
+        String[] arr2=Colors.split(",",3);    //限制元素个数为3
+        if (e.getBotID() == plugin.getConfig().getString("bot")) {
 
-        //if (e.getBotID() == plugin.getConfig().getString("bot")) {
-
-        //}
-        //MiraiBot.getBot(e.getBotID()).getGroup(e.getGroupID()).sendMessage(address.getHostAddress()+" 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = "+flag+" ,丢失 = "+(4-flag)+"("+(4-flag)/4*100+"% 丢失)");
-        //}
+        }
+        MiraiBot.getBot(e.getBotID()).getGroup(e.getGroupID()).sendMessage(address.getHostAddress()+" 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = "+flag+" ,丢失 = "+(4-flag)+"("+(4-flag)/4*100+"% 丢失)");
+        }
+        */
         return false;
     }
 }
