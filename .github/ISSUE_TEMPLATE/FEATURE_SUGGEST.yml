@@ -1,0 +1,26 @@
+name: 功能建议
+description: "如果你想建议一些新的功能，请使用此模板。"
+labels: ["功能"]
+body:
+  - type: textarea
+    id: description
+    attributes: 
+      label: 功能描述
+      description: 在下方的编辑框描述你想要的功能
+      placeholder: 请尽可能完整说明你的建议，包括相关功能应该如何正确工作、何时工作等。
+    validations:
+      required: true
+  - type: textarea
+    id: recurrent
+    attributes: 
+      label: 使用方法
+      description: 在下方的编辑框描述你想这个功能如何运作，如服务端启动时这个功能要怎么工作，或是执行某个命令时这个功能要怎么运作（分步需换行请直接回车，会为你添加标号）
+      placeholder: 能看到这个？说明你没有看描述，请自己加上“1. ”
+      value: "1. "
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes: 
+      label: 额外说明
+      description: 还有什么要补充的吗？
