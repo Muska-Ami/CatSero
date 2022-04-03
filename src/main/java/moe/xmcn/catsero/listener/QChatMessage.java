@@ -13,5 +13,8 @@ public class QChatMessage implements Listener {
         if (plugin.getConfig().getString("genal.ext-qmsg.print-group-message-console") == "true") {
             System.out.println("[" + e.getGroupName() + "/" + e.getGroupID() + "]:" + e.getMessage());
         }
+        if (plugin.getConfig().getString("genal.ext-qmsg.forward-message") == "true") {
+            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("genal.ext-qmsg.forward-value")));
+        }
     }
 }
