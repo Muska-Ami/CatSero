@@ -35,6 +35,8 @@ public class Main extends JavaPlugin {
 
         Bukkit.getPluginCommand("catsero").setExecutor(new Help());
         Bukkit.getPluginCommand("catsero").setExecutor(new PingHost());
+        //Bukkit.getPluginCommand("catsero").setExecutor(new QChatMessage());
+
         getServer().getPluginManager().registerEvents(new PingHost(), this);
         getServer().getPluginManager().registerEvents(new QChatMessage(), this);
 
@@ -57,14 +59,14 @@ public class Main extends JavaPlugin {
         System.out.println("[CatSero] 正在卸载CatSero插件");
     }
 
+    /**
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (args.length == 1) {
-            if (args[0] == "reload") {
+        if (args.length == 1 && args[0] == "reload") {
                 reloadConfig();
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e] &a配置文件已重载"));
             }
-        }
-        return false;
+        return true;
     }
+    */
 }

@@ -19,7 +19,7 @@ general:
     # 启用此功能
     enabled: false
 
-  # QMsg扩展
+  # QMsg扩展(暂时废弃)
   ext-qmsg:
 
     # 是否打印Bot收到的群消息到控制台

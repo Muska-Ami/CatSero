@@ -29,8 +29,8 @@ public class QChatMessage implements Listener, CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (plugin.getConfig().getString("genal.ext-qmsg.forward-message.enabled") == "true") {
-            if (command.getName().equalsIgnoreCase("catsero") && args[0] == "qmsg") {
+        if (command.getName().equalsIgnoreCase("catsero") && args[0] == "qmsg") {
+            if (plugin.getConfig().getString("genal.ext-qmsg.forward-message.enabled") == "true") {
                 String playerName;
                 boolean allowWorld = false;
                 boolean isPlayer = false;
@@ -86,13 +86,12 @@ public class QChatMessage implements Listener, CommandExecutor {
                         player.chat(message.toString());
                     }
                 }
+            } else {
+                if (command.getName().equalsIgnoreCase("catsero") && args[0] == "qmsg") {
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e] &c你没有启用QMsg中的Forward-Message功能"));
+                }
             }
-        } else {
-            if (command.getName().equalsIgnoreCase("catsero") && args[0] == "qmsg") {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e] &c你没有启用QMsg中的Forward-Message功能"));
-            }
-            return false;
         }
-            return false;
-        }
+        return false;
+    }
 }

@@ -7,7 +7,6 @@ depend:
 commands:
   catsero:
     description: "CatSero 基础方法"
-    usage: "/catsero <value>"
     permission: catsero.admin
     permission-message: "你没有权限执行该命令"
 permissions:
