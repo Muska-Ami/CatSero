@@ -2,6 +2,7 @@ package moe.xmcn.catsero.listener;
 
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
 import org.bukkit.event.EventHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
@@ -14,7 +15,7 @@ public class QChatMessage implements Listener {
             System.out.println("[" + e.getGroupName() + "/" + e.getGroupID() + "]:" + e.getMessage());
         }
         if (plugin.getConfig().getString("genal.ext-qmsg.forward-message") == "true") {
-            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("genal.ext-qmsg.forward-value")));
+            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("")));
         }
     }
 }
