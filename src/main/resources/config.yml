@@ -9,3 +9,5 @@ utils:
 genal:
   ext-qmsg:
     print-group-message-console: false
+    forward-message: false
+    forward-message-format:
