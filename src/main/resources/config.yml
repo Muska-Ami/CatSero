@@ -60,6 +60,15 @@ general:
           - world_nether
         # 将世界列表作为黑名单使用
         use-as-blacklist: false
+
+    # 发送玩家加入/退出服务器消息到QQ
+    send-play-quit-join-message:
+      # 启用此功能
+      enabled: false
+      # 发到QQ的格式
+      format:
+        join: "%player%加入了服务器"
+        quit: "%player%退出了服务器"
     # CatSero使用的QQ Bot的QQ号(注意：所有bot都会启用相关功能)
     bots:
       - 123456
