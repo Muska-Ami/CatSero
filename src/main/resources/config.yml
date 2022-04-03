@@ -1,0 +1,11 @@
+# CatSero配置文件
+
+# Utils
+utils:
+  allow-bstats: true
+  allow-start-warn: true
+
+# 主设置
+genal:
+  ext-qmsg:
+    print-group-message-console: false
