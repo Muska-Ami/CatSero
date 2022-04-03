@@ -18,38 +18,34 @@ public class PingHost implements Listener, CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (plugin.getConfig().getString("general.ext-pinghost.enabled") == "true") {
-            if (args[0].equalsIgnoreCase("ping")) {
-                if (args.length == 2) {
-                    InetAddress address = null;
+            if (args[0].equalsIgnoreCase("ping") && args.length == 3) {
+                InetAddress address = null;
+                try {
+                    address = InetAddress.getByName(args[2]);
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+                int flag = 0;
+                for (int i = 0; i < 4; i++) {
+                    boolean b = false;
                     try {
-                        address = InetAddress.getByName(args[1]);
-                    } catch (UnknownHostException e) {
+                        b = address.isReachable(1000);
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    int flag = 0;
-                    for (int i = 0; i < 4; i++) {
-                        boolean b = false;
-                        try {
-                            b = address.isReachable(1000);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        if (b)
-                            flag++;
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                    if (b)
+                        flag++;
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                    sender.sendMessage(args[1] + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) / 4 * 100 + "% 丢失)");
-
-                } else {
-                    return false;
                 }
+                sender.sendMessage(args[2] + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) / 4 * 100 + "% 丢失)");
             } else {
                 return false;
             }
+        } else {
             return false;
         }
 

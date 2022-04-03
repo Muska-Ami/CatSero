@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 public class Help implements Listener, CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (args.length == 0) {
+        if (args.length == 1) {
             commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e] &c无法找到使用方法"));
         }
         return false;
