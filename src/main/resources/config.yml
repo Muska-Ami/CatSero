@@ -44,7 +44,7 @@ general:
         join: "%player%加入了服务器"
         quit: "%player%退出了服务器"
   # CatSero使用的QQ Bot的QQ号(注意：所有bot都会启用相关功能)
-  bots: 123456
+  bot: 123456
   # 启用CatSero QQ相关功能的群聊
   group: 123456
   # 谁有权限使用CatSero OP功能
