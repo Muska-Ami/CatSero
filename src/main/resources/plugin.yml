@@ -10,8 +10,7 @@ commands:
     permission: catsero.admin
     permission-message: "你没有权限执行该命令"
 permissions:
-  catsero.*:
-    description: "CatSero 权限组"
+  catsero.admin:
+    description: "CatSero OP权限组"
     default: op
     children:
-      - catsero.admin

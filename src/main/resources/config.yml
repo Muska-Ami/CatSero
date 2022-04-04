@@ -18,6 +18,19 @@ general:
   ext-pinghost:
     # 启用此功能
     enabled: false
+    # 是否只有OP才能使用
+    op-only: false
+
+  # QBanPlayer扩展
+  ext-qbanplayer:
+    # 启用此功能
+    enabled: false
+    # 封禁时常日期格式
+    ## | SECONDS 秒 |
+    ## | HOURS 小时 |
+    ## | DAYS 天 |
+    ## | YEARS 年 |
+    time-format: SECONDS
 
   # QMsg扩展
   ext-qmsg:
@@ -34,3 +47,5 @@ general:
   bots: 123456
   # 启用CatSero QQ相关功能的群聊
   group: 123456
+  # 谁有权限使用CatSero OP功能
+  qq-op: 123456
