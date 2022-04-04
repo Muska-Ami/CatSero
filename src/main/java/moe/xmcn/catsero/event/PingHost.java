@@ -1,16 +1,23 @@
 package moe.xmcn.catsero.event;
 
+import me.dreamvoid.miraimc.api.MiraiBot;
+import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class PingHost implements Listener, CommandExecutor {
 
@@ -199,19 +206,53 @@ public class PingHost implements Listener, CommandExecutor {
                 }
             }
         }
-
-        /**
-        @EventHandler
-        public void onGroupMessageReceive(MiraiGroupMessageEvent e) {
-        String Colors="Red,Black,White,Yellow,Blue";
-        String[] arr1=Colors.split(",");    //不限制元素个数
-        String[] arr2=Colors.split(",",3);    //限制元素个数为3
-        if (e.getBotID() == plugin.getConfig().getString("bot")) {
-
-        }
-        MiraiBot.getBot(e.getBotID()).getGroup(e.getGroupID()).sendMessage(address.getHostAddress()+" 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = "+flag+" ,丢失 = "+(4-flag)+"("+(4-flag)/4*100+"% 丢失)");
-        }
-        */
         return false;
     }
+    ///**
+    @EventHandler
+    public void onGroupMessageReceive(MiraiGroupMessageEvent event) {
+        //System.out.println(event.getMessage());
+        String msg = event.getMessage();
+        String[] args = msg.split(" ");
+        //System.out.println(Arrays.toString(args));
+        //MiraiBot.getBot(1792966170).getGroup(1165489597).sendMessageMirai(Arrays.toString(args));;
+        //System.out.println(args[0] + args[1]);
+        //MiraiBot.getBot(1792966170).getGroup(1165489597).sendMessageMirai(args[0] + args[1]);
+        if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
+            System.out.println(args[0] + args[1]);
+            MiraiBot.getBot(1792966170).getGroup(1165489597).sendMessageMirai(args[0] + args[1]);
+            plugin.getConfig().getLongList("general.bots").forEach(bot -> plugin.getConfig().getLongList("general.groups").forEach(group -> {
+                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]Ping进行中，请耐心等待...");
+                try {
+                    InetAddress address = null;
+                    try {
+                        address = InetAddress.getByName(new Punycode().encodeURL(args[1]));
+                    } catch (UnknownHostException e) {
+                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]无法解析主机名/IP");
+                    }
+                    int flag = 0;
+                    for (int i = 0; i < 4; i++) {
+                        boolean b = false;
+                        try {
+                            b = address.isReachable(1000);
+                        } catch (IOException e) {
+                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]Ping时发生错误");
+                        }
+                        if (b)
+                            flag++;
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]Ping时发生错误");
+                        }
+                    }
+                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(args[1] + "(" + (new Punycode().encodeURL(args[2])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) / 4 * 100 + "% 丢失)");
+                } catch (NoSuchElementException e) {
+                plugin.getLogger().warning("指定的机器人" + bot + "不存在，是否已经登录了机器人？");
+                }
+            }));
+        }
+    }
+        //*/
+
 }

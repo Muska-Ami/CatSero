@@ -38,12 +38,12 @@ public class Main extends JavaPlugin {
         //Bukkit.getPluginCommand("catsero").setExecutor(new QChatMessage());
 
         getServer().getPluginManager().registerEvents(new PingHost(), this);
-        getServer().getPluginManager().registerEvents(new QChatMessage(), this);
+        //getServer().getPluginManager().registerEvents(new QChatMessage(), this);
 
-        getServer().getPluginManager().registerEvents(new onGroupMessage(), this);
-        getServer().getPluginManager().registerEvents(new onPlayerJoin(), this);
-        getServer().getPluginManager().registerEvents(new onPlayerMessage(), this);
-        getServer().getPluginManager().registerEvents(new onPlayerQuit(), this);
+        //getServer().getPluginManager().registerEvents(new onGroupMessage(), this);
+        //getServer().getPluginManager().registerEvents(new onPlayerJoin(), this);
+        //getServer().getPluginManager().registerEvents(new onPlayerMessage(), this);
+        //getServer().getPluginManager().registerEvents(new onPlayerQuit(), this);
 
         System.out.println("[CatSero] CatSero插件加载成功");
         if (config.getString("utils.allow-bstats") == "true") {
