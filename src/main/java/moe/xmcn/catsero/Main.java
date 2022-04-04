@@ -1,21 +1,13 @@
 package moe.xmcn.catsero;
 
-import me.dreamvoid.miraimc.bukkit.Commands;
 import moe.xmcn.catsero.event.Help;
 import moe.xmcn.catsero.event.PingHost;
-import moe.xmcn.catsero.qmsg.QChatMessage;
-import moe.xmcn.catsero.qmsg.listener.onGroupMessage;
-import moe.xmcn.catsero.qmsg.listener.onPlayerJoin;
-import moe.xmcn.catsero.qmsg.listener.onPlayerMessage;
-import moe.xmcn.catsero.qmsg.listener.onPlayerQuit;
+import moe.xmcn.catsero.ext.qmsg.onPlayerJoinQuit;
 import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 
 public class Main extends JavaPlugin {
 
@@ -35,15 +27,9 @@ public class Main extends JavaPlugin {
 
         Bukkit.getPluginCommand("catsero").setExecutor(new Help());
         Bukkit.getPluginCommand("catsero").setExecutor(new PingHost());
-        //Bukkit.getPluginCommand("catsero").setExecutor(new QChatMessage());
 
         getServer().getPluginManager().registerEvents(new PingHost(), this);
-        //getServer().getPluginManager().registerEvents(new QChatMessage(), this);
-
-        //getServer().getPluginManager().registerEvents(new onGroupMessage(), this);
-        //getServer().getPluginManager().registerEvents(new onPlayerJoin(), this);
-        //getServer().getPluginManager().registerEvents(new onPlayerMessage(), this);
-        //getServer().getPluginManager().registerEvents(new onPlayerQuit(), this);
+        getServer().getPluginManager().registerEvents(new onPlayerJoinQuit(), this);
 
         System.out.println("[CatSero] CatSero插件加载成功");
         if (config.getString("utils.allow-bstats") == "true") {
