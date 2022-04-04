@@ -12,12 +12,11 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.lang.management.LockInfo;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 public class PingHost implements Listener, CommandExecutor {
 
@@ -211,22 +210,20 @@ public class PingHost implements Listener, CommandExecutor {
     ///**
     @EventHandler
     public void onGroupMessageReceive(MiraiGroupMessageEvent event) {
-        //System.out.println(event.getMessage());
-        String msg = event.getMessage();
-        String[] args = msg.split(" ");
-        //System.out.println(Arrays.toString(args));
-        //MiraiBot.getBot(1792966170).getGroup(1165489597).sendMessageMirai(Arrays.toString(args));;
-        //System.out.println(args[0] + args[1]);
-        //MiraiBot.getBot(1792966170).getGroup(1165489597).sendMessageMirai(args[0] + args[1]);
-        if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
-            System.out.println(args[0] + args[1]);
-            MiraiBot.getBot(1792966170).getGroup(1165489597).sendMessageMirai(args[0] + args[1]);
-            plugin.getConfig().getLongList("general.bots").forEach(bot -> plugin.getConfig().getLongList("general.groups").forEach(group -> {
+        if (plugin.getConfig().getString("general.ext-pinghost.enabled") == "true") {
+            String msg = event.getMessage();
+            String[] args = msg.split(" ");
+            if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
+                //System.out.println(args[0] + args[1]);
+                //MiraiBot.getBot(1792966170).getGroup(1165489597).sendMessageMirai(args[0] +"/"+ args[1] +"/" + args[2]);
+                Long bot = Long.valueOf(plugin.getConfig().getString("general.bot"));
+                Long group = Long.valueOf(plugin.getConfig().getString("general.group"));
+                //plugin.getConfig().getLongList("general.bots").forEach(bot -> plugin.getConfig().getLongList("general.groups").forEach(group -> {
                 MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]Ping进行中，请耐心等待...");
                 try {
                     InetAddress address = null;
                     try {
-                        address = InetAddress.getByName(new Punycode().encodeURL(args[1]));
+                        address = InetAddress.getByName(new Punycode().encodeURL(args[2]));
                     } catch (UnknownHostException e) {
                         MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]无法解析主机名/IP");
                     }
@@ -246,11 +243,12 @@ public class PingHost implements Listener, CommandExecutor {
                             MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]Ping时发生错误");
                         }
                     }
-                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(args[1] + "(" + (new Punycode().encodeURL(args[2])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) / 4 * 100 + "% 丢失)");
+                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(args[2] + "(" + (new Punycode().encodeURL(args[2])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) / 4 * 100 + "% 丢失)");
                 } catch (NoSuchElementException e) {
-                plugin.getLogger().warning("指定的机器人" + bot + "不存在，是否已经登录了机器人？");
+                    plugin.getLogger().warning("指定的机器人" + bot + "不存在，是否已经登录了机器人？");
                 }
-            }));
+            //}));
+            }
         }
     }
         //*/
