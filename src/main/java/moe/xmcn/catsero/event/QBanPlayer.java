@@ -26,42 +26,23 @@ public class QBanPlayer implements Listener {
                 Long group = Long.valueOf(plugin.getConfig().getString("general.group"));
                 if (event.getSenderID() == Long.valueOf(plugin.getConfig().getString("general.qq-op"))) {
                     System.out.println(event.getSenderID());
-                    if (args.length >= 4) {
+                    if (args.length == 5) {
                         Instant now = Instant.now();
                         String format = plugin.getConfig().getString("general.ext-qbanplayer.time-format");
-                        if (args.length == 5) {
-                            String reason = args[4];
-                            if (format == "SECONDS") {
-                                Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.SECONDS);
-                                Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], args[4], Date.from(todate), null);
-                            } else if (format == "HOURS") {
-                                Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.HOURS);
-                                Bukkit.getBanList(BanList.Type.NAME).addBan(args[3], args[4], Date.from(todate), null);
-                            } else if (format == "DAYS") {
-                                Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.DAYS);
-                                Bukkit.getBanList(BanList.Type.NAME).addBan(args[3], args[4], Date.from(todate), null);
-                            } else if (format == "YEARS") {
-                                Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.YEARS);
-                                Bukkit.getBanList(BanList.Type.NAME).addBan(args[3], args[4], Date.from(todate), null);
-                            }
-                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]已封禁玩家" + args[2] + "\n时长:" + args[3] + format + "\n理由:" + reason);
-                        } else {
-                            String reason = "你已被此服务器封禁";
-                            if (format == "SECONDS") {
-                                Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.SECONDS);
-                                Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], args[4], Date.from(todate), null);
-                            } else if (format == "HOURS") {
-                                Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.HOURS);
-                                Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], args[4], Date.from(todate), null);
-                            } else if (format == "DAYS") {
-                                Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.DAYS);
-                                Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], args[4], Date.from(todate), null);
-                            } else if (format == "YEARS") {
-                                Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.YEARS);
-                                Bukkit.getBanList(BanList.Type.NAME).addBan(args[3], args[4], Date.from(todate), null);
-                            }
-                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]已封禁玩家" + args[2] + "\n时长:" + args[4] + format + "\n理由:" + reason);
+                        if (format == "SECONDS") {
+                            Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.SECONDS);
+                            Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], args[4], Date.from(todate), null);
+                        } else if (format == "HOURS") {
+                            Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.HOURS);
+                            Bukkit.getBanList(BanList.Type.NAME).addBan(args[3], args[4], Date.from(todate), null);
+                        } else if (format == "DAYS") {
+                            Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.DAYS);
+                            Bukkit.getBanList(BanList.Type.NAME).addBan(args[3], args[4], Date.from(todate), null);
+                        } else if (format == "YEARS") {
+                            Instant todate = now.plus((Long.valueOf(args[3])), ChronoUnit.YEARS);
+                            Bukkit.getBanList(BanList.Type.NAME).addBan(args[3], args[4], Date.from(todate), null);
                         }
+                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]已封禁玩家" + args[2] + "\n时长:" + args[3] + format + "\n理由:" + args[4]);
                     } else {
                         MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]不正确的参数格式");
                     }

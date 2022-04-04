@@ -1,16 +1,14 @@
 name: CatSero
 main: moe.xmcn.catsero.Main
-version: 1.0-pre1
+version: 1.0-pre2
 author: XiaMoHuaHuo_CN
 depend:
   - MiraiMC
 commands:
   catsero:
     description: "CatSero 基础方法"
-    permission: catsero.admin
     permission-message: "你没有权限执行该命令"
 permissions:
   catsero.admin:
     description: "CatSero OP权限组"
     default: op
-    children:

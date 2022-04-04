@@ -1,6 +1,6 @@
 package moe.xmcn.catsero;
 
-import moe.xmcn.catsero.event.Help;
+import moe.xmcn.catsero.event.DefCmd;
 import moe.xmcn.catsero.event.PingHost;
 import moe.xmcn.catsero.event.QBanPlayer;
 import moe.xmcn.catsero.ext.qmsg.onPlayerJoinQuit;
@@ -26,7 +26,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        Bukkit.getPluginCommand("catsero").setExecutor(new Help());
+        Bukkit.getPluginCommand("catsero").setExecutor(new DefCmd());
         Bukkit.getPluginCommand("catsero").setExecutor(new PingHost());
 
         getServer().getPluginManager().registerEvents(new PingHost(), this);
