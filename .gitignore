@@ -2,7 +2,7 @@
 *.class
 
 # MCServer
-MCServer/
+testserver/
 
 # Log file
 *.log
@@ -42,5 +42,3 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-# 测试服务器
-testserver/
