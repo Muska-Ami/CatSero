@@ -102,7 +102,7 @@ public class Commands implements CommandExecutor {
             }
         } else if (args[0].equalsIgnoreCase("reload")) {
                 plugin.reloadConfig();
-                sender.sendMessage("&e[&bCatSero&e]&a配置文件已重载");
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&a配置文件已重载"));
             } else {
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e] &c无法找到使用方法"));
         }
