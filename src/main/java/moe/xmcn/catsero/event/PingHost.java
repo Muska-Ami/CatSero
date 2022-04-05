@@ -24,7 +24,7 @@ public class PingHost implements Listener, CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (plugin.getConfig().getString("general.ext-pinghost.enabled") == "true") {
-            if (args.length > 0 && args[0].equalsIgnoreCase("ping")) {
+            if (args[0].equalsIgnoreCase("ping")) {
                 if (plugin.getConfig().getString("general.ext-pinghost.op-only") == "true") {
                     if (sender.hasPermission("catsero.admin")) {
                         if (args.length == 2) {
