@@ -21,6 +21,11 @@ general:
     # 是否只有OP才能使用
     op-only: false
 
+  # 天气扩展
+  ext-weatherinfo:
+    # 启用此功能
+    enabled: false
+
   # QBanPlayer扩展
   ext-qbanplayer:
     # 启用此功能
