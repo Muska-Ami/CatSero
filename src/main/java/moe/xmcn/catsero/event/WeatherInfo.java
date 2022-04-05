@@ -1,5 +1,6 @@
 package moe.xmcn.catsero.event;
 
+import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.WeatherUtils;
 import org.bukkit.ChatColor;
@@ -17,11 +18,18 @@ public class WeatherInfo implements Listener {
 
     @EventHandler
     public void MiraiGroupMessage(MiraiGroupMessageEvent event) {
-        if (plugin.getConfig().getString("general.ext-qbanplayer.enabled") == "true") {
+        if (plugin.getConfig().getString("general.ext-weatherinfo.enabled") == "true") {
             String msg = event.getMessage();
             String[] args = msg.split(" ");
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("weather")) {
-
+                Long bot = Long.valueOf(plugin.getConfig().getString("general.bot"));
+                Long group = Long.valueOf(plugin.getConfig().getString("general.group"));
+                if (args.length == 3) {
+                    String res = WeatherUtils.GetWeatherData(args[2]);
+                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(res);
+                } else {
+                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]请输入城市");
+                }
             }
         }
     }

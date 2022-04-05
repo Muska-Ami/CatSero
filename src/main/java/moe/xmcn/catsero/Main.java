@@ -3,6 +3,7 @@ package moe.xmcn.catsero;
 import moe.xmcn.catsero.cmd.Commands;
 import moe.xmcn.catsero.event.PingHost;
 import moe.xmcn.catsero.event.QBanPlayer;
+import moe.xmcn.catsero.event.WeatherInfo;
 import moe.xmcn.catsero.ext.qmsg.onPlayerJoinQuit;
 import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
@@ -33,6 +34,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PingHost(), this);
         getServer().getPluginManager().registerEvents(new onPlayerJoinQuit(), this);
         getServer().getPluginManager().registerEvents(new QBanPlayer(), this);
+        getServer().getPluginManager().registerEvents(new WeatherInfo(), this);
 
         System.out.println("[CatSero] CatSero插件加载成功");
         if (config.getString("utils.allow-bstats") == "true") {

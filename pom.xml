@@ -65,14 +65,6 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Json-Lib -->
-        <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.4</version>
-        </dependency>
-
-
         <!-- org.jetbrains.annotations -->
         <dependency>
             <groupId>org.realityforge.org.jetbrains.annotations</groupId>

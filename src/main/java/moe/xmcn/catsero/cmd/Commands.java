@@ -20,6 +20,9 @@ public class Commands implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
+        /**
+         * PingHost
+         */
         if (args[0].equalsIgnoreCase("ping") && plugin.getConfig().getString("general.ext-pinghost.enabled") == "true") {
             if (plugin.getConfig().getString("general.ext-pinghost.op-only") == "true") {
                 if (sender.hasPermission("catsero.admin")) {
@@ -90,21 +93,32 @@ public class Commands implements CommandExecutor {
                 return true;
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&c请键入正确的地址"));
+                return false;
             }
 
+        /**
+        * 天气获取
+        */
         } else if (args[0].equalsIgnoreCase("weather") && plugin.getConfig().getString("general.ext-weatherinfo.enabled") == "true") {
             if (args.length == 2) {
                 String res = WeatherUtils.GetWeatherData(args[1]);
-                System.out.println(res);
                 sender.sendMessage(res);
+                return true;
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&c请输入城市"));
+                return false;
             }
+
+        /**
+        * 插件重载
+        */
         } else if (args[0].equalsIgnoreCase("reload")) {
-                plugin.reloadConfig();
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&a配置文件已重载"));
-            } else {
+            plugin.reloadConfig();
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&a配置文件已重载"));
+            return true;
+        } else {
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e] &c无法找到使用方法"));
+            return false;
         }
         return false;
     }

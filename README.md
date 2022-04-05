@@ -11,4 +11,4 @@ SpigotAPI版本: 1.18-R0.1-SNAPSHOT
 - [ ] QQ群娱乐功能
 - [x] Ping功能(Minecraft内/QQ群内)
 - [ ] QQ群给予OP
-- [ ] 天气获取
+- [x] 天气获取
