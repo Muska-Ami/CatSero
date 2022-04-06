@@ -12,3 +12,6 @@ SpigotAPI版本: 1.18-R0.1-SNAPSHOT
 - [x] Ping功能(Minecraft内/QQ群内)
 - [ ] QQ群给予OP
 - [x] 天气获取
+
+# bStats
+![](https://bstats.org/signatures/bukkit/CatSero.svg)
