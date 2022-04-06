@@ -27,8 +27,6 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        //Bukkit.getPluginCommand("catsero").setExecutor(new DefCmd());
-        //Bukkit.getPluginCommand("catsero").setExecutor(new PingHost());
         Bukkit.getPluginCommand("catsero").setExecutor(new Commands());
 
         getServer().getPluginManager().registerEvents(new PingHost(), this);
@@ -43,21 +41,11 @@ public class Main extends JavaPlugin {
             int pluginId = 14767; // <-- Replace with the id of your plugin!
             new Metrics(this, pluginId);
         }
+
     }
 
     @Override
     public void onDisable() {
         System.out.println("[CatSero] 正在卸载CatSero插件");
     }
-
-    /**
-    @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (args.length == 1 && args[0] == "reload") {
-                reloadConfig();
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e] &a配置文件已重载"));
-            }
-        return true;
-    }
-    */
 }
