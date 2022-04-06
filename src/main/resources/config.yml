@@ -30,12 +30,6 @@ general:
   ext-qbanplayer:
     # 启用此功能
     enabled: false
-    # 封禁时常日期格式
-    ## | SECONDS 秒 |
-    ## | HOURS 小时 |
-    ## | DAYS 天 |
-    ## | YEARS 年 |
-    time-format: SECONDS
 
   # QMsg扩展
   ext-qmsg:

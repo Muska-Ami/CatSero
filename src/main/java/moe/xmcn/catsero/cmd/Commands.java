@@ -116,8 +116,11 @@ public class Commands implements CommandExecutor {
             plugin.reloadConfig();
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&a配置文件已重载"));
             return true;
+        /**
+        * 无效方法
+        */
         } else {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e] &c无法找到使用方法"));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&c无法找到使用方法，请检查拼写"));
             return false;
         }
         return false;
