@@ -1,0 +1,29 @@
+# CatSero功能设置
+
+# PingHost功能
+pinghost:
+  # 启用此功能
+  enabled: false
+  op-only: false
+
+# 天气获取功能
+weatherinfo:
+  enabled: false
+
+# QMsg功能
+qmsg:
+
+  send-player-join-quit:
+    enabled: false
+    format:
+      to-mc: ""
+      to-qq: ""
+  
+  forward-chat:
+    enabled: false
+    format:
+      to-mc: ""
+      to-qq: ""
+    prefix:
+      enabled: false
+      format: "#"
