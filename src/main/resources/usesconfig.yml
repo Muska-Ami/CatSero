@@ -8,22 +8,28 @@ pinghost:
 
 # 天气获取功能
 weatherinfo:
+  # 启用此功能
   enabled: false
 
 # QMsg功能
 qmsg:
 
   send-player-join-quit:
+    # 启用此功能
     enabled: false
     format:
-      to-mc: ""
-      to-qq: ""
+      join: ""
+      quit: ""
   
   forward-chat:
+    # 启用此功能
     enabled: false
     format:
       to-mc: ""
       to-qq: ""
     prefix:
+      # 启用此功能
       enabled: false
-      format: "#"
+      format:
+        to-mc: "#"
+        to-qq: "#"
