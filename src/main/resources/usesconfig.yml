@@ -24,6 +24,7 @@ qmsg:
       join: ""
       quit: ""
   
+  # 转发MC-QQ聊天
   forward-chat:
     # 启用此功能
     enabled: false
@@ -38,6 +39,7 @@ qmsg:
         to-mc: "#"
         to-qq: "#"
 
+# 白名单功能
 whitelist:
   # 启用此功能
   enabled: false
@@ -47,3 +49,12 @@ whitelist:
     enabled: false
     # 格式
     format: "申请白名单 %playername%"
+
+# 玩家加入/退出游戏消息
+join-quit-message:
+  # 启用此功能
+  enabled: false
+  # 格式
+  format:
+    join: ""
+    quit: ""
