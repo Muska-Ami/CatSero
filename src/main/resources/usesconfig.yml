@@ -4,6 +4,7 @@
 pinghost:
   # 启用此功能
   enabled: false
+  # 仅OP可用
   op-only: false
 
 # 天气获取功能
@@ -14,9 +15,11 @@ weatherinfo:
 # QMsg功能
 qmsg:
 
+  # 发送玩家加入/退出消息
   send-player-join-quit:
     # 启用此功能
     enabled: false
+    # 格式
     format:
       join: ""
       quit: ""
@@ -24,6 +27,7 @@ qmsg:
   forward-chat:
     # 启用此功能
     enabled: false
+    # 格式
     format:
       to-mc: ""
       to-qq: ""
@@ -33,3 +37,13 @@ qmsg:
       format:
         to-mc: "#"
         to-qq: "#"
+
+whitelist:
+  # 启用此功能
+  enabled: false
+  # QQ自助申请
+  ass:
+    # 启用此功能
+    enabled: false
+    # 格式
+    format: "申请白名单 %playername%"
