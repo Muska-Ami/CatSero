@@ -18,6 +18,7 @@ public class Main extends JavaPlugin {
     public void onLoad() {
         getConfig().options().copyDefaults();
         saveDefaultConfig();
+        saveResource("usesconfig.yml");
         System.out.println("[CatSero] 正在加载CatSero插件");
         if (config.getString("utils.allow-start-warn") == "true") {
             System.out.println(ChatColor.YELLOW + "请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
