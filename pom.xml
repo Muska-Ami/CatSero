@@ -25,6 +25,11 @@
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
+        <!-- Offical Maven Repo -->
+        <repository>
+            <id>maven-repo</id>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
         <!-- Mvn Maven Repo -->
         <repository>
             <id>mvn-repository</id>
