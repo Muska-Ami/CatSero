@@ -48,11 +48,19 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- MiraiMC 1.5 -->
+        <!-- MiraiMC -->
+        <!--
         <dependency>
             <groupId>io.github.dreamvoid</groupId>
             <artifactId>MiraiMC-Bukkit</artifactId>
             <version>1.5-pre1</version>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>io.github.dreamvoid</groupId>
+            <artifactId>MiraiMC-Integration</artifactId>
+            <version>1.6.1</version>
             <scope>provided</scope>
         </dependency>
 
