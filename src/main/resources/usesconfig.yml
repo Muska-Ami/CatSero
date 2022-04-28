@@ -21,8 +21,8 @@ qmsg:
     enabled: false
     # 格式
     format:
-      join: ""
-      quit: ""
+      join: "%player%加入了游戏"
+      quit: "%player%退出了游戏"
   
   # 转发MC-QQ聊天
   forward-chat:
@@ -48,7 +48,7 @@ whitelist:
     # 启用此功能
     enabled: false
     # 格式
-    format: "申请白名单 %playername%"
+    format: "申请白名单 %player%"
 
 # 玩家加入/退出游戏消息
 join-quit-message:
@@ -58,3 +58,8 @@ join-quit-message:
   format:
     join: ""
     quit: ""
+
+# 新人加群欢迎
+welcome-new-group-member:
+  enabled: false
+  format: "欢迎%name%（%code%）\n加入了本群！"
