@@ -19,11 +19,7 @@ public class onPlayerJoinQuit implements Listener {
 
             String pljname = pljev.getPlayer().getName();
             String joinmsg = plugin.getConfig().getString("general.ext-qmsg.send-play-quit-join-message.format.join").replace("%player%", pljname);
-            try {
-                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(joinmsg);
-            catch (NoSuchElementException e) {
-                plugin.getLogger().warning("指定的机器人" + bot + "不存在，是否已经登录了机器人？");
-            }
+            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(joinmsg);
         }
     }
 
@@ -35,11 +31,7 @@ public class onPlayerJoinQuit implements Listener {
 
             String plqname = plqev.getPlayer().getName();
             String quitmsg = plugin.getConfig().getString("general.ext-qmsg.send-play-quit-join-message.format.quit").replace("%player%", plqname);
-            try {
-                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(quitmsg);
-            catch (NoSuchElementException e) {
-                plugin.getLogger().warning("指定的机器人" + bot + "不存在，是否已经登录了机器人？");
-            }
+            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(quitmsg);
         }
     }
 }
