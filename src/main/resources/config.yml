@@ -1,50 +1,21 @@
 # CatSero配置文件
 
-# Utils
-utils:
-  # 接受bStats统计
-  allow-bstats: true
-  # 接受插件启动时的警告
-  allow-start-warn: true
+# 接受bStats统计
+allow-bstats: true
+# 接受插件启动时的警告
+allow-start-warn: true
+# 检查更新功能
+check-update:
+  # 启用
+  enabled: true
+  # 版本(开发版 -> dev || 正式版 -> passed)
+  version: passed
 
-# 主设置
-general:
-  #在插件中控制台应该叫什么
-  console-name: 控制台
-  # 使用MiraiMC内置的绑定功能
-  use-bind: true
-
-  # PingHost扩展
-  ext-pinghost:
-    # 启用此功能
-    enabled: false
-    # 是否只有OP才能使用
-    op-only: false
-
-  # 天气扩展
-  ext-weatherinfo:
-    # 启用此功能
-    enabled: false
-
-  # QBanPlayer扩展
-  ext-qbanplayer:
-    # 启用此功能
-    enabled: false
-
-  # QMsg扩展
-  ext-qmsg:
-
-    # 发送玩家加入/退出服务器消息到QQ
-    send-play-quit-join-message:
-      # 启用此功能
-      enabled: false
-      # 发到QQ的格式
-      format:
-        join: "%player%加入了服务器"
-        quit: "%player%退出了服务器"
-  # CatSero使用的QQ Bot的QQ号(注意：所有bot都会启用相关功能)
-  bot: 123456
-  # 启用CatSero QQ相关功能的群聊
-  group: 123456
-  # 谁有权限使用CatSero OP功能
-  qq-op: 123456
+# 通用格式
+format-list:
+  # 插件消息前缀
+  prefix:
+    to-mc: "&e[&bCatSero&e]"
+    to-qq: "[CatSero]"
+  # Console名称
+  console-name: "控制台"

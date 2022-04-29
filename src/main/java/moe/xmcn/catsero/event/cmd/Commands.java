@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.cmd;
+package moe.xmcn.catsero.event.cmd;
 
 import moe.xmcn.catsero.utils.Punycode;
 import moe.xmcn.catsero.utils.WeatherUtils;
@@ -53,7 +53,7 @@ public class Commands implements CommandExecutor {
                                 return false;
                             }
                         }
-                        sender.sendMessage(args[1] + "(" + (new Punycode().encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
+                        sender.sendMessage(args[1] + "(" + (Punycode.encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
                         return true;
                     } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&c请键入正确的地址"));
@@ -66,7 +66,7 @@ public class Commands implements CommandExecutor {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&aPing进行中，请耐心等待..."));
                 InetAddress address = null;
                 try {
-                    address = InetAddress.getByName(new Punycode().encodeURL(args[1]));
+                    address = InetAddress.getByName(Punycode.encodeURL(args[1]));
                 } catch (UnknownHostException e) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&c无法解析主机名/IP"));
                     return false;
@@ -89,7 +89,7 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                 }
-                sender.sendMessage(args[1] + "(" + (new Punycode().encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
+                sender.sendMessage(args[1] + "(" + (Punycode.encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
                 return true;
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e[&bCatSero&e]&c请键入正确的地址"));

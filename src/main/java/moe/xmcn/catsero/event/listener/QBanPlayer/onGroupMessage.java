@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.event;
+package moe.xmcn.catsero.event.listener.QBanPlayer;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
@@ -8,23 +8,19 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
-
-public class QBanPlayer implements Listener {
+public class onGroupMessage implements Listener {
 
     Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
 
     @EventHandler
     public void onGroupMessage(MiraiGroupMessageEvent event) {
-        if (plugin.getConfig().getString("general.ext-qbanplayer.enabled") == "true") {
+        if (plugin.getConfig().getBoolean("general.ext-qbanplayer.enabled")) {
             String msg = event.getMessage();
             String[] args = msg.split(" ");
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ban")) {
-                Long bot = Long.valueOf(plugin.getConfig().getString("general.bot"));
-                Long group = Long.valueOf(plugin.getConfig().getString("general.group"));
-                if (event.getSenderID() == Long.valueOf(plugin.getConfig().getString("general.qq-op"))) {
+                long bot = plugin.getConfig().getLong("general.bot");
+                long group = plugin.getConfig().getLong("general.group");
+                if (event.getSenderID() == plugin.getConfig().getLong("general.qq-op")) {
                     System.out.println(event.getSenderID());
                     if (args.length == 5) {
                             Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], args[3], null, null);
