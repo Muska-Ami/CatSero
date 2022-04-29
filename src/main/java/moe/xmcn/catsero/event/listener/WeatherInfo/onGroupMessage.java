@@ -16,7 +16,7 @@ public class onGroupMessage implements Listener {
 
     Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
     Yaml yaml = new Yaml();
-    InputStream in = Object.class.getClassLoader().getResourceAsStream("usesconfig.yml");//或者app.yaml
+    InputStream in = plugin.getResource("usesconfig.yml");
     Map<String, Object> map = yaml.loadAs(in, Map.class);
 
     String prefixqq = plugin.getConfig().getString("format-list.prefix.to-qq");

@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.event.cmd;
+package moe.xmcn.catsero.event.command;
 
 import moe.xmcn.catsero.utils.Punycode;
 import moe.xmcn.catsero.utils.WeatherUtils;
@@ -16,14 +16,15 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Map;
 
-public class Commands implements CommandExecutor {
+public class CatSero implements CommandExecutor {
 
     Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
     Yaml yaml = new Yaml();
-    InputStream in = Object.class.getClassLoader().getResourceAsStream("usesconfig.yml");//或者app.yaml
+    InputStream in = plugin.getResource("usesconfig.yml");
     Map<String, Object> map = yaml.loadAs(in, Map.class);
 
     String prefixmc = plugin.getConfig().getString("format-list.prefix.to-mc");
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 

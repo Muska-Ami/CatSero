@@ -64,6 +64,8 @@ join-quit-message:
     quit: ""
 
 # 新人加群欢迎
-welcome-new-group-member:
+group-member-change-message:
   enabled: false
-  format: "欢迎%name%（%code%）\n加入了本群！"
+  format:
+    join: "欢迎%at%(%code%)\n加入了本群！"
+    quit: ""
