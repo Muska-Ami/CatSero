@@ -12,6 +12,10 @@ weatherinfo:
   # 启用此功能
   enabled: false
 
+qbanplayer:
+  # 启用此功能
+  enabled: false
+
 # QMsg功能
 qmsg:
 

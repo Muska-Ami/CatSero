@@ -6,24 +6,42 @@ import moe.xmcn.catsero.utils.WeatherUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.InputStream;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class onGroupMessage implements Listener {
 
     Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
+    Yaml yaml = new Yaml();
+    InputStream in = Object.class.getClassLoader().getResourceAsStream("usesconfig.yml");//或者app.yaml
+    Map<String, Object> map = yaml.loadAs(in, Map.class);
+
+    String prefixqq = plugin.getConfig().getString("format-list.prefix.to-qq");
 
     @EventHandler
     public void MiraiGroupMessage(MiraiGroupMessageEvent event) {
-        if (plugin.getConfig().getBoolean("general.ext-weatherinfo.enabled")) {
+        if ((Boolean) ((Map<String, Object>) map.get("weatherinfo")).get("enabled")) {
             String msg = event.getMessage();
             String[] args = msg.split(" ");
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("weather")) {
-                long bot = Long.parseLong(plugin.getConfig().getString("general.bot"));
-                long group = Long.parseLong(plugin.getConfig().getString("general.group"));
-                if (args.length == 3) {
+                long bot = Long.parseLong(plugin.getConfig().getString("qbgset.bot"));
+                long group = Long.parseLong(plugin.getConfig().getString("qbgset.group"));
+                if (args.length == 3 && event.getGroupID() == group) {
                     String res = WeatherUtils.GetWeatherData(args[2]);
-                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(res);
+                    try {
+                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(res);
+                    } catch (NoSuchElementException nse) {
+                        System.out.println("发送消息时发生异常:\n" + nse);
+                    }
                 } else {
-                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]请输入城市");
+                    try {
+                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "请输入城市");
+                    } catch (NoSuchElementException nse) {
+                        System.out.println("发送消息时发生异常:\n" + nse);
+                    }
                 }
             }
         }

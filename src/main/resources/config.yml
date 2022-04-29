@@ -11,6 +11,15 @@ check-update:
   # 版本(开发版 -> dev || 正式版 -> passed)
   version: passed
 
+# QQ机器人相关设置
+qbgset:
+  # 使用的群
+  group: 123456
+  # 使用的机器人
+  bot: 123456
+  # 拥有QQ权限的用户
+  qq-op: 123456
+
 # 通用格式
 format-list:
   # 插件消息前缀
