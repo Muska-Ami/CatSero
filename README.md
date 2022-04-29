@@ -1,6 +1,7 @@
 # CatSero
 一个基于MiraiMC的QQ群功能插件
-SpigotAPI版本: 1.18-R0.1-SNAPSHOT
+支持的Minecraft版本: 1.12.2+
+SpigotAPI版本: 1.12.2-R0.1-SNAPSHOT
 构建结果请前往Actions - [Build](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml)
 
 ## 未来功能
