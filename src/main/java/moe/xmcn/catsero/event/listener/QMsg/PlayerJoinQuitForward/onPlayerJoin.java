@@ -16,7 +16,7 @@ public class onPlayerJoin implements Listener {
     Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
     Yaml yaml = new Yaml();
     InputStream in = plugin.getResource("usesconfig.yml");
-    Map<String, Object> map = yaml.loadAs(in, Map.class);
+    Map<String, Object> map = yaml.load(in);
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent pljev) {

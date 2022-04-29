@@ -5,7 +5,12 @@ import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.InputStream;
+import java.util.Map;
 
 public class Main extends JavaPlugin {
 
@@ -24,6 +29,12 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
+        Yaml yaml = new Yaml();
+        InputStream in = plugin.getResource("usesconfig.yml");
+        Map<String, Object> map = yaml.load(in);
+        System.out.println(((Map<String, Object>) map.get("group-member-change-message")).get("enabled"));
+
         /*
          * 注册事件
          * 所有Listener监听器的事件和CommandExecutor监听器的事件均由此注册
@@ -39,7 +50,7 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.PingHost.onGroupMessage(), this);
 
             // ChatForward聊天转发功能
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.ChatForward.onGroupMessage(), this);
+            //getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.ChatForward.onGroupMessage(), this);
 
             // QBanPlayer封禁功能
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QBanPlayer.onGroupMessage(), this);
@@ -48,9 +59,11 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.WeatherInfo.onGroupMessage(), this);
 
             // PlayerJoinQuitForward玩家加入/退出消息->QQ功能
-            getServer().getPluginManager().registerEvents( new moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward.onPlayerJoin(), this);
-            getServer().getPluginManager().registerEvents( new moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward.onPlayerQuit(), this);
+            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward.onPlayerJoin(), this);
+            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward.onPlayerQuit(), this);
 
+            // GroupMemberChangeMessage群成员变更消息
+            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.GroupMemberChangeMessage.onGroupMemberAdd(), this);
 
         System.out.println("[CatSero] CatSero插件加载成功");
         if (config.getString("utils.allow-bstats") == "true") {
