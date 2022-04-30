@@ -21,14 +21,14 @@ class OnGameChat: Listener {
             val playermessage = event.message
             val playername = event.player
             var message = usesconfig.getString("qmsg.forward-chat.format.to-qq")
-            message.replace("%player%", playername.toString())
+            message = message.replace("%player%", playername.toString())
                     .replace("%message%", playermessage)
 
             val bot = plugin.config.getLong("qbgset.bot")
             val group = plugin.config.getLong("qbgset.group")
 
             if (usesconfig.getBoolean("qmsg.forward-chat.clean-colorcode")) {
-                message.replace("§1", "")
+                 message = message.replace("§1", "")
                         .replace("§2", "")
                         .replace("§3", "")
                         .replace("§4", "")
