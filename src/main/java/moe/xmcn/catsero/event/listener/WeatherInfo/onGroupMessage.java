@@ -34,7 +34,7 @@ public class onGroupMessage implements Listener {
                 if (args.length == 3 && event.getGroupID() == group) {
                     try {
                         try {
-                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "&a天气获取进行中，请耐心等待...");
+                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "天气获取进行中，请耐心等待...");
                         } catch (NoSuchElementException nse) {
                             System.out.println("发送消息时发生异常:\n" + nse);
                         }
