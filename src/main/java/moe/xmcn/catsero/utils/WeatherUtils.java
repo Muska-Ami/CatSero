@@ -26,10 +26,10 @@ public class WeatherUtils {
     @Override
     public String toString() {
         return new StringBuilder()
-                .append(date).append(" ")
-                .append(high).append("~").append(low).append(" ")
-                .append(fengli).append(" ")
-                .append(fengxiang).append(" ")
+                .append(date).append("╳")
+                .append(high).append("~").append(low).append("╳")
+                .append(fengli).append("╳")
+                .append(fengxiang).append("╳")
                 .append(type)
                 .toString();
     }
@@ -40,7 +40,7 @@ public class WeatherUtils {
         String datajson = HttpUtils.sendGet(weather_url, "UTF-8");
         Gson gson = new Gson();
         WeatherUtils weatherutils = gson.fromJson(datajson, WeatherUtils.class);
-        String[] wturegex = String.valueOf(weatherutils).split(" ");
+        String[] wturegex = String.valueOf(weatherutils).split("╳");
         return wturegex;
     }
 }

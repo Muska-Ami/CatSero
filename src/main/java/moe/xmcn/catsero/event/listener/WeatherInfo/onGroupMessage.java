@@ -33,7 +33,7 @@ public class onGroupMessage implements Listener {
                 long group = Long.parseLong(plugin.getConfig().getString("qbgset.group"));
                 if (args.length == 3 && event.getGroupID() == group) {
                     try {
-                        String[] resvi = WeatherUtils.getWeather(args[1]);
+                        String[] resvi = WeatherUtils.getWeather(args[2]);
                         try {
                             MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("天气信息:\n 类型:" + resvi[4] + "\n 温度:" + resvi[1] + "\n 风力:" + resvi[2] + "\n 风向:" + resvi[3] + "\n 日期:" + resvi[0]);
                         } catch (NoSuchElementException nse) {

@@ -23,7 +23,7 @@ public class Updater {
     @Override
     public String toString() {
         return new StringBuilder()
-                .append(name).append(" ")
+                .append(name).append("╳")
                 .append(durl)
                 .toString();
     }
@@ -32,17 +32,18 @@ public class Updater {
         Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
         File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
         FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
-        if (usesconfig.getBoolean("check-update.enabled") && !nowversion.contains("pre")) {
+        if (usesconfig.getBoolean("check-update.enabled")) {
             String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8");
             Gson gson = new Gson();
             Updater updater = gson.fromJson(datajson, Updater.class);
-            String[] upregex = String.valueOf(updater).split(" ");
+            String[] upregex = String.valueOf(updater).split("╳");
             if (!Objects.equals(upregex[0], nowversion)) {
                 System.out.println(ChatColor.GREEN + "已找到可用的更新：" + upregex[0]);
                 System.out.println(ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[1]);
             }
         } else {
             System.out.println("跳过更新检查");
+            System.out.println(usesconfig.getBoolean("check-update.enabled"));
         }
     }
 }
