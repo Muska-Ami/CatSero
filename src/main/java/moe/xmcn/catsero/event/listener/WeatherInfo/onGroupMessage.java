@@ -2,7 +2,6 @@ package moe.xmcn.catsero.event.listener.WeatherInfo;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
-import moe.xmcn.catsero.utils.HttpUtils;
 import moe.xmcn.catsero.utils.WeatherUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,7 +11,6 @@ import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.NoSuchElementException;
 
 public class onGroupMessage implements Listener {

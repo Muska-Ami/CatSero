@@ -1,7 +1,5 @@
 package moe.xmcn.catsero.event.command;
 
-import me.dreamvoid.miraimc.api.MiraiBot;
-import moe.xmcn.catsero.utils.HttpUtils;
 import moe.xmcn.catsero.utils.Punycode;
 import moe.xmcn.catsero.utils.WeatherUtils;
 import org.bukkit.ChatColor;
@@ -17,9 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
-import java.net.URLEncoder;
 import java.net.UnknownHostException;
-import java.util.NoSuchElementException;
 
 public class CatSero implements CommandExecutor {
 
