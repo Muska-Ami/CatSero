@@ -52,16 +52,32 @@ class OnGameChat: Listener {
 
                 val firstzf = message.first()
                 if (usesconfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.equals(usesconfig.getString("qmsg.forward-chat.prefix.format.to-qq"))) {
-                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
+                    try {
+                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
+                    } catch (nse: NoSuchElementException) {
+                        println("发送消息时出现异常:\n$nse")
+                    }
                 } else {
-                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
+                    try {
+                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
+                    } catch (nse: NoSuchElementException) {
+                        println("发送消息时出现异常:\n$nse")
+                    }
                 }
             } else {
                 val firstzf = message.first()
                 if (usesconfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.equals(usesconfig.getString("qmsg.forward-chat.prefix.format.to-qq"))) {
-                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
+                    try {
+                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
+                    } catch (nse: NoSuchElementException) {
+                        println("发送消息时出现异常:\n" + nse)
+                    }
                 } else {
-                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
+                    try {
+                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
+                    } catch (nse: NoSuchElementException) {
+                        println("发送消息时出现异常:\n" + nse)
+                    }
                 }
             }
 
