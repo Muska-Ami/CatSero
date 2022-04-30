@@ -5,10 +5,12 @@ import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.Map;
 
@@ -29,12 +31,11 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
-        Yaml yaml = new Yaml();
-        InputStream in = plugin.getResource("usesconfig.yml");
-        Map<String, Object> map = yaml.load(in);
-        System.out.println(((Map<String, Object>) map.get("group-member-change-message")).get("enabled"));
+        //Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
+        //File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
+        //FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
+        Updater.onEnable("1.0-pre4");
         /*
          * 注册事件
          * 所有Listener监听器的事件和CommandExecutor监听器的事件均由此注册
