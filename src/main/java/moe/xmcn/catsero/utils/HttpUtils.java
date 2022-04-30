@@ -1,9 +1,6 @@
 package moe.xmcn.catsero.utils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -186,14 +183,13 @@ public class HttpUtils {
      * @param param 请求数据
      * @param charset 编码方式
      */
-    public static String sendPost(String url, Map<String, String> param,
-                                  String charset) {
+    public static String sendPost(String url, Map<String, String> param, String charset) throws UnsupportedEncodingException {
 
         StringBuffer buffer = new StringBuffer();
         if (param != null && !param.isEmpty()) {
             for (Map.Entry<String, String> entry : param.entrySet()) {
                 buffer.append(entry.getKey()).append("=")
-                        .append(URLEncoder.encode(entry.getValue()))
+                        .append(URLEncoder.encode(entry.getValue(), "utf-8"))
                         .append("&");
 
             }

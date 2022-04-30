@@ -39,7 +39,7 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.PingHost.onGroupMessage(), this);
 
             // ChatForward聊天转发功能
-            //getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.ChatForward.onGroupMessage(), this);
+            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.ChatForward.OnGameChat(), this);
 
             // QBanPlayer封禁功能
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QBanPlayer.onGroupMessage(), this);
@@ -51,8 +51,8 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward.onPlayerJoin(), this);
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward.onPlayerQuit(), this);
 
-            // GroupMemberChangeMessage群成员变更消息
-            //getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.GroupMemberChangeMessage.onGroupMemberAdd(), this);
+            // NewGroupMember群成员变更消息
+            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.NewGroupMember.onGroupMemberAdd(), this);
 
             // JoinQuitMessage玩家加入/退出消息自定义
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerJoin(), this);

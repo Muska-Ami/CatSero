@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.event.listener.GroupMemberChangeMessage;
+package moe.xmcn.catsero.event.listener.NewGroupMember;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMemberJoinEvent;
@@ -23,7 +23,7 @@ public class onGroupMemberAdd implements Listener {
             long bot = plugin.getConfig().getLong("qbgset.bot");
             long group = plugin.getConfig().getLong("qbgset.group");
             long code = event.getNewMemberID();
-            String message = (String) (usesconfig.getString("group-member-change-message.format.join"));
+            String message = usesconfig.getString("new-group-member-message.format");
             message = message
                     .replace("%code%", "%code%")
                     .replace("%at%", "[mirai:at:" + code + "]");

@@ -28,20 +28,23 @@ qmsg:
       join: "%player%加入了游戏"
       quit: "%player%退出了游戏"
   
-#  # 转发MC-QQ聊天
-#  forward-chat:
-#    # 启用此功能
-#    enabled: false
-#    # 格式
-#    format:
+  # 转发MC-QQ聊天
+  forward-chat:
+    # 启用此功能
+    enabled: false
+    # 格式
+    format:
 #      to-mc: ""
-#      to-qq: ""
-#    prefix:
-#      # 启用此功能
-#      enabled: false
-#      format:
+      to-qq: "[MC]%player%:\n%message%"
+    prefix:
+      # 启用此功能
+      enabled: false
+      # 格式(只支持单个，字符，请勿输入多个)
+      format:
 #        to-mc: "#"
-#        to-qq: "#"
+        to-qq: "#"
+    # 自动清理消息中的颜色代码
+    clean-colorcode: true
 
 ## 白名单功能
 #whitelist:
@@ -64,8 +67,6 @@ join-quit-message:
     quit: "[&c-&r]&e%playser%"
 
 # 新人加群欢迎
-group-member-change-message:
+new-group-member-message:
   enabled: false
-  format:
-    join: "欢迎%at%(%code%)\n加入了本群！"
-    quit: ""
+  format: "欢迎%at%(%code%)\n加入了本群！"
