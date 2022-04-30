@@ -16,10 +16,11 @@ class OnGameChat: Listener {
     var usesconfig: FileConfiguration = YamlConfiguration.loadConfiguration(usc)
     @EventHandler
     fun onGameChat(event: AsyncPlayerChatEvent) {
+        println(usesconfig.getBoolean("qmsg.forward-chat.enabled"))
         if (usesconfig.getBoolean("qmsg.forward-chat.enabled")) {
-            var playermessage = event.message
+            val playermessage = event.message
             val playername = event.player
-            val message = usesconfig.getString("qmsg.forward-chat.format.to-qq")
+            var message = usesconfig.getString("qmsg.forward-chat.format.to-qq")
             message.replace("%player%", playername.toString())
                     .replace("%message%", playermessage)
 
@@ -70,13 +71,13 @@ class OnGameChat: Listener {
                     try {
                         MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
                     } catch (nse: NoSuchElementException) {
-                        println("发送消息时出现异常:\n" + nse)
+                        println("发送消息时出现异常:\n$nse")
                     }
                 } else {
                     try {
                         MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
                     } catch (nse: NoSuchElementException) {
-                        println("发送消息时出现异常:\n" + nse)
+                        println("发送消息时出现异常:\n$nse")
                     }
                 }
             }
