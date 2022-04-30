@@ -34,16 +34,16 @@ qmsg:
     enabled: false
     # 格式
     format:
-#      to-mc: ""
+      to-mc: ""
       to-qq: "[MC]%player%:\n%message%"
     prefix:
       # 启用此功能
       enabled: false
       # 格式(只支持单个，字符，请勿输入多个)
       format:
-#        to-mc: "#"
+        to-mc: "#"
         to-qq: "#"
-    # 自动清理消息中的颜色代码
+    # 发到QQ自动清理消息中的颜色代码
     clean-colorcode: true
 
 ## 白名单功能
