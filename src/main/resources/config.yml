@@ -8,8 +8,8 @@ allow-start-warn: true
 check-update:
   # 启用
   enabled: true
-  # 版本(开发版 -> dev || 正式版 -> passed)
-  version: passed
+#  # 版本(开发版 -> dev || 正式版 -> passed)
+#  version: passed
 
 # QQ机器人相关设置
 qbgset:

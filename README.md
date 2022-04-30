@@ -19,7 +19,7 @@ SpigotAPI版本: 1.12.2-R0.1-SNAPSHOT
 - [x] 自定义玩家加入/退出游戏全体消息
 
 ### 其他
-- [ ] 自动检查更新
+- [x] 自动检查更新
 
 # bStats
 ![](https://bstats.org/signatures/bukkit/CatSero.svg)

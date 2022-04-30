@@ -24,7 +24,6 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        Updater.onEnable("1.0");
         /*
          * 注册事件
          * 所有Listener监听器的事件和CommandExecutor监听器的事件均由此注册
@@ -67,6 +66,7 @@ public class Main extends JavaPlugin {
             new Metrics(this, pluginId);
         }
 
+        Updater.onEnable("1.0");
     }
 
     @Override

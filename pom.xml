@@ -76,6 +76,7 @@
             <artifactId>org.jetbrains.annotations</artifactId>
             <version>1.7.0</version>
         </dependency>
+
         <!-- placeholderapi -->
         <dependency>
             <groupId>me.clip</groupId>
