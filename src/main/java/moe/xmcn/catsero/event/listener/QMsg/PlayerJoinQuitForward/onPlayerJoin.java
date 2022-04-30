@@ -20,8 +20,8 @@ public class onPlayerJoin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent pljev) {
         if (usesconfig.getBoolean("qmsg.send-player-join-quit.enabled")) {
-            Long bot = Long.valueOf(plugin.getConfig().getString("general.bot"));
-            Long group = Long.valueOf(plugin.getConfig().getString("general.group"));
+            long bot = plugin.getConfig().getLong("qbgset.bot");
+            long group = plugin.getConfig().getLong("qbgset.group");
 
             String pljname = pljev.getPlayer().getName();
             String joinmsg = usesconfig.getString("qmsg.send-player-join-quit.format.join");
