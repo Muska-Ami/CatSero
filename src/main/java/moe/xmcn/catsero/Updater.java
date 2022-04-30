@@ -32,7 +32,7 @@ public class Updater {
         Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
         File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
         FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
-        if (usesconfig.getBoolean("check-update.enabled") && nowversion.contains("pre")) {
+        if (usesconfig.getBoolean("check-update.enabled") && !nowversion.contains("pre")) {
             String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8");
             Gson gson = new Gson();
             Updater updater = gson.fromJson(datajson, Updater.class);
