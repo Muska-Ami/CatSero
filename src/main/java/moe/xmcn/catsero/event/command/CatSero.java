@@ -6,22 +6,21 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
-import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Map;
 
 public class CatSero implements CommandExecutor {
 
     Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
-    Yaml yaml = new Yaml();
-    InputStream in = plugin.getResource("usesconfig.yml");
-    Map<String, Object> map = yaml.load(in);
+    File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
+    FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
     String prefixmc = plugin.getConfig().getString("format-list.prefix.to-mc");
 
@@ -30,8 +29,8 @@ public class CatSero implements CommandExecutor {
         /**
          * PingHost
          */
-        if (args[0].equalsIgnoreCase("ping") && (Boolean) ((Map<String, Object>) map.get("pinghost")).get("enabled")) {
-            if ((Boolean) ((Map<String, Object>) map.get("weatherinfo")).get("op-only")) {
+        if (args[0].equalsIgnoreCase("ping") && usesconfig.getBoolean("pinghost.enabled")) {
+            if (usesconfig.getBoolean("weatherinfo.op-only")) {
                 if (sender.hasPermission("catsero.admin")) {
                     if (args.length == 2) {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', prefixmc + "&aPing进行中，请耐心等待..."));
@@ -106,7 +105,7 @@ public class CatSero implements CommandExecutor {
         /**
         * 天气获取
         */
-        } else if (args[0].equalsIgnoreCase("weather") && (Boolean) ((Map<String, Object>) map.get("weatherinfo")).get("enabled")) {
+        } else if (args[0].equalsIgnoreCase("weather") && usesconfig.getBoolean("weatherinfo.enabled")) {
             if (args.length == 2) {
                 String res = WeatherUtils.GetWeatherData(args[1]);
                 sender.sendMessage(res);

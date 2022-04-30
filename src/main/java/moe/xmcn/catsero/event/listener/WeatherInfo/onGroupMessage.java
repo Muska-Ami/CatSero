@@ -3,27 +3,26 @@ package moe.xmcn.catsero.event.listener.WeatherInfo;
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.WeatherUtils;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
-import org.yaml.snakeyaml.Yaml;
 
-import java.io.InputStream;
-import java.util.Map;
+import java.io.File;
 import java.util.NoSuchElementException;
 
 public class onGroupMessage implements Listener {
 
     Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
-    Yaml yaml = new Yaml();
-    InputStream in = plugin.getResource("usesconfig.yml");
-    Map<String, Object> map = yaml.load(in);
+    File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
+    FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
     String prefixqq = plugin.getConfig().getString("format-list.prefix.to-qq");
 
     @EventHandler
     public void MiraiGroupMessage(MiraiGroupMessageEvent event) {
-        if ((Boolean) ((Map<String, Object>) map.get("weatherinfo")).get("enabled")) {
+        if (usesconfig.getBoolean("weatherinfo.enabled")) {
             String msg = event.getMessage();
             String[] args = msg.split(" ");
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("weather")) {

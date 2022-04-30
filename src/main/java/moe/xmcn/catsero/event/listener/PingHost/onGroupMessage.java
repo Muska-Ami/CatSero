@@ -3,29 +3,28 @@ package moe.xmcn.catsero.event.listener.PingHost;
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Punycode;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
-import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 public class onGroupMessage implements Listener {
 
     Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
-    Yaml yaml = new Yaml();
-    InputStream in = plugin.getResource("usesconfig.yml");
-    Map<String, Object> map = yaml.load(in);
+    File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
+    FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
     @EventHandler
     public void onGroupMessage(MiraiGroupMessageEvent event) {
-        if ((Boolean) ((Map<String, Object>) map.get("pinghost")).get("enabled")) {
-            if (!(Boolean) ((Map<String, Object>) map.get("pinghost")).get("op-only")) {
+        if (usesconfig.getBoolean("pinghost.enabled")) {
+            if (!usesconfig.getBoolean("pinghost.op-only")) {
                 String msg = event.getMessage();
                 String[] args = msg.split(" ");
                 long bot = plugin.getConfig().getLong("qbgset.bot");
