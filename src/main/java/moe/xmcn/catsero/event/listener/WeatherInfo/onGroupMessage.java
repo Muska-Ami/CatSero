@@ -2,6 +2,7 @@ package moe.xmcn.catsero.event.listener.WeatherInfo;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
+import moe.xmcn.catsero.utils.HttpUtils;
 import moe.xmcn.catsero.utils.WeatherUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -10,6 +11,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.NoSuchElementException;
 
 public class onGroupMessage implements Listener {
@@ -29,12 +32,21 @@ public class onGroupMessage implements Listener {
                 long bot = Long.parseLong(plugin.getConfig().getString("qbgset.bot"));
                 long group = Long.parseLong(plugin.getConfig().getString("qbgset.group"));
                 if (args.length == 3 && event.getGroupID() == group) {
-                    String res = WeatherUtils.GetWeatherData(args[2]);
                     try {
-                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(res);
-                    } catch (NoSuchElementException nse) {
-                        System.out.println("发送消息时发生异常:\n" + nse);
+                        String[] resvi = WeatherUtils.getWeather(args[1]);
+                        try {
+                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("天气信息:\n 类型:" + resvi[4] + "\n 温度:" + resvi[1] + "\n 风力:" + resvi[2] + "\n 风向:" + resvi[3] + "\n 日期:" + resvi[0]);
+                        } catch (NoSuchElementException nse) {
+                            System.out.println("发送消息时发生异常:\n" + nse);
+                        }
+                    } catch (UnsupportedEncodingException uee) {
+                        try {
+                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "获取天气时出现错误");;
+                        } catch (NoSuchElementException nse) {
+                            System.out.println("发送消息时发生异常:\n" + nse);
+                        }
                     }
+
                 } else {
                     try {
                         MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "请输入城市");

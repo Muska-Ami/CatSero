@@ -29,12 +29,12 @@ public class Main extends JavaPlugin {
          * 所有Listener监听器的事件和CommandExecutor监听器的事件均由此注册
          */
 
-            System.out.println("[CatSero] 正在注册事件 -> 监听器:CommandExecutor");
+            System.out.println("正在注册事件 -> 监听器:CommandExecutor");
             // 指令注册
             Bukkit.getPluginCommand("catsero").setExecutor(new CatSero());
 
 
-            System.out.println("[CatSero] 正在注册事件 -> 监听器:Listener");
+            System.out.println("正在注册事件 -> 监听器:Listener");
             // PingHost功能
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.PingHost.onGroupMessage(), this);
 
@@ -58,7 +58,7 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerJoin(), this);
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerQuit(), this);
 
-        System.out.println("[CatSero] CatSero插件加载成功");
+        System.out.println("CatSero插件加载成功");
         if (config.getString("utils.allow-bstats") == "true") {
             // All you have to do is adding the following two lines in your onEnable method.
             // You can find the plugin ids of your plugins on the page https://bstats.org/what-is-my-plugin-id
@@ -71,7 +71,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        System.out.println("[CatSero] 正在卸载CatSero插件");
+        System.out.println("正在卸载CatSero插件");
     }
 
     /*

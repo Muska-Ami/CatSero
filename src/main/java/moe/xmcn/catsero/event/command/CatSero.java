@@ -1,5 +1,7 @@
 package moe.xmcn.catsero.event.command;
 
+import me.dreamvoid.miraimc.api.MiraiBot;
+import moe.xmcn.catsero.utils.HttpUtils;
 import moe.xmcn.catsero.utils.Punycode;
 import moe.xmcn.catsero.utils.WeatherUtils;
 import org.bukkit.ChatColor;
@@ -13,8 +15,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
+import java.net.URLEncoder;
 import java.net.UnknownHostException;
+import java.util.NoSuchElementException;
 
 public class CatSero implements CommandExecutor {
 
@@ -107,8 +112,13 @@ public class CatSero implements CommandExecutor {
         */
         } else if (args[0].equalsIgnoreCase("weather") && usesconfig.getBoolean("weatherinfo.enabled")) {
             if (args.length == 2) {
-                String res = WeatherUtils.GetWeatherData(args[1]);
-                sender.sendMessage(res);
+                try {
+                    String[] resvi = WeatherUtils.getWeather(args[1]);
+                    sender.sendMessage("天气信息:\n 类型:" + resvi[4] + "\n 温度:" + resvi[1] + "\n 风力:" + resvi[2] + "\n 风向:" + resvi[3] + "\n 日期:" + resvi[0]);
+                } catch (UnsupportedEncodingException uee) {
+                    sender.sendMessage(prefixmc + "获取天气时出现错误");
+                    return false;
+                }
                 return true;
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', prefixmc + "&c请输入城市"));

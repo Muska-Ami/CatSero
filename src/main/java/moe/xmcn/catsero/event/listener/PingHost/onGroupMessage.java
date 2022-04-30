@@ -21,6 +21,7 @@ public class onGroupMessage implements Listener {
     File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
     FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
+    String prefixqq = plugin.getConfig().getString("format-list.prefix.to-qq");
     @EventHandler
     public void onGroupMessage(MiraiGroupMessageEvent event) {
         if (usesconfig.getBoolean("pinghost.enabled")) {
@@ -31,7 +32,7 @@ public class onGroupMessage implements Listener {
                 long group = plugin.getConfig().getLong("qbgset.group");
                 if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping") && event.getGroupID() == group) {
                     try {
-                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]Ping进行中，请耐心等待...");
+                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "Ping进行中，请耐心等待...");
                     } catch (NoSuchElementException nse) {
                         System.out.println("发送消息时发生异常:\n" + nse);
                     }
@@ -40,7 +41,7 @@ public class onGroupMessage implements Listener {
                         address = InetAddress.getByName(Punycode.encodeURL(args[2]));
                     } catch (UnknownHostException e) {
                         try {
-                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]无法解析主机名/IP");
+                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "无法解析主机名/IP");
                         } catch (NoSuchElementException nse) {
                             System.out.println("发送消息时发生异常:\n" + nse);
                         }
@@ -53,7 +54,7 @@ public class onGroupMessage implements Listener {
                             b = address.isReachable(1000);
                         } catch (IOException e) {
                             try {
-                                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]Ping时发生错误");
+                                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "Ping时发生错误");
                             } catch (NoSuchElementException nse) {
                                 System.out.println("发送消息时发生异常:\n" + nse);
                             }
@@ -64,7 +65,7 @@ public class onGroupMessage implements Listener {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             try {
-                                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]Ping时发生错误");
+                                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "Ping时发生错误");
                             } catch (NoSuchElementException nse) {
                                 System.out.println("发送消息时发生异常:\n" + nse);
                             }
@@ -83,7 +84,7 @@ public class onGroupMessage implements Listener {
                 long group = plugin.getConfig().getLong("qbgset.group");
                 if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping") && event.getGroupID() == group) {
                     try {
-                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]Ping进行中，请耐心等待...");
+                        MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "Ping进行中，请耐心等待...");
                     } catch (NoSuchElementException nse) {
                         System.out.println("发送消息时发生异常:\n" + nse);
                     }
@@ -92,7 +93,7 @@ public class onGroupMessage implements Listener {
                         address = InetAddress.getByName(Punycode.encodeURL(args[2]));
                     } catch (UnknownHostException e) {
                         try {
-                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]无法解析主机名/IP");
+                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "无法解析主机名/IP");
                         } catch (NoSuchElementException nse) {
                             System.out.println("发送消息时发生异常:\n" + nse);
                         }
@@ -105,7 +106,7 @@ public class onGroupMessage implements Listener {
                             b = address.isReachable(1000);
                         } catch (IOException e) {
                             try {
-                                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]Ping时发生错误");
+                                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "Ping时发生错误");
                             } catch (NoSuchElementException nse) {
                                 System.out.println("发送消息时发生异常:\n" + nse);
                             }
@@ -116,7 +117,7 @@ public class onGroupMessage implements Listener {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             try {
-                                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("[CatSero]Ping时发生错误");
+                                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "Ping时发生错误");
                             } catch (NoSuchElementException nse) {
                                 System.out.println("发送消息时发生异常:\n" + nse);
                             }
