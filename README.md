@@ -23,3 +23,12 @@ SpigotAPI版本: 1.13-R0.1-SNAPSHOT
 
 # bStats
 <a href="https://bstats.org/plugin/bukkit/CatSero/14767">![https://bstats.org/plugin/bukkit/CatSero/14767](https://bstats.org/signatures/bukkit/CatSero.svg)</a>
+
+# 一点说明
+
+## 为什么pre版本的Releases有时会跳过一个版本?
+本项目不会发布所有pre版本的构建，请自行去Actions下载
+
+## 权限
+| 权限节点 | 描述 |
+| catsero.admin | 管理权限，默认OP |
