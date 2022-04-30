@@ -33,6 +33,11 @@ public class onGroupMessage implements Listener {
                 long group = Long.parseLong(plugin.getConfig().getString("qbgset.group"));
                 if (args.length == 3 && event.getGroupID() == group) {
                     try {
+                        try {
+                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "&a天气获取进行中，请耐心等待...");
+                        } catch (NoSuchElementException nse) {
+                            System.out.println("发送消息时发生异常:\n" + nse);
+                        }
                         String[] resvi = WeatherUtils.getWeather(args[2]);
                         try {
                             MiraiBot.getBot(bot).getGroup(group).sendMessageMirai("天气信息:\n 类型:" + resvi[4] + "\n 温度:" + resvi[1] + "\n 风力:" + resvi[2] + "\n 风向:" + resvi[3] + "\n 日期:" + resvi[0]);
