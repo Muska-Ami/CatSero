@@ -30,6 +30,6 @@ SpigotAPI版本: 1.13-R0.1-SNAPSHOT
 本项目不会发布所有pre版本的构建，请自行去Actions下载
 
 ## 权限
------
+------
 catsero.admin: 管理权限，默认OP
------
+------
