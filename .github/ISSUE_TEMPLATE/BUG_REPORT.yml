@@ -19,19 +19,6 @@ body:
       value: "1. "
     validations:
       required: true
-  - type: dropdown
-    id: servertype
-    attributes: 
-      label: 服务端类型
-      description: 选择你正在使用的服务端类型
-      options: 
-        - Bukkit
-        - BungeeCord
-        - Sponge
-        - Velocity
-        - Nukkit
-    validations:
-      required: true
   - type: input
     id: serverversion
     attributes:
