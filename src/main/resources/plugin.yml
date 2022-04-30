@@ -1,6 +1,6 @@
 name: CatSero
 main: moe.xmcn.catsero.Main
-version: 1.0-pre4
+version: 1.0
 author: XiaMoHuaHuo_CN
 depend:
   - MiraiMC

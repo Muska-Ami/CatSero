@@ -5,14 +5,7 @@ import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.yaml.snakeyaml.Yaml;
-
-import java.io.File;
-import java.io.InputStream;
-import java.util.Map;
 
 public class Main extends JavaPlugin {
 
@@ -31,11 +24,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        //Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
-        //File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
-        //FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
-
-        Updater.onEnable("1.0-pre4");
+        Updater.onEnable("1.0");
         /*
          * 注册事件
          * 所有Listener监听器的事件和CommandExecutor监听器的事件均由此注册
@@ -64,7 +53,11 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward.onPlayerQuit(), this);
 
             // GroupMemberChangeMessage群成员变更消息
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.GroupMemberChangeMessage.onGroupMemberAdd(), this);
+            //getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.GroupMemberChangeMessage.onGroupMemberAdd(), this);
+
+            // JoinQuitMessage玩家加入/退出消息自定义
+            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerJoin(), this);
+            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerQuit(), this);
 
         System.out.println("[CatSero] CatSero插件加载成功");
         if (config.getString("utils.allow-bstats") == "true") {
@@ -80,4 +73,10 @@ public class Main extends JavaPlugin {
     public void onDisable() {
         System.out.println("[CatSero] 正在卸载CatSero插件");
     }
+
+    /*
+     * Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
+     * File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
+     * FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
+     */
 }
