@@ -20,8 +20,8 @@ public class onPlayerQuit implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent plqev) {
         if (usesconfig.getBoolean("qmsg.send-player-join-quit.enabled")) {
-            Long bot = Long.valueOf(plugin.getConfig().getString("general.bot"));
-            Long group = Long.valueOf(plugin.getConfig().getString("general.group"));
+            long bot = plugin.getConfig().getLong("qbgset.bot");
+            long group = plugin.getConfig().getLong("qbgset.group");
 
             String plqname = plqev.getPlayer().getName();
             String quitmsg = usesconfig.getString("qmsg.send-player-join-quit.format.quit");
