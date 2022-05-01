@@ -60,7 +60,7 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerQuit(), this);
 
         System.out.println("CatSero插件加载成功");
-        if (config.getBoolean("utils.allow-bstats")) {
+        if (config.getBoolean("allow-bstats")) {
             int pluginId = 14767;
             new Metrics(this, pluginId);
         }
