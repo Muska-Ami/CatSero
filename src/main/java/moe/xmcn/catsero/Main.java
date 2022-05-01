@@ -1,6 +1,7 @@
 package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.event.command.CatSero;
+import moe.xmcn.catsero.event.command.SendMessageQQ;
 import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -32,7 +33,7 @@ public class Main extends JavaPlugin {
             System.out.println("正在注册事件 -> 监听器:CommandExecutor");
             // 指令注册
             Bukkit.getPluginCommand("catsero").setExecutor(new CatSero());
-
+            Bukkit.getPluginCommand("csm").setExecutor(new SendMessageQQ());
 
             System.out.println("正在注册事件 -> 监听器:Listener");
             // PingHost功能
