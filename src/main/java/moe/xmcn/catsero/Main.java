@@ -1,7 +1,6 @@
 package moe.xmcn.catsero;
 
-import moe.xmcn.catsero.event.command.CatSero;
-import moe.xmcn.catsero.event.command.SendMessageQQ;
+import moe.xmcn.catsero.event.command.*;
 import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,7 +17,7 @@ public class Main extends JavaPlugin {
         saveResource("usesconfig.yml", false);
         System.out.println("[CatSero] 正在加载CatSero插件");
         if (config.getBoolean("utils.allow-start-warn")) {
-            System.out.println(ChatColor.YELLOW + "请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
+            getLogger().warning("请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
         }
     }
 
@@ -62,8 +61,6 @@ public class Main extends JavaPlugin {
 
         System.out.println("CatSero插件加载成功");
         if (config.getBoolean("utils.allow-bstats")) {
-            // All you have to do is adding the following two lines in your onEnable method.
-            // You can find the plugin ids of your plugins on the page https://bstats.org/what-is-my-plugin-id
             int pluginId = 14767;
             new Metrics(this, pluginId);
         }
@@ -76,9 +73,4 @@ public class Main extends JavaPlugin {
         System.out.println("正在卸载CatSero插件");
     }
 
-    /*
-     * Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
-     * File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
-     * FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
-     */
 }

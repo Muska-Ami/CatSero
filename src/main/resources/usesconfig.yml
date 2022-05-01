@@ -46,17 +46,6 @@ qmsg:
     # 发到QQ自动清理消息中的颜色代码
     clean-colorcode: true
 
-## 白名单功能
-#whitelist:
-#  # 启用此功能
-#  enabled: false
-#  # QQ自助申请
-#  ass:
-#    # 启用此功能
-#    enabled: false
-#    # 格式
-#    format: "申请白名单 %player%"
-
 # 玩家加入/退出游戏消息
 join-quit-message:
   # 启用此功能
