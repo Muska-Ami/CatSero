@@ -16,7 +16,6 @@ class OnGameChat: Listener {
     var usesconfig: FileConfiguration = YamlConfiguration.loadConfiguration(usc)
     @EventHandler
     fun onGameChat(event: AsyncPlayerChatEvent) {
-        println(usesconfig.getBoolean("qmsg.forward-chat.enabled"))
         if (usesconfig.getBoolean("qmsg.forward-chat.enabled")) {
             val playermessage = event.message
             val playername = event.player.displayName
