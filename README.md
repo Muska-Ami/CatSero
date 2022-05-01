@@ -7,7 +7,7 @@ SpigotAPI版本: 1.13-R0.1-SNAPSHOT
 ## 未来功能
 
 ### 插件功能
-- [ ] QQ群-Minecraft消息同步
+- [x] QQ群-Minecraft消息互转(异步)
 - [x] Minecraft玩家加入/退出通知到QQ
 - [ ] QQ群踢人
 - [x] QQ群Ban人
