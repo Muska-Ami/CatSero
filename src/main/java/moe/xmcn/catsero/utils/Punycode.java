@@ -2,14 +2,14 @@ package moe.xmcn.catsero.utils;
 
 
 public class Punycode {
-    private static int TMIN = 1;
-    private static int TMAX = 26;
-    private static int BASE = 36;
-    private static int INITIAL_N = 128;
-    private static int INITIAL_BIAS = 72;
-    private static int DAMP = 700;
-    private static int SKEW = 38;
-    private static char DELIMITER = '-';
+    private static final int TMIN = 1;
+    private static final int TMAX = 26;
+    private static final int BASE = 36;
+    private static final int INITIAL_N = 128;
+    private static final int INITIAL_BIAS = 72;
+    private static final int DAMP = 700;
+    private static final int SKEW = 38;
+    private static final char DELIMITER = '-';
 
     public static String encodeURL(String url) {
         if (!url.contains("."))

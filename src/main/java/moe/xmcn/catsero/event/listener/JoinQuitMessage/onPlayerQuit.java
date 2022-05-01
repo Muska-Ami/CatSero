@@ -17,7 +17,7 @@ public class onPlayerQuit implements Listener {
     FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
+    public void OnPlayerJoin(PlayerJoinEvent event) {
         if (usesconfig.getBoolean("join-quit-message.enabled")) {
             String msg = usesconfig.getString("join-quit-message.format.quit");
             msg = msg.replace("%player%", event.getPlayer().getDisplayName());

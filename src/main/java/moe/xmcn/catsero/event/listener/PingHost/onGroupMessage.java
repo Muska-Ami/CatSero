@@ -23,7 +23,7 @@ public class onGroupMessage implements Listener {
 
     String prefixqq = plugin.getConfig().getString("format-list.prefix.to-qq");
     @EventHandler
-    public void onGroupMessage(MiraiGroupMessageEvent event) {
+    public void OnGroupMessage(MiraiGroupMessageEvent event) {
         if (usesconfig.getBoolean("pinghost.enabled")) {
             if (!usesconfig.getBoolean("pinghost.op-only")) {
                 String msg = event.getMessage();

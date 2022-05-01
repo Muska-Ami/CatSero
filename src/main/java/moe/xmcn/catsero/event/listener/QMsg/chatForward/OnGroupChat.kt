@@ -39,7 +39,7 @@ class OnGroupChat: Listener {
                 .replace("%message%", emsg)
                 .replace("%time%", sendtime)
             val firstzf = message.first()
-            if (usesconfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.equals(usesconfig.getString("qmsg.forward-chat.prefix.format.to-mc"))) {
+            if (usesconfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.toString() == usesconfig.getString("qmsg.forward-chat.prefix.format.to-mc")) {
                 Bukkit.broadcastMessage(message)
             } else {
                 Bukkit.broadcastMessage(message)

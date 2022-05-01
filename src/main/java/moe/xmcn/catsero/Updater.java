@@ -23,12 +23,10 @@ public class Updater {
 
     @Override
     public String toString() {
-        return new StringBuilder()
-                .append(name).append("╳")
-                .append(durl).append("╳")
-                .append(devname).append("╳")
-                .append(devdurl).append("╳")
-                .toString();
+        return name + "╳" +
+                durl + "╳" +
+                devname + "╳" +
+                devdurl + "╳";
     }
 
     public static void onEnable(String nowversion) {

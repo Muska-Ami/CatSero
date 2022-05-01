@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 
@@ -19,12 +20,10 @@ public class HttpUtils {
      * 使用Get方式获取数据
      *
      * @param url
-     *            URL包括参数，http://HOST/XX?XX=XX&XXX=XXX
-     * @param charset
-     * @return
+     *            URL包括参数，<a href="http://HOST/XX?XX=XX&XXX=XXX">http://HOST/XX?XX=XX&XXX=XXX</a>
      */
     public static String sendGet(String url, String charset) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         BufferedReader in = null;
         try {
             URL realUrl = new URL(url);
@@ -42,7 +41,7 @@ public class HttpUtils {
                     connection.getInputStream(), charset));
             String line;
             while ((line = in.readLine()) != null) {
-                result += line;
+                result.append(line);
             }
         } catch (Exception e) {
             System.out.println("发送GET请求出现异常！" + e);
@@ -58,7 +57,7 @@ public class HttpUtils {
                 e2.printStackTrace();
             }
         }
-        return result;
+        return result.toString();
     }
 
     /**
@@ -71,7 +70,7 @@ public class HttpUtils {
 
         PrintWriter out = null;
         BufferedReader in = null;
-        String result = "";
+        StringBuilder result = new StringBuilder();
         try {
             URL realUrl = new URL(url);
             // 打开和URL之间的连接
@@ -95,7 +94,7 @@ public class HttpUtils {
                     conn.getInputStream(), charset));
             String line;
             while ((line = in.readLine()) != null) {
-                result += line;
+                result.append(line);
             }
         } catch (Exception e) {
             //System.out.println("发送 POST 请求出现异常！" + e);
@@ -116,7 +115,7 @@ public class HttpUtils {
                 ex.printStackTrace();
             }
         }
-        return result;
+        return result.toString();
     }
 
     /**
@@ -131,7 +130,7 @@ public class HttpUtils {
     public static String sendPost(String url, String param) {
         PrintWriter out = null;
         BufferedReader in = null;
-        String result = "";
+        StringBuilder result = new StringBuilder();
         try {
             URL realUrl = new URL(url);
             // 打开和URL之间的连接
@@ -152,10 +151,10 @@ public class HttpUtils {
             out.flush();
             // 定义BufferedReader输入流来读取URL的响应
             in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream(),"UTF-8"));
+                    new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
             String line;
             while ((line = in.readLine()) != null) {
-                result += line;
+                result.append(line);
             }
         } catch (Exception e) {
             System.out.println("发送 POST 请求出现异常！"+e);
@@ -175,7 +174,7 @@ public class HttpUtils {
                 ex.printStackTrace();
             }
         }
-        return result;
+        return result.toString();
     }
     /**
      * POST请求，Map形式数据
@@ -198,7 +197,7 @@ public class HttpUtils {
 
         PrintWriter out = null;
         BufferedReader in = null;
-        String result = "";
+        StringBuilder result = new StringBuilder();
         try {
             URL realUrl = new URL(url);
             // 打开和URL之间的连接
@@ -222,7 +221,7 @@ public class HttpUtils {
                     conn.getInputStream(), charset));
             String line;
             while ((line = in.readLine()) != null) {
-                result += line;
+                result.append(line);
             }
         } catch (Exception e) {
             System.out.println("发送 POST 请求出现异常！" + e);
@@ -241,7 +240,7 @@ public class HttpUtils {
                 ex.printStackTrace();
             }
         }
-        return result;
+        return result.toString();
     }
 
 }

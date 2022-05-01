@@ -61,7 +61,7 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerQuit(), this);
 
         System.out.println("CatSero插件加载成功");
-        if (config.getString("utils.allow-bstats") == "true") {
+        if (config.getBoolean("utils.allow-bstats")) {
             // All you have to do is adding the following two lines in your onEnable method.
             // You can find the plugin ids of your plugins on the page https://bstats.org/what-is-my-plugin-id
             int pluginId = 14767;

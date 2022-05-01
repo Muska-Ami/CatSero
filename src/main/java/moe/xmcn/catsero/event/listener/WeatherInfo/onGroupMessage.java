@@ -44,7 +44,7 @@ public class onGroupMessage implements Listener {
                         }
                     } catch (UnsupportedEncodingException uee) {
                         try {
-                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "获取天气时出现错误");;
+                            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(prefixqq + "获取天气时出现错误");
                         } catch (NoSuchElementException nse) {
                             System.out.println("发送消息时发生异常:\n" + nse);
                         }

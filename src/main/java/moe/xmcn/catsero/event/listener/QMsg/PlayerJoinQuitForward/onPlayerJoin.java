@@ -18,7 +18,7 @@ public class onPlayerJoin implements Listener {
     FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent pljev) {
+    public void OnPlayerJoin(PlayerJoinEvent pljev) {
         if (usesconfig.getBoolean("qmsg.send-player-join-quit.enabled")) {
             long bot = plugin.getConfig().getLong("qbgset.bot");
             long group = plugin.getConfig().getLong("qbgset.group");

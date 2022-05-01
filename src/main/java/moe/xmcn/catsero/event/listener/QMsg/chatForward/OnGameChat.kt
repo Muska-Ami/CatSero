@@ -51,7 +51,7 @@ class OnGameChat: Listener {
                         .replace("§r", "")
 
                 val firstzf = message.first()
-                if (usesconfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.equals(usesconfig.getString("qmsg.forward-chat.prefix.format.to-qq"))) {
+                if (usesconfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.toString() == usesconfig.getString("qmsg.forward-chat.prefix.format.to-qq")) {
                     try {
                         MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
                     } catch (nse: NoSuchElementException) {
@@ -66,7 +66,7 @@ class OnGameChat: Listener {
                 }
             } else {
                 val firstzf = message.first()
-                if (usesconfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.equals(usesconfig.getString("qmsg.forward-chat.prefix.format.to-qq"))) {
+                if (usesconfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.toString() == usesconfig.getString("qmsg.forward-chat.prefix.format.to-qq")) {
                     try {
                         MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
                     } catch (nse: NoSuchElementException) {

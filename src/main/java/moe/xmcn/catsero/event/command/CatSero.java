@@ -27,24 +27,24 @@ public class CatSero implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        /**
-         * PingHost
+        /*
+          PingHost
          */
         if (args[0].equalsIgnoreCase("ping") && usesconfig.getBoolean("pinghost.enabled")) {
             if (usesconfig.getBoolean("weatherinfo.op-only")) {
                 if (sender.hasPermission("catsero.admin")) {
                     if (args.length == 2) {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', prefixmc + "&aPing进行中，请耐心等待..."));
-                        InetAddress address = null;
+                        InetAddress address;
                         try {
-                            address = InetAddress.getByName(new Punycode().encodeURL(args[1]));
+                            address = InetAddress.getByName(Punycode.encodeURL(args[1]));
                         } catch (UnknownHostException e) {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', prefixmc + "&c无法解析主机名/IP"));
                             return false;
                         }
                         int flag = 0;
                         for (int i = 0; i < 4; i++) {
-                            boolean b = false;
+                            boolean b;
                             try {
                                 b = address.isReachable(1000);
                             } catch (IOException e) {
@@ -71,7 +71,7 @@ public class CatSero implements CommandExecutor {
                 }
             } else if (args.length == 2) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', prefixmc + "&aPing进行中，请耐心等待..."));
-                InetAddress address = null;
+                InetAddress address;
                 try {
                     address = InetAddress.getByName(Punycode.encodeURL(args[1]));
                 } catch (UnknownHostException e) {
@@ -80,7 +80,7 @@ public class CatSero implements CommandExecutor {
                 }
                 int flag = 0;
                 for (int i = 0; i < 4; i++) {
-                    boolean b = false;
+                    boolean b;
                     try {
                         b = address.isReachable(1000);
                     } catch (IOException e) {
@@ -103,8 +103,8 @@ public class CatSero implements CommandExecutor {
                 return false;
             }
 
-        /**
-        * 天气获取
+        /*
+         天气获取
         */
         } else if (args[0].equalsIgnoreCase("weather") && usesconfig.getBoolean("weatherinfo.enabled")) {
             if (args.length == 2) {
@@ -122,16 +122,16 @@ public class CatSero implements CommandExecutor {
                 return false;
             }
 
-        /**
-        * 插件重载
+        /*
+         插件重载
         */
         } else if (args[0].equalsIgnoreCase("reload")) {
             plugin.reloadConfig();
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', prefixmc + "&a配置文件已重载"));
             return true;
         }
-        /**
-         * 无效方法
+        /*
+          无效方法
          */
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', prefixmc + "&c无法找到使用方法，请检查拼写"));
         return false;

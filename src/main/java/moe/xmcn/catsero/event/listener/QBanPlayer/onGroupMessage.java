@@ -21,7 +21,7 @@ public class onGroupMessage implements Listener {
 
     String prefixqq = plugin.getConfig().getString("format-list.prefix.to-qq");
     @EventHandler
-    public void onGroupMessage(MiraiGroupMessageEvent event) {
+    public void OnGroupMessage(MiraiGroupMessageEvent event) {
         if (usesconfig.getBoolean("qbanplayer.enabled")) {
             String msg = event.getMessage();
             String[] args = msg.split(" ");

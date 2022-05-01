@@ -18,14 +18,14 @@ public class onGroupMemberAdd implements Listener {
     FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
     @EventHandler
-    public void onGroupMemberAdd(MiraiGroupMemberJoinEvent event) {
+    public void OnGroupMemberAdd(MiraiGroupMemberJoinEvent event) {
         if (usesconfig.getBoolean("new-group-member-message.enabled")) {
             long bot = plugin.getConfig().getLong("qbgset.bot");
             long group = plugin.getConfig().getLong("qbgset.group");
             long code = event.getNewMemberID();
             String message = usesconfig.getString("new-group-member-message.format");
             message = message
-                    .replace("%code%", "%code%")
+                    .replace("%code%", String.valueOf(code))
                     .replace("%at%", "[mirai:at:" + code + "]");
             try {
                 MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message);
