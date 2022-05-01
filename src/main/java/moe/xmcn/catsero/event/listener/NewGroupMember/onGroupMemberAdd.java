@@ -19,7 +19,7 @@ public class onGroupMemberAdd implements Listener {
 
     @EventHandler
     public void onGroupMemberAdd(MiraiGroupMemberJoinEvent event) {
-        if (usesconfig.getBoolean("group-member-change-message.enabled")) {
+        if (usesconfig.getBoolean("new-group-member-message.enabled")) {
             long bot = plugin.getConfig().getLong("qbgset.bot");
             long group = plugin.getConfig().getLong("qbgset.group");
             long code = event.getNewMemberID();
