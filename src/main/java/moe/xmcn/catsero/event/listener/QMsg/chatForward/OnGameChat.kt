@@ -19,7 +19,7 @@ class OnGameChat: Listener {
         println(usesconfig.getBoolean("qmsg.forward-chat.enabled"))
         if (usesconfig.getBoolean("qmsg.forward-chat.enabled")) {
             val playermessage = event.message
-            val playername = event.player
+            val playername = event.player.displayName
             var message = usesconfig.getString("qmsg.forward-chat.format.to-qq")
             message = message.replace("%player%", playername.toString())
                     .replace("%message%", playermessage)
