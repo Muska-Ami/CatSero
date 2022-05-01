@@ -40,7 +40,7 @@ public class Main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.PingHost.onGroupMessage(), this);
 
             // ChatForward聊天转发功能
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.chatForward.OnGameChat(), this);
+            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.chatForward.OnGameChat(),  this);
             getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.chatForward.OnGroupChat(), this);
 
             // QBanPlayer封禁功能

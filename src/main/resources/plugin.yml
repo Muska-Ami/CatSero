@@ -9,6 +9,8 @@ commands:
   catsero:
     description: "CatSero 基础方法"
     permission-message: "你没有权限执行该命令"
+  csm:
+    description: "发消息到QQ群"
 permissions:
   catsero.admin:
     description: "CatSero OP权限组"
