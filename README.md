@@ -3,7 +3,7 @@
 一个基于MiraiMC的QQ群功能&MC功能插件  
 支持的Minecraft版本: 1.13+  
 SpigotAPI版本: 1.13-R0.1-SNAPSHOT  
-构建结果请前往Actions - [Build](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml)
+开发版构建结果请前往Actions - [Build](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml)
 
 ## 未来功能
 
@@ -23,6 +23,17 @@ SpigotAPI版本: 1.13-R0.1-SNAPSHOT
 ### 其他
 
 - [x] 自动检查更新
+
+# 命令
+
+### Minecraft
+
+| 命令                                      | 说明                |
+|-----------------------------------------|-------------------|
+| /catsero reload                         | 重载config.yml      |
+| /catsero ping <地址>                      | Ping某一个地址         |
+| /catsero weather <中国大陆城市>               | 获取某个城市的天气         |
+| /csm <Bot账号(Code)> <Group群号(Code)> <消息> | 使用指定Bot发送到指定群指定消息 |
 
 # bStats
 
