@@ -9,7 +9,7 @@ class Config {
         val Use_Bot = plugin.config.getLong("qbgset.bot")
         val Use_Group = plugin.config.getLong("qbgset.group")
         val QQ_OP = plugin.config.getLong("qbgset.qq-op")
-        val Prefix_MC = plugin.config.getString("format-list.prefix.to-mc")
-        val Prefix_QQ = plugin.config.getString("format-list.prefix.to-qq")
+        val Prefix_MC: String = plugin.config.getString("format-list.prefix.to-mc")
+        val Prefix_QQ: String = plugin.config.getString("format-list.prefix.to-qq")
     }
 }
