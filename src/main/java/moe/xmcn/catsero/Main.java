@@ -60,6 +60,10 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerQuit(), this);
 
+        // OPPlayerQQ QQ添加OP
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.OPPlayerQQ.onGroupMessage(), this);
+
+
         System.out.println("CatSero插件加载成功");
         if (config.getBoolean("allow-bstats")) {
             int pluginId = 14767;

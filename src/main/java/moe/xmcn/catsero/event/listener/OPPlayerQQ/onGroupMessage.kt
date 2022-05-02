@@ -20,12 +20,20 @@ class onGroupMessage : Listener {
         val args = message.split(" ")
         if (args[0] == "catsero" && args[1] == "setop" && event.groupID == Config.Use_Group) {
             if (event.senderID == Config.QQ_OP) {
-                val plname: ServerOperator = args[2] as Player
+                val pl = "CraftPlayer{name=" + args[2] + "}"
+                val plname: ServerOperator = pl as Player
                 val isOp = plname.isOp
                 if (isOp) {
                     try {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
                             .sendMessageMirai(Config.Prefix_QQ + "已经是管理员了！")
+                    } catch (nse: NoSuchElementException) {
+                        println("发消息时出现异常：$nse")
+                    }
+                } else {
+                    plname.isOp = true
+                    try {
+                        MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(Config.Prefix_QQ + "已添加新的管理员")
                     } catch (nse: NoSuchElementException) {
                         println("发消息时出现异常：$nse")
                     }
