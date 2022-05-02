@@ -65,7 +65,7 @@ public class Main extends JavaPlugin {
             new Metrics(this, pluginId);
         }
 
-        Updater.onEnable("1.1-pre2");
+        Updater.onEnable("1.1-pre3");
     }
 
     @Override
