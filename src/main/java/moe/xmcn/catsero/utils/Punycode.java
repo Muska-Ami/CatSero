@@ -24,28 +24,22 @@ public class Punycode {
     }
 
     /**
-     *
      * Punycodes a unicode string. THIS IS NOT SUITABLE FOR UNICODE AND LETTER
      * MIXING
      *
      * @param input Unicode string.
-     *
      * @return Punycoded string, but original text for throw an exception
-     *
      */
     public static String encode(String input) {
         return Punycode.encode(input, "");
     }
 
     /**
-     *
      * Punycodes a unicode string. THIS IS NOT SUITABLE FOR UNICODE AND LETTER
      * MIXING
      *
      * @param input Unicode string.
-     *
      * @return Punycoded string, but original text for throw an exception
-     *
      */
     public static String encode(String input, String successPrefix) {
         int n = INITIAL_N;
@@ -60,7 +54,7 @@ public class Punycode {
                 b++;
             }
         }
-        if(b >= input.length()) return output.toString();
+        if (b >= input.length()) return output.toString();
         if (b > 0) {
             output.append(DELIMITER);
         }
@@ -88,7 +82,7 @@ public class Punycode {
                 }
                 if (c == n) {
                     int q = delta;
-                    for (int k = BASE;; k += BASE) {
+                    for (int k = BASE; ; k += BASE) {
                         int t;
 
                         if (k <= bias) {
@@ -116,6 +110,7 @@ public class Punycode {
         output.insert(0, successPrefix);
         return output.toString();
     }
+
     private static int adapt(int delta, int numpoints, boolean first) {
         if (first) {
             delta = delta / DAMP;

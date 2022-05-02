@@ -1,15 +1,16 @@
 package moe.xmcn.catsero;
 
-import moe.xmcn.catsero.event.command.*;
+import moe.xmcn.catsero.event.command.CatSero;
+import moe.xmcn.catsero.event.command.SendMessageQQ;
 import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
     FileConfiguration config = getConfig();
+
     @Override // 加载插件
     public void onLoad() {
         getConfig().options().copyDefaults();
@@ -29,35 +30,35 @@ public class Main extends JavaPlugin {
          * 所有Listener监听器的事件和CommandExecutor监听器的事件均由此注册
          */
 
-            System.out.println("正在注册事件 -> 监听器:CommandExecutor");
-            // 指令注册
-            Bukkit.getPluginCommand("catsero").setExecutor(new CatSero());
-            Bukkit.getPluginCommand("csm").setExecutor(new SendMessageQQ());
+        System.out.println("正在注册事件 -> 监听器:CommandExecutor");
+        // 指令注册
+        Bukkit.getPluginCommand("catsero").setExecutor(new CatSero());
+        Bukkit.getPluginCommand("csm").setExecutor(new SendMessageQQ());
 
-            System.out.println("正在注册事件 -> 监听器:Listener");
-            // PingHost功能
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.PingHost.onGroupMessage(), this);
+        System.out.println("正在注册事件 -> 监听器:Listener");
+        // PingHost功能
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.PingHost.onGroupMessage(), this);
 
-            // ChatForward聊天转发功能
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.chatForward.OnGameChat(),  this);
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.chatForward.OnGroupChat(), this);
+        // ChatForward聊天转发功能
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.chatForward.OnGameChat(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.chatForward.OnGroupChat(), this);
 
-            // QBanPlayer封禁功能
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QBanPlayer.onGroupMessage(), this);
+        // QBanPlayer封禁功能
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QBanPlayer.onGroupMessage(), this);
 
-            // WeatherInfo天气获取功能
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.WeatherInfo.onGroupMessage(), this);
+        // WeatherInfo天气获取功能
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.WeatherInfo.onGroupMessage(), this);
 
-            // PlayerJoinQuitForward玩家加入/退出消息->QQ功能
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward.onPlayerJoin(), this);
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward.onPlayerQuit(), this);
+        // PlayerJoinQuitForward玩家加入/退出消息->QQ功能
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward.onPlayerJoin(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward.onPlayerQuit(), this);
 
-            // NewGroupMember群成员变更消息
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.NewGroupMember.onGroupMemberAdd(), this);
+        // NewGroupMember群成员变更消息
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.NewGroupMember.onGroupMemberAdd(), this);
 
-            // JoinQuitMessage玩家加入/退出消息自定义
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerJoin(), this);
-            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerQuit(), this);
+        // JoinQuitMessage玩家加入/退出消息自定义
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerJoin(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerQuit(), this);
 
         System.out.println("CatSero插件加载成功");
         if (config.getBoolean("allow-bstats")) {

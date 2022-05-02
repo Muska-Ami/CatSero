@@ -10,17 +10,14 @@ import java.util.Map;
 
 /**
  * @author Administrator
- *
  */
 public class HttpUtils {
-
 
 
     /**
      * 使用Get方式获取数据
      *
-     * @param url
-     *            URL包括参数，<a href="http://HOST/XX?XX=XX&XXX=XXX">http://HOST/XX?XX=XX&XXX=XXX</a>
+     * @param url URL包括参数，<a href="http://HOST/XX?XX=XX&XXX=XXX">http://HOST/XX?XX=XX&XXX=XXX</a>
      */
     public static String sendGet(String url, String charset) {
         StringBuilder result = new StringBuilder();
@@ -62,8 +59,9 @@ public class HttpUtils {
 
     /**
      * POST请求，字符串形式数据
-     * @param url 请求地址
-     * @param param 请求数据
+     *
+     * @param url     请求地址
+     * @param param   请求数据
      * @param charset 编码方式
      */
     public static String sendPostUrl(String url, String param, String charset) {
@@ -121,10 +119,8 @@ public class HttpUtils {
     /**
      * 向指定 URL 发送POST方法的请求
      *
-     * @param url
-     *            发送请求的 URL
-     * @param param
-     *            请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
+     * @param url   发送请求的 URL
+     * @param param 请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
      * @return 所代表远程资源的响应结果
      */
     public static String sendPost(String url, String param) {
@@ -157,29 +153,30 @@ public class HttpUtils {
                 result.append(line);
             }
         } catch (Exception e) {
-            System.out.println("发送 POST 请求出现异常！"+e);
+            System.out.println("发送 POST 请求出现异常！" + e);
             e.printStackTrace();
         }
         //使用finally块来关闭输出流、输入流
-        finally{
-            try{
-                if(out!=null){
+        finally {
+            try {
+                if (out != null) {
                     out.close();
                 }
-                if(in!=null){
+                if (in != null) {
                     in.close();
                 }
-            }
-            catch(IOException ex){
+            } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
         return result.toString();
     }
+
     /**
      * POST请求，Map形式数据
-     * @param url 请求地址
-     * @param param 请求数据
+     *
+     * @param url     请求地址
+     * @param param   请求数据
      * @param charset 编码方式
      */
     public static String sendPost(String url, Map<String, String> param, String charset) throws UnsupportedEncodingException {

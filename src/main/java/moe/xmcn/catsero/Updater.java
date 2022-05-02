@@ -21,14 +21,6 @@ public class Updater {
         this.devdurl = devdurl;
     }
 
-    @Override
-    public String toString() {
-        return name + "╳" +
-                durl + "╳" +
-                devname + "╳" +
-                devdurl + "╳";
-    }
-
     public static void onEnable(String nowversion) {
         Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
         if (plugin.getConfig().getBoolean("check-update.enabled")) {
@@ -46,5 +38,13 @@ public class Updater {
         } else {
             System.out.println("跳过更新检查");
         }
+    }
+
+    @Override
+    public String toString() {
+        return name + "╳" +
+                durl + "╳" +
+                devname + "╳" +
+                devdurl + "╳";
     }
 }

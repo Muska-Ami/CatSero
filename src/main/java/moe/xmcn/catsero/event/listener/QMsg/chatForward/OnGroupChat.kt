@@ -12,7 +12,7 @@ import java.io.File
 import java.text.DateFormat
 import java.util.*
 
-class OnGroupChat: Listener {
+class OnGroupChat : Listener {
 
     var plugin: Plugin = Main.getPlugin(Main::class.java)
     var usc = File(plugin.dataFolder, "usesconfig.yml")
@@ -39,7 +39,10 @@ class OnGroupChat: Listener {
                 .replace("%message%", emsg)
                 .replace("%time%", sendtime)
             val firstzf = message.first()
-            if (usesconfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.toString() == usesconfig.getString("qmsg.forward-chat.prefix.format.to-mc")) {
+            if (usesconfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.toString() == usesconfig.getString(
+                    "qmsg.forward-chat.prefix.format.to-mc"
+                )
+            ) {
                 Bukkit.broadcastMessage(message)
             } else {
                 Bukkit.broadcastMessage(message)

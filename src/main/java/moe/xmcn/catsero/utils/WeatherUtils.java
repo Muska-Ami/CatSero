@@ -23,6 +23,15 @@ public class WeatherUtils {
         this.type = type;
     }
 
+    public static String[] getWeather(String cityname) throws UnsupportedEncodingException {
+        cityname = URLEncoder.encode(cityname, "UTF-8");
+        String weather_url = "https://csu.huahuo-cn.tk/api/wthr.php?city=" + cityname;
+        String datajson = HttpUtils.sendGet(weather_url, "UTF-8");
+        Gson gson = new Gson();
+        WeatherUtils weatherutils = gson.fromJson(datajson, WeatherUtils.class);
+        return String.valueOf(weatherutils).split("╳");
+    }
+
     @Override
     public String toString() {
         return date + "╳" +
@@ -30,14 +39,5 @@ public class WeatherUtils {
                 fengli + "╳" +
                 fengxiang + "╳" +
                 type;
-    }
-
-    public static String[] getWeather(String cityname) throws UnsupportedEncodingException {
-        cityname = URLEncoder.encode(cityname, "UTF-8");
-        String weather_url = "https://csu.huahuo-cn.tk/api/wthr.php?city="+cityname;
-        String datajson = HttpUtils.sendGet(weather_url, "UTF-8");
-        Gson gson = new Gson();
-        WeatherUtils weatherutils = gson.fromJson(datajson, WeatherUtils.class);
-        return String.valueOf(weatherutils).split("╳");
     }
 }

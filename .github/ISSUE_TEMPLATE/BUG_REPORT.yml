@@ -1,10 +1,10 @@
 name: 问题报告
 description: "如果你想反馈 Bug，请使用此模板。"
-labels: ["bug"]
+labels: [ "bug" ]
 body:
   - type: textarea
     id: description
-    attributes: 
+    attributes:
       label: 问题描述
       description: 在下方的编辑框描述你的问题
       placeholder: 请尽可能说明你遇到的问题，包括你是如何使用插件的，配置文件有没有调过等等
@@ -12,7 +12,7 @@ body:
       required: true
   - type: textarea
     id: recurrent
-    attributes: 
+    attributes:
       label: 复现方法
       description: 在下方的编辑框描述如何触发这个漏洞（分步需换行请直接回车，会为你添加标号）
       placeholder: 能看到这个？说明你没有看描述，请自己加上“1. ”
@@ -37,7 +37,7 @@ body:
       required: true
   - type: textarea
     id: serverlog
-    attributes: 
+    attributes:
       label: 服务端日志
       description: 在下方复制你的服务端日志
       placeholder: 请提供完整的服务端日志，自以为知道问题所在而仅提供一两行将被直接关闭。
@@ -46,7 +46,7 @@ body:
       required: true
   - type: textarea
     id: extra
-    attributes: 
+    attributes:
       label: 额外说明
       description: 还有什么要补充的吗？
       placeholder: |

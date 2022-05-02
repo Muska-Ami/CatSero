@@ -1,6 +1,7 @@
 package moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
+import moe.xmcn.catsero.Config;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
@@ -20,14 +21,12 @@ public class onPlayerJoin implements Listener {
     @EventHandler
     public void OnPlayerJoin(PlayerJoinEvent pljev) {
         if (usesconfig.getBoolean("qmsg.send-player-join-quit.enabled")) {
-            long bot = plugin.getConfig().getLong("qbgset.bot");
-            long group = plugin.getConfig().getLong("qbgset.group");
 
             String pljname = pljev.getPlayer().getName();
             String joinmsg = usesconfig.getString("qmsg.send-player-join-quit.format.join");
             joinmsg = joinmsg.replace("%player%", pljname);
             try {
-                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(joinmsg);
+                MiraiBot.getBot(Config.Companion.getUse_Bot()).getGroup(Config.Companion.getUse_Group()).sendMessageMirai(joinmsg);
             } catch (NoSuchElementException nse) {
                 System.out.println("发送消息时发生异常:\n" + nse);
             }
