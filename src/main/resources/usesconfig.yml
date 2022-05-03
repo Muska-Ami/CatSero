@@ -32,6 +32,8 @@ qmsg:
   forward-chat:
     # 启用此功能
     enabled: false
+    # 启用异步转发
+    async: true
     # 格式
     format:
       to-mc: "[%time%][QQ][%groupname%(%groupcode%)]%sendername%(%sendercode%):\n%message%"
