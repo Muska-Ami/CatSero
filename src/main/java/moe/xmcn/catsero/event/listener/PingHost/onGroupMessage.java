@@ -4,13 +4,9 @@ import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.Config;
 import moe.xmcn.catsero.utils.Punycode;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -18,14 +14,11 @@ import java.util.NoSuchElementException;
 
 public class onGroupMessage implements Listener {
 
-    Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
-    File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
-    FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
     @EventHandler
     public void OnGroupMessage(MiraiGroupMessageEvent event) {
-        if (usesconfig.getBoolean("pinghost.enabled")) {
-            if (!usesconfig.getBoolean("pinghost.op-only")) {
+        if (Config.INSTANCE.getUsesConfig().getBoolean("pinghost.enabled")) {
+            if (!Config.INSTANCE.getUsesConfig().getBoolean("pinghost.op-only")) {
                 String msg = event.getMessage();
                 String[] args = msg.split(" ");
                 if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping") && event.getGroupID() == Config.INSTANCE.getUse_Group()) {
@@ -75,11 +68,11 @@ public class onGroupMessage implements Listener {
                         System.out.println("发送消息时发生异常:\n" + nse);
                     }
                 }
-            } else if (event.getSenderID() == plugin.getConfig().getLong("qbgset.qq-op")) {
+            } else if (event.getSenderID() == Config.INSTANCE.getPlugin().getConfig().getLong("qbgset.qq-op")) {
                 String msg = event.getMessage();
                 String[] args = msg.split(" ");
-                long bot = plugin.getConfig().getLong("qbgset.bot");
-                long group = plugin.getConfig().getLong("qbgset.group");
+                long bot = Config.INSTANCE.getPlugin().getConfig().getLong("qbgset.bot");
+                long group = Config.INSTANCE.getPlugin().getConfig().getLong("qbgset.group");
                 if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping") && event.getGroupID() == group) {
                     try {
                         MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "Ping进行中，请耐心等待...");

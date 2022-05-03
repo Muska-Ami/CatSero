@@ -7,12 +7,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
@@ -20,17 +16,14 @@ import java.net.UnknownHostException;
 
 public class CatSero implements CommandExecutor {
 
-    Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
-    File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
-    FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         /*
           PingHost
          */
-        if (args[0].equalsIgnoreCase("ping") && usesconfig.getBoolean("pinghost.enabled")) {
-            if (usesconfig.getBoolean("pinghost.op-only")) {
+        if (args[0].equalsIgnoreCase("ping") && Config.INSTANCE.getUsesConfig().getBoolean("pinghost.enabled")) {
+            if (Config.INSTANCE.getUsesConfig().getBoolean("pinghost.op-only")) {
                 if (sender.hasPermission("catsero.admin")) {
                     if (args.length == 2) {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&aPing进行中，请耐心等待..."));
@@ -105,7 +98,7 @@ public class CatSero implements CommandExecutor {
         /*
          天气获取
         */
-        } else if (args[0].equalsIgnoreCase("weather") && usesconfig.getBoolean("weatherinfo.enabled")) {
+        } else if (args[0].equalsIgnoreCase("weather") && Config.INSTANCE.getUsesConfig().getBoolean("weatherinfo.enabled")) {
             if (args.length == 2) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a天气获取进行中，请耐心等待..."));
                 try {
@@ -125,7 +118,7 @@ public class CatSero implements CommandExecutor {
          插件重载
         */
         } else if (args[0].equalsIgnoreCase("reload")) {
-            plugin.reloadConfig();
+            Config.INSTANCE.getPlugin().reloadConfig();
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a配置文件已重载"));
             return true;
         }

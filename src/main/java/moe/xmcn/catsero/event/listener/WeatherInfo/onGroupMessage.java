@@ -4,25 +4,17 @@ import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.Config;
 import moe.xmcn.catsero.utils.WeatherUtils;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 
-import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.NoSuchElementException;
 
 public class onGroupMessage implements Listener {
 
-    Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
-    File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
-    FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
-
     @EventHandler
     public void MiraiGroupMessage(MiraiGroupMessageEvent event) {
-        if (usesconfig.getBoolean("weatherinfo.enabled")) {
+        if (Config.INSTANCE.getUsesConfig().getBoolean("weatherinfo.enabled")) {
             String msg = event.getMessage();
             String[] args = msg.split(" ");
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("weather")) {

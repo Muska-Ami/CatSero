@@ -1,9 +1,13 @@
 package moe.xmcn.catsero
 
+import org.bukkit.configuration.file.FileConfiguration
+import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.Plugin
+import java.io.File
 
 object Config {
     val plugin: Plugin = Main.getPlugin(Main::class.java)
+    var UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
 
     val Use_Bot = plugin.config.getLong("qbgset.bot")
     val Use_Group = plugin.config.getLong("qbgset.group")

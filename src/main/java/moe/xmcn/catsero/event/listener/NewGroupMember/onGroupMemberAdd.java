@@ -3,26 +3,19 @@ package moe.xmcn.catsero.event.listener.NewGroupMember;
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMemberJoinEvent;
 import moe.xmcn.catsero.Config;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 
-import java.io.File;
 import java.util.NoSuchElementException;
 
 public class onGroupMemberAdd implements Listener {
 
-    Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
-    File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
-    FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
     @EventHandler
     public void OnGroupMemberAdd(MiraiGroupMemberJoinEvent event) {
-        if (usesconfig.getBoolean("new-group-member-message.enabled")) {
+        if (Config.INSTANCE.getUsesConfig().getBoolean("new-group-member-message.enabled")) {
             long code = event.getNewMemberID();
-            String message = usesconfig.getString("new-group-member-message.format");
+            String message = Config.INSTANCE.getUsesConfig().getString("new-group-member-message.format");
             message = message
                     .replace("%code%", String.valueOf(code))
                     .replace("%at%", "[mirai:at:" + code + "]");

@@ -5,29 +5,22 @@ import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.Config;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 
-import java.io.File;
 import java.util.NoSuchElementException;
 
 public class onGroupMessage implements Listener {
 
-    Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
-    File usc = new File(plugin.getDataFolder(), "usesconfig.yml");
-    FileConfiguration usesconfig = YamlConfiguration.loadConfiguration(usc);
 
     @EventHandler
     public void OnGroupMessage(MiraiGroupMessageEvent event) {
-        if (usesconfig.getBoolean("qbanplayer.enabled")) {
+        if (Config.INSTANCE.getUsesConfig().getBoolean("qbanplayer.enabled")) {
             String msg = event.getMessage();
             String[] args = msg.split(" ");
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ban") && event.getGroupID() == Config.INSTANCE.getUse_Group()) {
 
-                if (event.getSenderID() == plugin.getConfig().getLong("qbgset.qq-op")) {
+                if (event.getSenderID() == Config.INSTANCE.getPlugin().getConfig().getLong("qbgset.qq-op")) {
                     System.out.println(event.getSenderID());
                     if (args.length == 5) {
                         Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], args[3], null, null);
