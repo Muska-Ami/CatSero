@@ -22,8 +22,6 @@ class SendMessageQQ : CommandExecutor {
                     MiraiBot.getBot(java.lang.Long.valueOf(args[0])).getGroup(java.lang.Long.valueOf(args[1])).sendMessageMirai(args[2])
                 } catch (nse: NoSuchElementException) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "Bot不存在"))
-                } finally {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "发生错误，可能是不正确的指令格式"))
                 }
             } catch (nse: NoSuchElementException) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&c发送消息时出现异常$nse"))
