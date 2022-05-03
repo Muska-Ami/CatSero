@@ -27,7 +27,7 @@ public class onGroupMemberAdd implements Listener {
                     .replace("%code%", String.valueOf(code))
                     .replace("%at%", "[mirai:at:" + code + "]");
             try {
-                MiraiBot.getBot(Config.Companion.getUse_Bot()).getGroup(Config.Companion.getUse_Group()).sendMessageMirai(message);
+                MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(message);
             } catch (NoSuchElementException nse) {
                 System.out.println("发送消息时发生异常:\n" + nse);
             }

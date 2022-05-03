@@ -26,7 +26,7 @@ public class onPlayerQuit implements Listener {
             String quitmsg = usesconfig.getString("qmsg.send-player-join-quit.format.quit");
             quitmsg = quitmsg.replace("%player%", plqname);
             try {
-                MiraiBot.getBot(Config.Companion.getUse_Bot()).getGroup(Config.Companion.getUse_Group()).sendMessageMirai(quitmsg);
+                MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(quitmsg);
             } catch (NoSuchElementException nse) {
                 System.out.println("发送消息时发生异常:\n" + nse);
             }

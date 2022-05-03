@@ -26,7 +26,7 @@ public class onPlayerJoin implements Listener {
             String joinmsg = usesconfig.getString("qmsg.send-player-join-quit.format.join");
             joinmsg = joinmsg.replace("%player%", pljname);
             try {
-                MiraiBot.getBot(Config.Companion.getUse_Bot()).getGroup(Config.Companion.getUse_Group()).sendMessageMirai(joinmsg);
+                MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(joinmsg);
             } catch (NoSuchElementException nse) {
                 System.out.println("发送消息时发生异常:\n" + nse);
             }
