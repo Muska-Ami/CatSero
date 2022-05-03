@@ -30,7 +30,7 @@ public class CatSero implements CommandExecutor {
           PingHost
          */
         if (args[0].equalsIgnoreCase("ping") && usesconfig.getBoolean("pinghost.enabled")) {
-            if (usesconfig.getBoolean("weatherinfo.op-only")) {
+            if (usesconfig.getBoolean("pinghost.op-only")) {
                 if (sender.hasPermission("catsero.admin")) {
                     if (args.length == 2) {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&aPing进行中，请耐心等待..."));
@@ -65,7 +65,7 @@ public class CatSero implements CommandExecutor {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c请键入正确的地址"));
                     }
                 } else {
-                    sender.sendMessage(Config.INSTANCE.getPrefix_MC() + "&c你无权这样做");
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c你无权这样做"));
                     return false;
                 }
             } else if (args.length == 2) {
