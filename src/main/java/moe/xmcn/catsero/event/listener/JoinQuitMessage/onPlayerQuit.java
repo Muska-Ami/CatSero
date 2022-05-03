@@ -1,6 +1,6 @@
 package moe.xmcn.catsero.event.listener.JoinQuitMessage;
 
-import moe.xmcn.catsero.Config;
+import moe.xmcn.catsero.utils.Config;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

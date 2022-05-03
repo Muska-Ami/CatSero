@@ -1,7 +1,7 @@
 package moe.xmcn.catsero.event.command
 
 import me.dreamvoid.miraimc.api.MiraiBot
-import moe.xmcn.catsero.Config
+import moe.xmcn.catsero.utils.Config
 import org.bukkit.ChatColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor

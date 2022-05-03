@@ -1,6 +1,7 @@
-package moe.xmcn.catsero.utils;
+package moe.xmcn.catsero.event.gist;
 
 import com.google.gson.Gson;
+import moe.xmcn.catsero.utils.HttpUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

@@ -12,11 +12,22 @@ weatherinfo:
   # 启用此功能
   enabled: false
 
-qbanplayer:
+# QQ封禁玩家
+qban-player:
   # 启用此功能
   enabled: false
 
-# QMsg功能
+# QQ踢出玩家
+qkick-player:
+  # 启用此功能
+  enabled: false
+
+# QQ给玩家OP
+qop-player:
+  # 启用此功能
+  enabled: false
+
+# QMsg功能集
 qmsg:
 
   # 发送玩家加入/退出消息

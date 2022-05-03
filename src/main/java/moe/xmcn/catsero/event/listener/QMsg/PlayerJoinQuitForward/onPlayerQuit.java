@@ -1,7 +1,7 @@
 package moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
-import moe.xmcn.catsero.Config;
+import moe.xmcn.catsero.utils.Config;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;

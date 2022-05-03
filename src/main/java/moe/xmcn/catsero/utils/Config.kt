@@ -1,5 +1,6 @@
-package moe.xmcn.catsero
+package moe.xmcn.catsero.utils
 
+import moe.xmcn.catsero.Main
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.Plugin

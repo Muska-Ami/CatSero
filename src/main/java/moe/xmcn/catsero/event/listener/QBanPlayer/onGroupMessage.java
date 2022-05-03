@@ -2,7 +2,7 @@ package moe.xmcn.catsero.event.listener.QBanPlayer;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
-import moe.xmcn.catsero.Config;
+import moe.xmcn.catsero.utils.Config;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -15,7 +15,7 @@ public class onGroupMessage implements Listener {
 
     @EventHandler
     public void OnGroupMessage(MiraiGroupMessageEvent event) {
-        if (Config.INSTANCE.getUsesConfig().getBoolean("qbanplayer.enabled")) {
+        if (Config.INSTANCE.getUsesConfig().getBoolean("qban-player.enabled")) {
             String msg = event.getMessage();
             String[] args = msg.split(" ");
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ban") && event.getGroupID() == Config.INSTANCE.getUse_Group()) {

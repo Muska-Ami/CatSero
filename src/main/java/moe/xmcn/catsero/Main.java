@@ -24,6 +24,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
         /*
          * 注册事件
          * 所有Listener监听器的事件和CommandExecutor监听器的事件均由此注册
@@ -62,6 +63,8 @@ public class Main extends JavaPlugin {
         // OPPlayerQQ QQ添加OP
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.OPPlayerQQ.onGroupMessage(), this);
 
+        // KickPlayerQQ QQ踢人
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.KickPlayerQQ.onGroupMessage(), this);
 
         System.out.println("CatSero插件加载成功");
         if (config.getBoolean("allow-bstats")) {

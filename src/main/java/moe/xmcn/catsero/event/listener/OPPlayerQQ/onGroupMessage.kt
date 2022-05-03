@@ -2,7 +2,7 @@ package moe.xmcn.catsero.event.listener.OPPlayerQQ
 
 import me.dreamvoid.miraimc.api.MiraiBot
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent
-import moe.xmcn.catsero.Config
+import moe.xmcn.catsero.utils.Config
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -14,7 +14,7 @@ class onGroupMessage : Listener {
     fun onMiraiGroupMessage(event: MiraiGroupMessageEvent) {
         val message = event.message
         val args = message.split(" ")
-        if (args[0] == "catsero" && args[1] == "setop" && event.groupID == Config.Use_Group) {
+        if (args[0] == "catsero" && args[1] == "setop" && Config.UsesConfig.getBoolean("qop-player.enabled") && event.groupID == Config.Use_Group) {
             if (event.senderID == Config.QQ_OP) {
                 val pl = "CraftPlayer{name=" + args[2] + "}"
                 val plname: ServerOperator = pl as Player
