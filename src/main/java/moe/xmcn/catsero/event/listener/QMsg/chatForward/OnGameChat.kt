@@ -92,7 +92,7 @@ class OnGameChat : Listener {
 
     @EventHandler
     fun onGameChat(event: PlayerChatEvent) {
-        if (usesconfig.getBoolean("qmsg.forward-chat.enabled") && usesconfig.getBoolean("qmsg.chat-forward.async")) {
+        if (usesconfig.getBoolean("qmsg.forward-chat.enabled") && !usesconfig.getBoolean("qmsg.chat-forward.async")) {
             val playermessage = event.message
             val playername = event.player.displayName
             var message = usesconfig.getString("qmsg.forward-chat.format.to-qq")
