@@ -8,7 +8,7 @@ import java.io.File
 
 object Config {
     val plugin: Plugin = Main.getPlugin(Main::class.java)
-    var UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
+    val UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
 
     val Use_Bot = plugin.config.getLong("qbgset.bot")
     val Use_Group = plugin.config.getLong("qbgset.group")
