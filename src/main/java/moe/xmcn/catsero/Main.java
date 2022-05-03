@@ -15,7 +15,7 @@ public class Main extends JavaPlugin {
     public void onLoad() {
         getConfig().options().copyDefaults();
         saveDefaultConfig();
-        saveResource("Config.INSTANCE.getUsesConfig().yml", false);
+        saveResource("usesconfig.yml", false);
         System.out.println("[CatSero] 正在加载CatSero插件");
         if (config.getBoolean("utils.allow-start-warn")) {
             getLogger().warning("请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
@@ -24,7 +24,6 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
         /*
          * 注册事件
          * 所有Listener监听器的事件和CommandExecutor监听器的事件均由此注册

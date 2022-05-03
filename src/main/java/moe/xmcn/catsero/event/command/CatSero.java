@@ -1,6 +1,7 @@
 package moe.xmcn.catsero.event.command;
 
 import moe.xmcn.catsero.Config;
+import moe.xmcn.catsero.event.gist.PingHost;
 import moe.xmcn.catsero.utils.Punycode;
 import moe.xmcn.catsero.utils.WeatherUtils;
 import org.bukkit.ChatColor;
@@ -9,10 +10,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Objects;
 
 public class CatSero implements CommandExecutor {
 
@@ -26,33 +26,18 @@ public class CatSero implements CommandExecutor {
             if (Config.INSTANCE.getUsesConfig().getBoolean("pinghost.op-only")) {
                 if (sender.hasPermission("catsero.admin")) {
                     if (args.length == 2) {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&aPing进行中，请耐心等待..."));
-                        InetAddress address;
                         try {
-                            address = InetAddress.getByName(Punycode.encodeURL(args[1]));
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&aPing进行中，请耐心等待..."));
+                            String result = PingHost.GameUtils(args[2]);
+                            if (Objects.equals(result, "Error")) {
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&cPing时发生错误"));
+                            } else {
+                                long flag = Long.parseLong(result);
+                                sender.sendMessage(args[1] + "(" + (Punycode.encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
+                            }
                         } catch (UnknownHostException e) {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c无法解析主机名/IP"));
-                            return false;
                         }
-                        int flag = 0;
-                        for (int i = 0; i < 4; i++) {
-                            boolean b;
-                            try {
-                                b = address.isReachable(1000);
-                            } catch (IOException e) {
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&cPing时发生错误"));
-                                return false;
-                            }
-                            if (b)
-                                flag++;
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&cPing时发生错误"));
-                                return false;
-                            }
-                        }
-                        sender.sendMessage(args[1] + "(" + (Punycode.encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
                         return true;
                     } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c请键入正确的地址"));
@@ -62,33 +47,18 @@ public class CatSero implements CommandExecutor {
                     return false;
                 }
             } else if (args.length == 2) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&aPing进行中，请耐心等待..."));
-                InetAddress address;
                 try {
-                    address = InetAddress.getByName(Punycode.encodeURL(args[1]));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&aPing进行中，请耐心等待..."));
+                    String result = PingHost.GameUtils(args[1]);
+                    if (Objects.equals(result, "Error")) {
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&cPing时发生错误"));
+                    } else {
+                        long flag = Long.parseLong(result);
+                        sender.sendMessage(args[1] + "(" + (Punycode.encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
+                    }
                 } catch (UnknownHostException e) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c无法解析主机名/IP"));
-                    return false;
                 }
-                int flag = 0;
-                for (int i = 0; i < 4; i++) {
-                    boolean b;
-                    try {
-                        b = address.isReachable(1000);
-                    } catch (IOException e) {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&cPing时发生错误"));
-                        return false;
-                    }
-                    if (b)
-                        flag++;
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&cPing时发生错误"));
-                        return false;
-                    }
-                }
-                sender.sendMessage(args[1] + "(" + (Punycode.encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
                 return true;
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c请键入正确的地址"));
