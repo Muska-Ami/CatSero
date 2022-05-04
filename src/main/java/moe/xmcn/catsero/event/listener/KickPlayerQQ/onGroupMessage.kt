@@ -2,9 +2,9 @@ package moe.xmcn.catsero.event.listener.KickPlayerQQ
 
 import me.dreamvoid.miraimc.api.MiraiBot
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent
+import moe.xmcn.catsero.event.gist.PlayerUUID
 import moe.xmcn.catsero.utils.Config
 import org.bukkit.Bukkit
-import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 
@@ -16,7 +16,7 @@ class onGroupMessage : Listener {
         val args = message.split(" ")
         if (args[0] == "catsero" && args[1] == "kick" && Config.UsesConfig.getBoolean("qkick-player.enabled") && event.groupID == Config.Use_Group) {
             if (event.senderID == Config.QQ_OP) {
-                val pl = "CraftPlayer{name=" + args[2] + "}" as Player
+                val pl = PlayerUUID.getUUIDByName(args[2])
                 try {
                     Bukkit.getPlayer(pl).kickPlayer(Config.UsesConfig.getString("qkick-player"))
                 } finally {
