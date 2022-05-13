@@ -12,7 +12,7 @@ class OnGroupChat : Listener {
 
     @EventHandler
     fun onGroupChat(event: MiraiGroupMessageEvent) {
-        if (Config.UsesConfig.getBoolean("qmsg.chat-forward.enabled")) {
+        if (Config.UsesConfig.getBoolean("qmsg.forward-chat.enabled")) {
             val groupid = event.groupID
             val groupname = event.groupName
             val senderid = event.senderID
@@ -23,7 +23,7 @@ class OnGroupChat : Listener {
             val df = DateFormat.getDateInstance(DateFormat.FULL, Locale.CHINA)
             val sendtime = df.format(sendtim)
 
-            var message = Config.UsesConfig.getString("qmsg.chat-forward.format.to-mc")
+            var message = Config.UsesConfig.getString("qmsg.forward-chat.format.to-mc")
             message = message.replace("%groupcode%", groupid.toString())
                 .replace("%groupname%", groupname)
                 .replace("%sendercode%", senderid.toString())
