@@ -34,6 +34,8 @@ public class Updater {
             } else if (!Objects.equals(upregex[0], nowversion) && !nowversion.contains("pre") && Objects.equals(plugin.getConfig().getString("check-update.version"), "passed")) {
                 System.out.println(ChatColor.GREEN + "已找到可用的更新：" + upregex[0]);
                 System.out.println(ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[1]);
+            } else {
+                System.out.println("跳过更新检查");
             }
         } else {
             System.out.println("跳过更新检查");
