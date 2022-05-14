@@ -7,11 +7,11 @@ import org.bukkit.plugin.Plugin
 import java.io.File
 
 object Config {
+
     val plugin: Plugin = Main.getPlugin(Main::class.java)
-    val UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
+    var UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
     fun customConfig(config: String): FileConfiguration {
-        val customConfig: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, config))
-        return customConfig
+        return YamlConfiguration.loadConfiguration(File(plugin.dataFolder, config))
     }
 
     val Use_Bot = plugin.config.getLong("qbgset.bot")
@@ -21,4 +21,9 @@ object Config {
     val Prefix_QQ: String = plugin.config.getString("format-list.prefix.to-qq")
 
     val Version: String = plugin.config.getString("version")
+
+    fun reloadConfig() {
+        plugin.reloadConfig()
+        UsesConfig = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
+    }
 }

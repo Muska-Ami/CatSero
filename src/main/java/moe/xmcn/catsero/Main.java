@@ -13,6 +13,9 @@ public class Main extends JavaPlugin {
 
     FileConfiguration config = getConfig();
 
+    /**
+     * 加载时相关操作
+     */
     @Override // 加载插件
     public void onLoad() {
         getConfig().options().copyDefaults();
@@ -24,17 +27,15 @@ public class Main extends JavaPlugin {
         }
     }
 
-    @Override
-    public void onEnable() {
-
-        /*
-         * 注册事件
-         * 所有Listener监听器的事件和CommandExecutor监听器的事件均由此注册
-         */
-
+    /**
+     * 注册事件
+     * 所有Listener监听器的事件和CommandExecutor监听器的事件均由此注册
+     */
+    public void regiserEvents() {
         System.out.println("正在注册事件 -> 监听器:CommandExecutor");
-        // 指令注册
+        // catsero命令
         Bukkit.getPluginCommand("catsero").setExecutor(new CatSero());
+        // csm命令
         Bukkit.getPluginCommand("csm").setExecutor(new SendMessageQQ());
 
         System.out.println("正在注册事件 -> 监听器:Listener");
@@ -70,22 +71,37 @@ public class Main extends JavaPlugin {
 
         // AutoAnswer 自动回复
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.AutoAnswer.onMiraiGroupMessageEvent(), this);
+        saveResource("autotask/answer.yml", false);
+    }
+
+    /**
+     * 启用时相关操作
+     */
+    @Override
+    public void onEnable() {
+
+        regiserEvents();
+
+        // bStats
+        if (config.getBoolean("allow-bstats")) {
+            int pluginId = 14767;
+            new Metrics((JavaPlugin) Config.INSTANCE.getPlugin(), pluginId);
+        }
 
         System.out.println("CatSero插件加载成功");
 
-        // 异步加载bStats与更新检查器
+        // 异步加载更新检查器
         new BukkitRunnable() {
             @Override
             public void run() {
-                if (config.getBoolean("allow-bstats")) {
-                    int pluginId = 14767;
-                    new Metrics((JavaPlugin) Config.INSTANCE.getPlugin(), pluginId);
-                }
                 Updater.onEnable();
             }
         }.runTaskAsynchronously(this);
     }
 
+    /**
+     * 卸载时相关操作
+     */
     @Override
     public void onDisable() {
         System.out.println("正在卸载CatSero插件");
