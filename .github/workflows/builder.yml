@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Refactor Version Env
+        run: sed 's/${project.version}/1.1-pre3/g'
       - name: Set up JDK 8
         uses: actions/setup-java@v2
         with:

@@ -21,7 +21,8 @@ public class Updater {
         this.devdurl = devdurl;
     }
 
-    public static void onEnable(String nowversion) {
+    public static void onEnable() {
+        String nowversion = "${project.version}";
         Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
         if (plugin.getConfig().getBoolean("check-update.enabled")) {
             String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8");
