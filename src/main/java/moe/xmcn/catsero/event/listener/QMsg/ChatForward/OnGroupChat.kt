@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.event.listener.QMsg.chatForward
+package moe.xmcn.catsero.event.listener.QMsg.ChatForward
 
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent
 import moe.xmcn.catsero.utils.Config
