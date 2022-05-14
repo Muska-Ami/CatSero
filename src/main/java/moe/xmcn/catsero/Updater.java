@@ -22,7 +22,7 @@ public class Updater {
     }
 
     public static void onEnable() {
-        String nowversion = "${pjversion";
+        String nowversion = "pjversion";
         Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
         if (plugin.getConfig().getBoolean("check-update.enabled")) {
             String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8");
