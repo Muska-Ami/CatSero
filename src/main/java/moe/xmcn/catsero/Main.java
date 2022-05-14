@@ -2,6 +2,7 @@ package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.event.command.CatSero;
 import moe.xmcn.catsero.event.command.SendMessageQQ;
+import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -71,14 +72,15 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.AutoAnswer.onMiraiGroupMessageEvent(), this);
 
         System.out.println("CatSero插件加载成功");
-        if (config.getBoolean("allow-bstats")) {
-            int pluginId = 14767;
-            new Metrics(this, pluginId);
-        }
 
+        // 异步加载bStats与更新检查器
         new BukkitRunnable() {
             @Override
             public void run() {
+                if (config.getBoolean("allow-bstats")) {
+                    int pluginId = 14767;
+                    new Metrics((JavaPlugin) Config.INSTANCE.getPlugin(), pluginId);
+                }
                 Updater.onEnable();
             }
         }.runTaskAsynchronously(this);

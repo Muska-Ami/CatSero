@@ -9,7 +9,7 @@ import java.util.Map;
 
 
 /**
- * @author Administrator
+ * @author XiaMoHuaHuo_CN
  */
 public class HttpUtils {
 
@@ -17,7 +17,7 @@ public class HttpUtils {
     /**
      * 使用Get方式获取数据
      *
-     * @param url URL包括参数，<a href="http://HOST/XX?XX=XX&XXX=XXX">http://HOST/XX?XX=XX&XXX=XXX</a>
+     * @param url URL包括参数
      */
     public static String sendGet(String url, String charset) {
         StringBuilder result = new StringBuilder();
