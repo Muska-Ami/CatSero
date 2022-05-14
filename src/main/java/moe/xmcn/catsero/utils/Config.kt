@@ -15,4 +15,6 @@ object Config {
     val QQ_OP = plugin.config.getLong("qbgset.qq-op")
     val Prefix_MC: String = plugin.config.getString("format-list.prefix.to-mc")
     val Prefix_QQ: String = plugin.config.getString("format-list.prefix.to-qq")
+
+    val Version: String = plugin.config.getString("version")
 }

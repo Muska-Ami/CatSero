@@ -6,6 +6,7 @@ import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class Main extends JavaPlugin {
 
@@ -72,7 +73,12 @@ public class Main extends JavaPlugin {
             new Metrics(this, pluginId);
         }
 
-        Updater.onEnable();
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Updater.onEnable();
+            }
+        }.runTaskAsynchronously(this);
     }
 
     @Override

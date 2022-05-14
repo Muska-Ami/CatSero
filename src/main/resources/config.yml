@@ -1,6 +1,9 @@
 # CatSero配置文件
 
-# 接受bStats统计
+# 版本号 请勿修改
+version: ${project.version}
+
+# 接受bStats统计(https://bstats.org)
 allow-bstats: true
 # 接受插件启动时的警告
 allow-start-warn: true
