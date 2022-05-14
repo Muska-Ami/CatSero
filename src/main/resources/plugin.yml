@@ -1,6 +1,6 @@
 name: CatSero
 main: moe.xmcn.catsero.Main
-version: ${project.version}
+version: pjversion
 api-version: 1.13
 author: XiaMoHuaHuo_CN
 depend:
