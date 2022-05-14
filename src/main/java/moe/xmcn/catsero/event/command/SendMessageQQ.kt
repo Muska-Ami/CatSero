@@ -19,7 +19,8 @@ class SendMessageQQ : CommandExecutor {
             )
             try {
                 try {
-                    MiraiBot.getBot(java.lang.Long.valueOf(args[0])).getGroup(java.lang.Long.valueOf(args[1])).sendMessageMirai(args[2])
+                    MiraiBot.getBot(java.lang.Long.valueOf(args[0])).getGroup(java.lang.Long.valueOf(args[1]))
+                        .sendMessageMirai(args[2])
                 } catch (nse: NoSuchElementException) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "Bot不存在"))
                 }

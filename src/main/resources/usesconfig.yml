@@ -70,3 +70,10 @@ join-quit-message:
 new-group-member-message:
   enabled: false
   format: "欢迎%at%(%code%)\n加入了本群！"
+
+# 自动回复
+auto-answer:
+  # 启用此功能
+  enabled: false
+  # 自动回复列表文件
+  data-file: autotask/answer.yml

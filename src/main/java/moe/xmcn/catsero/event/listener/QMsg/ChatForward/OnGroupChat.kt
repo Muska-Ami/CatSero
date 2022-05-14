@@ -12,7 +12,7 @@ class OnGroupChat : Listener {
 
     @EventHandler
     fun onGroupChat(event: MiraiGroupMessageEvent) {
-        if (Config.UsesConfig.getBoolean("qmsg.forward-chat.enabled")) {
+        if (Config.UsesConfig.getBoolean("qmsg.forward-chat.enabled") && event.groupID == Config.Use_Bot && event.botID == Config.Use_Group) {
             val groupid = event.groupID
             val groupname = event.groupName
             val senderid = event.senderID

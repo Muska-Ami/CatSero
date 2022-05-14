@@ -9,6 +9,10 @@ import java.io.File
 object Config {
     val plugin: Plugin = Main.getPlugin(Main::class.java)
     val UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
+    fun customConfig(config: String): FileConfiguration {
+        val customConfig: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, config))
+        return customConfig
+    }
 
     val Use_Bot = plugin.config.getLong("qbgset.bot")
     val Use_Group = plugin.config.getLong("qbgset.group")

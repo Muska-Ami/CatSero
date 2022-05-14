@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class onPlayerJoin implements Listener {
@@ -20,7 +21,7 @@ public class onPlayerJoin implements Listener {
             try {
                 MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(joinmsg);
             } catch (NoSuchElementException nse) {
-                System.out.println("发送消息时发生异常:\n" + nse);
+                System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
             }
         }
     }

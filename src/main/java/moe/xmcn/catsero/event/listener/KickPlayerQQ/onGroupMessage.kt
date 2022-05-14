@@ -17,7 +17,7 @@ class onGroupMessage : Listener {
             override fun run() {
                 val message = event.message
                 val args = message.split(" ")
-                if (args[0] == "catsero" && args[1] == "kick" && Config.UsesConfig.getBoolean("qkick-player.enabled") && event.groupID == Config.Use_Group) {
+                if (args[0] == "catsero" && args[1] == "kick" && Config.UsesConfig.getBoolean("qkick-player.enabled") && event.groupID == Config.Use_Bot && event.botID == Config.Use_Group) {
                     if (event.senderID == Config.QQ_OP) {
                         val pl = PlayerUUID.getUUIDByName(args[2])
                         try {
