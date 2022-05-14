@@ -6,6 +6,10 @@
 SpigotAPI版本: 1.13-R0.1-SNAPSHOT  
 开发版构建结果请前往Actions - [Build](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml)
 
+## 帮助改进代码
+
+如果你想帮助改进代码，请先Fork本库，然后修改，接着开PR
+
 ## 未来功能
 
 ### 插件功能
@@ -14,12 +18,13 @@ SpigotAPI版本: 1.13-R0.1-SNAPSHOT
 - [x] Minecraft玩家加入/退出通知到QQ
 - [x] QQ群踢人
 - [x] QQ群Ban人
-- [ ] QQ群娱乐功能
+- [ ] QQ群娱乐功能(遥遥无期，XD，希望有dalao PR一下)
 - [x] Ping功能(Minecraft内/QQ群内)
 - [x] QQ群给予OP
 - [x] 天气获取
 - [x] 迎新功能
 - [x] 自定义玩家加入/退出游戏全体消息
+- [ ] 自动回复功能
 
 ### 其他
 
