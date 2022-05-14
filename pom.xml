@@ -6,7 +6,7 @@
 
     <groupId>moe.xmcn.catsero</groupId>
     <artifactId>CatSero</artifactId>
-    <version>pjversion</version>
+    <version>1.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,20 +21,16 @@
             <id>lss233-minecraft</id>
             <url>https://lss233.littleservice.cn/repositories/minecraft</url>
         </repository>
-        <!-- PlaceholderAPI Repo -->
+        <!-- PlaceholderAPI Repo
         <repository>
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
+        -->
         <!-- Offical Maven Repo -->
         <repository>
             <id>offical-maven-repo</id>
             <url>https://repo1.maven.org/maven2</url>
-        </repository>
-        <!-- Mvn Maven Repo -->
-        <repository>
-            <id>mvn-repository</id>
-            <url>https://maven.nuxeo.org/nexus/content/groups/public</url>
         </repository>
         <!-- Spigot Maven Repo -->
         <repository>
@@ -140,7 +136,7 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
+            <artifactId>kotlin-test-junit</artifactId>
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
