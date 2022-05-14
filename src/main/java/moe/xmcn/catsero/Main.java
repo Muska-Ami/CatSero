@@ -67,6 +67,9 @@ public class Main extends JavaPlugin {
         // KickPlayerQQ QQ踢人
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.KickPlayerQQ.onGroupMessage(), this);
 
+        // AutoAnswer 自动回复
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.AutoAnswer.onMiraiGroupMessageEvent(), this);
+
         System.out.println("CatSero插件加载成功");
         if (config.getBoolean("allow-bstats")) {
             int pluginId = 14767;
