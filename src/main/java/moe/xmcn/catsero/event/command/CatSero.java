@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPluginLoader;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.UnsupportedEncodingException;
@@ -90,9 +91,13 @@ public class CatSero implements CommandExecutor {
          插件重载
         */
             } else if (args[0].equalsIgnoreCase("reload")) {
-                Config.INSTANCE.reloadConfig();
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a配置文件已重载"));
-                return true;
+                if (args.length == 1) {
+                    Config.INSTANCE.reloadConfig();
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a配置文件已重载"));
+                    return true;
+                } else {
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c参数过多"));
+                }
             }
         } else {
         /*

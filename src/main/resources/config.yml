@@ -15,13 +15,16 @@ check-update:
   version: passed
 
 # QQ机器人相关设置
-qbgset:
+qq-set:
   # 使用的群
-  group: 123456
+  groups:
+    - 123456
   # 使用的机器人
-  bot: 123456
+  bots:
+    - 123456
   # 拥有QQ权限的用户
-  qq-op: 123456
+  qq-ops:
+    - 123456
 
 # 通用格式
 format-list:

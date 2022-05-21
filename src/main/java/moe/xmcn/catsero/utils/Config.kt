@@ -14,9 +14,9 @@ object Config {
         return YamlConfiguration.loadConfiguration(File(plugin.dataFolder, config))
     }
 
-    val Use_Bot = plugin.config.getLong("qbgset.bot")
-    val Use_Group = plugin.config.getLong("qbgset.group")
-    val QQ_OP = plugin.config.getLong("qbgset.qq-op")
+    val Use_Bots: List<Long> = plugin.config.getLongList("qq-set.bots")
+    val Use_Groups: List<Long> = plugin.config.getLongList("qq-set.groups")
+    val QQ_OPs: List<Long> = plugin.config.getLongList("qq-set.qq-ops")
     val Prefix_MC: String = plugin.config.getString("format-list.prefix.to-mc")
     val Prefix_QQ: String = plugin.config.getString("format-list.prefix.to-qq")
 
