@@ -24,6 +24,8 @@ SpigotAPI版本: 1.13-R0.1-SNAPSHOT
 - [x] 天气获取
 - [x] 迎新功能
 - [x] 自定义玩家加入/退出游戏全体消息
+- [x] 多群/多Bot/多群OP
+- [X] PlaceholderAPI变量支持
 - [ ] 自动回复功能
 
 ### 其他
