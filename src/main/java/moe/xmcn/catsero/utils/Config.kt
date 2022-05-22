@@ -16,6 +16,7 @@ import java.io.File
 object Config {
 
     val plugin: Plugin = Main.getPlugin(Main::class.java)
+    var Config: FileConfiguration = plugin.config
     var UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
 
     val Use_Bots: List<Long> = plugin.config.getLongList("qq-set.bots")

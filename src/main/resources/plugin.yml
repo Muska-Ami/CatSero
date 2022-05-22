@@ -3,6 +3,9 @@ main: moe.xmcn.catsero.Main
 version: ${project.version}
 api-version: 1.13
 author: XiaMoHuaHuo_CN
+softdepend:
+  - MiraiMC
+  - PlaceholderAPI
 commands:
   catsero:
     description: "CatSero 基础方法"
