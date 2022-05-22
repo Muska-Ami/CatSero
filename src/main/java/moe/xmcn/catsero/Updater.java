@@ -8,6 +8,9 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.Objects;
 
+/**
+ * 检查更新器
+ */
 public class Updater {
 
     public final String name;

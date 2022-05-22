@@ -16,7 +16,7 @@ public class onGroupMessage implements Listener {
 
     @EventHandler
     public void OnGroupMessage(MiraiGroupMessageEvent event) {
-        Config.INSTANCE.getUse_Bots().forEach(bot -> Config.INSTANCE.getUse_Groups().forEach(group -> Config.INSTANCE.getQQ_OPs().forEach( qqop -> {
+        Config.INSTANCE.getUse_Bots().forEach(bot -> Config.INSTANCE.getUse_Groups().forEach(group -> Config.INSTANCE.getQQ_OPs().forEach(qqop -> {
             if (Config.INSTANCE.getUsesConfig().getBoolean("qban-player.enabled") && event.getGroupID() == bot && event.getBotID() == group) {
                 String msg = event.getMessage();
                 String[] args = msg.split(" ");

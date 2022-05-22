@@ -1,6 +1,5 @@
 package moe.xmcn.catsero.event.listener.QMsg.ChatForward
 
-import me.clip.placeholderapi.PlaceholderAPI
 import me.dreamvoid.miraimc.api.MiraiBot
 import moe.xmcn.catsero.utils.Config
 import org.bukkit.event.EventHandler
@@ -19,7 +18,7 @@ class OnGameChat : Listener {
                     var message = Config.UsesConfig.getString("qmsg.forward-chat.format.to-qq")
                     message = message.replace("%player%", playername.toString())
                         .replace("%message%", playermessage)
-                    message = PlaceholderAPI.setBracketPlaceholders(event.player, message)
+                    message = Config.tryToPAPI(event.player, message)
 
                     if (Config.UsesConfig.getBoolean("qmsg.forward-chat.clean-colorcode")) {
                         message = message.replace("§1", "")

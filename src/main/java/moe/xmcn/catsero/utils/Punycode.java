@@ -1,6 +1,8 @@
 package moe.xmcn.catsero.utils;
 
-
+/**
+ * Punycode工具类
+ */
 public class Punycode {
     private static final int TMIN = 1;
     private static final int TMAX = 26;

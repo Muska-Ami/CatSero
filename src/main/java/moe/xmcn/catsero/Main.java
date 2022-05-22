@@ -9,6 +9,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+/**
+ * 主类
+ * 注册监听器
+ * 保存默认配置文件
+ */
 public class Main extends JavaPlugin {
 
     FileConfiguration config = getConfig();
@@ -18,13 +23,44 @@ public class Main extends JavaPlugin {
      */
     @Override // 加载插件
     public void onLoad() {
-        getConfig().options().copyDefaults();
-        saveDefaultConfig();
-        saveResource("usesconfig.yml", false);
+        Config.INSTANCE.saveDefConfig();
         System.out.println("[CatSero] 正在加载CatSero插件");
         if (config.getBoolean("utils.allow-start-warn")) {
             getLogger().warning("请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
         }
+    }
+
+    /**
+     * 启用时相关操作
+     */
+    @Override
+    public void onEnable() {
+
+        regiserEvents();
+
+        // bStats
+        if (config.getBoolean("allow-bstats")) {
+            int pluginId = 14767;
+            new Metrics((JavaPlugin) Config.INSTANCE.getPlugin(), pluginId);
+        }
+
+        System.out.println("CatSero插件加载成功");
+
+        // 异步加载更新检查器
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Updater.onEnable();
+            }
+        }.runTaskAsynchronously(this);
+    }
+
+    /**
+     * 卸载时相关操作
+     */
+    @Override
+    public void onDisable() {
+        System.out.println("正在卸载CatSero插件");
     }
 
     /**
@@ -69,38 +105,4 @@ public class Main extends JavaPlugin {
         // KickPlayerQQ QQ踢人
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.KickPlayerQQ.onGroupMessage(), this);
     }
-
-    /**
-     * 启用时相关操作
-     */
-    @Override
-    public void onEnable() {
-
-        regiserEvents();
-
-        // bStats
-        if (config.getBoolean("allow-bstats")) {
-            int pluginId = 14767;
-            new Metrics((JavaPlugin) Config.INSTANCE.getPlugin(), pluginId);
-        }
-
-        System.out.println("CatSero插件加载成功");
-
-        // 异步加载更新检查器
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                Updater.onEnable();
-            }
-        }.runTaskAsynchronously(this);
-    }
-
-    /**
-     * 卸载时相关操作
-     */
-    @Override
-    public void onDisable() {
-        System.out.println("正在卸载CatSero插件");
-    }
-
 }

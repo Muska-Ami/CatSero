@@ -1,6 +1,5 @@
 package moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward;
 
-import me.clip.placeholderapi.PlaceholderAPI;
 import me.dreamvoid.miraimc.api.MiraiBot;
 import moe.xmcn.catsero.utils.Config;
 import org.bukkit.event.EventHandler;
@@ -19,7 +18,7 @@ public class onPlayerJoin implements Listener {
                 String pljname = pljev.getPlayer().getName();
                 String joinmsg = Config.INSTANCE.getUsesConfig().getString("qmsg.send-player-join-quit.format.join");
                 joinmsg = joinmsg.replace("%player%", pljname);
-                joinmsg = PlaceholderAPI.setBracketPlaceholders(pljev.getPlayer(), joinmsg);
+                joinmsg = Config.INSTANCE.tryToPAPI(pljev.getPlayer(), joinmsg);
                 try {
                     MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(joinmsg);
                 } catch (NoSuchElementException nse) {
