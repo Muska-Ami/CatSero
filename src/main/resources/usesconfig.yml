@@ -63,17 +63,10 @@ join-quit-message:
   enabled: false
   # 格式
   format:
-    join: "[&a+&r]&e%playser%"
-    quit: "[&c-&r]&e%playser%"
+    join: "[&a+&r]&e%player%"
+    quit: "[&c-&r]&e%player%"
 
 # 新人加群欢迎
 new-group-member-message:
   enabled: false
   format: "欢迎%at%(%code%)\n加入了本群！"
-
-# 自动回复
-auto-answer:
-  # 启用此功能
-  enabled: false
-  # 自动回复列表文件
-  data-file: autotask/answer.yml
