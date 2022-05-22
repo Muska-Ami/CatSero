@@ -26,6 +26,12 @@ object Config {
 
     val Version: String = plugin.config.getString("version")
 
+    /**
+     * 尝试转为PlaceholderAPI文本
+     * @param player 玩家
+     * @param text 旧文本
+     * @return 新文本
+     */
     fun tryToPAPI(player: Player, text: String): String? {
         return if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             PlaceholderAPI.setBracketPlaceholders(player, text)

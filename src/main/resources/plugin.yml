@@ -3,8 +3,6 @@ main: moe.xmcn.catsero.Main
 version: ${project.version}
 api-version: 1.13
 author: XiaMoHuaHuo_CN
-depend:
-  - MiraiMC
 commands:
   catsero:
     description: "CatSero 基础方法"
