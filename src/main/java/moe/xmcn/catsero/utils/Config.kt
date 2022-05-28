@@ -20,7 +20,7 @@ object Config {
 
     val plugin: Plugin = Main.getPlugin(Main::class.java)
     var Config: FileConfiguration = plugin.config
-    var UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("usesconfig.yml"), Charsets.UTF_8))
+    var UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
 
     val Use_Bot: Long = plugin.config.getLong("qq-set.bot")
     val Use_Group: Long = plugin.config.getLong("qq-set.group")
@@ -90,7 +90,7 @@ object Config {
      */
     fun reloadConfig() {
         plugin.reloadConfig()
-        UsesConfig.defaults = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("usesconfig.yml"), Charsets.UTF_8))
+        UsesConfig.defaults = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
     }
 
 }

@@ -1,5 +1,9 @@
 package moe.xmcn.catsero.event.command;
 
+import java.io.File;
+import java.io.InputStreamReader;
+
+import com.google.common.base.Charsets;
 import moe.xmcn.catsero.event.gist.PingHost;
 import moe.xmcn.catsero.event.gist.WeatherUtils;
 import moe.xmcn.catsero.utils.Config;
@@ -112,6 +116,9 @@ public class CatSero implements CommandExecutor {
                 } else {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c参数过多"));
                 }
+        /*
+         可能你没启用 (XD
+         */
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.undefined-usage")));
                 return false;
