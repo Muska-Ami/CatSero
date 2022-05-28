@@ -1,5 +1,6 @@
 minecraft:
   no-permission: "你没有权限这么做"
+  undefined-usage: "&c无法找到使用方法，请检查拼写，或检查是否启用"
   pinghost:
     doing: "&aPing进行中，请耐心等待..."
     error: "&cPing时发生错误"

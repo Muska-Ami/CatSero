@@ -112,12 +112,15 @@ public class CatSero implements CommandExecutor {
                 } else {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c参数过多"));
                 }
+            } else {
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.undefined-usage")));
+                return false;
             }
         } else {
         /*
           无效方法
          */
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c无法找到使用方法，请检查拼写"));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.undefined-usage")));
             return false;
         }
         return false;
