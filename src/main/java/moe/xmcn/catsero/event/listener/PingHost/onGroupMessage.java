@@ -24,14 +24,14 @@ public class onGroupMessage implements Listener {
                 if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
                     try {
                         try {
-                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "Ping进行中，请耐心等待...");
+                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + Config.INSTANCE.getMsgByMsID("qq.pinghost.doing"));
                         } catch (NoSuchElementException nse) {
                             System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
                         }
                         String result = PingHost.GameUtils(args[2]);
                         if (Objects.equals(result, "Error")) {
                             try {
-                                MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "Ping时发生错误");
+                                MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + Config.INSTANCE.getMsgByMsID("qq.pinghost.error"));
                             } catch (NoSuchElementException nse) {
                                 System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
                             }
