@@ -3,6 +3,8 @@
 # 版本号 请勿修改
 version: ${project.version}
 
+# 语言文件
+locate: zh_CN
 # 接受bStats统计(https://bstats.org)
 allow-bstats: true
 # 接受插件启动时的警告
@@ -17,14 +19,11 @@ check-update:
 # QQ机器人相关设置
 qq-set:
   # 使用的群
-  groups:
-    - 123456
+  group: 123456
   # 使用的机器人
-  bots:
-    - 123456
+  bot: 123456
   # 拥有QQ权限的用户
-  qq-ops:
-    - 123456
+  qq-op: 123456
 
 # 通用格式
 format-list:
@@ -32,5 +31,6 @@ format-list:
   prefix:
     to-mc: "&e[&bCatSero&e]"
     to-qq: "[CatSero]"
-  # Console名称
-  console-name: "控制台"
+
+#  # Console名称
+#  console-name: "控制台"

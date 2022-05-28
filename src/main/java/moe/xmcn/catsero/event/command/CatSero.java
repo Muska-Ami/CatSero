@@ -29,37 +29,52 @@ public class CatSero implements CommandExecutor {
                     if (sender.hasPermission("catsero.admin")) {
                         if (args.length == 2) {
                             try {
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&aPing进行中，请耐心等待..."));
-                                String result = PingHost.GameUtils(args[2]);
+                                sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.doing"))));
+                                String result = PingHost.GameUtils(args[1]);
                                 if (Objects.equals(result, "Error")) {
-                                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&cPing时发生错误"));
+                                    sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.error"))));
                                 } else {
                                     long flag = Long.parseLong(result);
-                                    sender.sendMessage(args[1] + "(" + (Punycode.encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
+                                    String message = Config.INSTANCE.tryToPAPI(sender, Config.INSTANCE.getMsgByMsID("minecraft.pinghost.success")
+                                            .replace("%address_original%", args[1])
+                                            .replace("%address_punycode%", Punycode.encodeURL(args[1]))
+                                            .replace("%withdraw%", String.valueOf(flag))
+                                            .replace("%lost%", String.valueOf(4 - flag))
+                                            .replace("%lost_percent%", String.valueOf((4 - flag) * 100 / 4)));
+                                    //sender.sendMessage(args[1] + "(" + (Punycode.encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
+                                    sender.sendMessage(message);
                                 }
                             } catch (UnknownHostException e) {
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c无法解析主机名/IP"));
+                                sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.failed"))));
                             }
                             return true;
                         } else {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c请键入正确的地址"));
+                            return false;
                         }
                     } else {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c你无权这样做"));
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.no-permission")));
                         return false;
                     }
                 } else if (args.length == 2) {
                     try {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&aPing进行中，请耐心等待..."));
+                        sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.doing"))));
                         String result = PingHost.GameUtils(args[1]);
                         if (Objects.equals(result, "Error")) {
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&cPing时发生错误"));
+                            sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.error"))));
                         } else {
                             long flag = Long.parseLong(result);
-                            sender.sendMessage(args[1] + "(" + (Punycode.encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
+                            String message = Config.INSTANCE.tryToPAPI(sender, Config.INSTANCE.getMsgByMsID("minecraft.pinghost.success")
+                                    .replace("%address_original%", args[1])
+                                    .replace("%address_punycode%", Punycode.encodeURL(args[1]))
+                                    .replace("%withdraw%", String.valueOf(flag))
+                                    .replace("%lost%", String.valueOf(4 - flag))
+                                    .replace("%lost_percent%", String.valueOf((4 - flag) * 100 / 4)));
+                            //sender.sendMessage(args[1] + "(" + (Punycode.encodeURL(args[1])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
+                            sender.sendMessage(message);
                         }
                     } catch (UnknownHostException e) {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c无法解析主机名/IP"));
+                        sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.failed"))));
                     }
                     return true;
                 } else {

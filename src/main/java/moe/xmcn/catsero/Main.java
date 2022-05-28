@@ -3,7 +3,6 @@ package moe.xmcn.catsero;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -96,10 +95,6 @@ public class Main extends JavaPlugin {
 
         // NewGroupMember群成员变更消息
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.NewGroupMember.onGroupMemberAdd(), this);
-
-        // JoinQuitMessage玩家加入/退出消息自定义
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerJoin(), this);
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.JoinQuitMessage.onPlayerQuit(), this);
 
         // OPPlayerQQ QQ添加OP
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.OPPlayerQQ.onGroupMessage(), this);

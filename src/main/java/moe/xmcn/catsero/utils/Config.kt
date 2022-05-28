@@ -3,11 +3,13 @@ package moe.xmcn.catsero.utils
 import me.clip.placeholderapi.PlaceholderAPI
 import moe.xmcn.catsero.Main
 import org.bukkit.Bukkit
+import org.bukkit.command.CommandSender
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
 import org.bukkit.plugin.Plugin
 import java.io.File
+import java.io.InputStreamReader
 
 /**
  * Config文件读取
@@ -17,11 +19,11 @@ object Config {
 
     val plugin: Plugin = Main.getPlugin(Main::class.java)
     var Config: FileConfiguration = plugin.config
-    var UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
+    var UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("usesconfig.yml")))
 
-    val Use_Bots: List<Long> = plugin.config.getLongList("qq-set.bots")
-    val Use_Groups: List<Long> = plugin.config.getLongList("qq-set.groups")
-    val QQ_OPs: List<Long> = plugin.config.getLongList("qq-set.qq-ops")
+    val Use_Bot: Long = plugin.config.getLong("qq-set.bot")
+    val Use_Group: Long = plugin.config.getLong("qq-set.group")
+    val QQ_OP: Long = plugin.config.getLong("qq-set.qq-op")
     val Prefix_MC: String = plugin.config.getString("format-list.prefix.to-mc")
     val Prefix_QQ: String = plugin.config.getString("format-list.prefix.to-qq")
 
@@ -29,13 +31,21 @@ object Config {
 
     /**
      * 尝试转为PlaceholderAPI文本
-     * @param player 玩家
-     * @param text 旧文本
-     * @return 新文本
+     * @param   player 玩家
+     * @param   text 旧文本
+     * @return  新文本
      */
-    fun tryToPAPI(player: Player, text: String): String? {
+    fun tryToPAPI(player: Player, text: String): String {
         return if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             PlaceholderAPI.setBracketPlaceholders(player, text)
+        } else {
+            text
+        }
+    }
+    fun tryToPAPI(player: CommandSender, text: String): String {
+        return if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            val pl = player as Player
+            PlaceholderAPI.setBracketPlaceholders(pl, text)
         } else {
             text
         }
@@ -51,6 +61,27 @@ object Config {
         if (!File(plugin.dataFolder, "usesconfig.yml").exists()) {
             plugin.saveResource("usesconfig.yml", false)
         }
+        if (!File(plugin.dataFolder, "locate/zh_CN.lang").exists()) {
+            plugin.saveResource("locate/zh_CN.lang", false)
+        }
+    }
+
+    /**
+     * 获得回执文本
+     * @param msid  文本MsID
+     */
+    fun getMsgByMsID(msid: String): String {
+        val locate = if (Config.getString("locate") != null) {
+            Config.getString("locate")
+        } else {
+            "zh_CN"
+        }
+        val messageData: FileConfiguration = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("locate/$locate.lang")))
+        return if (messageData.getString(msid) != null) {
+            messageData.getString(msid)
+        } else {
+            "undefined"
+        }
     }
 
     /**
@@ -58,7 +89,7 @@ object Config {
      */
     fun reloadConfig() {
         plugin.reloadConfig()
-        UsesConfig = YamlConfiguration.loadConfiguration(File(plugin.dataFolder, "usesconfig.yml"))
+        UsesConfig.defaults = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("usesconfig.yml")))
     }
 
 }
