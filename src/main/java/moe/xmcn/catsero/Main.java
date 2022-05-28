@@ -101,5 +101,8 @@ public class Main extends JavaPlugin {
 
         // KickPlayerQQ QQ踢人
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.KickPlayerQQ.onGroupMessage(), this);
+
+        // PunyCode PunyCode功能
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.PunyCode.onGroupMessage(), this);
     }
 }

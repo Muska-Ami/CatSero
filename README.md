@@ -25,8 +25,9 @@ MCBBS发布页：[https://www.mcbbs.net/thread-1342417-1-1.html](https://www.mcb
 - [x] 迎新功能
 - [x] 自定义玩家加入/退出游戏全体消息
 - [x] 多群/多Bot/多群OP
-- [X] PlaceholderAPI变量支持
+- [x] PlaceholderAPI变量支持
 - [ ] 自动回复功能
+- [x] PunyCode功能
 
 ### 其他
 

@@ -113,6 +113,11 @@ public class CatSero implements CommandExecutor {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c参数过多"));
                 }
         /*
+         PunyCode
+         */
+            } else if (args[1].equalsIgnoreCase("punycode")) {
+                sender.sendMessage(Punycode.encode(args[1]));
+        /*
          可能你没启用 (XD
          */
             } else {
