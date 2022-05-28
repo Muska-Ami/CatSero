@@ -1,15 +1,19 @@
 minecraft:
-  no-permission: "你没有权限这么做"
-  undefined-usage: "&c无法找到使用方法，请检查拼写，或检查是否启用"
+  no-permission: 你没有权限这么做
+  undefined-usage: '&c无法找到使用方法，请检查拼写，或检查是否启用'
   pinghost:
-    doing: "&aPing进行中，请耐心等待..."
-    error: "&cPing时发生错误"
-    success: "%address_original%(%address_punycode%) 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = %withdraw% ,丢失 = %lost% (%lost_percent%% 丢失)"
-    failed: "&c无法解析主机名/IP"
+    doing: '&aPing进行中，请耐心等待...'
+    error: '&cPing时发生错误'
+    success: |-
+      %address_original%(%address_punycode%) 的  Ping 统计信息：
+         数据包：已发送 = 4， 已接收 = %withdraw% ,丢失 = %lost% (%lost_percent%% 丢失)
+    failed: '&c无法解析主机名/IP'
 qq:
-  no-permission: "你没有权限这么做"
-    pinghost:
-      doing: "Ping进行中，请耐心等待..."
-      error: "Ping时发生错误"
-      success: "%address_original%(%address_punycode%) 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = %withdraw% ,丢失 = %lost% (%lost_percent%% 丢失)"
-      failed: "无法解析主机名/IP"
+  no-permission: 你没有权限这么做
+  pinghost:
+    doing: Ping进行中，请耐心等待...
+    error: Ping时发生错误
+    success: |-
+      %address_original%(%address_punycode%) 的  Ping 统计信息：
+         数据包：已发送 = 4， 已接收 = %withdraw% ,丢失 = %lost% (%lost_percent%% 丢失)
+    failed: 无法解析主机名/IP
