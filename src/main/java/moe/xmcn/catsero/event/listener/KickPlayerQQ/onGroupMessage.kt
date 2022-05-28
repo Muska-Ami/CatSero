@@ -8,7 +8,7 @@ import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 
-class onGroupMessage : Listener {
+class OnGroupMessage : Listener {
 
     @EventHandler
     fun onMiraiGroupMessage(event: MiraiGroupMessageEvent) {

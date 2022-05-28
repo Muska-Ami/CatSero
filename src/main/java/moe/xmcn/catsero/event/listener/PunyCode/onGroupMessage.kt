@@ -8,7 +8,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import java.util.*
 
-class onGroupMessage: Listener {
+class OnGroupMessage: Listener {
     @EventHandler
     fun onGroupMessageEvent(event: MiraiGroupMessageEvent) {
         if (Config.UsesConfig.getBoolean("punycode.enabled") && event.groupID == Config.Use_Group && event.botID == Config.Use_Bot) {

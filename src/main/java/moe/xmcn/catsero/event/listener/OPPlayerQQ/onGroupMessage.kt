@@ -9,7 +9,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.permissions.ServerOperator
 
-class onGroupMessage : Listener {
+class OnGroupMessage : Listener {
 
     @EventHandler
     fun onMiraiGroupMessage(event: MiraiGroupMessageEvent) {

@@ -97,12 +97,12 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.NewGroupMember.onGroupMemberAdd(), this);
 
         // OPPlayerQQ QQ添加OP
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.OPPlayerQQ.onGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.OPPlayerQQ.OnGroupMessage(), this);
 
         // KickPlayerQQ QQ踢人
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.KickPlayerQQ.onGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.KickPlayerQQ.OnGroupMessage(), this);
 
         // PunyCode PunyCode功能
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.PunyCode.onGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.PunyCode.OnGroupMessage(), this);
     }
 }
