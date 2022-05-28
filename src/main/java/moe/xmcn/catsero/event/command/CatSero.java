@@ -1,9 +1,5 @@
 package moe.xmcn.catsero.event.command;
 
-import java.io.File;
-import java.io.InputStreamReader;
-
-import com.google.common.base.Charsets;
 import moe.xmcn.catsero.event.gist.PingHost;
 import moe.xmcn.catsero.event.gist.WeatherUtils;
 import moe.xmcn.catsero.utils.Config;

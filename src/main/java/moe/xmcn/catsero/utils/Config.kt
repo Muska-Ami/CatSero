@@ -43,6 +43,7 @@ object Config {
             text
         }
     }
+
     fun tryToPAPI(player: CommandSender, text: String): String {
         return if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             val pl = player as Player
@@ -77,7 +78,12 @@ object Config {
         } else {
             "zh_CN"
         }
-        val messageData: FileConfiguration = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("locate/$locate.lang"), Charsets.UTF_8))
+        val messageData: FileConfiguration = YamlConfiguration.loadConfiguration(
+            InputStreamReader(
+                plugin.getResource("locate/$locate.lang"),
+                Charsets.UTF_8
+            )
+        )
         return if (messageData.getString(msid) != null) {
             messageData.getString(msid)
         } else {
