@@ -1,5 +1,6 @@
 package moe.xmcn.catsero.utils
 
+import com.google.common.base.Charsets
 import me.clip.placeholderapi.PlaceholderAPI
 import moe.xmcn.catsero.Main
 import org.bukkit.Bukkit
@@ -19,7 +20,7 @@ object Config {
 
     val plugin: Plugin = Main.getPlugin(Main::class.java)
     var Config: FileConfiguration = plugin.config
-    var UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("usesconfig.yml")))
+    var UsesConfig: FileConfiguration = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("usesconfig.yml"), Charsets.UTF_8))
 
     val Use_Bot: Long = plugin.config.getLong("qq-set.bot")
     val Use_Group: Long = plugin.config.getLong("qq-set.group")
@@ -76,7 +77,7 @@ object Config {
         } else {
             "zh_CN"
         }
-        val messageData: FileConfiguration = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("locate/$locate.lang")))
+        val messageData: FileConfiguration = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("locate/$locate.lang"), Charsets.UTF_8))
         return if (messageData.getString(msid) != null) {
             messageData.getString(msid)
         } else {
@@ -89,7 +90,7 @@ object Config {
      */
     fun reloadConfig() {
         plugin.reloadConfig()
-        UsesConfig.defaults = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("usesconfig.yml")))
+        UsesConfig.defaults = YamlConfiguration.loadConfiguration(InputStreamReader(plugin.getResource("usesconfig.yml"), Charsets.UTF_8))
     }
 
 }
