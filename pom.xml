@@ -27,9 +27,9 @@
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
         -->
-        <!-- Offical Maven Repo -->
+        <!-- Official Maven Repo -->
         <repository>
-            <id>offical-maven-repo</id>
+            <id>official-maven-repo</id>
             <url>https://repo1.maven.org/maven2</url>
         </repository>
         <!-- Spigot Maven Repo -->
