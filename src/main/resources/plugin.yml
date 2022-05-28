@@ -1,5 +1,6 @@
 name: CatSero
 main: moe.xmcn.catsero.Main
+description: 基于MiraiMC的Minecraft功能插件
 version: ${project.version}
 api-version: 1.13
 author: XiaMoHuaHuo_CN
@@ -13,6 +14,10 @@ commands:
   csm:
     description: "CatSero 发消息到QQ群"
 permissions:
-  catsero.admin:
-    description: "CatSero OP权限组"
-    default: op
+  catsero.*:
+    description: "CatSero所有权限组"
+    default: false
+    children:
+      catsero.admin:
+        description: "CatSero OP权限组"
+        default: op
