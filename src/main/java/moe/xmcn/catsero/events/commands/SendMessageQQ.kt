@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.event.command
+package moe.xmcn.catsero.events.commands
 
 import me.dreamvoid.miraimc.api.MiraiBot
 import moe.xmcn.catsero.utils.Config

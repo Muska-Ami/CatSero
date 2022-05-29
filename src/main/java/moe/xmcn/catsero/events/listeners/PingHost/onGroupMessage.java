@@ -1,8 +1,8 @@
-package moe.xmcn.catsero.event.listener.PingHost;
+package moe.xmcn.catsero.events.listeners.PingHost;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
-import moe.xmcn.catsero.event.gist.PingHost;
+import moe.xmcn.catsero.events.gists.PingHost;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Punycode;
 import org.bukkit.event.EventHandler;

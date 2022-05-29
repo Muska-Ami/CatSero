@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.event.gist;
+package moe.xmcn.catsero.events.gists;
 
 import org.bukkit.Bukkit;
 

@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.event.gist;
+package moe.xmcn.catsero.events.gists;
 
 import com.google.gson.Gson;
 import moe.xmcn.catsero.utils.HttpUtils;

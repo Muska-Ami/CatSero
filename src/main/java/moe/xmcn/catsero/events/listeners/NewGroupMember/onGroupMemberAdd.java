@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.event.listener.NewGroupMember;
+package moe.xmcn.catsero.events.listeners.NewGroupMember;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMemberJoinEvent;

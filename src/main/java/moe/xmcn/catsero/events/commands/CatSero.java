@@ -1,7 +1,7 @@
-package moe.xmcn.catsero.event.command;
+package moe.xmcn.catsero.events.commands;
 
-import moe.xmcn.catsero.event.gist.PingHost;
-import moe.xmcn.catsero.event.gist.WeatherUtils;
+import moe.xmcn.catsero.events.gists.PingHost;
+import moe.xmcn.catsero.events.gists.WeatherUtils;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Punycode;
 import org.bukkit.ChatColor;

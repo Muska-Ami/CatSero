@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.event.listener.QBanPlayer;
+package moe.xmcn.catsero.events.listeners.QBanPlayer;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;

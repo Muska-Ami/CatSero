@@ -1,8 +1,8 @@
-package moe.xmcn.catsero.event.listener.OPPlayerQQ
+package moe.xmcn.catsero.events.listeners.OPPlayerQQ
 
 import me.dreamvoid.miraimc.api.MiraiBot
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent
-import moe.xmcn.catsero.event.gist.PlayerUUID
+import moe.xmcn.catsero.events.gists.PlayerUUID
 import moe.xmcn.catsero.utils.Config
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler

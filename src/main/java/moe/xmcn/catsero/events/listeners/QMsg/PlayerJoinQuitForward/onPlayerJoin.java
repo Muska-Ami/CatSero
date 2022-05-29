@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.event.listener.QMsg.PlayerJoinQuitForward;
+package moe.xmcn.catsero.events.listeners.QMsg.PlayerJoinQuitForward;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import moe.xmcn.catsero.utils.Config;
