@@ -2,6 +2,7 @@
 
 # CatSero
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/87d1ae965f834b32942f226b12b900a8)](https://app.codacy.com/gh/XiaMoHuaHuo-CN/CatSero?utm_source=github.com&utm_medium=referral&utm_content=XiaMoHuaHuo-CN/CatSero&utm_campaign=Badge_Grade_Settings)
 [![Java CI with Maven - Build](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml/badge.svg?branch=main)](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml)  
 一个基于MiraiMC的QQ群功能&MC功能插件  
 支持的Minecraft版本: 1.8+  
