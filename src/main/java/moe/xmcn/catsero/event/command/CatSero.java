@@ -109,24 +109,23 @@ public class CatSero implements CommandExecutor {
                 }
 
         /*
+         Punycode
+         */
+            } else if (args[1].equalsIgnoreCase("punycode")) {
+                if (args.length > 2 && args[2].equals("urlmode")) {
+                    sender.sendMessage(Punycode.encodeURL(args[1]));
+                } else {
+                    sender.sendMessage(Punycode.encode(args[1]));
+                }
+
+        /*
          插件重载
         */
             } else if (args[0].equalsIgnoreCase("reload")) {
-                if (args.length == 1) {
-                    Config.INSTANCE.reloadConfig();
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a配置文件已重载"));
-                    return true;
-                } else {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c参数过多"));
-                }
-        /*
-         PunyCode
-         */
-            } else if (args[1].equalsIgnoreCase("punycode")) {
-                sender.sendMessage(Punycode.encode(args[1]));
-                if (args.length > 2 && args[2].equals("urlmode")) {
-                    sender.sendMessage(Punycode.encodeURL(args[1]));
-                }
+                Config.INSTANCE.reloadConfig();
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a配置文件已重载"));
+                return true;
+
         /*
          可能你没启用 (XD
          */

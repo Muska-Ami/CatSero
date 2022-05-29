@@ -37,21 +37,23 @@ MCBBS发布页：[https://www.mcbbs.net/thread-1342417-1-1.html](https://www.mcb
 
 ### Minecraft
 
-| 命令                                      | 说明                |
-|-----------------------------------------|-------------------|
-| /catsero reload                         | 重载config.yml      |
-| /catsero ping <地址>                      | Ping某一个地址         |
-| /catsero weather <中国大陆城市>               | 获取某个城市的天气         |
-| /csm <Bot账号(Code)> <Group群号(Code)> <消息> | 使用指定Bot发送到指定群指定消息 |
+| 命令                                      | 说明                           |
+|-----------------------------------------|------------------------------|
+| /catsero reload                         | 重载config.yml                 |
+| /catsero ping <地址>                      | Ping某一个地址                    |
+| /catsero weather <中国大陆城市>               | 获取某个城市的天气                    |
+| /catsero punycode <文本> \[urlmode\]      | Punycode文本 \[urlmode\]:URL模式 |
+| /csm <Bot账号(Code)> <Group群号(Code)> <消息> | 使用指定Bot发送到指定群指定消息            |
 
 ### QQ
 
-| 命令                       | 说明          |
-|--------------------------|-------------|
-| catsero ping <地址>        | Ping某一个地址   |
-| catsero weather <中国大陆城市> | 获取某个城市的天气   |
-| catsero setop <玩家名>      | 给予一个玩家操作员权限 |
-| catsero kick <玩家名>       | 踢出一个在线玩家    |
+| 命令                                | 说明                            |
+|-----------------------------------|-------------------------------|
+| catsero ping <地址>                 | Ping某一个地址                     |
+| catsero weather <中国大陆城市>          | 获取某个城市的天气                     |
+| catsero setop <玩家名>               | 给予一个玩家操作员权限                   |
+| catsero kick <玩家名>                | 踢出一个在线玩家                      |
+| catsero punycode <文本> \[urlmode\] | Punycode文本 \[urlmode\]:URL模式  |
 
 # bStats
 

@@ -103,6 +103,6 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.KickPlayerQQ.OnGroupMessage(), this);
 
         // PunyCode PunyCode功能
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.PunyCode.OnGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.Punycode.OnGroupMessage(), this);
     }
 }
