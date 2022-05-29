@@ -44,6 +44,12 @@ object Config {
         }
     }
 
+    /**
+     * 尝试转为PlaceholderAPI文本
+     * @param   player 发送者
+     * @param   text 旧文本
+     * @return  新文本
+     */
     fun tryToPAPI(player: CommandSender, text: String): String {
         return if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             val pl = player as Player
