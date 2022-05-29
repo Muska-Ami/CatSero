@@ -56,6 +56,8 @@ qmsg:
         to-qq: "#"
     # 发到QQ自动清理消息中的颜色代码
     clean-colorcode: true
+    # 使用MiraiMC内置绑定
+    use-bind: false
 
 # 新人加群欢迎
 new-group-member-message:

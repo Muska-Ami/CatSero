@@ -1,5 +1,6 @@
 package moe.xmcn.catsero.events.listeners.QMsg.ChatForward
 
+import me.dreamvoid.miraimc.api.MiraiMC
 import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent
 import moe.xmcn.catsero.utils.Config
 import org.bukkit.Bukkit
@@ -24,21 +25,40 @@ class OnGroupChat : Listener {
             val df = DateFormat.getDateInstance(DateFormat.FULL, Locale.CHINA)
             val sendtime = df.format(sendtim)
 
-            var message = Config.UsesConfig.getString("qmsg.forward-chat.format.to-mc")
-            message = message.replace("%groupcode%", groupid.toString())
-                .replace("%groupname%", groupname)
-                .replace("%sendercode%", senderid.toString())
-                .replace("%sendername%", sendername)
-                .replace("%message%", emsg)
-                .replace("%time%", sendtime)
-            val firstzf = message.first()
-            if (Config.UsesConfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.toString() == Config.UsesConfig.getString(
-                    "qmsg.forward-chat.prefix.format.to-mc"
-                )
-            ) {
-                Bukkit.broadcastMessage(message)
+            if (Config.UsesConfig.getBoolean("qmsg.forward-chat.use-bind")) {
+                var message = Config.UsesConfig.getString("qmsg.forward-chat.format.to-mc")
+                message = message.replace("%groupcode%", groupid.toString())
+                    .replace("%groupname%", groupname)
+                    .replace("%sendercode%", senderid.toString())
+                    .replace("%sendername%", MiraiMC.getBinding(senderid))
+                    .replace("%message%", emsg)
+                    .replace("%time%", sendtime)
+                val firstzf = message.first()
+                if (Config.UsesConfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.toString() == Config.UsesConfig.getString(
+                        "qmsg.forward-chat.prefix.format.to-mc"
+                    )
+                ) {
+                    Bukkit.broadcastMessage(message)
+                } else {
+                    Bukkit.broadcastMessage(message)
+                }
             } else {
-                Bukkit.broadcastMessage(message)
+                var message = Config.UsesConfig.getString("qmsg.forward-chat.format.to-mc")
+                message = message.replace("%groupcode%", groupid.toString())
+                    .replace("%groupname%", groupname)
+                    .replace("%sendercode%", senderid.toString())
+                    .replace("%sendername%", sendername)
+                    .replace("%message%", emsg)
+                    .replace("%time%", sendtime)
+                val firstzf = message.first()
+                if (Config.UsesConfig.getBoolean("qmsg.forward-chat.prefix.enabled") && firstzf.toString() == Config.UsesConfig.getString(
+                        "qmsg.forward-chat.prefix.format.to-mc"
+                    )
+                ) {
+                    Bukkit.broadcastMessage(message)
+                } else {
+                    Bukkit.broadcastMessage(message)
+                }
             }
         }
     }
