@@ -87,17 +87,24 @@ public class CatSero implements CommandExecutor {
         */
             } else if (args[0].equalsIgnoreCase("weather") && Config.INSTANCE.getUsesConfig().getBoolean("weatherinfo.enabled")) {
                 if (args.length == 2) {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a天气获取进行中，请耐心等待..."));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.weatherinfo.doing")));
                     try {
                         String[] resvi = WeatherUtils.getWeather(args[1]);
-                        sender.sendMessage("天气信息:\n 类型:" + resvi[4] + "\n 温度:" + resvi[1] + "\n 风力:" + resvi[2] + "\n 风向:" + resvi[3] + "\n 日期:" + resvi[0]);
+                        String message = Config.INSTANCE.getMsgByMsID("minecraft.weatherinfo.success")
+                                .replace("%type%", resvi[4])
+                                .replace("%temperature%", resvi[1])
+                                .replace("%wind%", resvi[2])
+                                .replace("%wind_direction%", resvi[3])
+                                .replace("%date%", resvi[0]);
+                        sender.sendMessage(message);
+                        //sender.sendMessage("天气信息:\n 类型:" + resvi[4] + "\n 温度:" + resvi[1] + "\n 风力:" + resvi[2] + "\n 风向:" + resvi[3] + "\n 日期:" + resvi[0]);
                     } catch (UnsupportedEncodingException uee) {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c获取天气时出现错误"));
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.weatherinfo.error")));
                         return false;
                     }
                     return true;
                 } else {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c请输入城市"));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.weatherinfo.null-city")));
                     return false;
                 }
 
@@ -117,6 +124,9 @@ public class CatSero implements CommandExecutor {
          */
             } else if (args[1].equalsIgnoreCase("punycode")) {
                 sender.sendMessage(Punycode.encode(args[1]));
+                if (args.length > 2 && args[2].equals("urlmode")) {
+                    sender.sendMessage(Punycode.encodeURL(args[1]));
+                }
         /*
          可能你没启用 (XD
          */

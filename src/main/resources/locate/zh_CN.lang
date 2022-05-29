@@ -9,7 +9,16 @@ minecraft:
          数据包：已发送 = 4， 已接收 = %withdraw% ,丢失 = %lost% (%lost_percent%% 丢失)
     failed: '&c无法解析主机名/IP'
   weatherinfo:
-    doing: ''
+    doing: '&a天气获取进行中，请耐心等待...'
+    error: '&c获取天气时出现错误'
+    success: |-
+      天气信息:
+       类型:%type%
+       温度:%temperature%
+       风力:%wind%
+       风向:%wind_direction%
+       日期:%date%
+    null-city: '&c请输入城市'
 qq:
   no-permission: 你没有权限这么做
   pinghost:
@@ -19,3 +28,14 @@ qq:
       %address_original%(%address_punycode%) 的  Ping 统计信息：
          数据包：已发送 = 4， 已接收 = %withdraw% ,丢失 = %lost% (%lost_percent%% 丢失)
     failed: 无法解析主机名/IP
+  weatherinfo:
+    doing: 天气获取进行中，请耐心等待...
+    error: 获取天气时出现错误
+    success: |-
+      天气信息:
+       类型:%type%
+       温度:%temperature%
+       风力:%wind%
+       风向:%wind_direction%
+       日期:%date%
+    null-city: 请输入城市

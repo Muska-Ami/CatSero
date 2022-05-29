@@ -22,19 +22,25 @@ public class onGroupMessage implements Listener {
                 if (args.length == 3 && event.getGroupID() == Config.INSTANCE.getUse_Group()) {
                     try {
                         try {
-                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "天气获取进行中，请耐心等待...");
+                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + Config.INSTANCE.getMsgByMsID("qq.weatherinfo.doing"));
                         } catch (NoSuchElementException nse) {
                             System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
                         }
                         String[] resvi = WeatherUtils.getWeather(args[2]);
+                        String message = Config.INSTANCE.getMsgByMsID("qq.weatherinfo.success")
+                                .replace("%type%", resvi[4])
+                                .replace("%temperature%", resvi[1])
+                                .replace("%wind%", resvi[2])
+                                .replace("%wind_direction%", resvi[3])
+                                .replace("%date%", resvi[0]);
                         try {
-                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai("天气信息:\n 类型:" + resvi[4] + "\n 温度:" + resvi[1] + "\n 风力:" + resvi[2] + "\n 风向:" + resvi[3] + "\n 日期:" + resvi[0]);
+                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(message);
                         } catch (NoSuchElementException nse) {
                             System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
                         }
                     } catch (UnsupportedEncodingException uee) {
                         try {
-                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "获取天气时出现错误");
+                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + Config.INSTANCE.getMsgByMsID("qq.weatherinfo.error"));
                         } catch (NoSuchElementException nse) {
                             System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
                         }
@@ -42,7 +48,7 @@ public class onGroupMessage implements Listener {
 
                 } else {
                     try {
-                        MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "请输入城市");
+                        MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + Config.INSTANCE.getMsgByMsID("qq.weatherinfo.null-city"));
                     } catch (NoSuchElementException nse) {
                         System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
                     }
