@@ -1,3 +1,5 @@
+![Logo](https://repository-images.githubusercontent.com/460782323/9e8de950-9a9b-4063-b180-ac1e3c2c6a14)
+
 # CatSero
 
 [![Java CI with Maven - Build](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml/badge.svg?branch=main)](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml)  
