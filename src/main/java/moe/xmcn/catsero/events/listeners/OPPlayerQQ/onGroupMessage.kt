@@ -25,7 +25,7 @@ class OnGroupMessage : Listener {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
                             .sendMessageMirai(Config.Prefix_QQ + "已经是管理员了！")
                     } catch (nse: NoSuchElementException) {
-                        println("发消息时出现异常：$nse")
+                        println(Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString() + nse.stackTrace))
                     }
                 } else {
                     plname.isOp = true
@@ -33,7 +33,7 @@ class OnGroupMessage : Listener {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
                             .sendMessageMirai(Config.Prefix_QQ + "已添加新的管理员")
                     } catch (nse: NoSuchElementException) {
-                        println("发消息时出现异常：$nse")
+                        println(Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString() + nse.stackTrace))
                     }
                 }
             }

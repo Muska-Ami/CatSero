@@ -51,13 +51,13 @@ class OnGameChat : Listener {
                     try {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(message)
                     } catch (nse: NoSuchElementException) {
-                        println("发送消息时出现异常:\n$nse" + nse.stackTrace)
+                        println(Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString() + nse.stackTrace))
                     }
                 } else {
                     try {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(message)
                     } catch (nse: NoSuchElementException) {
-                        println("发送消息时出现异常:\n$nse" + nse.stackTrace)
+                        println(Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString() + nse.stackTrace))
                     }
                 }
             } else {
@@ -69,13 +69,13 @@ class OnGameChat : Listener {
                     try {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(message)
                     } catch (nse: NoSuchElementException) {
-                        println("发送消息时出现异常:\n$nse" + nse.stackTrace)
+                        println(Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString() + nse.stackTrace))
                     }
                 } else {
                     try {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(message)
                     } catch (nse: NoSuchElementException) {
-                        println("发送消息时出现异常:\n$nse" + nse.stackTrace)
+                        println(Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString() + nse.stackTrace))
                     }
                 }
             }

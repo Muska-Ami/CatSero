@@ -23,7 +23,7 @@ public class onGroupMemberAdd implements Listener {
             try {
                 MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(message);
             } catch (NoSuchElementException nse) {
-                System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
+                Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
             }
         }
 

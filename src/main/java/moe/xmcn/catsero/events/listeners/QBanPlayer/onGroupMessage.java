@@ -28,20 +28,20 @@ public class onGroupMessage implements Listener {
                         try {
                             MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "已封禁玩家" + args[2] + "\n理由:" + args[3]);
                         } catch (NoSuchElementException nse) {
-                            System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
+                            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
                         }
                     } else {
                         try {
                             MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "不正确的参数格式");
                         } catch (NoSuchElementException nse) {
-                            System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
+                            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
                         }
                     }
                 } else {
                     try {
                         MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "你没有权限这样做");
                     } catch (NoSuchElementException nse) {
-                        System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
+                        Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
                     }
                 }
             }
