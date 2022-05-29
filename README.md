@@ -52,13 +52,14 @@
 
 ### QQ
 
-| 命令                                | 说明                            |
-|-----------------------------------|-------------------------------|
-| catsero ping <地址>                 | Ping某一个地址                     |
-| catsero weather <中国大陆城市>          | 获取某个城市的天气                     |
-| catsero setop <玩家名>               | 给予一个玩家操作员权限                   |
-| catsero kick <玩家名>                | 踢出一个在线玩家                      |
-| catsero punycode <文本> \[urlmode\] | Punycode文本 \[urlmode\]:URL模式  |
+| 命令                                | 说明                           |
+|-----------------------------------|------------------------------|
+| catsero ping <地址>                 | Ping某一个地址                    |
+| catsero weather <中国大陆城市>          | 获取某个城市的天气                    |
+| catsero setop <玩家名>               | 给予一个玩家操作员权限                  |
+| catsero kick <玩家名>                | 踢出一个在线玩家                     |
+| catsero ban <玩家名>                 | 封禁一个玩家                       |
+| catsero punycode <文本> \[urlmode\] | Punycode文本 \[urlmode\]:URL模式 |
 
 # bStats
 
