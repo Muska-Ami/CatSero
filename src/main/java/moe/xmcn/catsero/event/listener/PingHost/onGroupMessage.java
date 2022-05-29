@@ -45,7 +45,7 @@ public class onGroupMessage implements Listener {
                         }
                     } catch (UnknownHostException e) {
                         try {
-                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "无法解析主机名/IP");
+                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.failed"));
                         } catch (NoSuchElementException nse) {
                             System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
                         }
@@ -64,7 +64,7 @@ public class onGroupMessage implements Listener {
                         String result = PingHost.GameUtils(args[2]);
                         if (Objects.equals(result, "Error")) {
                             try {
-                                MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "Ping时发生错误");
+                                MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + Config.INSTANCE.getMsgByMsID("error"));
                             } catch (NoSuchElementException nse) {
                                 System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
                             }
@@ -78,7 +78,7 @@ public class onGroupMessage implements Listener {
                         }
                     } catch (UnknownHostException e) {
                         try {
-                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + "无法解析主机名/IP");
+                            MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + Config.INSTANCE.getMsgByMsID("failed"));
                         } catch (NoSuchElementException nse) {
                             System.out.println("发送消息时发生异常:\n" + nse + Arrays.toString(nse.getStackTrace()));
                         }

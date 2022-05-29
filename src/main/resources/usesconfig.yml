@@ -59,5 +59,14 @@ qmsg:
 
 # 新人加群欢迎
 new-group-member-message:
+  # 启用此功能
   enabled: false
+  # 格式
   format: "欢迎%at%(%code%)\n加入了本群！"
+
+# PunyCode功能
+punycode:
+  # 启用此功能
+  enabled: false
+  # 支持编码URL
+  url-support: false
