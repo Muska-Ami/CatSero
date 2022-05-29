@@ -24,8 +24,8 @@ public class WeatherUtils {
         this.type = type;
     }
 
-    public static String[] getWeather(String cityname) throws UnsupportedEncodingException {
-        cityname = URLEncoder.encode(cityname, "UTF-8");
+    public static String[] getWeather(String cn) throws UnsupportedEncodingException {
+        String cityname = URLEncoder.encode(cn, "UTF-8");
         String weather_url = "https://csu.huahuo-cn.tk/api/wthr.php?city=" + cityname;
         String datajson = HttpUtils.sendGet(weather_url, "UTF-8");
         Gson gson = new Gson();
