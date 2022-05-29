@@ -5,6 +5,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Map;
 
 
@@ -41,8 +42,7 @@ public class HttpUtils {
                 result.append(line);
             }
         } catch (Exception e) {
-            System.out.println("发送GET请求出现异常！" + e);
-            e.printStackTrace();
+            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.send-get.error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
         }
         // 使用finally块来关闭输入流
         finally {
