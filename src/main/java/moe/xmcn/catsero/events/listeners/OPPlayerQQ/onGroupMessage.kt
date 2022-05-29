@@ -23,7 +23,7 @@ class OnGroupMessage : Listener {
                 if (isOp) {
                     try {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
-                            .sendMessageMirai(Config.Prefix_QQ + "已经是管理员了！")
+                            .sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.already-is-op"))
                     } catch (nse: NoSuchElementException) {
                         println(Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString() + nse.stackTrace))
                     }
@@ -35,6 +35,13 @@ class OnGroupMessage : Listener {
                     } catch (nse: NoSuchElementException) {
                         println(Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString() + nse.stackTrace))
                     }
+                }
+            } else {
+                try {
+                    MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
+                        .sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"))
+                } catch (nse: NoSuchElementException) {
+                    println(Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString() + nse.stackTrace))
                 }
             }
         }

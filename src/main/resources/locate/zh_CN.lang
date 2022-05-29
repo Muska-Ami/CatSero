@@ -1,5 +1,6 @@
 minecraft:
-  no-permission: 你没有权限这么做
+  no-permission: '&c你没有权限这么做'
+  invalid-options: '&c不正确的参数格式'
   undefined-usage: '&c无法找到使用方法，请检查拼写，或检查是否启用'
   pinghost:
     doing: '&aPing进行中，请耐心等待...'
@@ -23,6 +24,7 @@ minecraft:
     too-many-options: '&c不完整或过多的参数'
 qq:
   no-permission: 你没有权限这么做
+  invalid-options: 不正确的参数格式
   pinghost:
     doing: Ping进行中，请耐心等待...
     error: Ping时发生错误
@@ -41,6 +43,15 @@ qq:
        风向:%wind_direction%
        日期:%date%
     null-city: 请输入城市
+  qkick-player:
+    error: 玩家不存在或发生错误
+  qop-player:
+    already-is-op: 玩家已经是管理员了！
+    success: 已添加新的管理员
+  qban-player:
+    success: |-
+      已封禁玩家 %player%
+      理由:%reason%
 general:
   send-message-qq-error: |-
     发送消息时发生异常:
