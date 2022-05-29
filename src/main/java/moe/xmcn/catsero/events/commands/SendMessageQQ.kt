@@ -22,13 +22,30 @@ class SendMessageQQ : CommandExecutor {
                     MiraiBot.getBot(java.lang.Long.valueOf(args[0])).getGroup(java.lang.Long.valueOf(args[1]))
                         .sendMessageMirai(args[2])
                 } catch (nse: NoSuchElementException) {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString())))
+                    sender.sendMessage(
+                        ChatColor.translateAlternateColorCodes(
+                            '&',
+                            Config.Prefix_MC + Config.getMsgByMsID("general.send-message-qq-error")
+                                .replace("%error%", nse.toString())
+                        )
+                    )
                 }
             } catch (nse: NoSuchElementException) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString())))
+                sender.sendMessage(
+                    ChatColor.translateAlternateColorCodes(
+                        '&',
+                        Config.Prefix_MC + Config.getMsgByMsID("general.send-message-qq-error")
+                            .replace("%error%", nse.toString())
+                    )
+                )
             }
         } else {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.csm.too-many-options")))
+            sender.sendMessage(
+                ChatColor.translateAlternateColorCodes(
+                    '&',
+                    Config.Prefix_MC + Config.getMsgByMsID("minecraft.csm.too-many-options")
+                )
+            )
         }
         return false
     }

@@ -25,7 +25,10 @@ class OnGroupMessage : Listener {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
                             .sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.qkick-player.error"))
                     } catch (nse: NoSuchElementException) {
-                        println(Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString() + nse.stackTrace))
+                        println(
+                            Config.getMsgByMsID("general.send-message-qq-error")
+                                .replace("%error%", nse.toString() + nse.stackTrace)
+                        )
                     }
                 }
             } else {
@@ -33,7 +36,10 @@ class OnGroupMessage : Listener {
                     MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
                         .sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"))
                 } catch (nse: NoSuchElementException) {
-                    println(Config.getMsgByMsID("general.send-message-qq-error").replace("%error%", nse.toString() + nse.stackTrace))
+                    println(
+                        Config.getMsgByMsID("general.send-message-qq-error")
+                            .replace("%error%", nse.toString() + nse.stackTrace)
+                    )
                 }
             }
         }
