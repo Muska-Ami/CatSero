@@ -6,6 +6,7 @@ import moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward.OnGamePlayerJoin;
 import moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward.OnGamePlayerQuit;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Metrics;
+import moe.xmcn.xmcore.ThisAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -23,6 +24,7 @@ public class Main extends JavaPlugin {
     @Override // 加载插件
     public void onLoad() {
         Config.INSTANCE.saveDefConfig();
+        ThisAPI.Companion.savXMCore("xmcore.info");
         System.out.println("[CatSero] 正在加载CatSero插件");
         if (Config.INSTANCE.getConfig().getBoolean("allow-start-warn")) {
             getLogger().warning("请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");

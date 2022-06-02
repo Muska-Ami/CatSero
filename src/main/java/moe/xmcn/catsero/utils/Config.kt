@@ -9,8 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
 import org.bukkit.plugin.Plugin
-import java.io.File
-import java.io.InputStreamReader
+import java.io.*
 
 /**
  * Config文件读取
@@ -28,7 +27,7 @@ object Config {
     val Prefix_MC: String = plugin.config.getString("format-list.prefix.to-mc")
     val Prefix_QQ: String = plugin.config.getString("format-list.prefix.to-qq")
 
-    val PluginInfo: FileConfiguration = YamlConfiguration.loadConfiguration(getJarFile("/plugin.info"))
+    val PluginInfo: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder.parent, "XMCore/catsero.info"))
 
     /**
      * 尝试转为PlaceholderAPI文本
@@ -56,21 +55,6 @@ object Config {
             PlaceholderAPI.setBracketPlaceholders(pl, text)
         } else {
             text
-        }
-    }
-
-    /**
-     * 从Jar包中获取文件
-     * @param path  路径
-     * @return      InputStream
-     */
-    @JvmStatic
-    fun getJarFile(path: String): InputStreamReader? {
-        val url = javaClass.classLoader.getResourceAsStream(path)
-        return url?.let {
-            InputStreamReader(
-                it
-            )
         }
     }
 
