@@ -112,7 +112,7 @@ public class CatSero implements CommandExecutor {
         /*
          Punycode
          */
-            } else if (args[1].equalsIgnoreCase("punycode")) {
+            } else if (args[0].equalsIgnoreCase("punycode")) {
                 if (args.length > 2 && args[2].equals("urlmode")) {
                     sender.sendMessage(Punycode.encodeURL(args[1]));
                 } else {
@@ -126,6 +126,12 @@ public class CatSero implements CommandExecutor {
                 Config.INSTANCE.reloadConfig();
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a配置文件已重载"));
                 return true;
+        /*
+         手动检查更新
+        */
+            } else if (args[0].equalsIgnoreCase("update")) {
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a开始检查更新..."));
+                sender.sendMessage(Updater.startUpdateCheck());
 
         /*
          可能你没启用 (XD
@@ -134,12 +140,6 @@ public class CatSero implements CommandExecutor {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.undefined-usage")));
                 return false;
             }
-        /*
-         手动检查更新
-        */
-        } else if (args[0].equalsIgnoreCase("update")) {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a开始检查更新..."));
-            sender.sendMessage(Updater.startUpdateCheck());
         } else {
         /*
           无效方法

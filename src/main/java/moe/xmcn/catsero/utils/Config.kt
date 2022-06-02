@@ -4,6 +4,7 @@ import com.google.common.base.Charsets
 import me.clip.placeholderapi.PlaceholderAPI
 import moe.xmcn.catsero.Main
 import org.bukkit.Bukkit
+import org.bukkit.ChatColor
 import org.bukkit.command.CommandSender
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
@@ -25,7 +26,7 @@ object Config {
     val Use_Bot: Long = plugin.config.getLong("qq-set.bot")
     val Use_Group: Long = plugin.config.getLong("qq-set.group")
     val QQ_OP: Long = plugin.config.getLong("qq-set.qq-op")
-    val Prefix_MC: String = plugin.config.getString("format-list.prefix.to-mc")
+    val Prefix_MC: String = plugin.config.getString("format-list.prefix.to-mc") + ChatColor.translateAlternateColorCodes('&', "&r")
     val Prefix_QQ: String = plugin.config.getString("format-list.prefix.to-qq")
 
     val PluginInfo: FileConfiguration =
