@@ -6,6 +6,7 @@ import moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward.OnGamePlayerJoin;
 import moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward.OnGamePlayerQuit;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Metrics;
+import moe.xmcn.catsero.utils.ServerTPS;
 import moe.xmcn.xmcore.ThisAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -45,6 +46,9 @@ public class Main extends JavaPlugin {
                 int pluginId = 14767;
                 new Metrics((JavaPlugin) Config.INSTANCE.getPlugin(), pluginId);
             }
+
+            // 启动TPS计算程序
+            Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new ServerTPS(), 100L, 1L);
 
             System.out.println("CatSero插件加载成功");
 

@@ -11,6 +11,8 @@ pinghost:
 weatherinfo:
   # 启用此功能
   enabled: false
+  # 仅OP可用
+  op-only: false
 
 # QQ封禁玩家
 qban-player:
@@ -69,3 +71,7 @@ punycode:
   enabled: false
   # 支持编码URL
   url-support: false
+
+# 获取TPS功能
+get-tps:
+  enabled: false

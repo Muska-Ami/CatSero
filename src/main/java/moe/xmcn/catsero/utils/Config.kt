@@ -9,7 +9,8 @@ import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
 import org.bukkit.plugin.Plugin
-import java.io.*
+import java.io.File
+import java.io.InputStreamReader
 
 /**
  * Config文件读取
@@ -27,7 +28,8 @@ object Config {
     val Prefix_MC: String = plugin.config.getString("format-list.prefix.to-mc")
     val Prefix_QQ: String = plugin.config.getString("format-list.prefix.to-qq")
 
-    val PluginInfo: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder.parent, "XMCore/catsero.info"))
+    val PluginInfo: FileConfiguration =
+        YamlConfiguration.loadConfiguration(File(plugin.dataFolder.parent, "XMCore/catsero.info"))
 
     /**
      * 尝试转为PlaceholderAPI文本
