@@ -9,10 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
 import org.bukkit.plugin.Plugin
-import org.junit.Assert
 import java.io.File
-import java.io.IOException
-import java.io.InputStream
 import java.io.InputStreamReader
 
 /**
@@ -31,11 +28,7 @@ object Config {
     val Prefix_MC: String = plugin.config.getString("format-list.prefix.to-mc")
     val Prefix_QQ: String = plugin.config.getString("format-list.prefix.to-qq")
 
-    val PluginInfo: FileConfiguration = YamlConfiguration.loadConfiguration(getJarFile("/plugin.info")?.let {
-        InputStreamReader(
-            it
-        )
-    })
+    val PluginInfo: FileConfiguration = YamlConfiguration.loadConfiguration(getJarFile("/plugin.info"))
 
     /**
      * 尝试转为PlaceholderAPI文本
@@ -72,13 +65,12 @@ object Config {
      * @return      InputStream
      */
     @JvmStatic
-    fun getJarFile(path: String): InputStream? {
-        val url = javaClass.getResource(path)
-        Assert.assertNotNull(url)
-        return try {
-            url?.openStream()
-        } catch (e: IOException) {
-            null
+    fun getJarFile(path: String): InputStreamReader? {
+        val url = javaClass.classLoader.getResourceAsStream(path)
+        return url?.let {
+            InputStreamReader(
+                it
+            )
         }
     }
 
