@@ -28,6 +28,3 @@ format-list:
   prefix:
     to-mc: "&e[&bCatSero&e]"
     to-qq: "[CatSero]"
-
-#  # Console名称
-#  console-name: "控制台"
