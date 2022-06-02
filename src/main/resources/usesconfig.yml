@@ -27,37 +27,34 @@ qop-player:
   # 启用此功能
   enabled: false
 
-# QMsg功能集
-qmsg:
+# 发送玩家加入/退出消息
+send-player-join-quit:
+  # 启用此功能
+  enabled: false
+  # 格式
+  format:
+    join: "%player%加入了游戏"
+    quit: "%player%退出了游戏"
 
-  # 发送玩家加入/退出消息
-  send-player-join-quit:
+# 转发MC-QQ聊天
+forward-chat:
+  # 启用此功能
+  enabled: false
+  # 格式
+  format:
+    to-mc: "[%time%][QQ][%groupname%(%groupcode%)]%sendername%(%sendercode%):\n%message%"
+    to-qq: "[MC]%player%:\n%message%"
+  prefix:
     # 启用此功能
     enabled: false
-    # 格式
+    # 格式(只支持单个，字符，请勿输入多个)
     format:
-      join: "%player%加入了游戏"
-      quit: "%player%退出了游戏"
-  
-  # 转发MC-QQ聊天
-  forward-chat:
-    # 启用此功能
-    enabled: false
-    # 格式
-    format:
-      to-mc: "[%time%][QQ][%groupname%(%groupcode%)]%sendername%(%sendercode%):\n%message%"
-      to-qq: "[MC]%player%:\n%message%"
-    prefix:
-      # 启用此功能
-      enabled: false
-      # 格式(只支持单个，字符，请勿输入多个)
-      format:
-        to-mc: "#"
-        to-qq: "#"
-    # 发到QQ自动清理消息中的颜色代码
-    clean-colorcode: true
-    # 使用MiraiMC内置绑定
-    use-bind: false
+      to-mc: "#"
+      to-qq: "#"
+  # 发到QQ自动清理消息中的颜色代码
+  clean-colorcode: true
+  # 使用MiraiMC内置绑定
+  use-bind: false
 
 # 新人加群欢迎
 new-group-member-message:

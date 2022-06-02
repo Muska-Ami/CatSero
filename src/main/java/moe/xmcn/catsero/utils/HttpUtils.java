@@ -42,7 +42,7 @@ public class HttpUtils {
                 result.append(line);
             }
         } catch (Exception e) {
-            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.send-get.error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
+            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.http-utils.send-get-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
         }
         // 使用finally块来关闭输入流
         finally {
@@ -95,10 +95,7 @@ public class HttpUtils {
                 result.append(line);
             }
         } catch (Exception e) {
-            //System.out.println("发送 POST 请求出现异常！" + e);
-            e.printStackTrace();
-
-
+            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.http-utils.send-post-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
         }
         // 使用finally块来关闭输出流、输入流
         finally {
@@ -153,8 +150,7 @@ public class HttpUtils {
                 result.append(line);
             }
         } catch (Exception e) {
-            System.out.println("发送 POST 请求出现异常！" + e);
-            e.printStackTrace();
+            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.http-utils.send-post-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
         }
         //使用finally块来关闭输出流、输入流
         finally {
@@ -221,8 +217,7 @@ public class HttpUtils {
                 result.append(line);
             }
         } catch (Exception e) {
-            System.out.println("发送 POST 请求出现异常！" + e);
-            e.printStackTrace();
+            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.http-utils.send-post-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
         }
         // 使用finally块来关闭输出流、输入流
         finally {

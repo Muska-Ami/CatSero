@@ -9,7 +9,10 @@ import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
 import org.bukkit.plugin.Plugin
+import org.junit.Assert
 import java.io.File
+import java.io.IOException
+import java.io.InputStream
 import java.io.InputStreamReader
 
 /**
@@ -28,7 +31,11 @@ object Config {
     val Prefix_MC: String = plugin.config.getString("format-list.prefix.to-mc")
     val Prefix_QQ: String = plugin.config.getString("format-list.prefix.to-qq")
 
-    val Version: String = plugin.config.getString("version")
+    val PluginInfo: FileConfiguration = YamlConfiguration.loadConfiguration(getJarFile("/plugin.info")?.let {
+        InputStreamReader(
+            it
+        )
+    })
 
     /**
      * 尝试转为PlaceholderAPI文本
@@ -60,6 +67,22 @@ object Config {
     }
 
     /**
+     * 从Jar包中获取文件
+     * @param path  路径
+     * @return      InputStream
+     */
+    @JvmStatic
+    fun getJarFile(path: String): InputStream? {
+        val url = javaClass.getResource(path)
+        Assert.assertNotNull(url)
+        return try {
+            url?.openStream()
+        } catch (e: IOException) {
+            null
+        }
+    }
+
+    /**
      * 保存默认的配置文件
      */
     fun saveDefConfig() {
@@ -77,6 +100,7 @@ object Config {
     /**
      * 获得回执文本
      * @param msid  文本MsID
+     * @return      回执文本/undefined
      */
     fun getMsgByMsID(msid: String): String {
         val locate = if (Config.getString("locate") != null) {

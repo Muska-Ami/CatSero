@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.events.listeners.QMsg.PlayerJoinQuitForward;
+package moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import moe.xmcn.catsero.utils.Config;
@@ -9,10 +9,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-public class onPlayerQuit implements Listener {
+public class OnGamePlayerQuit implements Listener {
 
     @EventHandler
-    public void OnPlayerQuit(PlayerQuitEvent plqev) {
+    public void onGamePlayerQuitEvent(PlayerQuitEvent plqev) {
         if (Config.INSTANCE.getUsesConfig().getBoolean("qmsg.send-player-join-quit.enabled")) {
             String plqname = plqev.getPlayer().getName();
             String quitmsg = Config.INSTANCE.getUsesConfig().getString("qmsg.send-player-join-quit.format.quit");

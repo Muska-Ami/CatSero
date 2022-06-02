@@ -1,8 +1,5 @@
 # CatSero配置文件
 
-# 版本号 请勿修改
-version: ${project.version}
-
 # 语言文件
 locate: zh_CN
 # 接受bStats统计(https://bstats.org)

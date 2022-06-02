@@ -8,14 +8,14 @@ import java.net.URLEncoder;
 
 public class WeatherUtils {
 
-    public final String date;
-    public final String fengli;
-    public final String high;
-    public final String low;
-    public final String fengxiang;
-    public final String type;
+    private final String date;
+    private final String fengli;
+    private final String high;
+    private final String low;
+    private final String fengxiang;
+    private final String type;
 
-    public WeatherUtils(String date, String fengli, String high, String low, String fengxiang, String type) {
+    private WeatherUtils(String date, String fengli, String high, String low, String fengxiang, String type) {
         this.date = date;
         this.fengli = fengli;
         this.high = high;

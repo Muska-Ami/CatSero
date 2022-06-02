@@ -1,5 +1,9 @@
 package moe.xmcn.catsero;
 
+import moe.xmcn.catsero.events.listeners.NewGroupMember.OnQQGroupNewMember;
+import moe.xmcn.catsero.events.listeners.PingHost.OnQQGroupMessage;
+import moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward.OnGamePlayerJoin;
+import moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward.OnGamePlayerQuit;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Metrics;
 import org.bukkit.Bukkit;
@@ -46,7 +50,7 @@ public class Main extends JavaPlugin {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    Updater.onEnable();
+                    Updater.startUpdateCheck();
                 }
             }.runTaskAsynchronously(this);
         } else {
@@ -77,24 +81,24 @@ public class Main extends JavaPlugin {
 
         System.out.println("正在注册事件 -> 监听器:Listener");
         // PingHost功能
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.PingHost.onGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new OnQQGroupMessage(), this);
 
         // ChatForward聊天转发功能
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.QMsg.ChatForward.OnGameChat(), this);
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.QMsg.ChatForward.OnGroupChat(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.ChatForward.OnGameChat(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.ChatForward.OnGroupChat(), this);
 
         // QBanPlayer封禁功能
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.QBanPlayer.onGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.QBanPlayer.OnQQGroupMessage(), this);
 
         // WeatherInfo天气获取功能
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.WeatherInfo.onGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.WeatherInfo.OnQQGroupMessage(), this);
 
         // PlayerJoinQuitForward玩家加入/退出消息->QQ功能
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.QMsg.PlayerJoinQuitForward.onPlayerJoin(), this);
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.QMsg.PlayerJoinQuitForward.onPlayerQuit(), this);
+        getServer().getPluginManager().registerEvents(new OnGamePlayerJoin(), this);
+        getServer().getPluginManager().registerEvents(new OnGamePlayerQuit(), this);
 
         // NewGroupMember群成员变更消息
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.NewGroupMember.onGroupMemberAdd(), this);
+        getServer().getPluginManager().registerEvents(new OnQQGroupNewMember(), this);
 
         // OPPlayerQQ QQ添加OP
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.OPPlayerQQ.OnGroupMessage(), this);

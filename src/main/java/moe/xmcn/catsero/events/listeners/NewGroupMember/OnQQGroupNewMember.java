@@ -9,11 +9,11 @@ import org.bukkit.event.Listener;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-public class onGroupMemberAdd implements Listener {
+public class OnQQGroupNewMember implements Listener {
 
 
     @EventHandler
-    public void OnGroupMemberAdd(MiraiGroupMemberJoinEvent event) {
+    public void onMiraiGroupMemberJoinEvent(MiraiGroupMemberJoinEvent event) {
         if (Config.INSTANCE.getUsesConfig().getBoolean("new-group-member-message.enabled") && event.getGroupID() == Config.INSTANCE.getUse_Group() && event.getBotID() == Config.INSTANCE.getUse_Bot()) {
             long code = event.getNewMemberID();
             String message = Config.INSTANCE.getUsesConfig().getString("new-group-member-message.format");

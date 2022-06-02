@@ -56,6 +56,10 @@ general:
   send-message-qq-error: |-
     发送消息时发生异常:
     %error%
-  send-get-error: |-
-    发送GET请求出现异常:
-    %error%
+  http-utils:
+    send-get-error: |-
+      发送GET请求出现异常:
+      %error%
+    send-post-error: |-
+      发送POST请求出现异常:
+      %error%

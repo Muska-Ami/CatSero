@@ -30,7 +30,7 @@ public class CatSero implements CommandExecutor {
                         if (args.length == 2) {
                             try {
                                 sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.doing"))));
-                                String result = PingHost.GameUtils(args[1]);
+                                String result = PingHost.PingHostUtils(args[1]);
                                 if (Objects.equals(result, "Error")) {
                                     sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.error"))));
                                 } else {
@@ -59,7 +59,7 @@ public class CatSero implements CommandExecutor {
                 } else if (args.length == 2) {
                     try {
                         sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.doing"))));
-                        String result = PingHost.GameUtils(args[1]);
+                        String result = PingHost.PingHostUtils(args[1]);
                         if (Objects.equals(result, "Error")) {
                             sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.error"))));
                         } else {

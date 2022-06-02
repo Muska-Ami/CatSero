@@ -25,18 +25,18 @@ public class Updater {
         this.devdurl = devdurl;
     }
 
-    public static void onEnable() {
-        String nowversion = Config.INSTANCE.getVersion();
+    public static void startUpdateCheck() {
+        String nowversion = Config.INSTANCE.getPluginInfo().getString("version");
         Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
         if (plugin.getConfig().getBoolean("check-update.enabled")) {
             String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8");
             Gson gson = new Gson();
             Updater updater = gson.fromJson(datajson, Updater.class);
             String[] upregex = String.valueOf(updater).split("╳");
-            if (Objects.equals(plugin.getConfig().getString("check-update.version"), "dev")) {
+            if (Objects.equals(nowversion, "dev")) {
                 System.out.println(ChatColor.GREEN + "最新构建ID：" + upregex[2]);
                 System.out.println(ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[3]);
-            } else if (!Objects.equals(upregex[0], nowversion) && !nowversion.contains("pre") && Objects.equals(plugin.getConfig().getString("check-update.version"), "passed")) {
+            } else if (!Objects.equals(upregex[0], nowversion) && !nowversion.contains("pre") && Objects.equals(nowversion, "passed")) {
                 System.out.println(nowversion);
                 System.out.println(ChatColor.GREEN + "已找到可用的更新：" + upregex[0]);
                 System.out.println(ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[1]);

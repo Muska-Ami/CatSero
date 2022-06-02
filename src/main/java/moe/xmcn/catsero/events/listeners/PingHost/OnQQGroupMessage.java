@@ -13,10 +13,10 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class onGroupMessage implements Listener {
+public class OnQQGroupMessage implements Listener {
 
     @EventHandler
-    public void OnGroupMessage(MiraiGroupMessageEvent event) {
+    public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         if (Config.INSTANCE.getUsesConfig().getBoolean("pinghost.enabled") && event.getGroupID() == Config.INSTANCE.getUse_Group() && event.getBotID() == Config.INSTANCE.getUse_Bot()) {
             if (!Config.INSTANCE.getUsesConfig().getBoolean("pinghost.op-only")) {
                 String msg = event.getMessage();
@@ -28,7 +28,7 @@ public class onGroupMessage implements Listener {
                         } catch (NoSuchElementException nse) {
                             Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
                         }
-                        String result = PingHost.GameUtils(args[2]);
+                        String result = PingHost.PingHostUtils(args[2]);
                         if (Objects.equals(result, "Error")) {
                             try {
                                 MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + Config.INSTANCE.getMsgByMsID("qq.pinghost.error"));
@@ -68,7 +68,7 @@ public class onGroupMessage implements Listener {
                         } catch (NoSuchElementException nse) {
                             Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
                         }
-                        String result = PingHost.GameUtils(args[2]);
+                        String result = PingHost.PingHostUtils(args[2]);
                         if (Objects.equals(result, "Error")) {
                             try {
                                 MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + Config.INSTANCE.getMsgByMsID("qq.pinghost.error"));

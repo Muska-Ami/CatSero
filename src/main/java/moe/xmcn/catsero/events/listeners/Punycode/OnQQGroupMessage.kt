@@ -9,7 +9,7 @@ import org.bukkit.event.Listener
 
 class OnGroupMessage : Listener {
     @EventHandler
-    fun onGroupMessageEvent(event: MiraiGroupMessageEvent) {
+    fun onMiraiGroupMessageEvent(event: MiraiGroupMessageEvent) {
         if (Config.UsesConfig.getBoolean("punycode.enabled") && event.groupID == Config.Use_Group && event.botID == Config.Use_Bot) {
             val msg = event.message
             val args = msg.split(" ")
@@ -19,7 +19,7 @@ class OnGroupMessage : Listener {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
                             .sendMessageMirai(Punycode.encodeURL(args[2]))
                     } catch (nse: NoSuchElementException) {
-                        println(
+                        Config.plugin.logger.warning(
                             Config.getMsgByMsID("general.send-message-qq-error")
                                 .replace("%error%", nse.toString() + nse.stackTrace)
                         )
@@ -29,7 +29,7 @@ class OnGroupMessage : Listener {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
                             .sendMessageMirai(Punycode.encode(args[2]))
                     } catch (nse: NoSuchElementException) {
-                        println(
+                        Config.plugin.logger.warning(
                             Config.getMsgByMsID("general.send-message-qq-error")
                                 .replace("%error%", nse.toString() + nse.stackTrace)
                         )

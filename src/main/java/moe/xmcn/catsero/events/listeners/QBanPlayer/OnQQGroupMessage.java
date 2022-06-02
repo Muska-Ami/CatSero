@@ -11,11 +11,11 @@ import org.bukkit.event.Listener;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-public class onGroupMessage implements Listener {
+public class OnQQGroupMessage implements Listener {
 
 
     @EventHandler
-    public void OnGroupMessage(MiraiGroupMessageEvent event) {
+    public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         if (Config.INSTANCE.getUsesConfig().getBoolean("qban-player.enabled") && event.getGroupID() == Config.INSTANCE.getUse_Group() && event.getBotID() == Config.INSTANCE.getUse_Bot()) {
             String msg = event.getMessage();
             String[] args = msg.split(" ");
