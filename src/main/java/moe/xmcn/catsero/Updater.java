@@ -25,7 +25,7 @@ public class Updater {
         this.devdurl = devdurl;
     }
 
-    public static void startUpdateCheck() {
+    public static String startUpdateCheck() {
         String nowversion = Config.INSTANCE.getPluginInfo().getString("version");
         Plugin plugin = moe.xmcn.catsero.Main.getPlugin(moe.xmcn.catsero.Main.class);
         if (plugin.getConfig().getBoolean("check-update.enabled")) {
@@ -34,17 +34,14 @@ public class Updater {
             Updater updater = gson.fromJson(datajson, Updater.class);
             String[] upregex = String.valueOf(updater).split("╳");
             if (Objects.equals(nowversion, "dev")) {
-                System.out.println(ChatColor.GREEN + "最新构建ID：" + upregex[2]);
-                System.out.println(ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[3]);
+                return ChatColor.GREEN + "最新构建ID：" + upregex[2] + ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[3];
             } else if (!Objects.equals(upregex[0], nowversion) && !nowversion.contains("pre") && Objects.equals(nowversion, "passed")) {
-                System.out.println(nowversion);
-                System.out.println(ChatColor.GREEN + "已找到可用的更新：" + upregex[0]);
-                System.out.println(ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[1]);
+                return ChatColor.GREEN + "已找到可用的更新：" + upregex[0] + ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[1];
             } else {
-                System.out.println("已是最新版本");
+                return "已是最新版本";
             }
         } else {
-            System.out.println("跳过更新检查");
+            return "跳过更新检查";
         }
     }
 

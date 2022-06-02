@@ -12,6 +12,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.logging.Level;
+
 /**
  * 主类
  * 注册监听器
@@ -26,7 +28,7 @@ public class Main extends JavaPlugin {
     public void onLoad() {
         Config.INSTANCE.saveDefConfig();
         ThisAPI.Companion.savXMCore("xmcore.info");
-        System.out.println("[CatSero] 正在加载CatSero插件");
+        getLogger().log(Level.INFO, "[CatSero] 正在加载CatSero插件");
         if (Config.INSTANCE.getConfig().getBoolean("allow-start-warn")) {
             getLogger().warning("请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
         }
@@ -44,19 +46,20 @@ public class Main extends JavaPlugin {
             // bStats
             if (Config.INSTANCE.getConfig().getBoolean("allow-bstats")) {
                 int pluginId = 14767;
-                new Metrics((JavaPlugin) Config.INSTANCE.getPlugin(), pluginId);
+                new Metrics(this, pluginId);
             }
 
             // 启动TPS计算程序
             Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new ServerTPS(), 100L, 1L);
 
-            System.out.println("CatSero插件加载成功");
+            getLogger().log(Level.INFO, "CatSero插件加载成功");
 
             // 异步加载更新检查器
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    Updater.startUpdateCheck();
+                    getLogger().log(Level.INFO, "开始检查更新...");
+                    getLogger().log(Level.INFO, Updater.startUpdateCheck());
                 }
             }.runTaskAsynchronously(this);
         } else {
@@ -70,7 +73,7 @@ public class Main extends JavaPlugin {
      */
     @Override
     public void onDisable() {
-        System.out.println("正在卸载CatSero插件");
+        getLogger().log(Level.INFO, "正在卸载CatSero插件");
     }
 
     /**
@@ -79,13 +82,13 @@ public class Main extends JavaPlugin {
      */
     public void regiserEvents() {
 
-        System.out.println("正在注册事件 -> 监听器:CommandExecutor");
+        getLogger().log(Level.INFO, "正在注册事件 -> 监听器:CommandExecutor");
         // catsero命令
         Bukkit.getPluginCommand("catsero").setExecutor(new moe.xmcn.catsero.events.commands.CatSero());
         // csm命令
         Bukkit.getPluginCommand("csm").setExecutor(new moe.xmcn.catsero.events.commands.SendMessageQQ());
 
-        System.out.println("正在注册事件 -> 监听器:Listener");
+        getLogger().log(Level.INFO, "正在注册事件 -> 监听器:Listener");
         // PingHost功能
         getServer().getPluginManager().registerEvents(new OnQQGroupMessage(), this);
 

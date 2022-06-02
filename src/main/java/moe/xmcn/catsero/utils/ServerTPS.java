@@ -1,8 +1,8 @@
 package moe.xmcn.catsero.utils;
 
 public class ServerTPS implements Runnable {
+    public static final long[] TICKS = new long[600];
     public static int TICK_COUNT = 0;
-    public static long[] TICKS = new long[600];
 
     public static double getTPS() {
         return getTPS(100);

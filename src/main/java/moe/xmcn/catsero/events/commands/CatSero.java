@@ -1,5 +1,6 @@
 package moe.xmcn.catsero.events.commands;
 
+import moe.xmcn.catsero.Updater;
 import moe.xmcn.catsero.events.gists.PingHost;
 import moe.xmcn.catsero.events.gists.WeatherUtils;
 import moe.xmcn.catsero.utils.Config;
@@ -133,6 +134,12 @@ public class CatSero implements CommandExecutor {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.undefined-usage")));
                 return false;
             }
+        /*
+         手动检查更新
+        */
+        } else if (args[0].equalsIgnoreCase("update")) {
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a开始检查更新..."));
+            sender.sendMessage(Updater.startUpdateCheck());
         } else {
         /*
           无效方法
