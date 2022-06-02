@@ -33,6 +33,7 @@
 - [x] PlaceholderAPI变量支持
 - [ ] 自动回复功能
 - [x] PunyCode功能
+- [x] TPS获取功能
 
 ### 其他
 
@@ -60,6 +61,7 @@
 | catsero kick <玩家名>                | 踢出一个在线玩家                     |
 | catsero ban <玩家名>                 | 封禁一个玩家                       |
 | catsero punycode <文本> \[urlmode\] | Punycode文本 \[urlmode\]:URL模式 |
+| catsero tps                       | 获取服务器TPS                     |
 
 # bStats
 
