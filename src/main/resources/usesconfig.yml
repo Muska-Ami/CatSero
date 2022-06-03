@@ -85,3 +85,5 @@ bind-qq:
   self-service-application:
     # 启用此功能
     enabled: false
+    # 自助申请前缀(切勿写入空格，申请格式(无需中括号): [前缀 MC账户名])
+    prefix: "bd"

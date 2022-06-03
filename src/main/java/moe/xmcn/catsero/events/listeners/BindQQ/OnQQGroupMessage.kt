@@ -16,8 +16,8 @@ class OnQQGroupMessage : Listener {
         val args = message.split(" ")
         if (args[0] == "catsero" && args[1] == "bind") {
             if (Config.UsesConfig.getBoolean("bind-qq.enabled")) {
-                if (event.senderID == Config.QQ_OP) {
-                    if (args.size == 5 && args[2] == "add") {
+                if (args.size == 5 && args[2] == "add") {
+                    if (event.senderID == Config.QQ_OP) {
                         if (MiraiMC.getBinding(args[3].toLong()) != "" || MiraiMC.getBinding(args[3]) != 0L) {
                             try {
                                 MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Bot)
@@ -29,10 +29,9 @@ class OnQQGroupMessage : Listener {
                                 )
                             }
                         } else {
-                            MiraiMC.addBinding(PlayerUUID.getUUIDByName(args[4]).toString(), args[3].toLong())
                             try {
-                                MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Bot)
-                                    .sendMessageMirai(Config.getMsgByMsID("qq.bind-qq.add-success"))
+                                MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
+                                    .sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"))
                             } catch (nse: NoSuchElementException) {
                                 Config.plugin.logger.warning(
                                     Config.getMsgByMsID("general.send-message-qq-error")
@@ -40,7 +39,20 @@ class OnQQGroupMessage : Listener {
                                 )
                             }
                         }
-                    } else if (args.size == 4 && args[2] == "remove") {
+                    } else {
+                        MiraiMC.addBinding(PlayerUUID.getUUIDByName(args[4]).toString(), args[3].toLong())
+                        try {
+                            MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Bot)
+                                .sendMessageMirai(Config.getMsgByMsID("qq.bind-qq.add-success"))
+                        } catch (nse: NoSuchElementException) {
+                            Config.plugin.logger.warning(
+                                Config.getMsgByMsID("general.send-message-qq-error")
+                                    .replace("%error%", nse.toString() + nse.stackTrace)
+                            )
+                        }
+                    }
+                } else if (args.size == 4 && args[2] == "remove") {
+                    if (event.senderID == Config.QQ_OP) {
                         if (MiraiMC.getBinding(args[3].toLong()) != "" || MiraiMC.getBinding(args[3]) != 0L) {
                             MiraiMC.removeBinding(args[3].toLong())
                             MiraiMC.removeBinding(args[3])
@@ -64,16 +76,32 @@ class OnQQGroupMessage : Listener {
                                 )
                             }
                         }
+                    } else {
+                        try {
+                            MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
+                                .sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"))
+                        } catch (nse: NoSuchElementException) {
+                            Config.plugin.logger.warning(
+                                Config.getMsgByMsID("general.send-message-qq-error")
+                                    .replace("%error%", nse.toString() + nse.stackTrace)
+                            )
+                        }
                     }
-                } else {
-                    try {
-                        MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
-                            .sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"))
-                    } catch (nse: NoSuchElementException) {
-                        Config.plugin.logger.warning(
-                            Config.getMsgByMsID("general.send-message-qq-error")
-                                .replace("%error%", nse.toString() + nse.stackTrace)
-                        )
+                } else if (args.size == 2 && Config.UsesConfig.getBoolean("bind-qq.enabled") && args[0] == Config.UsesConfig.getString("bind-qq.self-service-application.prefix")) {
+                    if (MiraiMC.getBinding(PlayerUUID.getUUIDByName(args[1]).toString()) != 0L) {
+                        MiraiMC.addBinding(PlayerUUID.getUUIDByName(args[1]).toString(), event.senderID)
+                        try {
+                            val mesbd = Config.getMsgByMsID("qq.bind-qq.add-ssa-success")
+                                .replace("%name%", args[1])
+                                .replace("%code%", event.senderID.toString())
+                            MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Bot)
+                                .sendMessageMirai(mesbd)
+                        } catch (nse: NoSuchElementException) {
+                            Config.plugin.logger.warning(
+                                Config.getMsgByMsID("general.send-message-qq-error")
+                                    .replace("%error%", nse.toString() + nse.stackTrace)
+                            )
+                        }
                     }
                 }
             }
