@@ -74,4 +74,14 @@ punycode:
 
 # 获取TPS功能
 get-tps:
+  # 启用此功能
   enabled: false
+
+# 绑定QQ功能
+bind-qq:
+  # 启用此功能
+  enabled: false
+  # 自助申请
+  self-service-application:
+    # 启用此功能
+    enabled: false

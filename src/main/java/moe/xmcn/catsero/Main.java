@@ -117,5 +117,11 @@ public class Main extends JavaPlugin {
 
         // PunyCode PunyCode功能
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.Punycode.OnGroupMessage(), this);
+
+        // GetTPS 获取TPS功能
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.GetTPS.OnQQGroupMessage(), this);
+
+        // BindQQ 绑定QQ功能
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.BindQQ.OnQQGroupMessage(), this);
     }
 }

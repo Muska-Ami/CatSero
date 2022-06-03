@@ -52,6 +52,11 @@ qq:
     success: |-
       已封禁玩家 %player%
       理由:%reason%
+  bind-qq:
+    already-bind: 此玩家已绑定QQ，无法添加绑定
+    no-bind-found: 此玩家/QQ未绑定
+    add-success: 成功添加绑定
+    remove-success: 成功移除绑定
 general:
   send-message-qq-error: |-
     发送消息时发生异常:
