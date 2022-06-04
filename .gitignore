@@ -7,6 +7,9 @@ testserver/
 # Log file
 *.log
 
+
+*.iml
+
 # BlueJ files
 *.ctxt
 
