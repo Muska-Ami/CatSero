@@ -1,6 +1,7 @@
 package moe.xmcn.catsero.events.commands;
 
 import moe.xmcn.catsero.Updater;
+import moe.xmcn.catsero.events.gists.HelpList;
 import moe.xmcn.catsero.events.gists.PingHost;
 import moe.xmcn.catsero.events.gists.WeatherUtils;
 import moe.xmcn.catsero.utils.Config;
@@ -136,6 +137,8 @@ public class CatSero implements CommandExecutor {
         /*
          可能你没启用 (XD
          */
+            } else if (args[0].equalsIgnoreCase("help")) {
+                sender.sendMessage(HelpList.Companion.getList("mc"));
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.undefined-usage")));
                 return false;

@@ -45,7 +45,7 @@
 
 | 命令                                      | 说明                           |
 |-----------------------------------------|------------------------------|
-| /catsero reload                         | 重载config.yml                 |
+| /catsero reload                         | 重载配置文件                       |
 | /catsero ping <地址>                      | Ping某一个地址                    |
 | /catsero weather <中国大陆城市>               | 获取某个城市的天气                    |
 | /catsero punycode <文本> \[urlmode\]      | Punycode文本 \[urlmode\]:URL模式 |
