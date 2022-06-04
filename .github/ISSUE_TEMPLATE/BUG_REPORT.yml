@@ -30,9 +30,9 @@ body:
   - type: input
     id: pluginversion
     attributes:
-      label: MiraiMC 插件版本
-      description: 填写你正在使用的 MiraiMC 版本
-      placeholder: 在服务端输入 /miraimc 查看版本
+      label: CatSero 版本
+      description: 填写你正在使用的 CatSero 版本
+      placeholder: 在服务端输入 /catsero 查看版本
     validations:
       required: true
   - type: textarea
@@ -40,7 +40,7 @@ body:
     attributes:
       label: 服务端日志
       description: 在下方复制你的服务端日志
-      placeholder: 请提供完整的服务端日志，自以为知道问题所在而仅提供一两行将被直接关闭。
+      placeholder: 请提供完整的服务端日志。
       render: text
     validations:
       required: true

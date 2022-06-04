@@ -18,7 +18,7 @@ body:
       placeholder: 能看到这个？说明你没有看描述，请自己加上“1. ”
       value: "1. "
     validations:
-      required: true
+      required: false
   - type: textarea
     id: extra
     attributes:
