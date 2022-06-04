@@ -87,7 +87,7 @@ class OnQQGroupMessage : Listener {
                             )
                         }
                     }
-                } else if (args.size == 2 && Config.UsesConfig.getBoolean("bind-qq.enabled") && args[0] == Config.UsesConfig.getString("bind-qq.self-service-application.prefix")) {
+                } else if (args.size == 2 && Config.UsesConfig.getBoolean("self-service-application.enabled") && args[0] == Config.UsesConfig.getString("bind-qq.self-service-application.prefix")) {
                     if (MiraiMC.getBinding(PlayerUUID.getUUIDByName(args[1]).toString()) != 0L) {
                         MiraiMC.addBinding(PlayerUUID.getUUIDByName(args[1]).toString(), event.senderID)
                         try {
