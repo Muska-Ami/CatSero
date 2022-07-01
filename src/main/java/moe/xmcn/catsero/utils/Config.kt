@@ -73,7 +73,7 @@ object Config {
             plugin.saveResource("usesconfig.yml", false)
         }
 
-        // 把语言文件保持也赛这里了 XD
+        // 把语言文件保存也塞这里了 XD
         if (!File(plugin.dataFolder, "locate/zh_CN.lang").exists()) {
             plugin.saveResource("locate/zh_CN.lang", false)
         }
