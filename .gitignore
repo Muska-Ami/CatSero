@@ -1,9 +1,6 @@
 # Compiled class file
 *.class
 
-# MCServer
-testserver/
-
 # Log file
 *.log
 
@@ -41,3 +38,10 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+
+# IDEA
+.idea/jarRepositories.xml
+.idea/workspace.xml
+.idea/modules.xml
+.idea/libraries/
+.idea/misc.xml
