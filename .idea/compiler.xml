@@ -9,5 +9,8 @@
         <module name="CatSero" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CatSero" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

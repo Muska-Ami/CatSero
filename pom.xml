@@ -16,17 +16,19 @@
     </properties>
 
     <repositories>
+        <!-- 优先使用镜像源 -->
         <!-- Lss233 Maven Repo -->
         <repository>
             <id>lss233-minecraft</id>
             <url>https://lss233.littleservice.cn/repositories/minecraft</url>
         </repository>
-        <!-- PlaceholderAPI Repo
+        <!-- SonaType Repo -->
         <repository>
-            <id>placeholderapi</id>
-            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+            <id>sonatype-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
         </repository>
-        -->
+
+        <!-- 官方源 -->
         <!-- Official Maven Repo -->
         <repository>
             <id>official-maven-repo</id>
@@ -36,6 +38,11 @@
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots</url>
+        </repository>
+        <!-- PlaceholderAPI Repo -->
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
 
     </repositories>

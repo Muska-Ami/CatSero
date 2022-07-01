@@ -12,19 +12,14 @@
       <option name="url" value="https://repo1.maven.org/maven2" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="placeholderapi" />
-      <option name="name" value="placeholderapi" />
-      <option name="url" value="https://repo.extendedclip.com/content/repositories/placeholderapi/" />
-    </remote-repository>
-    <remote-repository>
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="maven-repo" />
-      <option name="name" value="maven-repo" />
-      <option name="url" value="https://repo1.maven.org/maven2" />
+      <option name="id" value="spigot-bc" />
+      <option name="name" value="spigot-bc" />
+      <option name="url" value="https://oss.sonatype.org/content/repositories/snapshots/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="lss233-minecraft" />
@@ -32,14 +27,14 @@
       <option name="url" value="https://lss233.littleservice.cn/repositories/minecraft" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="spigot-repo" />
-      <option name="name" value="spigot-repo" />
-      <option name="url" value="https://hub.spigotmc.org/nexus/content/repositories/snapshots" />
-    </remote-repository>
-    <remote-repository>
       <option name="id" value="official-maven-repo" />
       <option name="name" value="official-maven-repo" />
       <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="spigot-repo" />
+      <option name="name" value="spigot-repo" />
+      <option name="url" value="https://hub.spigotmc.org/nexus/content/repositories/snapshots" />
     </remote-repository>
   </component>
 </project>
