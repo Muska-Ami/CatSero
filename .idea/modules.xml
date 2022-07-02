@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CatSero.iml" filepath="$PROJECT_DIR$/CatSero.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CatSero.iml" filepath="$PROJECT_DIR$/.idea/CatSero.iml" />
     </modules>
   </component>
 </project>

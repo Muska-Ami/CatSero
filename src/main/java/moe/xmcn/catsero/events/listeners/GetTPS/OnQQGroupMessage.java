@@ -1,7 +1,7 @@
 package moe.xmcn.catsero.events.listeners.GetTPS;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
-import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMessageEvent;
+import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.ServerTPS;
 import org.bukkit.event.EventHandler;
