@@ -22,11 +22,6 @@
             <id>lss233-minecraft</id>
             <url>https://lss233.littleservice.cn/repositories/minecraft</url>
         </repository>
-        <!-- SonaType Repo -->
-        <repository>
-            <id>sonatype-repo</id>
-            <url>https://oss.sonatype.org/content/repositories/releases/</url>
-        </repository>
 
         <!-- 官方源 -->
         <!-- Official Maven Repo -->
