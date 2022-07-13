@@ -19,9 +19,9 @@ public class QQHelp implements Listener {
         String[] args = message.split(" ");
         if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "help")) {
             try {
-                MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(HelpList.Companion.getList("qq"));
+                MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(HelpList.Companion.getList("qq"));
             } catch (NoSuchElementException nse) {
-                Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
+                Config.plugin.getLogger().warning(Config.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
             }
         }
     }
