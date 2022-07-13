@@ -42,7 +42,7 @@ public class HttpUtils {
                 result.append(line);
             }
         } catch (Exception e) {
-            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.http-utils.send-get-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
+            Config.plugin.getLogger().warning(Config.getMsgByMsID("general.http-utils.send-get-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
         }
         // 使用finally块来关闭输入流
         finally {
@@ -95,7 +95,7 @@ public class HttpUtils {
                 result.append(line);
             }
         } catch (Exception e) {
-            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.http-utils.send-post-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
+            Config.plugin.getLogger().warning(Config.getMsgByMsID("general.http-utils.send-post-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
         }
         // 使用finally块来关闭输出流、输入流
         finally {
@@ -150,7 +150,7 @@ public class HttpUtils {
                 result.append(line);
             }
         } catch (Exception e) {
-            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.http-utils.send-post-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
+            Config.plugin.getLogger().warning(Config.getMsgByMsID("general.http-utils.send-post-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
         }
         //使用finally块来关闭输出流、输入流
         finally {
@@ -217,7 +217,7 @@ public class HttpUtils {
                 result.append(line);
             }
         } catch (Exception e) {
-            Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.http-utils.send-post-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
+            Config.plugin.getLogger().warning(Config.getMsgByMsID("general.http-utils.send-post-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
         }
         // 使用finally块来关闭输出流、输入流
         finally {

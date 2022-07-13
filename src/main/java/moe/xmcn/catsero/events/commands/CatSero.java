@@ -26,18 +26,18 @@ public class CatSero implements CommandExecutor {
         /*
           PingHost
          */
-            if (args[0].equalsIgnoreCase("ping") && Config.INSTANCE.getUsesConfig().getBoolean("pinghost.enabled")) {
-                if (Config.INSTANCE.getUsesConfig().getBoolean("pinghost.op-only")) {
+            if (args[0].equalsIgnoreCase("ping") && Config.UsesConfig.getBoolean("pinghost.enabled")) {
+                if (Config.UsesConfig.getBoolean("pinghost.op-only")) {
                     if (sender.hasPermission("catsero.admin")) {
                         if (args.length == 2) {
                             try {
-                                sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.doing"))));
+                                sender.sendMessage(Config.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.pinghost.doing"))));
                                 String result = PingHost.PingHostUtils(args[1]);
                                 if (Objects.equals(result, "Error")) {
-                                    sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.error"))));
+                                    sender.sendMessage(Config.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.pinghost.error"))));
                                 } else {
                                     long flag = Long.parseLong(result);
-                                    String message = Config.INSTANCE.tryToPAPI(sender, Config.INSTANCE.getMsgByMsID("minecraft.pinghost.success")
+                                    String message = Config.tryToPAPI(sender, Config.getMsgByMsID("minecraft.pinghost.success")
                                             .replace("%address_original%", args[1])
                                             .replace("%address_punycode%", Punycode.encodeURL(args[1]))
                                             .replace("%withdraw%", String.valueOf(flag))
@@ -47,26 +47,26 @@ public class CatSero implements CommandExecutor {
                                     sender.sendMessage(message);
                                 }
                             } catch (UnknownHostException e) {
-                                sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.failed"))));
+                                sender.sendMessage(Config.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.pinghost.failed"))));
                             }
                             return true;
                         } else {
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c请键入正确的地址"));
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&c请键入正确的地址"));
                             return false;
                         }
                     } else {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.no-permission")));
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.no-permission")));
                         return false;
                     }
                 } else if (args.length == 2) {
                     try {
-                        sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.doing"))));
+                        sender.sendMessage(Config.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.pinghost.doing"))));
                         String result = PingHost.PingHostUtils(args[1]);
                         if (Objects.equals(result, "Error")) {
-                            sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.error"))));
+                            sender.sendMessage(Config.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.pinghost.error"))));
                         } else {
                             long flag = Long.parseLong(result);
-                            String message = Config.INSTANCE.tryToPAPI(sender, Config.INSTANCE.getMsgByMsID("minecraft.pinghost.success")
+                            String message = Config.tryToPAPI(sender, Config.getMsgByMsID("minecraft.pinghost.success")
                                     .replace("%address_original%", args[1])
                                     .replace("%address_punycode%", Punycode.encodeURL(args[1]))
                                     .replace("%withdraw%", String.valueOf(flag))
@@ -76,23 +76,23 @@ public class CatSero implements CommandExecutor {
                             sender.sendMessage(message);
                         }
                     } catch (UnknownHostException e) {
-                        sender.sendMessage(Config.INSTANCE.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.pinghost.failed"))));
+                        sender.sendMessage(Config.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.pinghost.failed"))));
                     }
                     return true;
                 } else {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&c请键入正确的地址"));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&c请键入正确的地址"));
                     return false;
                 }
 
         /*
          天气获取
         */
-            } else if (args[0].equalsIgnoreCase("weather") && Config.INSTANCE.getUsesConfig().getBoolean("weatherinfo.enabled")) {
+            } else if (args[0].equalsIgnoreCase("weather") && Config.UsesConfig.getBoolean("weatherinfo.enabled")) {
                 if (args.length == 2) {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.weatherinfo.doing")));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.weatherinfo.doing")));
                     try {
                         String[] resvi = WeatherUtils.getWeather(args[1]);
-                        String message = Config.INSTANCE.getMsgByMsID("minecraft.weatherinfo.success")
+                        String message = Config.getMsgByMsID("minecraft.weatherinfo.success")
                                 .replace("%type%", resvi[4])
                                 .replace("%temperature%", resvi[1])
                                 .replace("%wind%", resvi[2])
@@ -101,12 +101,12 @@ public class CatSero implements CommandExecutor {
                         sender.sendMessage(message);
                         //sender.sendMessage("天气信息:\n 类型:" + resvi[4] + "\n 温度:" + resvi[1] + "\n 风力:" + resvi[2] + "\n 风向:" + resvi[3] + "\n 日期:" + resvi[0]);
                     } catch (UnsupportedEncodingException uee) {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.weatherinfo.error")));
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.weatherinfo.error")));
                         return false;
                     }
                     return true;
                 } else {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.weatherinfo.null-city")));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.weatherinfo.null-city")));
                     return false;
                 }
 
@@ -124,14 +124,14 @@ public class CatSero implements CommandExecutor {
          插件重载
         */
             } else if (args[0].equalsIgnoreCase("reload")) {
-                Config.INSTANCE.reloadConfig();
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a配置文件已重载"));
+                Config.reloadConfig();
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&a配置文件已重载"));
                 return true;
         /*
          手动检查更新
         */
             } else if (args[0].equalsIgnoreCase("update")) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "&a开始检查更新..."));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&a开始检查更新..."));
                 sender.sendMessage(Updater.startUpdateCheck());
 
         /*
@@ -140,14 +140,14 @@ public class CatSero implements CommandExecutor {
             } else if (args[0].equalsIgnoreCase("help")) {
                 sender.sendMessage(HelpList.Companion.getList("mc"));
             } else {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + Config.INSTANCE.getMsgByMsID("minecraft.undefined-usage")));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.undefined-usage")));
                 return false;
             }
         } else {
         /*
           其他
          */
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.INSTANCE.getPrefix_MC() + "This server is running CatSero v" + Config.INSTANCE.getPluginInfo().getString("version") + "By" + Config.INSTANCE.getPluginInfo().getString("author")));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "This server is running CatSero v" + Config.PluginInfo.getString("version") + "By" + Config.PluginInfo.getString("author")));
             return true;
         }
         return false;

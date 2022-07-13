@@ -17,23 +17,23 @@ public class OnQQGroupMessage implements Listener {
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         String message = event.getMessage();
         String[] args = message.split(" ");
-        if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "tps") && Config.INSTANCE.getUsesConfig().getBoolean("tps.enabled") && event.getGroupID() == Config.INSTANCE.getUse_Group() && event.getBotID() == Config.INSTANCE.getUse_Bot()) {
+        if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "tps") && Config.UsesConfig.getBoolean("tps.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
             isEnabled(event);
         }
     }
 
     private void isEnabled(MiraiGroupMessageEvent event) {
-        if (event.getSenderID() == Config.INSTANCE.getQQ_OP()) {
+        if (event.getSenderID() == Config.QQ_OP) {
             try {
-                MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(String.valueOf(ServerTPS.getTPS()));
+                MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(String.valueOf(ServerTPS.getTPS()));
             } catch (NoSuchElementException nse) {
-                Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
+                Config.plugin.getLogger().warning(Config.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
             }
         } else {
             try {
-                MiraiBot.getBot(Config.INSTANCE.getUse_Bot()).getGroup(Config.INSTANCE.getUse_Group()).sendMessageMirai(Config.INSTANCE.getPrefix_QQ() + Config.INSTANCE.getMsgByMsID("qq.no-permission"));
+                MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
             } catch (NoSuchElementException nse) {
-                Config.INSTANCE.getPlugin().getLogger().warning(Config.INSTANCE.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
+                Config.plugin.getLogger().warning(Config.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
             }
         }
     }

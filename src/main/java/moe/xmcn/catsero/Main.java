@@ -26,10 +26,10 @@ public class Main extends JavaPlugin {
      */
     @Override // 加载插件
     public void onLoad() {
-        Config.INSTANCE.saveDefConfig();
+        Config.saveDefFile();
         ThisAPI.Companion.savXMCore("xmcore.info");
         getLogger().log(Level.INFO, "[CatSero] 正在加载CatSero插件");
-        if (Config.INSTANCE.getConfig().getBoolean("allow-start-warn")) {
+        if (Config.Config.getBoolean("allow-start-warn")) {
             getLogger().warning("请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
         }
     }
@@ -44,7 +44,7 @@ public class Main extends JavaPlugin {
             regiserEvents();
 
             // bStats
-            if (Config.INSTANCE.getConfig().getBoolean("allow-bstats")) {
+            if (Config.Config.getBoolean("allow-bstats")) {
                 int pluginId = 14767;
                 new Metrics(this, pluginId);
             }
