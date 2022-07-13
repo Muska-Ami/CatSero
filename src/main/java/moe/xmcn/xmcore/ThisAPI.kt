@@ -31,7 +31,7 @@ class ThisAPI {
                 }
                 out.close()
                 `in`.close()
-                File(plugin.dataFolder.parent.plus("/XMCore/xmcore.info")).renameTo(File(plugin.dataFolder.parent.plus("/XMCore/CatSero.info")))
+                File(plugin.dataFolder.parent.plus("/XMCore/xmcore.info")).renameTo(File(plugin.dataFolder.parent.plus("/XMCore/catsero.info")))
                 File(plugin.dataFolder.parent.plus("/XMCore/xmcore.info")).delete()
             } catch (var10: IOException) {
                 plugin.logger.log(

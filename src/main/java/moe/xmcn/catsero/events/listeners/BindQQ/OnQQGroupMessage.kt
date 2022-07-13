@@ -24,7 +24,7 @@ class OnQQGroupMessage : Listener {
     private fun isEnabled(event: MiraiGroupMessageEvent, args: List<String>) {
         if (args.size == 5 && args[2] == "add") {
             if (event.senderID == Config.QQ_OP) {
-                if (MiraiMC.getBinding(args[3].toLong()) != "" || MiraiMC.getBinding(args[3]) != 0L) {
+                if (MiraiMC.getBind(args[3].toLong()).toString() != "" || MiraiMC.getBind(PlayerUUID.getUUIDByName(args[3])) != 0L) {
                     try {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Bot)
                             .sendMessageMirai(Config.getMsgByMsID("qq.bind-qq.already-bind"))
@@ -46,7 +46,7 @@ class OnQQGroupMessage : Listener {
                     }
                 }
             } else {
-                MiraiMC.addBinding(PlayerUUID.getUUIDByName(args[4]).toString(), args[3].toLong())
+                MiraiMC.addBind(PlayerUUID.getUUIDByName(args[4]), args[3].toLong())
                 try {
                     MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Bot)
                         .sendMessageMirai(Config.getMsgByMsID("qq.bind-qq.add-success"))
@@ -59,9 +59,9 @@ class OnQQGroupMessage : Listener {
             }
         } else if (args.size == 4 && args[2] == "remove") {
             if (event.senderID == Config.QQ_OP) {
-                if (MiraiMC.getBinding(args[3].toLong()) != "" || MiraiMC.getBinding(args[3]) != 0L) {
-                    MiraiMC.removeBinding(args[3].toLong())
-                    MiraiMC.removeBinding(args[3])
+                if (MiraiMC.getBind(args[3].toLong()).toString() != "" || MiraiMC.getBind(PlayerUUID.getUUIDByName(args[3])) != 0L) {
+                    MiraiMC.removeBind(args[3].toLong())
+                    MiraiMC.removeBind(PlayerUUID.getUUIDByName(args[3]))
                     try {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Bot)
                             .sendMessageMirai(Config.getMsgByMsID("qq.bind-qq.remove-success"))
@@ -97,8 +97,8 @@ class OnQQGroupMessage : Listener {
                 "bind-qq.self-service-application.prefix"
             )
         ) {
-            if (MiraiMC.getBinding(PlayerUUID.getUUIDByName(args[1]).toString()) != 0L) {
-                MiraiMC.addBinding(PlayerUUID.getUUIDByName(args[1]).toString(), event.senderID)
+            if (MiraiMC.getBind(PlayerUUID.getUUIDByName(args[1])) != 0L) {
+                MiraiMC.addBind(PlayerUUID.getUUIDByName(args[1]), event.senderID)
                 try {
                     val mesbd = Config.getMsgByMsID("qq.bind-qq.add-ssa-success")
                         .replace("%name%", args[1])

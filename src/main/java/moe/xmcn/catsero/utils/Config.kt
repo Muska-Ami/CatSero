@@ -26,12 +26,10 @@ object Config {
     val Use_Bot: Long = plugin.config.getLong("qq-set.bot")
     val Use_Group: Long = plugin.config.getLong("qq-set.group")
     val QQ_OP: Long = plugin.config.getLong("qq-set.qq-op")
-    val Prefix_MC: String =
-        plugin.config.getString("format-list.prefix.to-mc") + ChatColor.translateAlternateColorCodes('&', "&r")
+    val Prefix_MC: String = plugin.config.getString("format-list.prefix.to-mc") + ChatColor.translateAlternateColorCodes('&', "&r")
     val Prefix_QQ: String = plugin.config.getString("format-list.prefix.to-qq")
 
-    val PluginInfo: FileConfiguration =
-        YamlConfiguration.loadConfiguration(File(plugin.dataFolder.parent, "XMCore/catsero.info"))
+    val PluginInfo: FileConfiguration = YamlConfiguration.loadConfiguration(File(plugin.dataFolder.parent, "XMCore/catsero.info"))
 
     /**
      * 尝试转为PlaceholderAPI文本

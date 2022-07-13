@@ -28,8 +28,7 @@ class SendMessageQQ : CommandExecutor {
                             Config.Prefix_MC + Config.getMsgByMsID("general.send-message-qq-error")
                                 .replace("%error%", nse.toString())
                         )
-                    )
-                }
+                    )                }
             } catch (nse: NoSuchElementException) {
                 sender.sendMessage(
                     ChatColor.translateAlternateColorCodes(

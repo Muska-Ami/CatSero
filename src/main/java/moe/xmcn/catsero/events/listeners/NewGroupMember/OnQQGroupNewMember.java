@@ -1,7 +1,7 @@
 package moe.xmcn.catsero.events.listeners.NewGroupMember;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
-import me.dreamvoid.miraimc.bukkit.event.MiraiGroupMemberJoinEvent;
+import me.dreamvoid.miraimc.bukkit.event.group.member.MiraiMemberJoinEvent;
 import moe.xmcn.catsero.utils.Config;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,13 +13,13 @@ public class OnQQGroupNewMember implements Listener {
 
 
     @EventHandler
-    public void onMiraiGroupMemberJoinEvent(MiraiGroupMemberJoinEvent event) {
+    public void onMiraiGroupMemberJoinEvent(MiraiMemberJoinEvent event) {
         if (Config.INSTANCE.getUsesConfig().getBoolean("new-group-member-message.enabled") && event.getGroupID() == Config.INSTANCE.getUse_Group() && event.getBotID() == Config.INSTANCE.getUse_Bot()) {
             isEnabled(event);
         }
     }
 
-    private void isEnabled(MiraiGroupMemberJoinEvent event) {
+    private void isEnabled(MiraiMemberJoinEvent event) {
         long code = event.getNewMemberID();
         String message = Config.INSTANCE.getUsesConfig().getString("new-group-member-message.format");
         message = message

@@ -24,15 +24,15 @@
         </repository>
 
         <!-- 官方源 -->
-        <!-- Official Maven Repo -->
-        <repository>
-            <id>official-maven-repo</id>
-            <url>https://repo1.maven.org/maven2</url>
-        </repository>
         <!-- Spigot Maven Repo -->
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots</url>
+        </repository>
+        <!-- Official Maven Repo -->
+        <repository>
+            <id>official-maven-repo</id>
+            <url>https://repo1.maven.org/maven2</url>
         </repository>
         <!-- PlaceholderAPI Repo -->
         <repository>
@@ -110,7 +110,7 @@
         <!-- MiraiMC -->
         <dependency>
             <groupId>io.github.dreamvoid</groupId>
-            <artifactId>MiraiMC</artifactId>
+            <artifactId>MiraiMC-Bukkit</artifactId>
             <version>1.7-rc2</version>
             <scope>provided</scope>
         </dependency>

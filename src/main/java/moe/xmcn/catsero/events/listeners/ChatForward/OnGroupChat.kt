@@ -36,7 +36,7 @@ class OnGroupChat : Listener {
                 message.replace("%groupcode%", groupid.toString())
                     .replace("%groupname%", groupname)
                     .replace("%sendercode%", senderid.toString())
-                    .replace("%sendername%", PlayerUUID.getNameByUUID(MiraiMC.getBinding(senderid)))
+                    .replace("%sendername%", PlayerUUID.getNameByUUID(MiraiMC.getBind(senderid)))
                     .replace("%message%", emsg)
                     .replace("%time%", sendtime)
             } else {

@@ -4,6 +4,8 @@
 # Log file
 *.log
 
+# Test Server
+server-test/
 
 *.iml
 
@@ -45,3 +47,4 @@ buildNumber.properties
 .idea/modules.xml
 .idea/libraries/
 .idea/misc.xml
+.idea/artifacts/
