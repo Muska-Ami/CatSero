@@ -11,6 +11,7 @@ import java.util.logging.Level
 class ThisAPI {
     companion object {
         fun savXMCore(infoFile: String) {
+            File(plugin.dataFolder.parent, "XMCore/catsero.info").delete()
             val outFile = File(plugin.dataFolder.parent.plus("/XMCore"), infoFile)
             val lastIndex: Int = infoFile.lastIndexOf(47.toChar())
             val outDir =
@@ -31,8 +32,8 @@ class ThisAPI {
                 }
                 out.close()
                 `in`.close()
-                File(plugin.dataFolder.parent.plus("/XMCore/xmcore.info")).renameTo(File(plugin.dataFolder.parent.plus("/XMCore/catsero.info")))
-                File(plugin.dataFolder.parent.plus("/XMCore/xmcore.info")).delete()
+                File(plugin.dataFolder.parent, "XMCore/xmcore.info").renameTo(File(plugin.dataFolder.parent, "XMCore/catsero.info"))
+                File(plugin.dataFolder.parent,"XMCore/xmcore.info").delete()
             } catch (var10: IOException) {
                 plugin.logger.log(
                     Level.INFO,

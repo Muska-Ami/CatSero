@@ -1,6 +1,5 @@
 package moe.xmcn.catsero.utils;
 
-import com.google.common.base.Charsets;
 import me.clip.placeholderapi.PlaceholderAPI;
 import moe.xmcn.catsero.Main;
 import org.bukkit.Bukkit;
@@ -10,8 +9,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+
 import java.io.File;
-import java.io.InputStreamReader;
 
 /**
  * Config文件读取
@@ -20,7 +19,7 @@ import java.io.InputStreamReader;
 public interface Config {
     Plugin plugin = Main.getPlugin(Main.class);
     FileConfiguration Config = plugin.getConfig();
-    FileConfiguration UsesConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource("usesconfig.yml"), Charsets.UTF_8));
+    FileConfiguration UsesConfig = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml"));
 
     long Use_Bot = Config.getLong("qq-set.bot");
     long Use_Group = Config.getLong("qq-set.group");
@@ -28,7 +27,7 @@ public interface Config {
     String Prefix_MC = Config.getString("format-list.prefix.to-mc") + ChatColor.translateAlternateColorCodes('&', "&r");
     String Prefix_QQ = Config.getString("format-list.prefix.to-qq");
 
-    FileConfiguration PluginInfo = YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource("../XMCore/catsero.info"), Charsets.UTF_8));
+    FileConfiguration PluginInfo = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder().getParent(), "XMCore/catsero.info"));
 
     /**
      * 尝试转为PlaceholderAPI文本
@@ -88,7 +87,7 @@ public interface Config {
         } else {
             locate = "zh_CN";
         }
-        FileConfiguration messageData = YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource("locate/" + locate + ".lang"), Charsets.UTF_8));
+        FileConfiguration messageData = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "locate/" + locate + ".lang"));
         if (messageData.getString(msid) != null) {
             return messageData.getString(msid);
         } else {
@@ -101,7 +100,7 @@ public interface Config {
      */
     static void reloadConfig() {
         plugin.reloadConfig();
-        UsesConfig.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(plugin.getResource("usesconfig.yml"), Charsets.UTF_8)));
+        UsesConfig.setDefaults(YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml")));
     }
 
 }
