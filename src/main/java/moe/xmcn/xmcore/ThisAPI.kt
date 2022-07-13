@@ -32,8 +32,13 @@ class ThisAPI {
                 }
                 out.close()
                 `in`.close()
-                File(plugin.dataFolder.parent, "XMCore/xmcore.info").renameTo(File(plugin.dataFolder.parent, "XMCore/catsero.info"))
-                File(plugin.dataFolder.parent,"XMCore/xmcore.info").delete()
+                File(plugin.dataFolder.parent, "XMCore/xmcore.info").renameTo(
+                    File(
+                        plugin.dataFolder.parent,
+                        "XMCore/catsero.info"
+                    )
+                )
+                File(plugin.dataFolder.parent, "XMCore/xmcore.info").delete()
             } catch (var10: IOException) {
                 plugin.logger.log(
                     Level.INFO,

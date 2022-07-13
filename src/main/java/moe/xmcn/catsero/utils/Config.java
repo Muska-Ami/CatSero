@@ -19,21 +19,20 @@ import java.io.File;
 public interface Config {
     Plugin plugin = Main.getPlugin(Main.class);
     FileConfiguration Config = plugin.getConfig();
-    FileConfiguration UsesConfig = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml"));
-
     long Use_Bot = Config.getLong("qq-set.bot");
     long Use_Group = Config.getLong("qq-set.group");
     long QQ_OP = Config.getLong("qq-set.qq-op");
     String Prefix_MC = Config.getString("format-list.prefix.to-mc") + ChatColor.translateAlternateColorCodes('&', "&r");
     String Prefix_QQ = Config.getString("format-list.prefix.to-qq");
-
+    FileConfiguration UsesConfig = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml"));
     FileConfiguration PluginInfo = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder().getParent(), "XMCore/catsero.info"));
 
     /**
      * 尝试转为PlaceholderAPI文本
-     * @param   player 玩家
-     * @param   text 旧文本
-     * @return  新文本
+     *
+     * @param player 玩家
+     * @param text   旧文本
+     * @return 新文本
      */
     static String tryToPAPI(Player player, String text) {
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
@@ -45,9 +44,10 @@ public interface Config {
 
     /**
      * 尝试转为PlaceholderAPI文本
-     * @param   player 发送者
-     * @param   text 旧文本
-     * @return  新文本
+     *
+     * @param player 发送者
+     * @param text   旧文本
+     * @return 新文本
      */
     static String tryToPAPI(CommandSender player, String text) {
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
@@ -77,8 +77,9 @@ public interface Config {
 
     /**
      * 获得回执文本
-     * @param msid  文本MsID
-     * @return      回执文本/undefined
+     *
+     * @param msid 文本MsID
+     * @return 回执文本/undefined
      */
     static String getMsgByMsID(String msid) {
         String locate;

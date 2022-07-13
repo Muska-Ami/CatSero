@@ -2,8 +2,8 @@ package moe.xmcn.catsero.events.listeners.ChatForward
 
 import me.dreamvoid.miraimc.api.MiraiMC
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent
-import moe.xmcn.catsero.events.gists.PlayerUUID
 import moe.xmcn.catsero.utils.Config
+import moe.xmcn.catsero.utils.PlayerUUID
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener

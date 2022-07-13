@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.events.gists;
+package moe.xmcn.catsero.events.listeners.PingHost;
 
 import moe.xmcn.catsero.utils.Punycode;
 
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class PingHost {
+public class Utils {
     /**
      * 向某个地址发包，并收取包
      *

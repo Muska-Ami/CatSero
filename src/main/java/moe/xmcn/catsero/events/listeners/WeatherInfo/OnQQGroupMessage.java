@@ -2,7 +2,6 @@ package moe.xmcn.catsero.events.listeners.WeatherInfo;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
-import moe.xmcn.catsero.events.gists.WeatherUtils;
 import moe.xmcn.catsero.utils.Config;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,7 +32,7 @@ public class OnQQGroupMessage implements Listener {
                             } catch (NoSuchElementException nse) {
                                 Config.plugin.getLogger().warning(Config.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
                             }
-                            String[] resvi = WeatherUtils.getWeather(args[2]);
+                            String[] resvi = Utils.getWeather(args[2]);
                             String message = Config.getMsgByMsID("qq.weatherinfo.success")
                                     .replace("%type%", resvi[4])
                                     .replace("%temperature%", resvi[1])
@@ -74,7 +73,7 @@ public class OnQQGroupMessage implements Listener {
                         } catch (NoSuchElementException nse) {
                             Config.plugin.getLogger().warning(Config.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
                         }
-                        String[] resvi = WeatherUtils.getWeather(args[2]);
+                        String[] resvi = Utils.getWeather(args[2]);
                         String message = Config.getMsgByMsID("qq.weatherinfo.success")
                                 .replace("%type%", resvi[4])
                                 .replace("%temperature%", resvi[1])

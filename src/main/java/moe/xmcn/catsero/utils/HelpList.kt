@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.events.gists
+package moe.xmcn.catsero.utils
 
 import org.bukkit.ChatColor
 

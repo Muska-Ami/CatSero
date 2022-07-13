@@ -3,8 +3,8 @@ package moe.xmcn.catsero.events.listeners.BindQQ
 import me.dreamvoid.miraimc.api.MiraiBot
 import me.dreamvoid.miraimc.api.MiraiMC
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent
-import moe.xmcn.catsero.events.gists.PlayerUUID
 import moe.xmcn.catsero.utils.Config
+import moe.xmcn.catsero.utils.PlayerUUID
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 
@@ -24,7 +24,9 @@ class OnQQGroupMessage : Listener {
     private fun isEnabled(event: MiraiGroupMessageEvent, args: List<String>) {
         if (args.size == 5 && args[2] == "add") {
             if (event.senderID == Config.QQ_OP) {
-                if (MiraiMC.getBind(args[3].toLong()).toString() != "" || MiraiMC.getBind(PlayerUUID.getUUIDByName(args[3])) != 0L) {
+                if (MiraiMC.getBind(args[3].toLong())
+                        .toString() != "" || MiraiMC.getBind(PlayerUUID.getUUIDByName(args[3])) != 0L
+                ) {
                     try {
                         MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Bot)
                             .sendMessageMirai(Config.getMsgByMsID("qq.bind-qq.already-bind"))
@@ -59,7 +61,9 @@ class OnQQGroupMessage : Listener {
             }
         } else if (args.size == 4 && args[2] == "remove") {
             if (event.senderID == Config.QQ_OP) {
-                if (MiraiMC.getBind(args[3].toLong()).toString() != "" || MiraiMC.getBind(PlayerUUID.getUUIDByName(args[3])) != 0L) {
+                if (MiraiMC.getBind(args[3].toLong())
+                        .toString() != "" || MiraiMC.getBind(PlayerUUID.getUUIDByName(args[3])) != 0L
+                ) {
                     MiraiMC.removeBind(args[3].toLong())
                     MiraiMC.removeBind(PlayerUUID.getUUIDByName(args[3]))
                     try {

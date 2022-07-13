@@ -2,7 +2,6 @@ package moe.xmcn.catsero.events.listeners.PingHost;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
-import moe.xmcn.catsero.events.gists.PingHost;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Punycode;
 import org.bukkit.event.EventHandler;
@@ -34,7 +33,7 @@ public class OnQQGroupMessage implements Listener {
                         } catch (NoSuchElementException nse) {
                             Config.plugin.getLogger().warning(Config.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
                         }
-                        String result = PingHost.PingHostUtils(args[2]);
+                        String result = Utils.PingHostUtils(args[2]);
                         if (Objects.equals(result, "Error")) {
                             try {
                                 MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.error"));
@@ -81,7 +80,7 @@ public class OnQQGroupMessage implements Listener {
                     } catch (NoSuchElementException nse) {
                         Config.plugin.getLogger().warning(Config.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
                     }
-                    String result = PingHost.PingHostUtils(args[2]);
+                    String result = Utils.PingHostUtils(args[2]);
                     if (Objects.equals(result, "Error")) {
                         try {
                             MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.error"));

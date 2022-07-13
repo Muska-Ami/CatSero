@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.events.commands
+package moe.xmcn.catsero.events.cmdboots
 
 import me.dreamvoid.miraimc.api.MiraiBot
 import moe.xmcn.catsero.utils.Config
@@ -28,7 +28,8 @@ class SendMessageQQ : CommandExecutor {
                             Config.Prefix_MC + Config.getMsgByMsID("general.send-message-qq-error")
                                 .replace("%error%", nse.toString())
                         )
-                    )                }
+                    )
+                }
             } catch (nse: NoSuchElementException) {
                 sender.sendMessage(
                     ChatColor.translateAlternateColorCodes(
@@ -48,4 +49,5 @@ class SendMessageQQ : CommandExecutor {
         }
         return false
     }
+
 }

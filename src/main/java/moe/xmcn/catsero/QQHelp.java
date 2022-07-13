@@ -2,8 +2,8 @@ package moe.xmcn.catsero;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
-import moe.xmcn.catsero.events.gists.HelpList;
 import moe.xmcn.catsero.utils.Config;
+import moe.xmcn.catsero.utils.HelpList;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
