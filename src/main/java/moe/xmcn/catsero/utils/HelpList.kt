@@ -5,12 +5,16 @@ import org.bukkit.ChatColor
 class HelpList {
     companion object {
         fun getList(how: String): String? {
-            return if (how == "mc") {
-                helpListMC()
-            } else if (how == "qq") {
-                helpListQQ()
-            } else {
-                null
+            return when (how) {
+                "mc" -> {
+                    helpListMC()
+                }
+                "qq" -> {
+                    helpListQQ()
+                }
+                else -> {
+                    null
+                }
             }
         }
 
