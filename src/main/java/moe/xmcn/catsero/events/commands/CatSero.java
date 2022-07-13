@@ -147,7 +147,7 @@ public class CatSero implements CommandExecutor {
         /*
           其他
          */
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "This server is running CatSero v" + Config.PluginInfo.getString("version") + " By " + Config.PluginInfo.getString("author")));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "This server is running CatSero v" + ChatColor.ITALIC + Config.PluginInfo.getString("version") + " By " + ChatColor.ITALIC + Config.PluginInfo.getString("author")));
             return true;
         }
         return false;
