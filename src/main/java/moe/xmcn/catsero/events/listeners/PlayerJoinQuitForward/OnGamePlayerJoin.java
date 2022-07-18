@@ -10,16 +10,12 @@ public class OnGamePlayerJoin implements Listener {
     @EventHandler
     public void onGamePlayerJoinEvent(PlayerJoinEvent pljev) {
         if (Config.UsesConfig.getBoolean("qmsg.send-player-join-quit.enabled")) {
-            isEnabled(pljev);
+            String pljname = pljev.getPlayer().getName();
+            String joinmsg = Config.UsesConfig.getString("qmsg.send-player-join-quit.format.join");
+            joinmsg = joinmsg.replace("%player%", pljname);
+            joinmsg = Config.tryToPAPI(pljev.getPlayer(), joinmsg);
+            Config.sendMiraiGroupMessage(joinmsg);
         }
-    }
-
-    private void isEnabled(PlayerJoinEvent pljev) {
-        String pljname = pljev.getPlayer().getName();
-        String joinmsg = Config.UsesConfig.getString("qmsg.send-player-join-quit.format.join");
-        joinmsg = joinmsg.replace("%player%", pljname);
-        joinmsg = Config.tryToPAPI(pljev.getPlayer(), joinmsg);
-        Config.sendMiraiGroupMessage(joinmsg);
     }
 
 }

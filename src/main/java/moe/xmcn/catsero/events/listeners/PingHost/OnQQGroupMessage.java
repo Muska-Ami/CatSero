@@ -14,13 +14,35 @@ public class OnQQGroupMessage implements Listener {
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         if (Config.UsesConfig.getBoolean("pinghost.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-            isEnabled(event);
-        }
-    }
-
-    private void isEnabled(MiraiGroupMessageEvent event) {
-        if (Config.UsesConfig.getBoolean("pinghost.op-only")) {
-            if (event.getSenderID() == Config.QQ_OP) {
+            if (Config.UsesConfig.getBoolean("pinghost.op-only")) {
+                if (event.getSenderID() == Config.QQ_OP) {
+                    String msg = event.getMessage();
+                    String[] args = msg.split(" ");
+                    if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
+                        try {
+                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.doing"));
+                            String result = Utils.PingHostUtils(args[2]);
+                            if (Objects.equals(result, "Error")) {
+                                Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.error"));
+                            } else {
+                                long flag = Long.parseLong(result);
+                                String message = Config.getMsgByMsID("qq.pinghost.success")
+                                        .replace("%address_original%", args[2])
+                                        .replace("%address_punycode%", Punycode.encodeURL(args[2]))
+                                        .replace("%withdraw%", String.valueOf(flag))
+                                        .replace("%lost%", String.valueOf(4 - flag))
+                                        .replace("%lost_percent%", String.valueOf((4 - flag) * 100 / 4));
+                                Config.sendMiraiGroupMessage(message);
+                                //MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(args[2] + "(" + (Punycode.encodeURL(args[2])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
+                            }
+                        } catch (UnknownHostException e) {
+                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.failed"));
+                        }
+                    }
+                } else {
+                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
+                }
+            } else {
                 String msg = event.getMessage();
                 String[] args = msg.split(" ");
                 if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
@@ -43,32 +65,6 @@ public class OnQQGroupMessage implements Listener {
                     } catch (UnknownHostException e) {
                         Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.failed"));
                     }
-                }
-            } else {
-                Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
-            }
-        } else {
-            String msg = event.getMessage();
-            String[] args = msg.split(" ");
-            if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
-                try {
-                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.doing"));
-                    String result = Utils.PingHostUtils(args[2]);
-                    if (Objects.equals(result, "Error")) {
-                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.error"));
-                    } else {
-                        long flag = Long.parseLong(result);
-                        String message = Config.getMsgByMsID("qq.pinghost.success")
-                                .replace("%address_original%", args[2])
-                                .replace("%address_punycode%", Punycode.encodeURL(args[2]))
-                                .replace("%withdraw%", String.valueOf(flag))
-                                .replace("%lost%", String.valueOf(4 - flag))
-                                .replace("%lost_percent%", String.valueOf((4 - flag) * 100 / 4));
-                        Config.sendMiraiGroupMessage(message);
-                        //MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(args[2] + "(" + (Punycode.encodeURL(args[2])) + ")" + " 的  Ping 统计信息：\n   数据包：已发送 = 4， 已接收 = " + flag + " ,丢失 = " + (4 - flag) + "(" + (4 - flag) * 100 / 4 + "% 丢失)");
-                    }
-                } catch (UnknownHostException e) {
-                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.failed"));
                 }
             }
         }

@@ -10,16 +10,12 @@ public class OnGamePlayerQuit implements Listener {
     @EventHandler
     public void onGamePlayerQuitEvent(PlayerQuitEvent plqev) {
         if (Config.UsesConfig.getBoolean("qmsg.send-player-join-quit.enabled")) {
-            isEnabled(plqev);
+            String plqname = plqev.getPlayer().getName();
+            String quitmsg = Config.UsesConfig.getString("qmsg.send-player-join-quit.format.quit");
+            quitmsg = quitmsg.replace("%player%", plqname);
+            quitmsg = Config.tryToPAPI(plqev.getPlayer(), quitmsg);
+            Config.sendMiraiGroupMessage(quitmsg);
         }
-    }
-
-    private void isEnabled(PlayerQuitEvent plqev) {
-        String plqname = plqev.getPlayer().getName();
-        String quitmsg = Config.UsesConfig.getString("qmsg.send-player-join-quit.format.quit");
-        quitmsg = quitmsg.replace("%player%", plqname);
-        quitmsg = Config.tryToPAPI(plqev.getPlayer(), quitmsg);
-        Config.sendMiraiGroupMessage(quitmsg);
     }
 
 }

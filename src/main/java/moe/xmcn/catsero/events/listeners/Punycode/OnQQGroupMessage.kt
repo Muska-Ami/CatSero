@@ -10,18 +10,14 @@ class OnGroupMessage : Listener {
     @EventHandler
     fun onMiraiGroupMessageEvent(event: MiraiGroupMessageEvent) {
         if (Config.UsesConfig.getBoolean("punycode.enabled") && event.groupID == Config.Use_Group && event.botID == Config.Use_Bot) {
-            isEnabled(event)
-        }
-    }
-
-    private fun isEnabled(event: MiraiGroupMessageEvent) {
-        val msg = event.message
-        val args = msg.split(" ")
-        if (args[0] == "catsero" && args[1] == "punycode") {
-            if (args[3] == "urlmode") {
-                Config.sendMiraiGroupMessage(Punycode.encodeURL(args[2]))
-            } else {
-                Config.sendMiraiGroupMessage(Punycode.encode(args[2]))
+            val msg = event.message
+            val args = msg.split(" ")
+            if (args[0] == "catsero" && args[1] == "punycode") {
+                if (args[3] == "urlmode") {
+                    Config.sendMiraiGroupMessage(Punycode.encodeURL(args[2]))
+                } else {
+                    Config.sendMiraiGroupMessage(Punycode.encode(args[2]))
+                }
             }
         }
     }

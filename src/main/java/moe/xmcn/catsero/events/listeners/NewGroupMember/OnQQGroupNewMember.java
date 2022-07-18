@@ -11,16 +11,13 @@ public class OnQQGroupNewMember implements Listener {
     @EventHandler
     public void onMiraiGroupMemberJoinEvent(MiraiMemberJoinEvent event) {
         if (Config.UsesConfig.getBoolean("new-group-member-message.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-            isEnabled(event);
+            long code = event.getNewMemberID();
+            String message = Config.UsesConfig.getString("new-group-member-message.format");
+            message = message
+                    .replace("%code%", String.valueOf(code))
+                    .replace("%at%", "[mirai:at:" + code + "]");
+            Config.sendMiraiGroupMessage(message);
         }
     }
 
-    private void isEnabled(MiraiMemberJoinEvent event) {
-        long code = event.getNewMemberID();
-        String message = Config.UsesConfig.getString("new-group-member-message.format");
-        message = message
-                .replace("%code%", String.valueOf(code))
-                .replace("%at%", "[mirai:at:" + code + "]");
-        Config.sendMiraiGroupMessage(message);
-    }
 }

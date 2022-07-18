@@ -15,14 +15,6 @@ public class OnQQGroupMessage implements Listener {
         String message = event.getMessage();
         String[] args = message.split(" ");
         if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "tps") && Config.UsesConfig.getBoolean("tps.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-            isEnabled(event);
-        }
-    }
-
-    private void isEnabled(MiraiGroupMessageEvent event) {
-        String message = event.getMessage();
-        String[] args = message.split(" ");
-        if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "tps")) {
             Config.sendMiraiGroupMessage(String.valueOf(ServerTPS.getTPS()));
         }
     }
