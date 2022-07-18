@@ -1,7 +1,7 @@
 # CatSero配置文件
 
 # 语言文件
-locate: zh_CN
+locale: zh_CN
 # 接受bStats统计(https://bstats.org)
 allow-bstats: true
 # 接受插件启动时的警告

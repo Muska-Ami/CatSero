@@ -83,13 +83,13 @@ public interface Config {
      * @return 回执文本/undefined
      */
     static String getMsgByMsID(String msid) {
-        String locate;
+        String locale;
         if (Config.getString("locale") != null) {
-            locate = Config.getString("locale");
+            locale = Config.getString("locale");
         } else {
-            locate = "zh_CN";
+            locale = "zh_CN";
         }
-        FileConfiguration messageData = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "locale/" + locate + ".lang"));
+        FileConfiguration messageData = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "locale/" + locale + ".lang"));
         if (messageData.getString(msid) != null) {
             return messageData.getString(msid);
         } else {

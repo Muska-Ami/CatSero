@@ -36,14 +36,11 @@ public class OnGameCommand {
                         } catch (UnknownHostException e) {
                             sender.sendMessage(Config.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.pinghost.failed"))));
                         }
-                        return true;
                     } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&c请键入正确的地址"));
-                        return false;
                     }
                 } else {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.no-permission")));
-                    return false;
                 }
             } else if (args.length == 2) {
                 try {
@@ -65,11 +62,10 @@ public class OnGameCommand {
                 } catch (UnknownHostException e) {
                     sender.sendMessage(Config.tryToPAPI(sender, ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.pinghost.failed"))));
                 }
-                return true;
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&c请键入正确的地址"));
-                return false;
             }
+            return true;
         }
         return false;
     }

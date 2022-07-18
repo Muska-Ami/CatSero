@@ -65,4 +65,5 @@ public class Updater {
     public String toString() {
         return name + "╳" + durl + "╳" + devname + "╳" + devdurl + "╳";
     }
+
 }

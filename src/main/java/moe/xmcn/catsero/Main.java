@@ -125,6 +125,6 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.BindQQ.OnQQGroupMessage(), this);
 
         getLogger().log(Level.INFO, "正在注册事件 -> QQ帮助菜单");
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.QQHelp(), this);
+        getServer().getPluginManager().registerEvents(new QQHelp(), this);
     }
 }
