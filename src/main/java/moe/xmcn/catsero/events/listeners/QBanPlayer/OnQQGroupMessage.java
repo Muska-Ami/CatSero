@@ -16,7 +16,6 @@ public class OnQQGroupMessage implements Listener {
             String msg = event.getMessage();
             String[] args = msg.split(" ");
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ban")) {
-
                 if (event.getSenderID() == Config.QQ_OP) {
                     if (args.length == 5) {
                         Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], args[3], null, null);

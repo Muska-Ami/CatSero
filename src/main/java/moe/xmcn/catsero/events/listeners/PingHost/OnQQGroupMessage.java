@@ -14,11 +14,11 @@ public class OnQQGroupMessage implements Listener {
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         if (Config.UsesConfig.getBoolean("pinghost.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-            if (Config.UsesConfig.getBoolean("pinghost.op-only")) {
-                if (event.getSenderID() == Config.QQ_OP) {
-                    String msg = event.getMessage();
-                    String[] args = msg.split(" ");
-                    if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
+            String msg = event.getMessage();
+            String[] args = msg.split(" ");
+            if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
+                if (Config.UsesConfig.getBoolean("pinghost.op-only")) {
+                    if (event.getSenderID() == Config.QQ_OP) {
                         try {
                             Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.doing"));
                             String result = Utils.PingHostUtils(args[2]);
@@ -38,14 +38,10 @@ public class OnQQGroupMessage implements Listener {
                         } catch (UnknownHostException e) {
                             Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.failed"));
                         }
+                    } else {
+                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
                     }
                 } else {
-                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
-                }
-            } else {
-                String msg = event.getMessage();
-                String[] args = msg.split(" ");
-                if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
                     try {
                         Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.doing"));
                         String result = Utils.PingHostUtils(args[2]);

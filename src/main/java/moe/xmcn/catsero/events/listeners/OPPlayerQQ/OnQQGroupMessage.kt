@@ -25,8 +25,6 @@ class OnGroupMessage : Listener {
                     plname.isOp = true
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + "已添加新的管理员")
                 }
-            } else {
-                Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"))
             }
         }
     }
