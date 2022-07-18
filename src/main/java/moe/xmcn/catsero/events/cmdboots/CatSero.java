@@ -24,13 +24,17 @@ public class CatSero implements CommandExecutor {
             } else if (moe.xmcn.catsero.events.listeners.Punycode.OnGameCommand.onCommand(sender, command, label, args)) {
                 // 重载配置
             } else if (args[0].equalsIgnoreCase("reload")) {
-                Config.reloadConfig();
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&a配置文件已重载"));
-                return true;
+                if (sender.hasPermission("catsero.admin")) {
+                    Config.reloadConfig();
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&a配置文件已重载"));
+                    return true;
+                }
                 // 检查更新
             } else if (args[0].equalsIgnoreCase("update")) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&a开始检查更新..."));
-                sender.sendMessage(Updater.startUpdateCheck(true));
+                if (sender.hasPermission("catsero.admin")) {
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&a开始检查更新..."));
+                    sender.sendMessage(Updater.startUpdateCheck(true));
+                }
                 // 帮助
             } else if (args[0].equalsIgnoreCase("help")) {
                 sender.sendMessage(HelpList.Companion.getList("mc"));

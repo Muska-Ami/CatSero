@@ -31,6 +31,8 @@ class HelpList {
                 &dPunycode文本 [urlmode]:URL模式&r
             &3/catsero reload&r
                 &d重载配置文件&r
+            &3/catsero update&r
+                &d检查更新&r
             &a----&b*&a-&b*&c---&e##==&r &l++++++++++++++++++++&r &e==##&c---&b*&a-&b*&a----&r
         """
             return ChatColor.translateAlternateColorCodes('&', list.trimIndent())

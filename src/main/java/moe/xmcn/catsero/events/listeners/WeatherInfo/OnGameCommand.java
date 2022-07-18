@@ -26,16 +26,13 @@ public class OnGameCommand {
                     //sender.sendMessage("天气信息:\n 类型:" + resvi[4] + "\n 温度:" + resvi[1] + "\n 风力:" + resvi[2] + "\n 风向:" + resvi[3] + "\n 日期:" + resvi[0]);
                 } catch (UnsupportedEncodingException uee) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.weatherinfo.error")));
-                    return false;
                 }
-                return true;
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.weatherinfo.null-city")));
-                return false;
             }
 
         }
-        return false;
+        return true;
     }
 
 }
