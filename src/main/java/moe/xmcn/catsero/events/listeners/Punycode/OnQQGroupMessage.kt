@@ -13,7 +13,7 @@ class OnGroupMessage : Listener {
             val msg = event.message
             val args = msg.split(" ")
             if (args[0] == "catsero" && args[1] == "punycode") {
-                if (args[3] == "urlmode") {
+                if (args.size == 4 && args[3] == "urlmode") {
                     Config.sendMiraiGroupMessage(Punycode.encodeURL(args[2]))
                 } else {
                     Config.sendMiraiGroupMessage(Punycode.encode(args[2]))
