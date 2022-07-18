@@ -59,7 +59,7 @@ public class Main extends JavaPlugin {
                 @Override
                 public void run() {
                     getLogger().log(Level.INFO, "开始检查更新...");
-                    getLogger().log(Level.INFO, Updater.startUpdateCheck());
+                    getLogger().log(Level.INFO, Updater.startUpdateCheck(false));
                 }
             }.runTaskAsynchronously(this);
         } else {

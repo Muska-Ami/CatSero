@@ -30,7 +30,7 @@ public class CatSero implements CommandExecutor {
                 // 检查更新
             } else if (args[0].equalsIgnoreCase("update")) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&a开始检查更新..."));
-                sender.sendMessage(Updater.startUpdateCheck());
+                sender.sendMessage(Updater.startUpdateCheck(true));
                 // 帮助
             } else if (args[0].equalsIgnoreCase("help")) {
                 sender.sendMessage(HelpList.Companion.getList("mc"));
