@@ -20,8 +20,6 @@ class OnGroupMessage : Listener {
                 Config.sendMiraiGroupMessage(
                     Config.Prefix_QQ + Config.getMsgByMsID("qq.qkick-player.kick").replace("%player%", args[2])
                 )
-            } else {
-                Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"))
             }
         }
     }
