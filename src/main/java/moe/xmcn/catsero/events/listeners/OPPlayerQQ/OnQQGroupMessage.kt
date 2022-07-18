@@ -1,6 +1,5 @@
 package moe.xmcn.catsero.events.listeners.OPPlayerQQ
 
-import me.dreamvoid.miraimc.api.MiraiBot
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent
 import moe.xmcn.catsero.utils.Config
 import moe.xmcn.catsero.utils.PlayerUUID
@@ -26,37 +25,13 @@ class OnGroupMessage : Listener {
             val plname: ServerOperator = Bukkit.getPlayer(pl)
             val isOp = plname.isOp
             if (isOp) {
-                try {
-                    MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
-                        .sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.already-is-op"))
-                } catch (nse: NoSuchElementException) {
-                    Config.plugin.logger.warning(
-                        Config.getMsgByMsID("general.send-message-qq-error")
-                            .replace("%error%", nse.toString() + nse.stackTrace)
-                    )
-                }
+                Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.already-is-op"))
             } else {
                 plname.isOp = true
-                try {
-                    MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
-                        .sendMessageMirai(Config.Prefix_QQ + "已添加新的管理员")
-                } catch (nse: NoSuchElementException) {
-                    Config.plugin.logger.warning(
-                        Config.getMsgByMsID("general.send-message-qq-error")
-                            .replace("%error%", nse.toString() + nse.stackTrace)
-                    )
-                }
+                Config.sendMiraiGroupMessage(Config.Prefix_QQ + "已添加新的管理员")
             }
         } else {
-            try {
-                MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
-                    .sendMessageMirai(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"))
-            } catch (nse: NoSuchElementException) {
-                Config.plugin.logger.warning(
-                    Config.getMsgByMsID("general.send-message-qq-error")
-                        .replace("%error%", nse.toString() + nse.stackTrace)
-                )
-            }
+            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"))
         }
     }
 

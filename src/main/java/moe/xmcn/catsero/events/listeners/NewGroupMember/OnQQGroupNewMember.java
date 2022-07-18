@@ -1,13 +1,9 @@
 package moe.xmcn.catsero.events.listeners.NewGroupMember;
 
-import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.group.member.MiraiMemberJoinEvent;
 import moe.xmcn.catsero.utils.Config;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 public class OnQQGroupNewMember implements Listener {
 
@@ -25,10 +21,6 @@ public class OnQQGroupNewMember implements Listener {
         message = message
                 .replace("%code%", String.valueOf(code))
                 .replace("%at%", "[mirai:at:" + code + "]");
-        try {
-            MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(message);
-        } catch (NoSuchElementException nse) {
-            Config.plugin.getLogger().warning(Config.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
-        }
+        Config.sendMiraiGroupMessage(message);
     }
 }

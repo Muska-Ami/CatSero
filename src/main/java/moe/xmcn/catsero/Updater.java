@@ -35,7 +35,7 @@ public class Updater {
             String[] upregex = String.valueOf(updater).split("╳");
             if (Objects.equals(nowversion, "dev")) {
                 return ChatColor.GREEN + "最新构建ID：" + upregex[2] + ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[3];
-            } else if (!Objects.equals(upregex[0], nowversion) && !nowversion.contains("pre") && Objects.equals(nowversion, "passed")) {
+            } else if (!Objects.equals(upregex[0], nowversion) && Objects.equals(nowversion, "passed")) {
                 return ChatColor.GREEN + "已找到可用的更新：" + upregex[0] + ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[1];
             } else {
                 return "已是最新版本";

@@ -1,14 +1,11 @@
 package moe.xmcn.catsero;
 
-import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.HelpList;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class QQHelp implements Listener {
@@ -18,11 +15,7 @@ public class QQHelp implements Listener {
         String message = event.getMessage();
         String[] args = message.split(" ");
         if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "help")) {
-            try {
-                MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(HelpList.Companion.getList("qq"));
-            } catch (NoSuchElementException nse) {
-                Config.plugin.getLogger().warning(Config.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
-            }
+            Config.sendMiraiGroupMessage(HelpList.Companion.getList("qq"));
         }
     }
 

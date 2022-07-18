@@ -1,13 +1,9 @@
 package moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward;
 
-import me.dreamvoid.miraimc.api.MiraiBot;
 import moe.xmcn.catsero.utils.Config;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 public class OnGamePlayerQuit implements Listener {
 
@@ -23,11 +19,7 @@ public class OnGamePlayerQuit implements Listener {
         String quitmsg = Config.UsesConfig.getString("qmsg.send-player-join-quit.format.quit");
         quitmsg = quitmsg.replace("%player%", plqname);
         quitmsg = Config.tryToPAPI(plqev.getPlayer(), quitmsg);
-        try {
-            MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(quitmsg);
-        } catch (NoSuchElementException nse) {
-            Config.plugin.getLogger().warning(Config.getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
-        }
+        Config.sendMiraiGroupMessage(quitmsg);
     }
 
 }

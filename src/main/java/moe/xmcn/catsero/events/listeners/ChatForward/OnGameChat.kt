@@ -1,6 +1,5 @@
 package moe.xmcn.catsero.events.listeners.ChatForward
 
-import me.dreamvoid.miraimc.api.MiraiBot
 import moe.xmcn.catsero.utils.Config
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -10,7 +9,7 @@ class OnGameChat : Listener {
 
     @EventHandler
     fun onAsyncGameChat(event: AsyncPlayerChatEvent) {
-        if (Config.UsesConfig.getBoolean("forward-chat.enabled") && Config.UsesConfig.getBoolean("chat-forward.async")) {
+        if (Config.UsesConfig.getBoolean("forward-chat.enabled")) {
             isEnabled(event)
         }
     }
@@ -49,28 +48,12 @@ class OnGameChat : Listener {
             message
         }).toString()
 
-        val firstzf = message.first()
-        if (Config.UsesConfig.getBoolean("forward-chat.prefix.enabled") && firstzf.toString() == Config.UsesConfig.getString(
-                "forward-chat.prefix.format.to-qq"
-            )
-        ) {
-            try {
-                MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(message)
-            } catch (nse: NoSuchElementException) {
-                Config.plugin.logger.warning(
-                    Config.getMsgByMsID("general.send-message-qq-error")
-                        .replace("%error%", nse.toString() + nse.stackTrace)
-                )
+        if (Config.UsesConfig.getBoolean("forward-chat.prefix.enabled")) {
+            if (message.startsWith(Config.UsesConfig.getString("forward-chat.prefix.format.to-qq"))) {
+                Config.sendMiraiGroupMessage(message)
             }
         } else {
-            try {
-                MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group).sendMessageMirai(message)
-            } catch (nse: NoSuchElementException) {
-                Config.plugin.logger.warning(
-                    Config.getMsgByMsID("general.send-message-qq-error")
-                        .replace("%error%", nse.toString() + nse.stackTrace)
-                )
-            }
+            Config.sendMiraiGroupMessage(message)
         }
     }
 

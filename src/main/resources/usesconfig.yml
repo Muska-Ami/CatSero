@@ -46,10 +46,11 @@ forward-chat:
   format:
     to-mc: "[%time%][QQ][%groupname%(%groupcode%)]%sendername%(%sendercode%):\n%message%"
     to-qq: "[MC]%player%:\n%message%"
+  # 聊天转发前缀
   prefix:
     # 启用此功能
     enabled: false
-    # 格式(只支持单个，字符，请勿输入多个)
+    # 格式
     format:
       to-mc: "#"
       to-qq: "#"
@@ -81,9 +82,3 @@ get-tps:
 bind-qq:
   # 启用此功能
   enabled: false
-  # 自助申请
-  self-service-application:
-    # 启用此功能
-    enabled: false
-    # 自助申请前缀(切勿写入空格，申请格式(无需中括号): [前缀 MC账户名])
-    prefix: "bd"

@@ -1,6 +1,5 @@
 package moe.xmcn.catsero.events.listeners.Punycode
 
-import me.dreamvoid.miraimc.api.MiraiBot
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent
 import moe.xmcn.catsero.utils.Config
 import moe.xmcn.catsero.utils.Punycode
@@ -20,25 +19,9 @@ class OnGroupMessage : Listener {
         val args = msg.split(" ")
         if (args[0] == "catsero" && args[1] == "punycode") {
             if (args[3] == "urlmode") {
-                try {
-                    MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
-                        .sendMessageMirai(Punycode.encodeURL(args[2]))
-                } catch (nse: NoSuchElementException) {
-                    Config.plugin.logger.warning(
-                        Config.getMsgByMsID("general.send-message-qq-error")
-                            .replace("%error%", nse.toString() + nse.stackTrace)
-                    )
-                }
+                Config.sendMiraiGroupMessage(Punycode.encodeURL(args[2]))
             } else {
-                try {
-                    MiraiBot.getBot(Config.Use_Bot).getGroup(Config.Use_Group)
-                        .sendMessageMirai(Punycode.encode(args[2]))
-                } catch (nse: NoSuchElementException) {
-                    Config.plugin.logger.warning(
-                        Config.getMsgByMsID("general.send-message-qq-error")
-                            .replace("%error%", nse.toString() + nse.stackTrace)
-                    )
-                }
+                Config.sendMiraiGroupMessage(Punycode.encode(args[2]))
             }
         }
     }

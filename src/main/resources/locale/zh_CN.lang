@@ -44,7 +44,7 @@ qq:
        日期:%date%
     null-city: 请输入城市
   qkick-player:
-    error: 玩家不存在或发生错误
+    kick: 已尝试踢出玩家%player%
   qop-player:
     already-is-op: 玩家已经是管理员了！
     success: 已添加新的管理员

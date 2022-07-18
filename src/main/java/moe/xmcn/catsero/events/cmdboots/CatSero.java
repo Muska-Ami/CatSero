@@ -18,23 +18,23 @@ public class CatSero implements CommandExecutor {
         if (args.length >= 1) {
             // Ping功能
             if (moe.xmcn.catsero.events.listeners.PingHost.OnGameCommand.onCommand(sender, command, label, args)) {
-            // 天气获取
+                // 天气获取
             } else if (moe.xmcn.catsero.events.listeners.WeatherInfo.OnGameCommand.onCommand(sender, command, label, args)) {
-            // Punycode
+                // Punycode
             } else if (moe.xmcn.catsero.events.listeners.Punycode.OnGameCommand.onCommand(sender, command, label, args)) {
-            // 重载配置
+                // 重载配置
             } else if (args[0].equalsIgnoreCase("reload")) {
                 Config.reloadConfig();
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&a配置文件已重载"));
                 return true;
-            // 检查更新
+                // 检查更新
             } else if (args[0].equalsIgnoreCase("update")) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&a开始检查更新..."));
                 sender.sendMessage(Updater.startUpdateCheck());
-            // 帮助
+                // 帮助
             } else if (args[0].equalsIgnoreCase("help")) {
                 sender.sendMessage(HelpList.Companion.getList("mc"));
-            // 传入了参数但是未找到方法
+                // 传入了参数但是未找到方法
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.undefined-usage")));
                 return false;
