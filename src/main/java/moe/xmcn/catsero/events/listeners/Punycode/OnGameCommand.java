@@ -15,9 +15,8 @@ public class OnGameCommand {
             } else {
                 sender.sendMessage(Punycode.encode(args[1]));
             }
-            return true;
         }
-        return false;
+        return true;
     }
 
 }
