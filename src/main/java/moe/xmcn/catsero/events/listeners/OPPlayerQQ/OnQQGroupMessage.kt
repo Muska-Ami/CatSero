@@ -8,7 +8,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.permissions.ServerOperator
 
-class OnGroupMessage : Listener {
+class OnQQGroupMessage : Listener {
 
     @EventHandler
     fun onMiraiGroupMessageEvent(event: MiraiGroupMessageEvent) {

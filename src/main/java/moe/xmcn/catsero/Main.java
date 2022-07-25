@@ -1,9 +1,5 @@
 package moe.xmcn.catsero;
 
-import moe.xmcn.catsero.events.listeners.NewGroupMember.OnQQGroupNewMember;
-import moe.xmcn.catsero.events.listeners.PingHost.OnQQGroupMessage;
-import moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward.OnGamePlayerJoin;
-import moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward.OnGamePlayerQuit;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Metrics;
 import moe.xmcn.catsero.utils.ServerTPS;
@@ -90,7 +86,7 @@ public class Main extends JavaPlugin {
 
         getLogger().log(Level.INFO, "正在注册事件 -> 监听器:Listener");
         // PingHost功能
-        getServer().getPluginManager().registerEvents(new OnQQGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.PingHost.OnQQGroupMessage(), this);
 
         // ChatForward聊天转发功能
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.ChatForward.OnGameChat(), this);
@@ -103,17 +99,17 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.WeatherInfo.OnQQGroupMessage(), this);
 
         // PlayerJoinQuitForward玩家加入/退出消息->QQ功能
-        getServer().getPluginManager().registerEvents(new OnGamePlayerJoin(), this);
-        getServer().getPluginManager().registerEvents(new OnGamePlayerQuit(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward.OnGamePlayerJoin(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.PlayerJoinQuitForward.OnGamePlayerQuit(), this);
 
         // NewGroupMember群成员变更消息
-        getServer().getPluginManager().registerEvents(new OnQQGroupNewMember(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.NewGroupMember.OnQQGroupNewMember(), this);
 
         // OPPlayerQQ QQ添加OP
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.OPPlayerQQ.OnGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.OPPlayerQQ.OnQQGroupMessage(), this);
 
         // KickPlayerQQ QQ踢人
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.KickPlayerQQ.OnGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.KickPlayerQQ.OnQQGroupMessage(), this);
 
         // PunyCode PunyCode功能
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.Punycode.OnGroupMessage(), this);
