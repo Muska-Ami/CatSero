@@ -28,6 +28,8 @@ public class OnQQGroupMessage implements Listener {
                     plu.setOp(true);
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + "已添加新的管理员");
                 }
+            } else {
+                Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
             }
         }
     }
@@ -47,6 +49,8 @@ public class OnQQGroupMessage implements Listener {
                     plu.setOp(false);
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + "已移除管理员");
                 }
+            } else {
+                Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
             }
         }
     }

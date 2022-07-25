@@ -10,11 +10,21 @@ public class OnGamePlayerQuit implements Listener {
     @EventHandler
     public void onGamePlayerQuitEvent(PlayerQuitEvent plqev) {
         if (Config.UsesConfig.getBoolean("qmsg.send-player-join-quit.enabled")) {
-            String plqname = plqev.getPlayer().getName();
-            String quitmsg = Config.UsesConfig.getString("qmsg.send-player-join-quit.format.quit");
-            quitmsg = quitmsg.replace("%player%", plqname);
-            quitmsg = Config.tryToPAPI(plqev.getPlayer(), quitmsg);
-            Config.sendMiraiGroupMessage(quitmsg);
+            if (Config.UsesConfig.getBoolean("send-player-join-quit.need-permission")) {
+                if (plqev.getPlayer().hasPermission("catsero.send-player-join-quit.quit")){
+                    String plqname = plqev.getPlayer().getName();
+                    String quitmsg = Config.UsesConfig.getString("qmsg.send-player-join-quit.format.quit");
+                    quitmsg = quitmsg.replace("%player%", plqname);
+                    quitmsg = Config.tryToPAPI(plqev.getPlayer(), quitmsg);
+                    Config.sendMiraiGroupMessage(quitmsg);
+                }
+            } else {
+                String plqname = plqev.getPlayer().getName();
+                String quitmsg = Config.UsesConfig.getString("qmsg.send-player-join-quit.format.quit");
+                quitmsg = quitmsg.replace("%player%", plqname);
+                quitmsg = Config.tryToPAPI(plqev.getPlayer(), quitmsg);
+                Config.sendMiraiGroupMessage(quitmsg);
+            }
         }
     }
 

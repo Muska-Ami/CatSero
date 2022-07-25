@@ -37,6 +37,8 @@ send-player-join-quit:
   format:
     join: "%player%加入了游戏"
     quit: "%player%退出了游戏"
+  # 是否需要权限
+  need-permission: false
 
 # 转发MC-QQ聊天
 forward-chat:

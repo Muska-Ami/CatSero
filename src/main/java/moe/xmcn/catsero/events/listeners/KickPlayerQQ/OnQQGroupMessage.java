@@ -21,6 +21,8 @@ public class OnQQGroupMessage implements Listener {
                 UUID pl = PlayerUUID.getUUIDByName(args[2]);
                 Bukkit.getPlayer(pl).kickPlayer(Config.UsesConfig.getString("qkick-player.message"));
                 Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qkick-player.kick").replace("%player%", args[2]));
+            } else {
+                Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
             }
         }
     }
