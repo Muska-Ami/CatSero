@@ -112,7 +112,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.KickPlayerQQ.OnQQGroupMessage(), this);
 
         // PunyCode PunyCode功能
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.Punycode.OnGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.Punycode.OnQQGroupMessage(), this);
 
         // GetTPS 获取TPS功能
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.GetTPS.OnQQGroupMessage(), this);

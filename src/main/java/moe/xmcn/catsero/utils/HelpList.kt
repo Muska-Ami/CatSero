@@ -51,6 +51,8 @@ class HelpList {
                 Punycode文本 [urlmode]:URL模式
             catsero setop <玩家名>
                 将玩家设为OP
+            catsero removeop <玩家名>
+                移除玩家OP
             catsero kick <玩家名>
                 踢出一个玩家
             catsero ban <玩家名>

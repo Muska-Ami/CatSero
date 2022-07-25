@@ -46,7 +46,8 @@ qq:
   qkick-player:
     kick: 已尝试踢出玩家%player%
   qop-player:
-    already-is-op: 玩家已经是管理员了！
+    already-is-op: 玩家已是管理员
+    already-not-op: 玩家不是管理员
     success: 已添加新的管理员
   qban-player:
     success: |-

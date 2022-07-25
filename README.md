@@ -17,25 +17,26 @@
 
 ## 未来功能
 
-### 插件功能
+### 待修复/实现
 
 - [x] QQ群-Minecraft消息互转(异步)
-- [x] Minecraft玩家加入/退出通知到QQ
 - [x] QQ群踢人
-- [x] QQ群Ban人
 - [ ] QQ群娱乐功能(遥遥无期，XD，希望有dalao PR一下)
+- [ ] 自动回复功能
+- [x] TPS获取功能
+
+### 已经实现
+
+- [x] 自动检查更新
+- [x] Minecraft玩家加入/退出通知到QQ
+- [x] QQ群Ban人
 - [x] Ping功能(Minecraft内/QQ群内)
 - [x] QQ群给予OP
+- [x] QQ群移除OP
 - [x] 天气获取
 - [x] 迎新功能
 - [x] PlaceholderAPI变量支持
-- [ ] 自动回复功能
-- [x] PunyCode功能
-- [x] TPS获取功能
-
-### 其他
-
-- [x] 自动检查更新
+- [x] Punycode功能
 
 # 命令
 
@@ -55,11 +56,12 @@
 |-----------------------------------|------------------------------|
 | catsero ping <地址>                 | Ping某一个地址                    |
 | catsero weather <中国大陆城市>          | 获取某个城市的天气                    |
-| catsero setop <玩家名>               | 给予一个玩家操作员权限                  |
+| catsero setop <玩家名>               | 给予一个玩家OP                     |
 | catsero kick <玩家名>                | 踢出一个在线玩家                     |
 | catsero ban <玩家名>                 | 封禁一个玩家                       |
 | catsero punycode <文本> \[urlmode\] | Punycode文本 \[urlmode\]:URL模式 |
 | catsero tps                       | 获取服务器TPS                     |
+| catsero removeop <玩家名>            | 移除一个玩家OP                     |
 
 # bStats
 
