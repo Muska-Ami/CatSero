@@ -2,6 +2,7 @@ package moe.xmcn.catsero.events.listeners.WeatherInfo;
 
 import com.google.gson.Gson;
 import moe.xmcn.catsero.utils.HttpUtils;
+import org.bukkit.ChatColor;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -28,9 +29,13 @@ public class Utils {
         String cityname = URLEncoder.encode(cn, "UTF-8");
         String weather_url = "https://csu.huahuo-cn.tk/api/wthr.php?city=" + cityname;
         String datajson = HttpUtils.sendGet(weather_url, "UTF-8");
-        Gson gson = new Gson();
-        Utils weatherutils = gson.fromJson(datajson, Utils.class);
-        return String.valueOf(weatherutils).split("╳");
+        if (datajson.equals("undefined")) {
+            return ("无法与服务器建立连接").split("-");
+        } else {
+            Gson gson = new Gson();
+            Utils weatherutils = gson.fromJson(datajson, Utils.class);
+            return String.valueOf(weatherutils).split("╳");
+        }
     }
 
     @Override

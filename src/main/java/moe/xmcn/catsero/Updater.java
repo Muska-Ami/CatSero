@@ -29,31 +29,39 @@ public class Updater {
         String versiontype = Config.Config.getString("check-update.version");
         if (Config.plugin.getConfig().getBoolean("check-update.enabled")) {
             String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8");
-            Gson gson = new Gson();
-            Updater updater = gson.fromJson(datajson, Updater.class);
-            String[] upregex = String.valueOf(updater).split("╳");
-            boolean msea = Objects.equals(nowversion, "dev");
-            boolean mseb = !Objects.equals(upregex[0], nowversion) && Objects.equals(versiontype, "passed");
-            boolean msec = !Objects.equals(versiontype, "passed") && !Objects.equals(versiontype, "dev");
-            if (color) {
-                if (msea) {
-                    return ChatColor.GREEN + "最新构建ID：" + upregex[2] + ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[3];
-                } else if (mseb) {
-                    return ChatColor.GREEN + "已找到可用的更新：" + upregex[0] + ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[1];
-                } else if (msec) {
-                    return ChatColor.RED + "版本有误/请求更新失败！";
+            if (datajson.equals("undefined")) {
+                if (color) {
+                    return ChatColor.RED + "无法与服务器建立连接";
                 } else {
-                    return "已是最新版本";
+                    return "无法与服务器建立连接";
                 }
             } else {
-                if (msea) {
-                    return "最新构建ID：" + upregex[2] + "下载地址：" + upregex[3];
-                } else if (mseb) {
-                    return "已找到可用的更新：" + upregex[0] + "下载地址：" + upregex[1];
-                } else if (msec) {
-                    return "版本有误/请求更新失败！";
+                Gson gson = new Gson();
+                Updater updater = gson.fromJson(datajson, Updater.class);
+                String[] upregex = String.valueOf(updater).split("╳");
+                boolean msea = Objects.equals(nowversion, "dev");
+                boolean mseb = !Objects.equals(upregex[0], nowversion) && Objects.equals(versiontype, "passed");
+                boolean msec = !Objects.equals(versiontype, "passed") && !Objects.equals(versiontype, "dev");
+                if (color) {
+                    if (msea) {
+                        return ChatColor.GREEN + "最新构建ID：" + upregex[2] + ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[3];
+                    } else if (mseb) {
+                        return ChatColor.GREEN + "已找到可用的更新：" + upregex[0] + ChatColor.GREEN + "下载地址：" + ChatColor.YELLOW + upregex[1];
+                    } else if (msec) {
+                        return ChatColor.RED + "版本有误/请求更新失败！";
+                    } else {
+                        return "已是最新版本";
+                    }
                 } else {
-                    return "已是最新版本";
+                    if (msea) {
+                        return "最新构建ID：" + upregex[2] + "下载地址：" + upregex[3];
+                    } else if (mseb) {
+                        return "已找到可用的更新：" + upregex[0] + "下载地址：" + upregex[1];
+                    } else if (msec) {
+                        return "版本有误/请求更新失败！";
+                    } else {
+                        return "已是最新版本";
+                    }
                 }
             }
         } else {

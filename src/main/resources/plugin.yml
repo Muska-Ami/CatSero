@@ -10,7 +10,7 @@ softdepend:
 commands:
   catsero:
     description: "CatSero 基础方法"
-  csm:
+  cms:
     description: "CatSero 发消息到QQ群"
 permissions:
   catsero.*:

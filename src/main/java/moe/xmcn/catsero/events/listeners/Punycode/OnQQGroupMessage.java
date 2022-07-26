@@ -15,7 +15,7 @@ public class OnQQGroupMessage implements Listener {
             String msg = event.getMessage();
             String[] args = msg.split(" ");
             if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "punycode")) {
-                if (args.length == 4 && Objects.equals(args[3], "urlmode")) {
+                if (args.length == 4 && Config.UsesConfig.getBoolean("punycode.url-support") && Objects.equals(args[3], "urlmode")) {
                     Config.sendMiraiGroupMessage(Punycode.encodeURL(args[2]));
                 } else {
                     Config.sendMiraiGroupMessage(Punycode.encode(args[2]));

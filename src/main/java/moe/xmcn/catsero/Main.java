@@ -81,8 +81,8 @@ public class Main extends JavaPlugin {
         getLogger().log(Level.INFO, "正在注册事件 -> 监听器:CommandExecutor");
         // catsero命令
         Bukkit.getPluginCommand("catsero").setExecutor(new moe.xmcn.catsero.events.cmdboots.CatSero());
-        // csm命令
-        Bukkit.getPluginCommand("csm").setExecutor(new moe.xmcn.catsero.events.cmdboots.SendMessageQQ());
+        // cms命令
+        Bukkit.getPluginCommand("cms").setExecutor(new moe.xmcn.catsero.events.cmdboots.CMS());
 
         getLogger().log(Level.INFO, "正在注册事件 -> 监听器:Listener");
         // PingHost功能
