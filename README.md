@@ -24,7 +24,7 @@
 - [ ] QQ群娱乐功能(遥遥无期，XD，希望有dalao PR一下)
 - [ ] 自动回复功能
 - [x] TPS获取功能
-- [] Q群解析Minecraft命令
+- [ ] Q群解析Minecraft命令
 
 ### 已经实现
 
