@@ -58,6 +58,16 @@ public class Main extends JavaPlugin {
                     getLogger().log(Level.INFO, Updater.startUpdateCheck(false));
                 }
             }.runTaskAsynchronously(this);
+
+            // 设置一个定时检查更新任务，一分钟查询一次
+            if (Config.plugin.getConfig().getBoolean("check-update.enabled")) {
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        Updater.startTimerUpdateCheck();
+                    }
+                }.runTaskTimerAsynchronously(Config.plugin, 1200, 1200);
+            }
         } else {
             getLogger().warning("没有安装MiraiMC，CatSero插件将不会启用");
             Bukkit.getPluginManager().disablePlugin(this);
