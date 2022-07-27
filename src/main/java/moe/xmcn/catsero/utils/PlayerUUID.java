@@ -12,11 +12,7 @@ public class PlayerUUID {
      * @return 玩家UUID
      */
     public static UUID getUUIDByName(String name) {
-        try {
-            return Bukkit.getPlayerExact(name).getUniqueId();
-        } catch (NullPointerException npe) {
-            return UUID.fromString("00000000-0000-0000-0000-000000000000");
-        }
+        return Bukkit.getPlayerExact(name).getUniqueId();
     }
 
     /**

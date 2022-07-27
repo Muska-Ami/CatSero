@@ -11,6 +11,27 @@ import java.io.UnsupportedEncodingException;
 
 public class OnQQGroupMessage implements Listener {
 
+    private static void WeatherMain(@NotNull String[] args) {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                try {
+                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.doing"));
+                    String[] resvi = Utils.getWeather(args[2]);
+                    String message = Config.getMsgByMsID("qq.weatherinfo.success")
+                            .replace("%type%", resvi[4])
+                            .replace("%temperature%", resvi[1])
+                            .replace("%wind%", resvi[2])
+                            .replace("%wind_direction%", resvi[3])
+                            .replace("%date%", resvi[0]);
+                    Config.sendMiraiGroupMessage(message);
+                } catch (UnsupportedEncodingException uee) {
+                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.error"));
+                }
+            }
+        }.runTaskAsynchronously(Config.plugin);
+    }
+
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         if (Config.UsesConfig.getBoolean("weatherinfo.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
@@ -36,27 +57,6 @@ public class OnQQGroupMessage implements Listener {
                 }
             }
         }
-    }
-
-    private static void WeatherMain(@NotNull String[] args) {
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                try {
-                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.doing"));
-                    String[] resvi = Utils.getWeather(args[2]);
-                    String message = Config.getMsgByMsID("qq.weatherinfo.success")
-                            .replace("%type%", resvi[4])
-                            .replace("%temperature%", resvi[1])
-                            .replace("%wind%", resvi[2])
-                            .replace("%wind_direction%", resvi[3])
-                            .replace("%date%", resvi[0]);
-                    Config.sendMiraiGroupMessage(message);
-                } catch (UnsupportedEncodingException uee) {
-                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.error"));
-                }
-            }
-        }.runTaskAsynchronously(Config.plugin);
     }
 
 }
