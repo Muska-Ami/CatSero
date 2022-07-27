@@ -18,13 +18,17 @@ public class OnQQGroupMessage implements Listener {
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ban")) {
                 if (event.getSenderID() == Config.QQ_OP) {
                     if (args.length == 3) {
-                        Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], Config.UsesConfig.getString("qban-player.reason"), null, null);
-                        if (Bukkit.getPlayer(args[2]).isOnline()) {
-                            Bukkit.getScheduler().runTask(Config.plugin, () -> Bukkit.getPlayer(args[2]).kickPlayer(Config.UsesConfig.getString("qban-player.reason")));
+                        if (Bukkit.getPlayer(args[2]) != null) {
+                            Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], Config.UsesConfig.getString("qban-player.reason"), null, null);
+                            if (Bukkit.getPlayer(args[2]).isOnline()) {
+                                Bukkit.getScheduler().runTask(Config.plugin, () -> Bukkit.getPlayer(args[2]).kickPlayer(Config.UsesConfig.getString("qban-player.reason")));
+                            }
+                            String message = Config.getMsgByMsID("qq.qban-player.success-ban")
+                                    .replace("%player%", args[2]);
+                            Config.sendMiraiGroupMessage(message);
+                        } else {
+                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("general.not-player-found"));
                         }
-                        String message = Config.getMsgByMsID("qq.qban-player.success-ban")
-                                .replace("%player%", args[2]);
-                        Config.sendMiraiGroupMessage(message);
                     } else {
                         Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.invalid-options"));
                     }
@@ -43,10 +47,14 @@ public class OnQQGroupMessage implements Listener {
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("unban")) {
                 if (event.getSenderID() == Config.QQ_OP) {
                     if (args.length == 3) {
-                        Bukkit.getBanList(BanList.Type.NAME).pardon(args[2]);
-                        String message = Config.getMsgByMsID("qq.qban-player.success-unban")
-                                .replace("%player%", args[2]);
-                        Config.sendMiraiGroupMessage(message);
+                        if (Bukkit.getPlayer(args[2]) != null) {
+                            Bukkit.getBanList(BanList.Type.NAME).pardon(args[2]);
+                            String message = Config.getMsgByMsID("qq.qban-player.success-unban")
+                                    .replace("%player%", args[2]);
+                            Config.sendMiraiGroupMessage(message);
+                        } else {
+                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("general.not-player-found"));
+                        }
                     } else {
                         Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.invalid-options"));
                     }
