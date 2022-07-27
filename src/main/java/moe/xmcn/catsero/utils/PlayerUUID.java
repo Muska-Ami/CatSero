@@ -12,7 +12,11 @@ public class PlayerUUID {
      * @return 玩家UUID
      */
     public static UUID getUUIDByName(String name) {
-        return Bukkit.getPlayerExact(name).getUniqueId();
+        try {
+            return Bukkit.getPlayerExact(name).getUniqueId();
+        } catch (NullPointerException npe) {
+            return UUID.fromString("00000000-0000-0000-0000-000000000000");
+        }
     }
 
     /**
@@ -23,17 +27,6 @@ public class PlayerUUID {
      * @return 玩家名
      */
     public static String getNameByUUID(UUID uuid) {
-        return Bukkit.getPlayer(uuid).getDisplayName();
-    }
-
-    /**
-     * 由UUID获取玩家名
-     * String类型参数
-     *
-     * @param uuid 玩家UUID
-     * @return 玩家名
-     */
-    public static String getNameByUUID(String uuid) {
         return Bukkit.getPlayer(uuid).getDisplayName();
     }
 
