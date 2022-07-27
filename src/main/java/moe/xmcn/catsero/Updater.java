@@ -13,10 +13,11 @@ import java.util.logging.Level;
  */
 public class Updater {
 
-    public final String name;
-    public final String durl;
-    public final String devname;
-    public final String devdurl;
+    private final String name;
+    private final String durl;
+    private final String devname;
+    private final String devdurl;
+    private static boolean y = false;
 
     private Updater(String name, String durl, String devname, String devdurl) {
         this.name = name;
@@ -71,12 +72,11 @@ public class Updater {
     }
 
     public static void startTimerUpdateCheck() {
+
         String nowversion = Config.PluginInfo.getString("version");
         String versiontype = Config.Config.getString("check-update.version");
         String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8");
-        if (datajson.equals("undefined")) {
-            // 未得到数据，忽略
-        } else {
+        if (!datajson.equals("undefined")) {
             // 得到数据，解析
             Gson gson = new Gson();
             Updater updater = gson.fromJson(datajson, Updater.class);
@@ -84,10 +84,14 @@ public class Updater {
             boolean msea = Objects.equals(nowversion, "dev");
             boolean mseb = !Objects.equals(upregex[0], nowversion) && Objects.equals(versiontype, "passed");
 
-            if (msea) {
-                Config.plugin.getLogger().log(Level.INFO, "最新构建ID：" + upregex[2] + "下载地址：" + upregex[3]);
-            } else if (mseb) {
-                Config.plugin.getLogger().log(Level.INFO, "已找到可用的更新：" + upregex[0] + "下载地址：" + upregex[1]);
+            if (!y) {
+                if (msea) {
+                    Config.plugin.getLogger().log(Level.INFO, "最新构建ID：" + upregex[2] + "下载地址：" + upregex[3]);
+                    Updater.y = true;
+                } else if (mseb) {
+                    Config.plugin.getLogger().log(Level.INFO, "已找到可用的更新：" + upregex[0] + "下载地址：" + upregex[1]);
+                    Updater.y = true;
+                }
             }
         }
     }

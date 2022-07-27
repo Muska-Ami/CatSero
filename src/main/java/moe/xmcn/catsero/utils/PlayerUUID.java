@@ -1,6 +1,7 @@
 package moe.xmcn.catsero.utils;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 
 import java.util.UUID;
 
@@ -12,7 +13,7 @@ public class PlayerUUID {
      * @return 玩家UUID
      */
     public static UUID getUUIDByName(String name) {
-        return Bukkit.getPlayerExact(name).getUniqueId();
+        return UUID.fromString(Config.PlayerRecord.getString(name));
     }
 
     /**

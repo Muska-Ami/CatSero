@@ -28,6 +28,7 @@ public interface Config {
     String Prefix_MC = Config.getString("format-list.prefix.to-mc") + ChatColor.translateAlternateColorCodes('&', "&r");
     String Prefix_QQ = Config.getString("format-list.prefix.to-qq");
     FileConfiguration UsesConfig = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml"));
+    FileConfiguration PlayerRecord = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "data/player.record"));
     FileConfiguration PluginInfo = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder().getParent(), "XMCore/catsero.info"));
 
     /**
