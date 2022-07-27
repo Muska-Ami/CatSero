@@ -20,7 +20,6 @@
 ### 待修复/实现
 
 - [x] QQ群-Minecraft消息互转(异步)
-- [x] QQ群踢人
 - [ ] QQ群娱乐功能(遥遥无期，XD，希望有dalao PR一下)
 - [ ] 自动回复功能
 - [x] TPS获取功能
@@ -39,6 +38,7 @@
 - [x] 迎新功能
 - [x] PlaceholderAPI变量支持
 - [x] Punycode功能
+- [x] QQ群踢人
 
 # 命令
 
@@ -62,6 +62,7 @@
 | catsero removeop <玩家名>            | 移除一个玩家OP                     |
 | catsero kick <玩家名>                | 踢出一个在线玩家                     |
 | catsero ban <玩家名>                 | 封禁一个玩家                       |
+| catsero unban <玩家名>               | 解封一个玩家                       |
 | catsero punycode <文本> \[urlmode\] | Punycode文本 \[urlmode\]:URL模式 |
 | catsero tps                       | 获取服务器TPS                     |
 

@@ -26,7 +26,7 @@ public class OnQQGroupMessage implements Listener {
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.already-is-op"));
                 } else {
                     plu.setOp(true);
-                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + "已添加新的管理员");
+                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.success-add"));
                 }
             } else {
                 Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
@@ -47,7 +47,7 @@ public class OnQQGroupMessage implements Listener {
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.already-not-op"));
                 } else {
                     plu.setOp(false);
-                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + "已移除管理员");
+                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.success-remove"));
                 }
             } else {
                 Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));

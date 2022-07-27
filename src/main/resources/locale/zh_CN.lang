@@ -46,14 +46,15 @@ qq:
     null-city: 请输入城市
   qkick-player:
     kick: 已尝试踢出玩家%player%
+    not-online: 名为%player%的玩家不在线
   qop-player:
     already-is-op: 玩家已是管理员
     already-not-op: 玩家不是管理员
-    success: 已添加新的管理员
+    success-add: 已添加新的管理员
+    success-remove: 已移除管理员
   qban-player:
-    success: |-
-      已封禁玩家 %player%
-      理由:%reason%
+    success-ban: 已封禁玩家 %player%
+    success-unban: 已解封玩家 %player%
   bind-qq:
     already-bind: 此玩家已绑定QQ，无法添加绑定
     no-bind-found: 此玩家/QQ未绑定
@@ -67,7 +68,4 @@ general:
   http-utils:
     send-get-error: |-
       发送GET请求出现异常:
-      %error%
-    send-post-error: |-
-      发送POST请求出现异常:
       %error%

@@ -57,6 +57,8 @@ class HelpList {
                 踢出一个玩家
             catsero ban <玩家名>
                 封禁一个玩家
+            catsero unban <玩家名>
+                解封一个玩家
             catsero tps
                 获取服务器TPS
             ----##== ++++++++++++ ==##----

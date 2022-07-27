@@ -18,6 +18,8 @@ weatherinfo:
 qban-player:
   # 启用此功能
   enabled: false
+  # 封禁理由
+  reason: "你已被此服务器封禁"
 
 # QQ踢出玩家
 qkick-player:

@@ -101,7 +101,7 @@ public interface Config {
         try {
             MiraiBot.getBot(Use_Bot).getGroup(Use_Group).sendMessageMirai(message);
         } catch (NoSuchElementException nse) {
-            plugin.getLogger().warning(getMsgByMsID("general.send-message-qq.error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
+            plugin.getLogger().warning(getMsgByMsID("general.send-message-qq-error").replace("%error%", nse + Arrays.toString(nse.getStackTrace())));
         }
     }
 
