@@ -1,12 +1,10 @@
 package moe.xmcn.catsero.utils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Map;
 
 
 /**

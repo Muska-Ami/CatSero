@@ -19,14 +19,14 @@ public class OnQQGroupMessage implements Listener {
             if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "bind")) {
                 if (event.getSenderID() == Config.QQ_OP) {
                     if (args.length == 5 && Objects.equals(args[2], "add")) {
-                        if (!MiraiMC.getBind(Long.parseLong(args[3])).toString().equals("") || MiraiMC.getBind(PlayerUUID.getUUIDByName(args[3])) != 0L) {
+                        if (!Objects.requireNonNull(MiraiMC.getBind(Long.parseLong(args[3]))).toString().equals("") || MiraiMC.getBind(PlayerUUID.getUUIDByName(args[3])) != 0L) {
                             Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.already-bind"));
                         } else {
                             MiraiMC.addBind(PlayerUUID.getUUIDByName(args[4]), Long.parseLong(args[3]));
                             Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.add-success"));
                         }
                     } else if (args.length == 4 && Objects.equals(args[2], "remove")) {
-                        if (!MiraiMC.getBind(Long.parseLong(args[3])).toString().equals("") || MiraiMC.getBind(PlayerUUID.getUUIDByName(args[3])) != 0L) {
+                        if (!Objects.requireNonNull(MiraiMC.getBind(Long.parseLong(args[3]))).toString().equals("") || MiraiMC.getBind(PlayerUUID.getUUIDByName(args[3])) != 0L) {
                             MiraiMC.removeBind(Long.parseLong(args[3]));
                             MiraiMC.removeBind(PlayerUUID.getUUIDByName(args[3]));
                             Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.remove-success"));

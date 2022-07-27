@@ -22,7 +22,6 @@
 - [x] QQ群-Minecraft消息互转(异步)
 - [ ] QQ群娱乐功能(遥遥无期，XD，希望有dalao PR一下)
 - [ ] 自动回复功能
-- [x] TPS获取功能
 - [ ] Q群解析Minecraft命令
 
 ### 已经实现
@@ -39,6 +38,7 @@
 - [x] PlaceholderAPI变量支持
 - [x] Punycode功能
 - [x] QQ群踢人
+- [x] TPS获取功能
 
 # 命令
 

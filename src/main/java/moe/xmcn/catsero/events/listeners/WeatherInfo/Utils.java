@@ -2,7 +2,6 @@ package moe.xmcn.catsero.events.listeners.WeatherInfo;
 
 import com.google.gson.Gson;
 import moe.xmcn.catsero.utils.HttpUtils;
-import org.bukkit.ChatColor;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

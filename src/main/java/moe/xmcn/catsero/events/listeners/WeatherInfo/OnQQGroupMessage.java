@@ -2,8 +2,6 @@ package moe.xmcn.catsero.events.listeners.WeatherInfo;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
