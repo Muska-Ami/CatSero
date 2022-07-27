@@ -26,4 +26,15 @@ public class PlayerUUID {
         return Bukkit.getPlayer(uuid).getDisplayName();
     }
 
+    /**
+     * 由UUID获取玩家名
+     * String类型参数
+     *
+     * @param uuid 玩家UUID
+     * @return 玩家名
+     */
+    public static String getNameByUUID(String uuid) {
+        return Bukkit.getPlayer(uuid).getDisplayName();
+    }
+
 }

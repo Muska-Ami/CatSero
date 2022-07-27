@@ -69,4 +69,3 @@ general:
     send-get-error: |-
       发送GET请求出现异常:
       %error%
-  not-player-found: 玩家不存在
