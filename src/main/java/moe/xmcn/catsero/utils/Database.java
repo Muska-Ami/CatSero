@@ -22,8 +22,8 @@ public class Database {
         public static void intTable() throws SQLException {
             Statement cs = getDatabase().createStatement();
             String ct = "CREATE TABLE IF NOT EXISTS UUIDTableMap" +
-                        "(NAME TEXT     NOT NULL, " +
-                        " UUID TEXT     NOT NULL)";
+                    "(NAME TEXT     NOT NULL, " +
+                    " UUID TEXT     NOT NULL)";
             cs.executeUpdate(ct);
             cs.close();
         }
@@ -31,7 +31,7 @@ public class Database {
         public static void insertTable(String player_name, UUID player_uuid) throws SQLException {
             Statement cs = getDatabase().createStatement();
             String ct = "INSERT INTO UUIDTableMap (NAME, UUID)" +
-                        " VALUES ('" + player_name + "', '" + player_uuid + "')";
+                    " VALUES ('" + player_name + "', '" + player_uuid + "')";
             cs.executeUpdate(ct);
             cs.close();
         }
