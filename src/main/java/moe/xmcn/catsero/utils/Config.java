@@ -79,30 +79,6 @@ public interface Config {
         }
 
         try {
-            if (!new File(plugin.getDataFolder(), "data").exists()) {
-                if (!new File(plugin.getDataFolder(), "data").mkdir()) {
-                    plugin.getLogger().log(Level.WARNING, "无法创建data");
-                }
-            }
-            if (!new File(plugin.getDataFolder(), "data/uuid.record").exists()) {
-                if (new File(plugin.getDataFolder(), "data/uuid.record").createNewFile()) {
-                    plugin.getLogger().log(Level.INFO, "创建uuid记录文件");
-                } else {
-                    plugin.getLogger().log(Level.WARNING, "无法创建uuid记录文件");
-                }
-            }
-            if (!new File(plugin.getDataFolder(), "data/ban.record").exists()) {
-                if (new File(plugin.getDataFolder(), "data/ban.record").createNewFile()) {
-                    plugin.getLogger().log(Level.INFO, "创建ban记录文件");
-                } else {
-                    plugin.getLogger().log(Level.WARNING, "无法创建uuid记录文件");
-                }
-            }
-        } catch (IOException e) {
-            plugin.getLogger().log(Level.WARNING, "无法创建ban/uuid记录文件");
-        }
-
-        try {
             Database.UUIDDatabase.intTable();
         } catch (SQLException e) {
             plugin.getLogger().log(Level.WARNING, "无法初始化数据库");
