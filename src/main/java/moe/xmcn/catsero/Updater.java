@@ -13,11 +13,11 @@ import java.util.logging.Level;
  */
 public class Updater {
 
+    private static boolean y = false;
     private final String name;
     private final String durl;
     private final String devname;
     private final String devdurl;
-    private static boolean y = false;
 
     private Updater(String name, String durl, String devname, String devdurl) {
         this.name = name;

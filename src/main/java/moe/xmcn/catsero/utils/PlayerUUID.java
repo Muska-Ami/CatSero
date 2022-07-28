@@ -1,7 +1,7 @@
 package moe.xmcn.catsero.utils;
 
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
@@ -13,18 +13,18 @@ public class PlayerUUID {
      * @return 玩家UUID
      */
     public static UUID getUUIDByName(String name) {
-        return UUID.fromString(Config.PlayerRecord.getString(name));
+        return UUID.fromString(Config.PlayerRecord.UUIDRecord.getString(name));
     }
 
     /**
      * 由UUID获取玩家名
-     * java.util.UUID类型参数
+     * UUID类型参数
      *
      * @param uuid 玩家UUID
      * @return 玩家名
      */
     public static String getNameByUUID(UUID uuid) {
-        return Bukkit.getPlayer(uuid).getDisplayName();
+        return Bukkit.getPlayer(uuid).getName();
     }
 
     /**
@@ -35,7 +35,16 @@ public class PlayerUUID {
      * @return 玩家名
      */
     public static String getNameByUUID(String uuid) {
-        return Bukkit.getPlayer(uuid).getDisplayName();
+        return Bukkit.getPlayer(uuid).getName();
+    }
+
+    /**
+     * 得到一个玩家对象
+     *
+     * @param name 玩家名
+     */
+    public static Player getPlayer(String name) {
+        return Bukkit.getPlayer(getUUIDByName(name));
     }
 
 }

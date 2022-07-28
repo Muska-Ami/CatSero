@@ -12,8 +12,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.logging.Level;
 
 /**
  * Config文件读取
@@ -28,7 +31,6 @@ public interface Config {
     String Prefix_MC = Config.getString("format-list.prefix.to-mc") + ChatColor.translateAlternateColorCodes('&', "&r");
     String Prefix_QQ = Config.getString("format-list.prefix.to-qq");
     FileConfiguration UsesConfig = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml"));
-    FileConfiguration PlayerRecord = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "data/player.record"));
     FileConfiguration PluginInfo = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder().getParent(), "XMCore/catsero.info"));
 
     /**
@@ -75,6 +77,36 @@ public interface Config {
         if (!new File(plugin.getDataFolder(), "locale/zh_CN.lang").exists()) {
             plugin.saveResource("locale/zh_CN.lang", false);
         }
+
+        try {
+            if (!new File(plugin.getDataFolder(), "data").exists()) {
+                if (!new File(plugin.getDataFolder(), "data").mkdir()) {
+                    plugin.getLogger().log(Level.WARNING, "无法创建data");
+                }
+            }
+            if (!new File(plugin.getDataFolder(), "data/uuid.record").exists()) {
+                if (new File(plugin.getDataFolder(), "data/uuid.record").createNewFile()) {
+                    plugin.getLogger().log(Level.INFO, "创建uuid记录文件");
+                } else {
+                    plugin.getLogger().log(Level.WARNING, "无法创建uuid记录文件");
+                }
+            }
+            if (!new File(plugin.getDataFolder(), "data/ban.record").exists()) {
+                if (new File(plugin.getDataFolder(), "data/ban.record").createNewFile()) {
+                    plugin.getLogger().log(Level.INFO, "创建ban记录文件");
+                } else {
+                    plugin.getLogger().log(Level.WARNING, "无法创建uuid记录文件");
+                }
+            }
+        } catch (IOException e) {
+            plugin.getLogger().log(Level.WARNING, "无法创建ban/uuid记录文件");
+        }
+
+        try {
+            Database.UUIDDatabase.intTable();
+        } catch (SQLException e) {
+            plugin.getLogger().log(Level.WARNING, "无法初始化数据库");
+        }
     }
 
     /**
@@ -112,6 +144,14 @@ public interface Config {
     static void reloadConfig() {
         plugin.reloadConfig();
         UsesConfig.setDefaults(YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml")));
+    }
+
+    /**
+     * Record记录工具
+     */
+    class PlayerRecord {
+        public static FileConfiguration UUIDRecord = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "data/uuid.record"));
+        public static FileConfiguration BanRecord = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "data/ban.record"));
     }
 
 }

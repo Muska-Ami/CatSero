@@ -22,9 +22,9 @@ public class Main extends JavaPlugin {
      */
     @Override // 加载插件
     public void onLoad() {
+        getLogger().log(Level.INFO, "[CatSero] 正在加载CatSero插件");
         Config.saveDefFile();
         ThisAPI.Companion.savXMCore("xmcore.info");
-        getLogger().log(Level.INFO, "[CatSero] 正在加载CatSero插件");
         if (Config.Config.getBoolean("allow-start-warn")) {
             getLogger().warning("请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
         }
@@ -38,6 +38,7 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         if (Bukkit.getPluginManager().getPlugin("MiraiMC") != null) {
             regiserEvents();
+            regiserRecords();
 
             // bStats
             if (Config.Config.getBoolean("allow-bstats")) {
@@ -66,7 +67,7 @@ public class Main extends JavaPlugin {
                     public void run() {
                         Updater.startTimerUpdateCheck();
                     }
-                }.runTaskTimerAsynchronously(Config.plugin, 1200, 1200);
+                }.runTaskTimerAsynchronously(Config.plugin, 1200L, 1200L);
             }
         } else {
             getLogger().warning("没有安装MiraiMC，CatSero插件将不会启用");
@@ -86,7 +87,7 @@ public class Main extends JavaPlugin {
      * 注册事件
      * 所有Listener监听器的事件和CommandExecutor监听器的事件均由此注册
      */
-    public void regiserEvents() {
+    private void regiserEvents() {
 
         getLogger().log(Level.INFO, "正在注册事件 -> 监听器:CommandExecutor");
         // catsero命令
@@ -132,5 +133,12 @@ public class Main extends JavaPlugin {
 
         getLogger().log(Level.INFO, "正在注册事件 -> QQ帮助菜单");
         getServer().getPluginManager().registerEvents(new QQHelp(), this);
+    }
+
+    /**
+     * 注册记录工具
+     */
+    private void regiserRecords() {
+        getServer().getPluginManager().registerEvents(new PlayerRecord.UUIDRecord(), this);
     }
 }
