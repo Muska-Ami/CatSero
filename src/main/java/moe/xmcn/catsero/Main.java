@@ -8,7 +8,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Arrays;
 import java.util.logging.Level;
+
+import static java.lang.Thread.sleep;
 
 /**
  * 主类
@@ -65,9 +68,14 @@ public class Main extends JavaPlugin {
                 new BukkitRunnable() {
                     @Override
                     public void run() {
+                        try {
+                            sleep(60000);
+                        } catch (InterruptedException e) {
+                            Config.plugin.getLogger().log(Level.WARNING, Arrays.toString(e.getStackTrace()));
+                        }
                         Updater.startTimerUpdateCheck();
                     }
-                }.runTaskTimerAsynchronously(Config.plugin, 1200L, 1200L);
+                }.runTaskTimerAsynchronously(Config.plugin, 0L, 1200L);
             }
         } else {
             getLogger().warning("没有安装MiraiMC，CatSero插件将不会启用");

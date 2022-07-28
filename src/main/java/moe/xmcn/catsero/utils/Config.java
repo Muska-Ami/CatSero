@@ -80,6 +80,7 @@ public interface Config {
 
         try {
             Database.UUIDDatabase.intTable();
+            Database.BanDatabase.intTable();
         } catch (SQLException e) {
             plugin.getLogger().log(Level.WARNING, "无法初始化数据库");
         }
@@ -120,14 +121,6 @@ public interface Config {
     static void reloadConfig() {
         plugin.reloadConfig();
         UsesConfig.setDefaults(YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml")));
-    }
-
-    /**
-     * Record记录工具
-     */
-    class PlayerRecord {
-        public static FileConfiguration UUIDRecord = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "data/uuid.record"));
-        public static FileConfiguration BanRecord = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "data/ban.record"));
     }
 
 }

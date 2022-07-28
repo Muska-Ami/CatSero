@@ -3,7 +3,9 @@ package moe.xmcn.catsero.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.sql.SQLException;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class PlayerUUID {
     /**
@@ -13,7 +15,12 @@ public class PlayerUUID {
      * @return 玩家UUID
      */
     public static UUID getUUIDByName(String name) {
-        return UUID.fromString(Config.PlayerRecord.UUIDRecord.getString(name));
+        try {
+            return Database.UUIDDatabase.readTable.getUUID(name);
+        } catch (SQLException e) {
+            Config.plugin.getLogger().log(Level.WARNING, "无法读取数据库");
+        }
+        return null;
     }
 
     /**
@@ -24,7 +31,12 @@ public class PlayerUUID {
      * @return 玩家名
      */
     public static String getNameByUUID(UUID uuid) {
-        return Bukkit.getPlayer(uuid).getName();
+        try {
+            return Database.UUIDDatabase.readTable.getName(uuid);
+        } catch (SQLException e) {
+            Config.plugin.getLogger().log(Level.WARNING, "无法读取数据库");
+        }
+        return null;
     }
 
     /**
@@ -34,6 +46,7 @@ public class PlayerUUID {
      * @param uuid 玩家UUID
      * @return 玩家名
      */
+    @Deprecated
     public static String getNameByUUID(String uuid) {
         return Bukkit.getPlayer(uuid).getName();
     }
