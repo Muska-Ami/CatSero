@@ -3,10 +3,12 @@ package moe.xmcn.catsero.events.listeners.ChatForward;
 import me.dreamvoid.miraimc.api.MiraiMC;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
-import moe.xmcn.catsero.utils.PlayerUUID;
+import moe.xmcn.catsero.utils.Players;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+
+import java.util.Objects;
 
 public class OnGroupChat implements Listener {
 
@@ -39,7 +41,7 @@ public class OnGroupChat implements Listener {
                 .replace("%groupname%", groupname)
                 .replace("%sendercode%", String.valueOf(senderid));
         if (Config.UsesConfig.getBoolean("forward-chat.use-bind")) {
-            return mes.replace("%sendername%", PlayerUUID.getNameByUUID(MiraiMC.getBind(senderid)))
+            return mes.replace("%sendername%", Objects.requireNonNull(Players.getNameByUUID(MiraiMC.getBind(senderid))))
                     .replace("%message%", emsg);
         } else {
             return mes.replace("%sendername%", sendername)

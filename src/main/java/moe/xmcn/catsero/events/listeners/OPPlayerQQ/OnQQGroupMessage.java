@@ -2,7 +2,7 @@ package moe.xmcn.catsero.events.listeners.OPPlayerQQ;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
-import moe.xmcn.catsero.utils.PlayerUUID;
+import moe.xmcn.catsero.utils.Players;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.permissions.ServerOperator;
@@ -17,7 +17,7 @@ public class OnQQGroupMessage implements Listener {
         String[] args = message.split(" ");
         if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "setop") && Config.UsesConfig.getBoolean("qop-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
             if (event.getSenderID() == Config.QQ_OP) {
-                ServerOperator plu = PlayerUUID.getPlayer(args[2]);
+                ServerOperator plu = Players.getPlayer(args[2]);
                 boolean isOp = plu.isOp();
                 if (isOp) {
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.already-is-op"));
@@ -37,7 +37,7 @@ public class OnQQGroupMessage implements Listener {
         String[] args = message.split(" ");
         if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "removeop") && Config.UsesConfig.getBoolean("qop-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
             if (event.getSenderID() == Config.QQ_OP) {
-                ServerOperator plu = PlayerUUID.getPlayer(args[2]);
+                ServerOperator plu = Players.getPlayer(args[2]);
                 boolean isOp = plu.isOp();
                 if (!isOp) {
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.already-not-op"));

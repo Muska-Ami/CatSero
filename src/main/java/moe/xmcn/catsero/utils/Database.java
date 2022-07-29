@@ -1,5 +1,7 @@
 package moe.xmcn.catsero.utils;
 
+import me.dreamvoid.miraimc.api.MiraiMC;
+
 import java.sql.*;
 import java.util.Arrays;
 import java.util.UUID;
@@ -71,8 +73,8 @@ public class Database {
             try {
                 Class.forName("org.sqlite.JDBC");
                 c = DriverManager.getConnection("jdbc:sqlite:" + Config.plugin.getDataFolder() + "/database.db");
-            } catch (Exception e) {
-                Config.plugin.getLogger().log(Level.WARNING, "连接数据库发生异常:\n" + Arrays.toString(e.getStackTrace()));
+            } catch (SQLException | ClassNotFoundException e) {
+                Config.plugin.getLogger().log(Level.WARNING, Config.getMsgByMsID("general.sql-error").replace("%error%", Arrays.toString(e.getStackTrace())));
             }
             return c;
         }
@@ -80,18 +82,58 @@ public class Database {
         public static void intTable() throws SQLException {
             Statement cs = getDatabase().createStatement();
             String ct = "CREATE TABLE IF NOT EXISTS BanTableMap" +
-                    "(UUID TEXT     NOT NULL, " +
-                    " QQ   INT      NOT NULL)";
+                    "(UUID  TEXT     NOT NULL, " +
+                    " ISBAN INT      NOT NULL)";
             cs.executeUpdate(ct);
             cs.close();
         }
 
-        public static void insertTable(UUID player_uuid, Long player_qq) throws SQLException {
+        public static void insertTable(UUID player_uuid) throws SQLException {
             Statement cs = getDatabase().createStatement();
-            String ct = "INSERT INTO BanTableMap (UUID, QQ)" +
-                    " VALUES ('" + player_uuid + "', " + player_qq + ")";
+            String ct = "INSERT INTO BanTableMap (UUID, ISBAN)" +
+                    " VALUES ('" + player_uuid + "', " + 1 + ")";
             cs.executeUpdate(ct);
             cs.close();
+        }
+
+        public static void insertTable(Long player_qq) throws SQLException {
+            Statement cs = getDatabase().createStatement();
+            UUID player_uuid = MiraiMC.getBind(player_qq);
+            String ct = "INSERT INTO BanTableMap (UUID, ISBAN)" +
+                    " VALUES ('" + player_uuid + "', " + 1 + ")";
+            cs.executeUpdate(ct);
+            cs.close();
+        }
+
+        public static void uninsertTable(UUID player_uuid) throws SQLException {
+            Statement cs = getDatabase().createStatement();
+            String ct = "INSERT INTO BanTableMap (UUID, ISBAN)" +
+                    " VALUES ('" + player_uuid + "', " + 0 + ")";
+            cs.executeUpdate(ct);
+            cs.close();
+        }
+
+        public static void uninsertTable(Long player_qq) throws SQLException {
+            Statement cs = getDatabase().createStatement();
+            UUID player_uuid = MiraiMC.getBind(player_qq);
+            String ct = "INSERT INTO BanTableMap (UUID, ISBAN)" +
+                    " VALUES ('" + player_uuid + "', " + 0 + ")";
+            cs.executeUpdate(ct);
+            cs.close();
+        }
+
+        public static boolean queryBan(UUID player_uuid) throws SQLException {
+            boolean result = false;
+            Statement cs = getDatabase().createStatement();
+            ResultSet rs = cs.executeQuery("SELECT * FROM BanTableMap");
+            while (rs.next()) {
+                if (Integer.parseInt(rs.getString(String.valueOf(player_uuid))) == 1) {
+                    result = true;
+                }
+            }
+            rs.close();
+            cs.close();
+            return result;
         }
     }
 

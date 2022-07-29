@@ -2,6 +2,7 @@ package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Metrics;
+import moe.xmcn.catsero.utils.PlayerRecord;
 import moe.xmcn.catsero.utils.ServerTPS;
 import moe.xmcn.xmcore.ThisAPI;
 import org.bukkit.Bukkit;
@@ -112,7 +113,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.ChatForward.OnGroupChat(), this);
 
         // QBanPlayer封禁功能
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.QBanPlayer.OnQQGroupMessage(), this);
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.BanPlayerQQ.OnQQGroupMessage(), this);
 
         // WeatherInfo天气获取功能
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.WeatherInfo.OnQQGroupMessage(), this);

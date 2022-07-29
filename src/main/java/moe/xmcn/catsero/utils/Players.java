@@ -4,10 +4,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.UUID;
 import java.util.logging.Level;
 
-public class PlayerUUID {
+public class Players {
     /**
      * 由玩家名获取玩家UUID
      *
@@ -34,7 +35,7 @@ public class PlayerUUID {
         try {
             return Database.UUIDDatabase.readTable.getName(uuid);
         } catch (SQLException e) {
-            Config.plugin.getLogger().log(Level.WARNING, "无法读取数据库");
+            Config.plugin.getLogger().log(Level.WARNING, Config.getMsgByMsID("general.sql-error").replace("%error%", Arrays.toString(e.getStackTrace())));
         }
         return null;
     }
