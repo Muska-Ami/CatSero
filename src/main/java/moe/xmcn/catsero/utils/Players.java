@@ -19,7 +19,7 @@ public class Players {
         try {
             return Database.UUIDDatabase.readTable.getUUID(name);
         } catch (SQLException e) {
-            Config.plugin.getLogger().log(Level.WARNING, "无法读取数据库");
+            Config.plugin.getLogger().log(Level.WARNING, Config.getMsgByMsID("general.sql-error").replace("%error%", Arrays.toString(e.getStackTrace())));
         }
         return null;
     }

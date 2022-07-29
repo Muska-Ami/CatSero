@@ -145,7 +145,9 @@ public class Database {
                 String player_name = pje.getPlayer().getName();
                 UUID player_uuid = pje.getPlayer().getUniqueId();
                 try {
-                    Database.UUIDDatabase.insertTable(player_name, player_uuid);
+                    if (Database.UUIDDatabase.readTable.getUUID(player_name) == null && Database.UUIDDatabase.readTable.getName(player_uuid) == null) {
+                        Database.UUIDDatabase.insertTable(player_name, player_uuid);
+                    }
                 } catch (SQLException e) {
                     Config.plugin.getLogger().log(Level.WARNING, Config.getMsgByMsID("general.sql-error").replace("%error%", Arrays.toString(e.getStackTrace())));
                 }
