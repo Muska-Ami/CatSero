@@ -1,8 +1,8 @@
 package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.utils.Config;
+import moe.xmcn.catsero.utils.Database;
 import moe.xmcn.catsero.utils.Metrics;
-import moe.xmcn.catsero.utils.PlayerRecord;
 import moe.xmcn.catsero.utils.ServerTPS;
 import moe.xmcn.xmcore.ThisAPI;
 import org.bukkit.Bukkit;
@@ -148,6 +148,6 @@ public class Main extends JavaPlugin {
      * 注册记录工具
      */
     private void regiserRecords() {
-        getServer().getPluginManager().registerEvents(new PlayerRecord.UUIDRecord(), this);
+        getServer().getPluginManager().registerEvents(new Database.BanDatabase.UUIDRecord(), this);
     }
 }

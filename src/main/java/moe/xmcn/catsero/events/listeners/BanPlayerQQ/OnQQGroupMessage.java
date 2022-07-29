@@ -2,7 +2,7 @@ package moe.xmcn.catsero.events.listeners.BanPlayerQQ;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
-import moe.xmcn.catsero.utils.PlayerRecord;
+import moe.xmcn.catsero.utils.Database;
 import moe.xmcn.catsero.utils.Players;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
@@ -21,7 +21,7 @@ public class OnQQGroupMessage implements Listener {
                 if (event.getSenderID() == Config.QQ_OP) {
                     if (args.length == 3) {
                         if (Config.UsesConfig.getBoolean("qban-player.use-database")) {
-                            PlayerRecord.BanRecord.record(Players.getUUIDByName(args[2]));
+                            Database.BanDatabase.BanRecord.record(Players.getUUIDByName(args[2]));
                         } else {
                             Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], Config.UsesConfig.getString("qban-player.reason"), null, null);
                         }
@@ -50,7 +50,7 @@ public class OnQQGroupMessage implements Listener {
                 if (event.getSenderID() == Config.QQ_OP) {
                     if (args.length == 3) {
                         if (Config.UsesConfig.getBoolean("qban-player.use-database")) {
-                            PlayerRecord.BanRecord.unrecord(Players.getUUIDByName(args[2]));
+                            Database.BanDatabase.BanRecord.unrecord(Players.getUUIDByName(args[2]));
                         } else {
                             Bukkit.getBanList(BanList.Type.NAME).pardon(args[2]);
                         }
