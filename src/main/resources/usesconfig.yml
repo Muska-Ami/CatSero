@@ -20,6 +20,8 @@ qban-player:
   enabled: false
   # 封禁理由
   reason: "你已被此服务器封禁"
+  # 使用数据库而不是原版封禁
+  use-database: true
 
 # QQ踢出玩家
 qkick-player:
