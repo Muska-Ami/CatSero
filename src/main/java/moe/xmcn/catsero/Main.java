@@ -109,8 +109,8 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.ChatForward.OnGameChat(), this);
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.ChatForward.OnGroupChat(), this);
 
-        // QBanPlayer封禁功能
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.QBanPlayer.OnQQGroupMessage(), this);
+        // BanPlayerQQ封禁功能
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.BanPlayerQQ.OnQQGroupMessage(), this);
 
         // WeatherInfo天气获取功能
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.WeatherInfo.OnQQGroupMessage(), this);
