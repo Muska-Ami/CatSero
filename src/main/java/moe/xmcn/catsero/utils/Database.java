@@ -13,16 +13,16 @@ public class Database {
     public static class UUIDDatabase {
         private static Connection getDatabase() throws SQLException, ClassNotFoundException {
             Connection c;
-                Class.forName("org.sqlite.JDBC");
-                c = DriverManager.getConnection("jdbc:sqlite:" + Config.plugin.getDataFolder() + "/database.db");
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:" + Config.plugin.getDataFolder() + "/database.db");
             return c;
         }
 
         public static void intTable() throws SQLException, ClassNotFoundException {
             Statement cs = getDatabase().createStatement();
             String ct = "CREATE TABLE IF NOT EXISTS UUIDRecd" +
-                        "(NAME TEXT     NOT NULL, " +
-                        " UUID TEXT     NOT NULL)";
+                    "(NAME TEXT     NOT NULL, " +
+                    " UUID TEXT     NOT NULL)";
             cs.executeUpdate(ct);
             cs.close();
         }

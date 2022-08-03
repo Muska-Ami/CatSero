@@ -12,8 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.logging.Level;
