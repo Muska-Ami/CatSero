@@ -18,7 +18,7 @@ public class OnGameCommand {
             if (Config.UsesConfig.getBoolean("pinghost.op-only")) {
                 if (sender.hasPermission("catsero.admin")) {
                     if (args.length == 2) {
-                        PingMain(sender, command, label, args);
+                        PingMain(sender, args);
                     } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&c请键入正确的地址"));
                     }
@@ -26,7 +26,7 @@ public class OnGameCommand {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.no-permission")));
                 }
             } else if (args.length == 2) {
-                PingMain(sender, command, label, args);
+                PingMain(sender, args);
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&c请键入正确的地址"));
             }
@@ -35,7 +35,7 @@ public class OnGameCommand {
         return false;
     }
 
-    private static void PingMain(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    private static void PingMain(@NotNull CommandSender sender, @NotNull String[] args) {
         new BukkitRunnable() {
             @Override
             public void run() {

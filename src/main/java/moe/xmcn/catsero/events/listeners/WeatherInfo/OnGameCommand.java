@@ -16,14 +16,14 @@ public class OnGameCommand {
             if (Config.UsesConfig.getBoolean("weatherinfo.op-only")) {
                 if (sender.hasPermission("catsero.admin")) {
                     if (args.length == 2) {
-                        WeatherMain(sender, command, label, args);
+                        WeatherMain(sender, args);
                     } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.weatherinfo.null-city")));
                     }
                 }
             } else {
                 if (args.length == 2) {
-                    WeatherMain(sender, command, label, args);
+                    WeatherMain(sender, args);
                 } else {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.weatherinfo.null-city")));
                 }
@@ -33,7 +33,7 @@ public class OnGameCommand {
         return false;
     }
 
-    private static void WeatherMain(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    private static void WeatherMain(@NotNull CommandSender sender, @NotNull String[] args) {
         new BukkitRunnable() {
             @Override
             public void run() {

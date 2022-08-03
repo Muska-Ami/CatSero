@@ -33,6 +33,10 @@ class HelpList {
                 &d重载配置文件&r
             &3/catsero update&r
                 &d检查更新&r
+            &3/cms send <消息>&r
+                &d发送群消息&r
+            &3/cms sendcustom <机器人号> <群号> <消息>&r
+                &d使用指定机器人向指定服务器发送消息&r
             &a----&b*&a-&b*&c---&e##==&r &l++++++++++++++++++++&r &e==##&c---&b*&a-&b*&a----&r
         """
             return ChatColor.translateAlternateColorCodes('&', list.trimIndent())
