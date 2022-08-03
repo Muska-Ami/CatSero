@@ -2,6 +2,7 @@ package moe.xmcn.catsero.events.listeners.QBanPlayer;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
+import moe.xmcn.catsero.utils.Players;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -19,8 +20,8 @@ public class OnQQGroupMessage implements Listener {
                 if (event.getSenderID() == Config.QQ_OP) {
                     if (args.length == 3) {
                         Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], Config.UsesConfig.getString("qban-player.reason"), null, null);
-                        if (Bukkit.getPlayer(args[2]).isOnline()) {
-                            Bukkit.getScheduler().runTask(Config.plugin, () -> Bukkit.getPlayer(args[2]).kickPlayer(Config.UsesConfig.getString("qban-player.reason")));
+                        if (Players.getPlayer(args[2]).isOnline()) {
+                            Bukkit.getScheduler().runTask(Config.plugin, () -> Players.getPlayer(args[2]).kickPlayer(Config.UsesConfig.getString("qban-player.reason")));
                         }
                         String message = Config.getMsgByMsID("qq.qban-player.success-ban")
                                 .replace("%player%", args[2]);

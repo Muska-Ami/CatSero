@@ -8,6 +8,8 @@ import org.bukkit.ChatColor;
 import java.util.Objects;
 import java.util.logging.Level;
 
+import static java.lang.Thread.sleep;
+
 /**
  * 检查更新器
  */
@@ -71,8 +73,8 @@ public class Updater {
         }
     }
 
-    public static void startTimerUpdateCheck() {
-
+    public static void startTimerUpdateCheck() throws InterruptedException {
+        sleep(1000);
         String nowversion = Config.PluginInfo.getString("version");
         String versiontype = Config.Config.getString("check-update.version");
         String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8");

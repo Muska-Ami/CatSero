@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class PlayerUUID {
+public class Players {
     /**
      * 由玩家名获取玩家UUID
      *
@@ -13,7 +13,7 @@ public class PlayerUUID {
      * @return 玩家UUID
      */
     public static UUID getUUIDByName(String name) {
-        return UUID.fromString(Config.PlayerRecord.UUIDRecord.getString(name));
+        return Database.UUIDDatabase.queryUUID(name);
     }
 
     /**
@@ -24,18 +24,7 @@ public class PlayerUUID {
      * @return 玩家名
      */
     public static String getNameByUUID(UUID uuid) {
-        return Bukkit.getPlayer(uuid).getName();
-    }
-
-    /**
-     * 由UUID获取玩家名
-     * String类型参数
-     *
-     * @param uuid 玩家UUID
-     * @return 玩家名
-     */
-    public static String getNameByUUID(String uuid) {
-        return Bukkit.getPlayer(uuid).getName();
+        return Database.UUIDDatabase.queryName(uuid);
     }
 
     /**
@@ -45,6 +34,15 @@ public class PlayerUUID {
      */
     public static Player getPlayer(String name) {
         return Bukkit.getPlayer(getUUIDByName(name));
+    }
+
+    /**
+     * 得到一个玩家对象
+     *
+     * @param uuid 玩家UUID
+     */
+    public static Player getPlayer(UUID uuid) {
+        return Bukkit.getPlayer(uuid);
     }
 
 }

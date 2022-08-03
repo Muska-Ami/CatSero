@@ -1,6 +1,7 @@
 package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.utils.Config;
+import moe.xmcn.catsero.utils.Database;
 import moe.xmcn.catsero.utils.Metrics;
 import moe.xmcn.catsero.utils.ServerTPS;
 import moe.xmcn.xmcore.ThisAPI;
@@ -8,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 
 /**
@@ -65,7 +67,11 @@ public class Main extends JavaPlugin {
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        Updater.startTimerUpdateCheck();
+                        try {
+                            Updater.startTimerUpdateCheck();
+                        } catch (InterruptedException e) {
+                            Config.plugin.getLogger().log(Level.WARNING, Arrays.toString(e.getStackTrace()));
+                        }
                     }
                 }.runTaskTimerAsynchronously(Config.plugin, 1200L, 1200L);
             }
@@ -139,6 +145,6 @@ public class Main extends JavaPlugin {
      * 注册记录工具
      */
     private void regiserRecords() {
-        getServer().getPluginManager().registerEvents(new PlayerRecord.UUIDRecord(), this);
+        getServer().getPluginManager().registerEvents(new Database.UUIDRecord(), this);
     }
 }

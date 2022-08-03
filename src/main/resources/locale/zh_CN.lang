@@ -69,3 +69,6 @@ general:
     send-get-error: |-
       发送GET请求出现异常:
       %error%
+  sql-error: |-
+    与数据库通信发生异常:
+    %error%
