@@ -38,10 +38,10 @@ public class OnQQGroupMessage implements Listener {
     public void onMiraiGroupMessageEvent0(MiraiGroupMessageEvent event) {
         String message = event.getMessage();
         String[] args = message.split(" ");
-        if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "setop") && Config.UsesConfig.getBoolean("qop-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
+        if (Objects.equals(args[0], "setop") && Config.UsesConfig.getBoolean("qop-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
             if (event.getSenderID() == Config.QQ_OP) {
                 //有OP权限
-                ServerOperator plu = Players.getPlayer(args[2]);
+                ServerOperator plu = Players.getPlayer(args[1]);
                 boolean isOp = plu.isOp();
                 if (isOp) {
                     //玩家是OP
@@ -62,10 +62,10 @@ public class OnQQGroupMessage implements Listener {
     public void onMiraiGroupMessageEvent1(MiraiGroupMessageEvent event) {
         String[] args = QCommandParser.getParser.parse(event.getMessage());
         if (args != null) {
-            if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "removeop") && Config.UsesConfig.getBoolean("qop-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
+            if (Objects.equals(args[0], "removeop") && Config.UsesConfig.getBoolean("qop-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
                 if (event.getSenderID() == Config.QQ_OP) {
                     //有OP权限
-                    ServerOperator plu = Players.getPlayer(args[2]);
+                    ServerOperator plu = Players.getPlayer(args[1]);
                     boolean isOp = plu.isOp();
                     if (!isOp) {
                         //玩家不是OP

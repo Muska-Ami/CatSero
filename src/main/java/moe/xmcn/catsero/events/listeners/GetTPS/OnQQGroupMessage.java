@@ -39,7 +39,7 @@ public class OnQQGroupMessage implements Listener {
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         String[] args = QCommandParser.getParser.parse(event.getMessage());
         if (args != null) {
-            if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "tps") && Config.UsesConfig.getBoolean("get-tps.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
+            if (Objects.equals(args[0], "tps") && Config.UsesConfig.getBoolean("get-tps.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
                 //先 BigDecimal 四舍5入然后发送
                 Config.sendMiraiGroupMessage("TPS: " + BigDecimal.valueOf(ServerTPS.getTPS()).setScale(1, RoundingMode.HALF_UP));
             }

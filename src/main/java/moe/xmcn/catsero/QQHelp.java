@@ -36,7 +36,7 @@ public class QQHelp implements Listener {
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         String message = event.getMessage();
         String[] args = message.split(" ");
-        if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "help")) {
+        if (Objects.equals(args[1], "help")) {
             Config.sendMiraiGroupMessage(HelpList.Companion.getList("qq"));
         }
     }

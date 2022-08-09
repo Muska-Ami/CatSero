@@ -37,12 +37,10 @@ public class OnQQGroupMessage implements Listener {
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         String[] args = QCommandParser.getParser.parse(event.getMessage());
         if (args != null) {
-            if (Config.UsesConfig.getBoolean("qdispatch-command.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-                if (Objects.equals(args[0], "catsero") && args.length == 2) {
-                    //Bukkit.dispatchCommand() 执行命令，发送者为 ConsoleCommandSender
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), args[1]);
-                    Config.sendMiraiGroupMessage(Config.getMsgByMsID("qq.qdispatch-command.success"));
-                }
+            if (Config.UsesConfig.getBoolean("qdispatch-command.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && Objects.equals(args[0], "dispatchcmd") && args.length == 2) {
+                //Bukkit.dispatchCommand() 执行命令，发送者为 ConsoleCommandSender
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), args[1].replace("+", " "));
+                Config.sendMiraiGroupMessage(Config.getMsgByMsID("qq.qdispatch-command.success"));
             }
         }
     }

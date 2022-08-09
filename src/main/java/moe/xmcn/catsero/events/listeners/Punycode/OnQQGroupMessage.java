@@ -36,17 +36,15 @@ public class OnQQGroupMessage implements Listener {
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         String[] args = QCommandParser.getParser.parse(event.getMessage());
         if (args != null) {
-            if (Config.UsesConfig.getBoolean("punycode.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-                if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "punycode")) {
-                    if (args.length == 4 && Config.UsesConfig.getBoolean("punycode.url-support") && Objects.equals(args[3], "urlmode")) {
-                        //URL编码
-                        Config.sendMiraiGroupMessage(Punycode.encodeURL(args[2]));
-                    } else if (args.length == 3) {
-                        //常规编码
-                        Config.sendMiraiGroupMessage(Punycode.encode(args[2]));
-                    } else {
-                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.punycode.too-many-or-low-options"));
-                    }
+            if (Config.UsesConfig.getBoolean("punycode.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && Objects.equals(args[0], "punycode")) {
+                if (args.length == 3 && Config.UsesConfig.getBoolean("punycode.url-support") && Objects.equals(args[2], "urlmode")) {
+                    //URL编码
+                    Config.sendMiraiGroupMessage(Punycode.encodeURL(args[2]));
+                } else if (args.length == 2) {
+                    //常规编码
+                    Config.sendMiraiGroupMessage(Punycode.encode(args[1]));
+                } else {
+                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.punycode.too-many-or-low-options"));
                 }
             }
         }
