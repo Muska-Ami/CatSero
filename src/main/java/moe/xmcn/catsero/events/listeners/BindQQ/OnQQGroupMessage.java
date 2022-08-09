@@ -38,7 +38,7 @@ public class OnQQGroupMessage implements Listener {
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         if (Config.UsesConfig.getBoolean("bind-qq.enabled")) {
             String[] args = QCommandParser.getParser.parse(event.getMessage());
-            if (!(args == null)) {
+            if (args != null) {
                 if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "bind")) {
                     if (event.getSenderID() == Config.QQ_OP) {
                         //有OP权限

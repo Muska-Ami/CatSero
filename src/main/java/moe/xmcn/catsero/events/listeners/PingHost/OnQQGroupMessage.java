@@ -37,7 +37,7 @@ public class OnQQGroupMessage implements Listener {
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         String[] args = QCommandParser.getParser.parse(event.getMessage());
-        if (!(args == null)) {
+        if (args != null) {
             if (Config.UsesConfig.getBoolean("pinghost.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
                 if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
                     if (Config.UsesConfig.getBoolean("pinghost.op-only")) {

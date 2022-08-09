@@ -61,7 +61,7 @@ public class OnQQGroupMessage implements Listener {
     @EventHandler
     public void onMiraiGroupMessageEvent1(MiraiGroupMessageEvent event) {
         String[] args = QCommandParser.getParser.parse(event.getMessage());
-        if (!(args == null)) {
+        if (args != null) {
             if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "removeop") && Config.UsesConfig.getBoolean("qop-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
                 if (event.getSenderID() == Config.QQ_OP) {
                     //有OP权限
