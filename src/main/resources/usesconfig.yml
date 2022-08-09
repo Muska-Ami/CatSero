@@ -88,3 +88,8 @@ get-tps:
 bind-qq:
   # 启用此功能
   enabled: false
+
+# QQ执行Minecraft命令
+# （限于不调用NMS，无法显示执行日志）
+qdispatch-command:
+  enabled: false

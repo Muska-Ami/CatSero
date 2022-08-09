@@ -51,6 +51,7 @@ public class CatSero implements CommandExecutor {
                 return false;
             }
         } else {
+            // 啥都没有，返回插件信息
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "This server is running CatSero v" + ChatColor.ITALIC + Config.PluginInfo.getString("version") + ChatColor.RESET + " By " + ChatColor.ITALIC + Config.PluginInfo.getString("author")));
             return true;
         }

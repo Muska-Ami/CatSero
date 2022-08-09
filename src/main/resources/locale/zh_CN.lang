@@ -23,6 +23,7 @@ minecraft:
     null-city: '&c请输入城市'
   cms:
     sent: '&a消息已发送'
+    error: '&c发送消息时发生错误'
     too-many-or-low-options: '&c不完整或过多的参数'
 qq:
   no-permission: 你没有权限这么做
@@ -62,6 +63,8 @@ qq:
     add-success: 成功添加绑定
     add-ssa-success: 成功添加绑定%name% <-> %code%
     remove-success: 成功移除绑定
+  qdispatch-command:
+    success: 成功执行命令
 general:
   send-message-qq-error: |-
     发送消息时发生异常:
