@@ -42,9 +42,9 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 # IDEA
-.idea/jarRepositories.xml
 .idea/workspace.xml
-.idea/modules.xml
 .idea/libraries/
-.idea/misc.xml
 .idea/artifacts/
+.idea/dbnavigator.xml
+.idea/jarRepositories.xml
+.idea/vcs.xml
