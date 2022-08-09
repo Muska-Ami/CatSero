@@ -1,3 +1,6 @@
+/*
+ * XMCore copyright XMNetwork with XiaMoHuaHuo_CN.
+ */
 package moe.xmcn.xmcore
 
 import moe.xmcn.catsero.utils.Config.plugin

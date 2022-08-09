@@ -40,9 +40,12 @@ public class OnQQGroupMessage implements Listener {
             String[] args = msg.split(" ");
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ban")) {
                 if (event.getSenderID() == Config.QQ_OP) {
+                    //有OP权限
                     if (args.length == 3) {
+                        //添加到Bukkit内置绑定
                         Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], Config.UsesConfig.getString("qban-player.reason"), null, null);
                         if (Players.getPlayer(args[2]).isOnline()) {
+                            //如果玩家在线，那么将其踢出
                             Bukkit.getScheduler().runTask(Config.plugin, () -> Players.getPlayer(args[2]).kickPlayer(Config.UsesConfig.getString("qban-player.reason")));
                         }
                         String message = Config.getMsgByMsID("qq.qban-player.success-ban")
@@ -65,7 +68,9 @@ public class OnQQGroupMessage implements Listener {
             String[] args = msg.split(" ");
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("unban")) {
                 if (event.getSenderID() == Config.QQ_OP) {
+                    //有OP权限
                     if (args.length == 3) {
+                        //从Bukkit内置封禁移除
                         Bukkit.getBanList(BanList.Type.NAME).pardon(args[2]);
                         String message = Config.getMsgByMsID("qq.qban-player.success-unban")
                                 .replace("%player%", args[2]);

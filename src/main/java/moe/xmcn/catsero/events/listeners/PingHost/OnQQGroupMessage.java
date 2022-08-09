@@ -40,7 +40,9 @@ public class OnQQGroupMessage implements Listener {
             String[] args = msg.split(" ");
             if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ping")) {
                 if (Config.UsesConfig.getBoolean("pinghost.op-only")) {
+                    //OP模式
                     if (event.getSenderID() == Config.QQ_OP) {
+                        //有OP
                         try {
                             Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.doing"));
                             String result = Utils.PingHostUtils(args[2]);
@@ -61,9 +63,11 @@ public class OnQQGroupMessage implements Listener {
                             Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.failed"));
                         }
                     } else {
+                        //无OP
                         Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
                     }
                 } else {
+                    //通用模式
                     try {
                         Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.pinghost.doing"));
                         String result = Utils.PingHostUtils(args[2]);

@@ -38,16 +38,20 @@ public class OnGameCommand {
     public static boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args[0].equalsIgnoreCase("ping") && Config.UsesConfig.getBoolean("pinghost.enabled")) {
             if (Config.UsesConfig.getBoolean("pinghost.op-only")) {
+                //OP模式
                 if (sender.hasPermission("catsero.admin")) {
+                    //有OP权限
                     if (args.length == 2) {
                         PingMain(sender, args);
                     } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&c请键入正确的地址"));
                     }
                 } else {
+                    //无OP权限
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.no-permission")));
                 }
             } else if (args.length == 2) {
+                //通用模式
                 PingMain(sender, args);
             } else {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&c请键入正确的地址"));

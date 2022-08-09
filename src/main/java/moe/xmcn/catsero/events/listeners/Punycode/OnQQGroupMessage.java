@@ -38,9 +38,13 @@ public class OnQQGroupMessage implements Listener {
             String[] args = msg.split(" ");
             if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "punycode")) {
                 if (args.length == 4 && Config.UsesConfig.getBoolean("punycode.url-support") && Objects.equals(args[3], "urlmode")) {
+                    //URL编码
                     Config.sendMiraiGroupMessage(Punycode.encodeURL(args[2]));
-                } else {
+                } else if (args.length == 3) {
+                    //常规编码
                     Config.sendMiraiGroupMessage(Punycode.encode(args[2]));
+                } else {
+                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.punycode.too-many-or-low-options"));
                 }
             }
         }

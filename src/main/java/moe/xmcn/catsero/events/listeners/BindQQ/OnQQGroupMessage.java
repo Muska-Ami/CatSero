@@ -40,7 +40,9 @@ public class OnQQGroupMessage implements Listener {
             String[] args = message.split(" ");
             if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "bind")) {
                 if (event.getSenderID() == Config.QQ_OP) {
+                    //有OP权限
                     if (args.length == 5 && Objects.equals(args[2], "add")) {
+                        //添加绑定
                         if (!Objects.requireNonNull(MiraiMC.getBind(Long.parseLong(args[3]))).toString().equals("") || MiraiMC.getBind(Players.getPlayer(args[3]).getUniqueId()) != 0L) {
                             Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.already-bind"));
                         } else {
@@ -48,6 +50,7 @@ public class OnQQGroupMessage implements Listener {
                             Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.add-success"));
                         }
                     } else if (args.length == 4 && Objects.equals(args[2], "remove")) {
+                        //移除绑定
                         if (!Objects.requireNonNull(MiraiMC.getBind(Long.parseLong(args[3]))).toString().equals("") || MiraiMC.getBind(Players.getPlayer(args[3]).getUniqueId()) != 0L) {
                             MiraiMC.removeBind(Long.parseLong(args[3]));
                             MiraiMC.removeBind(Players.getPlayer(args[3]).getUniqueId());
@@ -58,6 +61,7 @@ public class OnQQGroupMessage implements Listener {
                         }
                     }
                 } else {
+                    //无OP权限
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
                 }
             }

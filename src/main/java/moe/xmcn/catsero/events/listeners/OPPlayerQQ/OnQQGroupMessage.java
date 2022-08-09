@@ -39,15 +39,19 @@ public class OnQQGroupMessage implements Listener {
         String[] args = message.split(" ");
         if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "setop") && Config.UsesConfig.getBoolean("qop-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
             if (event.getSenderID() == Config.QQ_OP) {
+                //有OP权限
                 ServerOperator plu = Players.getPlayer(args[2]);
                 boolean isOp = plu.isOp();
                 if (isOp) {
+                    //玩家是OP
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.already-is-op"));
                 } else {
+                    //玩家不是OP
                     plu.setOp(true);
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.success-add"));
                 }
             } else {
+                //无OP权限
                 Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
             }
         }
@@ -59,15 +63,19 @@ public class OnQQGroupMessage implements Listener {
         String[] args = message.split(" ");
         if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "removeop") && Config.UsesConfig.getBoolean("qop-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
             if (event.getSenderID() == Config.QQ_OP) {
+                //有OP权限
                 ServerOperator plu = Players.getPlayer(args[2]);
                 boolean isOp = plu.isOp();
                 if (!isOp) {
+                    //玩家不是OP
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.already-not-op"));
                 } else {
+                    //玩家是OP
                     plu.setOp(false);
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qop-player.success-remove"));
                 }
             } else {
+                //无OP权限
                 Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
             }
         }

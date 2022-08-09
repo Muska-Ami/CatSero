@@ -28,6 +28,8 @@ import moe.xmcn.catsero.utils.ServerTPS;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class OnQQGroupMessage implements Listener {
@@ -37,7 +39,8 @@ public class OnQQGroupMessage implements Listener {
         String message = event.getMessage();
         String[] args = message.split(" ");
         if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "tps") && Config.UsesConfig.getBoolean("get-tps.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-            Config.sendMiraiGroupMessage("TPS: " + ServerTPS.getTPS());
+            //先 BigDecimal 四舍5入然后发送
+            Config.sendMiraiGroupMessage("TPS: " + BigDecimal.valueOf(ServerTPS.getTPS()).setScale(1, RoundingMode.HALF_UP));
         }
     }
 

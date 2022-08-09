@@ -48,10 +48,14 @@ public class Utils {
 
     public static String[] getWeather(String cn) throws UnsupportedEncodingException {
         String cityname = URLEncoder.encode(cn, "UTF-8");
-        String weather_url = "https://csu.huahuo-cn.tk/api/wthr.php?city=" + cityname;
+        String weather_url = "https://csa-webapi.xmnetwork.ga/api/wthr.php?city=" + cityname;
         String datajson = HttpUtils.sendGet(weather_url, "UTF-8");
         if (datajson.equals("undefined")) {
+            //String datajson 等于空
             return ("无法与服务器建立连接").split("-");
+        } else if (datajson.equals("02,\"desc\":\"invil")) {
+            //String datajson 等于无效返回
+            return ("无效的城市").split("-");
         } else {
             Gson gson = new Gson();
             Utils weatherutils = gson.fromJson(datajson, Utils.class);

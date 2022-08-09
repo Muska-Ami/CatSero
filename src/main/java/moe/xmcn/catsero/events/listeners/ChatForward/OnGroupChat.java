@@ -41,17 +41,16 @@ public class OnGroupChat implements Listener {
             String sendername = event.getSenderNameCard();
             String emsg = event.getMessage();
 
-            if (Config.UsesConfig.getBoolean("forward-chat.use-bind")) {
-                String message = Config.UsesConfig.getString("forward-chat.format.to-mc");
-                message = tryUseBind(message, groupid, groupname, senderid, sendername, emsg);
-                message = tryRemoveColorCode(message);
-                if (Config.UsesConfig.getBoolean("forward-chat.prefix.enabled")) {
-                    if (message.startsWith(Config.UsesConfig.getString("forward-chat.prefix.format.to-qq"))) {
-                        Bukkit.broadcastMessage(message);
-                    }
-                } else {
+            String message = Config.UsesConfig.getString("forward-chat.format.to-mc");
+            message = tryUseBind(message, groupid, groupname, senderid, sendername, emsg);
+            message = tryRemoveColorCode(message);
+            if (Config.UsesConfig.getBoolean("forward-chat.prefix.enabled")) {
+                //启用了Prefix
+                if (message.startsWith(Config.UsesConfig.getString("forward-chat.prefix.format.to-qq"))) {
                     Bukkit.broadcastMessage(message);
                 }
+            } else {
+                Bukkit.broadcastMessage(message);
             }
         }
     }
@@ -61,9 +60,11 @@ public class OnGroupChat implements Listener {
                 .replace("%groupname%", groupname)
                 .replace("%sendercode%", String.valueOf(senderid));
         if (Config.UsesConfig.getBoolean("forward-chat.use-bind")) {
+            //使用MiraiMC内置绑定模式
             return mes.replace("%sendername%", Players.getPlayer(MiraiMC.getBind(senderid)).getName())
                     .replace("%message%", emsg);
         } else {
+            //通用模式
             return mes.replace("%sendername%", sendername)
                     .replace("%message%", emsg);
         }
