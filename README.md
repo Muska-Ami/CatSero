@@ -21,14 +21,13 @@
 
 ### 待修复/实现
 
-- [x] QQ群-Minecraft消息互转(异步)
 - [ ] QQ群娱乐功能(遥遥无期，XD，希望有dalao PR一下)
 - [ ] 自动回复功能
-- [ ] Q群解析Minecraft命令
 
 ### 已经实现
 
-- [x] *使用SQLite记录玩家数据
+- [x] *QQ群-Minecraft消息互转(异步)
+- [x] *Q群解析Minecraft命令
 - [x] 加入/退出转发权限控制
 - [x] 自动检查更新
 - [x] Minecraft玩家加入/退出通知到QQ
