@@ -24,6 +24,7 @@ package moe.xmcn.catsero.events.listeners.WeatherInfo;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
+import moe.xmcn.catsero.utils.QCommandParser;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -35,29 +36,30 @@ public class OnQQGroupMessage implements Listener {
 
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
-        if (Config.UsesConfig.getBoolean("weatherinfo.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-            String msg = event.getMessage();
-            String[] args = msg.split(" ");
-            if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("weather")) {
-                if (Config.UsesConfig.getBoolean("weatherinfo.op-only")) {
-                    //仅OP模式
-                    if (event.getSenderID() == Config.QQ_OP) {
-                        //有OP
+        String[] args = QCommandParser.getParser.parse(event.getMessage());
+        if (!(args == null)) {
+            if (Config.UsesConfig.getBoolean("weatherinfo.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
+                if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("weather")) {
+                    if (Config.UsesConfig.getBoolean("weatherinfo.op-only")) {
+                        //仅OP模式
+                        if (event.getSenderID() == Config.QQ_OP) {
+                            //有OP
+                            if (args.length == 3 && event.getGroupID() == Config.Use_Group) {
+                                WeatherMain(args);
+                            } else {
+                                Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.null-city"));
+                            }
+                        } else {
+                            //无OP
+                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
+                        }
+                    } else {
+                        //通用模式
                         if (args.length == 3 && event.getGroupID() == Config.Use_Group) {
                             WeatherMain(args);
                         } else {
                             Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.null-city"));
                         }
-                    } else {
-                        //无OP
-                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
-                    }
-                } else {
-                    //通用模式
-                    if (args.length == 3 && event.getGroupID() == Config.Use_Group) {
-                        WeatherMain(args);
-                    } else {
-                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.null-city"));
                     }
                 }
             }

@@ -25,6 +25,7 @@ package moe.xmcn.catsero.events.listeners.KickPlayerQQ;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Players;
+import moe.xmcn.catsero.utils.QCommandParser;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,22 +36,23 @@ public class OnQQGroupMessage implements Listener {
 
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
-        String message = event.getMessage();
-        String[] args = message.split(" ");
-        if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "kick") && Config.UsesConfig.getBoolean("qkick-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-            if (event.getSenderID() == Config.QQ_OP) {
-                //有OP权限
-                if (Players.getPlayer(args[2]).isOnline()) {
-                    //玩家在线
-                    Bukkit.getScheduler().runTask(Config.plugin, () -> Players.getPlayer(args[2]).kickPlayer(Config.UsesConfig.getString("qkick-player.message")));
-                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qkick-player.kick").replace("%player%", args[2]));
+        String[] args = QCommandParser.getParser.parse(event.getMessage());
+        if (!(args == null)) {
+            if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "kick") && Config.UsesConfig.getBoolean("qkick-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
+                if (event.getSenderID() == Config.QQ_OP) {
+                    //有OP权限
+                    if (Players.getPlayer(args[2]).isOnline()) {
+                        //玩家在线
+                        Bukkit.getScheduler().runTask(Config.plugin, () -> Players.getPlayer(args[2]).kickPlayer(Config.UsesConfig.getString("qkick-player.message")));
+                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qkick-player.kick").replace("%player%", args[2]));
+                    } else {
+                        //玩家不在线
+                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qkick-player.not-online").replace("%player%", args[2]));
+                    }
                 } else {
-                    //玩家不在线
-                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qkick-player.not-online").replace("%player%", args[2]));
+                    //无OP权限
+                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
                 }
-            } else {
-                //无OP权限
-                Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
             }
         }
     }

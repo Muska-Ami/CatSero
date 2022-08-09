@@ -9,7 +9,7 @@ public interface QCommandParser {
          * @param message   消息
          * @return  数组或null
          */
-        public String[] parse(String message) {
+        public static String[] parse(String message) {
             String pmh = parseCommandHeader(message);
             if (pmh != null) {
                 return pmh.split(" ");
@@ -23,7 +23,7 @@ public interface QCommandParser {
          * @param message   消息
          * @return  处理后的消息或null
          */
-        private String parseCommandHeader(String message) {
+        private static String parseCommandHeader(String message) {
             if (message.startsWith("!catsero")) {
                 message = message.replaceFirst("/catsero ", "");
                 return message;

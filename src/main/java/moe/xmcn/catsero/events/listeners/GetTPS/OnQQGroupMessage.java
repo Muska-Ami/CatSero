@@ -24,6 +24,7 @@ package moe.xmcn.catsero.events.listeners.GetTPS;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
+import moe.xmcn.catsero.utils.QCommandParser;
 import moe.xmcn.catsero.utils.ServerTPS;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -36,11 +37,12 @@ public class OnQQGroupMessage implements Listener {
 
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
-        String message = event.getMessage();
-        String[] args = message.split(" ");
-        if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "tps") && Config.UsesConfig.getBoolean("get-tps.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-            //先 BigDecimal 四舍5入然后发送
-            Config.sendMiraiGroupMessage("TPS: " + BigDecimal.valueOf(ServerTPS.getTPS()).setScale(1, RoundingMode.HALF_UP));
+        String[] args = QCommandParser.getParser.parse(event.getMessage());
+        if (!(args == null)) {
+            if (Objects.equals(args[0], "catsero") && Objects.equals(args[1], "tps") && Config.UsesConfig.getBoolean("get-tps.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
+                //先 BigDecimal 四舍5入然后发送
+                Config.sendMiraiGroupMessage("TPS: " + BigDecimal.valueOf(ServerTPS.getTPS()).setScale(1, RoundingMode.HALF_UP));
+            }
         }
     }
 

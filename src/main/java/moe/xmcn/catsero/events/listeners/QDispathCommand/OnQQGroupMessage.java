@@ -24,6 +24,7 @@ package moe.xmcn.catsero.events.listeners.QDispathCommand;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
+import moe.xmcn.catsero.utils.QCommandParser;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -34,13 +35,14 @@ public class OnQQGroupMessage implements Listener {
 
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
-        if (Config.UsesConfig.getBoolean("qdispatch-command.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-            String msg = event.getMessage();
-            String[] args = msg.split(" ");
-            if (Objects.equals(args[0], "catsero") && args.length == 2) {
-                //Bukkit.dispatchCommand() 执行命令，发送者为 ConsoleCommandSender
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), args[1]);
-                Config.sendMiraiGroupMessage(Config.getMsgByMsID("qq.qdispatch-command.success"));
+        String[] args = QCommandParser.getParser.parse(event.getMessage());
+        if (!(args == null)) {
+            if (Config.UsesConfig.getBoolean("qdispatch-command.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
+                if (Objects.equals(args[0], "catsero") && args.length == 2) {
+                    //Bukkit.dispatchCommand() 执行命令，发送者为 ConsoleCommandSender
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), args[1]);
+                    Config.sendMiraiGroupMessage(Config.getMsgByMsID("qq.qdispatch-command.success"));
+                }
             }
         }
     }

@@ -25,6 +25,7 @@ package moe.xmcn.catsero.events.listeners.BanPlayerQQ;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Players;
+import moe.xmcn.catsero.utils.QCommandParser;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -63,23 +64,24 @@ public class OnQQGroupMessage implements Listener {
 
     @EventHandler
     public void onMiraiGroupMessageEvent1(MiraiGroupMessageEvent event) {
-        if (Config.UsesConfig.getBoolean("qban-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-            String msg = event.getMessage();
-            String[] args = msg.split(" ");
-            if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("unban")) {
-                if (event.getSenderID() == Config.QQ_OP) {
-                    //有OP权限
-                    if (args.length == 3) {
-                        //从Bukkit内置封禁移除
-                        Bukkit.getBanList(BanList.Type.NAME).pardon(args[2]);
-                        String message = Config.getMsgByMsID("qq.qban-player.success-unban")
-                                .replace("%player%", args[2]);
-                        Config.sendMiraiGroupMessage(message);
+        String[] args = QCommandParser.getParser.parse(event.getMessage());
+        if (!(args == null)) {
+            if (Config.UsesConfig.getBoolean("qban-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
+                if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("unban")) {
+                    if (event.getSenderID() == Config.QQ_OP) {
+                        //有OP权限
+                        if (args.length == 3) {
+                            //从Bukkit内置封禁移除
+                            Bukkit.getBanList(BanList.Type.NAME).pardon(args[2]);
+                            String message = Config.getMsgByMsID("qq.qban-player.success-unban")
+                                    .replace("%player%", args[2]);
+                            Config.sendMiraiGroupMessage(message);
+                        } else {
+                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.invalid-options"));
+                        }
                     } else {
-                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.invalid-options"));
+                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
                     }
-                } else {
-                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
                 }
             }
         }
