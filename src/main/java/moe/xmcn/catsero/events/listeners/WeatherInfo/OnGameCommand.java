@@ -65,9 +65,7 @@ public class OnGameCommand {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.weatherinfo.doing")));
                 try {
                     String[] resvi = Utils.getWeather(args[1]);
-                    if (resvi.length == 1) {
-                        sender.sendMessage(ChatColor.RED + resvi[0]);
-                    } else {
+                    if (resvi.length == 5) {
                         String message = Config.getMsgByMsID("minecraft.weatherinfo.success")
                                 .replace("%type%", resvi[4])
                                 .replace("%temperature%", resvi[1])
@@ -75,6 +73,8 @@ public class OnGameCommand {
                                 .replace("%wind_direction%", resvi[3])
                                 .replace("%date%", resvi[0]);
                         sender.sendMessage(message);
+                    } else {
+                        sender.sendMessage(ChatColor.RED + resvi[0]);
                     }
                 } catch (UnsupportedEncodingException uee) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.weatherinfo.error")));

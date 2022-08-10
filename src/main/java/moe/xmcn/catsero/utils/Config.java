@@ -25,6 +25,7 @@ package moe.xmcn.catsero.utils;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.dreamvoid.miraimc.api.MiraiBot;
 import moe.xmcn.catsero.Main;
+import moe.xmcn.xmcore.ThisAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -49,7 +50,7 @@ public interface Config {
     String Prefix_MC = Config.getString("format-list.prefix.to-mc") + ChatColor.translateAlternateColorCodes('&', "&r");
     String Prefix_QQ = Config.getString("format-list.prefix.to-qq");
     FileConfiguration UsesConfig = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml"));
-    FileConfiguration PluginInfo = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder().getParent(), "XMCore/catsero.info"));
+    FileConfiguration PluginInfo = ThisAPI.Companion.readPlugin("CatSero");
 
     /**
      * 尝试转为PlaceholderAPI文本
@@ -95,6 +96,7 @@ public interface Config {
         if (!new File(plugin.getDataFolder(), "locale/zh_CN.lang").exists()) {
             plugin.saveResource("locale/zh_CN.lang", false);
         }
+        ThisAPI.Companion.savePlugin("CatSero");
     }
 
     /**

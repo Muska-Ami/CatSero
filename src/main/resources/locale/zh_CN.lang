@@ -33,6 +33,7 @@ qq:
   pinghost:
     doing: Ping进行中，请耐心等待...
     error: Ping时发生错误
+    error-address: 请键入正确的地址
     success: |-
       %address_original%(%address_punycode%) 的  Ping 统计信息：
          数据包：已发送 = 4， 已接收 = %withdraw% ,丢失 = %lost% (%lost_percent%% 丢失)

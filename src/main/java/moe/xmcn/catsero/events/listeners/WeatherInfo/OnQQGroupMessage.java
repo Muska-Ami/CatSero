@@ -38,28 +38,26 @@ public class OnQQGroupMessage implements Listener {
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         String[] args = QCommandParser.getParser.parse(event.getMessage());
         if (args != null) {
-            if (Config.UsesConfig.getBoolean("weatherinfo.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-                if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("weather")) {
-                    if (Config.UsesConfig.getBoolean("weatherinfo.op-only")) {
-                        //仅OP模式
-                        if (event.getSenderID() == Config.QQ_OP) {
-                            //有OP
-                            if (args.length == 3 && event.getGroupID() == Config.Use_Group) {
-                                WeatherMain(args);
-                            } else {
-                                Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.null-city"));
-                            }
-                        } else {
-                            //无OP
-                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
-                        }
-                    } else {
-                        //通用模式
-                        if (args.length == 3 && event.getGroupID() == Config.Use_Group) {
+            if (Config.UsesConfig.getBoolean("weatherinfo.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && args[0].equals("weather")) {
+                if (Config.UsesConfig.getBoolean("weatherinfo.op-only")) {
+                    //仅OP模式
+                    if (event.getSenderID() == Config.QQ_OP) {
+                        //有OP
+                        if (args.length == 2 && event.getGroupID() == Config.Use_Group) {
                             WeatherMain(args);
                         } else {
                             Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.null-city"));
                         }
+                    } else {
+                        //无OP
+                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
+                    }
+                } else {
+                    //通用模式
+                    if (args.length == 2 && event.getGroupID() == Config.Use_Group) {
+                        WeatherMain(args);
+                    } else {
+                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.null-city"));
                     }
                 }
             }
@@ -72,14 +70,18 @@ public class OnQQGroupMessage implements Listener {
             public void run() {
                 try {
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.doing"));
-                    String[] resvi = Utils.getWeather(args[2]);
-                    String message = Config.getMsgByMsID("qq.weatherinfo.success")
-                            .replace("%type%", resvi[4])
-                            .replace("%temperature%", resvi[1])
-                            .replace("%wind%", resvi[2])
-                            .replace("%wind_direction%", resvi[3])
-                            .replace("%date%", resvi[0]);
-                    Config.sendMiraiGroupMessage(message);
+                    String[] resvi = Utils.getWeather(args[1]);
+                    if (resvi.length == 5) {
+                        String message = Config.getMsgByMsID("qq.weatherinfo.success")
+                                .replace("%type%", resvi[4])
+                                .replace("%temperature%", resvi[1])
+                                .replace("%wind%", resvi[2])
+                                .replace("%wind_direction%", resvi[3])
+                                .replace("%date%", resvi[0]);
+                        Config.sendMiraiGroupMessage(message);
+                    } else {
+                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.error"));
+                    }
                 } catch (UnsupportedEncodingException uee) {
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.error"));
                 }

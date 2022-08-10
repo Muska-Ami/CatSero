@@ -10,7 +10,7 @@ public interface QCommandParser {
          * @return  数组或null
          */
         public static String[] parse(String message) {
-            String pmh = parseCommandHeader(message);
+            String pmh = checkCommandHeader(message);
             if (pmh != null) {
                 return pmh.split(" ");
             } else {
@@ -23,12 +23,14 @@ public interface QCommandParser {
          * @param message   消息
          * @return  处理后的消息或null
          */
-        private static String parseCommandHeader(String message) {
+        private static String checkCommandHeader(String message) {
             if (message.startsWith("!catsero")) {
-                message = message.replaceFirst("/catsero ", "");
+                //解析命令头(!)
+                message = message.replaceFirst("!catsero ", "");
                 return message;
             } else if (message.startsWith("/catsero")) {
-                message = message.replaceFirst("!catsero ", "");
+                //解析命令头(/)
+                message = message.replaceFirst("/catsero ", "");
                 return message;
             }
             return null;

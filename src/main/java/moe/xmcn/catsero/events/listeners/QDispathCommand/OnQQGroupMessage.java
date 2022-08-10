@@ -29,18 +29,21 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import java.util.Objects;
-
 public class OnQQGroupMessage implements Listener {
 
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         String[] args = QCommandParser.getParser.parse(event.getMessage());
         if (args != null) {
-            if (Config.UsesConfig.getBoolean("qdispatch-command.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && Objects.equals(args[0], "dispatchcmd") && args.length == 2) {
-                //Bukkit.dispatchCommand() 执行命令，发送者为 ConsoleCommandSender
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), args[1].replace("+", " "));
-                Config.sendMiraiGroupMessage(Config.getMsgByMsID("qq.qdispatch-command.success"));
+            if (Config.UsesConfig.getBoolean("qdispatch-command.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && args[0].equals("dispatchcmd") && args.length == 2) {
+                if (event.getSenderID() == Config.QQ_OP) {
+                    //Bukkit.dispatchCommand() 执行命令，发送者为 ConsoleCommandSender
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), args[1].replace("+", " "));
+                    Config.sendMiraiGroupMessage(Config.getMsgByMsID("qq.qdispatch-command.success"));
+                } else {
+                    //无OP权限
+                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
+                }
             }
         }
     }

@@ -25,7 +25,6 @@ package moe.xmcn.catsero;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Metrics;
 import moe.xmcn.catsero.utils.ServerTPS;
-import moe.xmcn.xmcore.ThisAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -47,7 +46,6 @@ public class Main extends JavaPlugin {
     public void onLoad() {
         getLogger().log(Level.INFO, "[CatSero] 正在加载CatSero插件");
         Config.saveDefFile();
-        ThisAPI.Companion.savXMCore("xmcore.info");
         if (Config.Config.getBoolean("allow-start-warn")) {
             getLogger().warning("请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
         }
