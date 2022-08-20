@@ -42,10 +42,11 @@ public class LibChecker {
 
     public static void listLibInstallation() {
         Config.plugin.getLogger().log(Level.INFO,
-                "=== CatSero 运行时环境检查 ===" +
+                   "=== CatSero 运行时环境检查 ===" +
                         "\nMiraiMC => " + MiraiMC +
                         "\nPlaceholderAPI => " + PlaceholderAPI +
-                        "\n\nEnable plugin: " + shouldEnablePluginText()
+                        "\n\nEnable plugin: " + shouldEnablePluginText() +
+                        "\n========================="
         );
     }
 
