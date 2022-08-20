@@ -23,6 +23,7 @@
 package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.utils.Config;
+import moe.xmcn.catsero.utils.LibChecker;
 import moe.xmcn.catsero.utils.Metrics;
 import moe.xmcn.catsero.utils.ServerTPS;
 import org.bukkit.Bukkit;
@@ -45,6 +46,8 @@ public class Main extends JavaPlugin {
     @Override // 加载插件
     public void onLoad() {
         getLogger().log(Level.INFO, "[CatSero] 正在加载CatSero插件");
+        LibChecker.checkLib();
+        LibChecker.listLibInstallation();
         Config.saveDefFile();
         if (Config.Config.getBoolean("allow-start-warn")) {
             getLogger().warning("请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
@@ -57,7 +60,7 @@ public class Main extends JavaPlugin {
      */
     @Override
     public void onEnable() {
-        if (Bukkit.getPluginManager().getPlugin("MiraiMC") != null) {
+        if (LibChecker.shouldEnablePlugin()) {
             regiserEvents();
 
             // bStats

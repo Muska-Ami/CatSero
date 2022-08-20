@@ -4,12 +4,7 @@
     <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
-      <option name="url" value="https://repo.maven.apache.org/maven2" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="sonatype-repo" />
-      <option name="name" value="sonatype-repo" />
-      <option name="url" value="https://oss.sonatype.org/content/repositories/releases/" />
+      <option name="url" value="https://maven.aliyun.com/repository/public/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
@@ -27,24 +22,9 @@
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="spigot-bc" />
-      <option name="name" value="spigot-bc" />
-      <option name="url" value="https://oss.sonatype.org/content/repositories/snapshots/" />
-    </remote-repository>
-    <remote-repository>
       <option name="id" value="lss233-minecraft" />
       <option name="name" value="lss233-minecraft" />
       <option name="url" value="https://lss233.littleservice.cn/repositories/minecraft" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="official-maven-repo" />
-      <option name="name" value="official-maven-repo" />
-      <option name="url" value="https://repo1.maven.org/maven2" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="spigot-repo" />
-      <option name="name" value="spigot-repo" />
-      <option name="url" value="https://hub.spigotmc.org/nexus/content/repositories/snapshots" />
     </remote-repository>
   </component>
 </project>

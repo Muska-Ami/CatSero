@@ -4,7 +4,7 @@ description: 基于MiraiMC的Minecraft功能插件
 version: ${project.version}
 api-version: 1.13
 author: XiaMoHuaHuo_CN
-softdepend:
+loadbefore:
   - MiraiMC
   - PlaceholderAPI
 commands:

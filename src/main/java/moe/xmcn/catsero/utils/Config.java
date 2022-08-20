@@ -60,7 +60,7 @@ public interface Config {
      * @return 新文本
      */
     static String tryToPAPI(Player player, String text) {
-        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+        if (LibChecker.PlaceholderAPI) {
             return PlaceholderAPI.setBracketPlaceholders(player, text);
         }
         return text;
@@ -74,7 +74,7 @@ public interface Config {
      * @return 新文本
      */
     static String tryToPAPI(CommandSender player, String text) {
-        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+        if (LibChecker.PlaceholderAPI) {
             Player pl = (Player) player;
             return PlaceholderAPI.setBracketPlaceholders(pl, text);
         }

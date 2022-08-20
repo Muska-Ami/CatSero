@@ -25,15 +25,15 @@
 
         <!-- 官方源 -->
         <!-- Spigot Maven Repo -->
-        <repository>
+        <!--<repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots</url>
-        </repository>
+        </repository>-->
         <!-- Official Maven Repo -->
-        <repository>
+        <!--<repository>
             <id>official-maven-repo</id>
             <url>https://repo1.maven.org/maven2</url>
-        </repository>
+        </repository>-->
         <!-- PlaceholderAPI Repo -->
         <repository>
             <id>placeholderapi</id>
