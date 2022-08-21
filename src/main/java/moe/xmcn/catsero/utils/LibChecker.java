@@ -46,7 +46,7 @@ public class LibChecker {
         Config.plugin.getLogger().log(Level.INFO, "PlaceholderAPI => " + PlaceholderAPI);
         Config.plugin.getLogger().log(Level.INFO, "");
         Config.plugin.getLogger().log(Level.INFO, "Enable plugin: " + shouldEnablePluginText());
-        Config.plugin.getLogger().log(Level.INFO, "=========================");
+        Config.plugin.getLogger().log(Level.INFO, "=============================");
     }
 
     private static String shouldEnablePluginText() {
