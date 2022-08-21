@@ -36,21 +36,20 @@ public class OnQQGroupMessage implements Listener {
 
     @EventHandler
     public void onMiraiGroupMessageEvent0(MiraiGroupMessageEvent event) {
-        if (Config.UsesConfig.getBoolean("qban-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot) {
-            String msg = event.getMessage();
-            String[] args = msg.split(" ");
-            if (args[0].equalsIgnoreCase("catsero") && args[1].equalsIgnoreCase("ban")) {
+        String[] args = QCommandParser.getParser.parse(event.getMessage());
+        if (args != null) {
+            if (Config.UsesConfig.getBoolean("qban-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && args[0].equalsIgnoreCase("ban")) {}
                 if (event.getSenderID() == Config.QQ_OP) {
                     //有OP权限
-                    if (args.length == 3) {
-                        //添加到Bukkit内置绑定
-                        Bukkit.getBanList(BanList.Type.NAME).addBan(args[2], Config.UsesConfig.getString("qban-player.reason"), null, null);
-                        if (Players.getPlayer(args[2]).isOnline()) {
+                    if (args.length == 2) {
+                        //添加到Bukkit内置封禁
+                        Bukkit.getBanList(BanList.Type.NAME).addBan(args[1], Config.UsesConfig.getString("qban-player.reason"), null, null);
+                        if (Players.getPlayer(args[1]).isOnline()) {
                             //如果玩家在线，那么将其踢出
                             Bukkit.getScheduler().runTask(Config.plugin, () -> Players.getPlayer(args[2]).kickPlayer(Config.UsesConfig.getString("qban-player.reason")));
                         }
                         String message = Config.getMsgByMsID("qq.qban-player.success-ban")
-                                .replace("%player%", args[2]);
+                               .replace("%player%", args[1]);
                         Config.sendMiraiGroupMessage(message);
                     } else {
                         Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.invalid-options"));
@@ -58,7 +57,7 @@ public class OnQQGroupMessage implements Listener {
                 } else {
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
                 }
-            }
+           }
         }
     }
 

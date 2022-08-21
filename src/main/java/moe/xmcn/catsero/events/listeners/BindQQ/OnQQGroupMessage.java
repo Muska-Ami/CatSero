@@ -41,24 +41,30 @@ public class OnQQGroupMessage implements Listener {
             if (Config.UsesConfig.getBoolean("bind-qq.enabled") && Objects.equals(args[0], "bind")) {
                 if (event.getSenderID() == Config.QQ_OP) {
                     //有OP权限
-                    if (args.length == 4 && Objects.equals(args[1], "add")) {
-                        //添加绑定
-                        if (!Objects.requireNonNull(MiraiMC.getBind(Long.parseLong(args[2]))).toString().equals("") || MiraiMC.getBind(Players.getPlayer(args[2]).getUniqueId()) != 0L) {
-                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.already-bind"));
-                        } else {
-                            MiraiMC.addBind(Players.getPlayer(args[3]).getUniqueId(), Long.parseLong(args[2]));
-                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.add-success"));
-                        }
-                    } else if (args.length == 3 && Objects.equals(args[1], "remove")) {
-                        //移除绑定
-                        if (!Objects.requireNonNull(MiraiMC.getBind(Long.parseLong(args[2]))).toString().equals("") || MiraiMC.getBind(Players.getPlayer(args[2]).getUniqueId()) != 0L) {
-                            MiraiMC.removeBind(Long.parseLong(args[2]));
-                            MiraiMC.removeBind(Players.getPlayer(args[2]).getUniqueId());
-                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.remove-success"));
-
-                        } else {
-                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.no-bind-found"));
-                        }
+                    switch (args[1]) {
+                        case "add":
+                            if (args.length == 4) {
+                                //添加绑定
+                                if (!Objects.requireNonNull(MiraiMC.getBind(Long.parseLong(args[2]))).toString().equals("") || MiraiMC.getBind(Players.getPlayer(args[2]).getUniqueId()) != 0L) {
+                                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.already-bind"));
+                                } else {
+                                    MiraiMC.addBind(Players.getPlayer(args[3]).getUniqueId(), Long.parseLong(args[2]));
+                                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.add-success"));
+                                }
+                            }
+                            break;
+                        case "remove":
+                            if (args.length == 3) {
+                                //移除绑定
+                                if (!Objects.requireNonNull(MiraiMC.getBind(Long.parseLong(args[2]))).toString().equals("") || MiraiMC.getBind(Players.getPlayer(args[2]).getUniqueId()) != 0L) {
+                                    MiraiMC.removeBind(Long.parseLong(args[2]));
+                                    MiraiMC.removeBind(Players.getPlayer(args[2]).getUniqueId());
+                                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.remove-success"));
+                                } else {
+                                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.bind-qq.no-bind-found"));
+                                }
+                            }
+                            break;
                     }
                 } else {
                     //无OP权限
