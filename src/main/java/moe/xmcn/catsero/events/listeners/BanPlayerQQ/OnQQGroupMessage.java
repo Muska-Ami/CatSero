@@ -38,7 +38,7 @@ public class OnQQGroupMessage implements Listener {
     public void onMiraiGroupMessageEvent0(MiraiGroupMessageEvent event) {
         String[] args = QCommandParser.getParser.parse(event.getMessage());
         if (args != null) {
-            if (Config.UsesConfig.getBoolean("qban-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && args[0].equalsIgnoreCase("ban")) {}
+            if (Config.UsesConfig.getBoolean("qban-player.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && args[0].equalsIgnoreCase("ban")) {
                 if (event.getSenderID() == Config.QQ_OP) {
                     //有OP权限
                     if (args.length == 2) {

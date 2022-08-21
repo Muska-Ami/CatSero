@@ -65,6 +65,8 @@ public class OnQQGroupMessage implements Listener {
                                 }
                             }
                             break;
+                        default:
+                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.invalid-options"));
                     }
                 } else {
                     //无OP权限
