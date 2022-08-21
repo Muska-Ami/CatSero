@@ -26,6 +26,7 @@
 
 ### 已经实现
 
+- [x] *QQ群自定义命令头
 - [x] *QQ命令解析器
 - [x] *QQ群-Minecraft消息互转(异步)
 - [x] *Q群解析Minecraft命令
