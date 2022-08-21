@@ -41,13 +41,12 @@ public class LibChecker {
     }
 
     public static void listLibInstallation() {
-        Config.plugin.getLogger().log(Level.INFO,
-                   "=== CatSero 运行时环境检查 ===" +
-                        "\nMiraiMC => " + MiraiMC +
-                        "\nPlaceholderAPI => " + PlaceholderAPI +
-                        "\n\nEnable plugin: " + shouldEnablePluginText() +
-                        "\n========================="
-        );
+        Config.plugin.getLogger().log(Level.INFO, "=== CatSero 运行时环境检查 ===");
+        Config.plugin.getLogger().log(Level.INFO, "MiraiMC => " + MiraiMC);
+        Config.plugin.getLogger().log(Level.INFO, "PlaceholderAPI => " + PlaceholderAPI);
+        Config.plugin.getLogger().log(Level.INFO, "");
+        Config.plugin.getLogger().log(Level.INFO, "Enable plugin: " + shouldEnablePluginText());
+        Config.plugin.getLogger().log(Level.INFO, "=========================");
     }
 
     private static String shouldEnablePluginText() {
