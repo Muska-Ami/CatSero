@@ -5,12 +5,15 @@ import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.HelpList;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
-public class CatSero implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.List;
+
+public class CatSero implements TabExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -58,4 +61,25 @@ public class CatSero implements CommandExecutor {
         return false;
     }
 
+    @Override
+    public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] args) {
+        List<String> sublist = new ArrayList<>();
+        if (args.length == 2) {
+            sublist.add("ping");
+            sublist.add("weather");
+            sublist.add("update");
+            sublist.add("reload");
+        }
+        if (args.length == 3) {
+            switch (args[0]) {
+                case "ping":
+                    sublist.add("地址");
+                    break;
+                case "weather":
+                    sublist.add("中国大陆城市");
+                    break;
+            }
+        }
+        return sublist;
+    }
 }

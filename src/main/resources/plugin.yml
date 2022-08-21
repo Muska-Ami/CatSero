@@ -22,7 +22,7 @@ permissions:
         default: op
       catsero.send-player-join-quit:
         description: "玩家加入/退出游戏转发权限"
-        default: op
+        default: false
         children:
           catsero.send-player-join-quit.join:
             description: "玩家加入游戏转发权限"

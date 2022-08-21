@@ -21,15 +21,16 @@
 
 ### 待修复/实现
 
+- [ ] 命令Tab补全
 - [ ] QQ群娱乐功能(遥遥无期，XD，希望有dalao PR一下)
 - [ ] 自动回复功能
+- [x] *Q群解析Minecraft命令
+- [x] *QQ群-Minecraft消息互转(异步)
 
 ### 已经实现
 
 - [x] *QQ群自定义命令头
-- [x] *QQ命令解析器
-- [x] *QQ群-Minecraft消息互转(异步)
-- [x] *Q群解析Minecraft命令
+- [x] *QQ命令解析调度器
 - [x] 加入/退出转发权限控制
 - [x] 自动检查更新
 - [x] Minecraft玩家加入/退出通知到QQ
