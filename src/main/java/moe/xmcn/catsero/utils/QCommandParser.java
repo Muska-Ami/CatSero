@@ -36,7 +36,7 @@ public interface QCommandParser {
             String pmhc =  checkCustomCommandHeader(message);
             if (pmhv != null) {
                 return pmhv.split(" ");
-            } else if (Config.Config.getBoolean("custom-command-head.enabled") && pmhc != null) {
+            } else if (Config.Config.getBoolean("format-list.custom-command-head.enabled") && pmhc != null) {
                 return pmhc.split(" ");
             } else {
                 return null;
@@ -67,7 +67,7 @@ public interface QCommandParser {
          * @return  处理后的消息或null
          */
         private static String checkCustomCommandHeader(String message) {
-        String customhead =  Config.Config.getString("custom-command-head.prefix");
+        String customhead =  Config.Config.getString("format-list.custom-command-head.prefix");
             if (message.startsWith("!" + customhead)) {
                 //解析命令头(!)
                 message = message.replaceFirst("!" + customhead + " ", "");
