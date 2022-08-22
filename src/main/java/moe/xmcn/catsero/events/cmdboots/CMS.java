@@ -4,13 +4,16 @@ import me.dreamvoid.miraimc.api.MiraiBot;
 import moe.xmcn.catsero.utils.Config;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
-public class CMS implements CommandExecutor {
+public class CMS implements TabExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -36,4 +39,36 @@ public class CMS implements CommandExecutor {
         return true;
     }
 
+    @Override
+    public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] args) {
+        List<String> sublist = new ArrayList<>();
+        switch (args.length) {
+            case 2:
+                sublist.add("send");
+                sublist.add("sendcustom");
+                return sublist;
+            case 3:
+                switch (args[0]) {
+                    case "send":
+                        sublist.add("消息");
+                        return sublist;
+                    case "sendcustom":
+                        sublist.add("Bot");
+                        return sublist;
+                    default:
+                        return null;
+                }
+            case 4:
+                if (Objects.equals(args[0], "sendcustom")) {
+                    sublist.add("Group");
+                    return sublist;
+                }
+            case 5:
+                if (Objects.equals(args[0], "sendcustom")) {
+                    sublist.add("消息");
+                    return sublist;
+                }
+        }
+        return null;
+    }
 }

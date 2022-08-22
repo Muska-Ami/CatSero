@@ -64,22 +64,29 @@ public class CatSero implements TabExecutor {
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] args) {
         List<String> sublist = new ArrayList<>();
-        if (args.length == 2) {
-            sublist.add("ping");
-            sublist.add("weather");
-            sublist.add("update");
-            sublist.add("reload");
+        switch (args.length) {
+            case 2:
+                sublist.add("ping");
+                sublist.add("weather");
+                sublist.add("punycode");
+                sublist.add("update");
+                sublist.add("reload");
+                return sublist;
+            case 3:
+                switch (args[0]) {
+                    case "ping":
+                        sublist.add("地址");
+                        return sublist;
+                    case "weather":
+                        sublist.add("中国大陆城市");
+                        return sublist;
+                    case "punycode":
+                        sublist.add("字符串");
+                        return sublist;
+                    default:
+                        return null;
+                }
         }
-        if (args.length == 3) {
-            switch (args[0]) {
-                case "ping":
-                    sublist.add("地址");
-                    break;
-                case "weather":
-                    sublist.add("中国大陆城市");
-                    break;
-            }
-        }
-        return sublist;
+        return null;
     }
 }
