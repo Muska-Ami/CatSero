@@ -75,8 +75,9 @@
 | !catsero kick <玩家名>                | 踢出一个在线玩家                     |
 | !catsero ban <玩家名>                 | 封禁一个玩家                       |
 | !catsero unban <玩家名>               | 解封一个玩家                       |
-| !catsero punycode <文本> \[urlmode\] | Punycode文本 \[urlmode\]:URL模式 |
+| !catsero punycode <文本> \[urlmode\] | Punycode文本 `\[urlmode\]`:URL模式 |
 | !catsero tps                       | 获取服务器TPS                     |
+| !catsero dispatchcmd <Minecraft命令> | 执行Minecraft命令 `\<Minecraft命令\>`:请使用`+`代替空格 |
 
 # bStats
 
