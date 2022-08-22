@@ -21,16 +21,16 @@
 
 ### 待修复/实现
 
-- [ ] 命令Tab补全
 - [ ] QQ群娱乐功能(遥遥无期，XD，希望有dalao PR一下)
 - [ ] 自动回复功能
-- [x] *Q群解析Minecraft命令
-- [x] *QQ群-Minecraft消息互转(异步)
+- [x] QQ群-Minecraft消息互转(异步)
 
 ### 已经实现
 
-- [x] *QQ群自定义命令头
-- [x] *QQ命令解析调度器
+- [x] 命令Tab补全
+- [x] Q群解析Minecraft命令
+- [x] QQ群自定义命令头
+- [x] QQ命令解析调度器
 - [x] 加入/退出转发权限控制
 - [x] 自动检查更新
 - [x] Minecraft玩家加入/退出通知到QQ
@@ -48,7 +48,6 @@
 ## 命令
 
 注：以`*`开头的为开发版本特性  
-注：最新开发版执行Q群命令需要命令头`!`或`/`
 
 ### Minecraft
 
@@ -63,17 +62,21 @@
 
 ### QQ
 
+注：
+1. 要触发命令前必须使用前缀`!`或`/`
+2. 命令头部分可自行定义
+
 | 命令                                | 说明                           |
 |-----------------------------------|------------------------------|
-| catsero ping <地址>                 | Ping某一个地址                    |
-| catsero weather <中国大陆城市>          | 获取某个城市的天气                    |
-| catsero setop <玩家名>               | 给予一个玩家OP                     |
-| catsero removeop <玩家名>            | 移除一个玩家OP                     |
-| catsero kick <玩家名>                | 踢出一个在线玩家                     |
-| catsero ban <玩家名>                 | 封禁一个玩家                       |
-| catsero unban <玩家名>               | 解封一个玩家                       |
-| catsero punycode <文本> \[urlmode\] | Punycode文本 \[urlmode\]:URL模式 |
-| catsero tps                       | 获取服务器TPS                     |
+| !catsero ping <地址>                 | Ping某一个地址                    |
+| !catsero weather <中国大陆城市>          | 获取某个城市的天气                    |
+| !catsero setop <玩家名>               | 给予一个玩家OP                     |
+| !catsero removeop <玩家名>            | 移除一个玩家OP                     |
+| !catsero kick <玩家名>                | 踢出一个在线玩家                     |
+| !catsero ban <玩家名>                 | 封禁一个玩家                       |
+| !catsero unban <玩家名>               | 解封一个玩家                       |
+| !catsero punycode <文本> \[urlmode\] | Punycode文本 \[urlmode\]:URL模式 |
+| !catsero tps                       | 获取服务器TPS                     |
 
 # bStats
 
