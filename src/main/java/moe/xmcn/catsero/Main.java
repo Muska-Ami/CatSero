@@ -161,6 +161,9 @@ public class Main extends JavaPlugin {
         // QDispatchCommand Q群执行MC命令
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.QDispathCommand.OnQQGroupMessage(), this);
 
+        // GetMSPT 获取MSPT功能
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.GetMSPT.OnQQGroupMessage(), this);
+
         getLogger().log(Level.INFO, "正在注册事件 -> QQ帮助菜单");
         getServer().getPluginManager().registerEvents(new QQHelp(), this);
     }
