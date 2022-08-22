@@ -39,7 +39,7 @@ public class OnQQGroupMessage implements Listener {
                 if (event.getSenderID() == Config.QQ_OP) {
                     //Bukkit.dispatchCommand() 执行命令，发送者为 ConsoleCommandSender
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), args[1].replace("+", " "));
-                    Config.sendMiraiGroupMessage(Config.getMsgByMsID("qq.qdispatch-command.success"));
+                    Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qdispatch-command.success"));
                 } else {
                     //无OP权限
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));

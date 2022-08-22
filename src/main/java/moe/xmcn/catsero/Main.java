@@ -158,6 +158,9 @@ public class Main extends JavaPlugin {
         // BindQQ 绑定QQ功能
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.BindQQ.OnQQGroupMessage(), this);
 
+        // QDispatchCommand Q群执行MC命令
+        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.events.listeners.QDispathCommand.OnQQGroupMessage(), this);
+
         getLogger().log(Level.INFO, "正在注册事件 -> QQ帮助菜单");
         getServer().getPluginManager().registerEvents(new QQHelp(), this);
     }
