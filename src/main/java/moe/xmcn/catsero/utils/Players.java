@@ -70,7 +70,7 @@ public class Players {
      * @param uuid 玩家UUID
      */
     public static Player getPlayer(UUID uuid) {
-        return Bukkit.getOfflinePlayer(uuid);
+        return (Player) Bukkit.getOfflinePlayer(uuid);
     }
 
 }
