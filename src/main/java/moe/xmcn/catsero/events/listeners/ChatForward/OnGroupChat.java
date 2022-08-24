@@ -40,6 +40,9 @@ public class OnGroupChat implements Listener {
             String groupname = event.getGroupName();
             long senderid = event.getSenderID();
             String sendername = event.getSenderNameCard();
+            if (sendername = null) {
+                sendername = event.getSenderName();
+            }
             String emsg = event.getMessage();
 
             String message = Config.UsesConfig.getString("forward-chat.format.to-mc");
