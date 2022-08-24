@@ -48,10 +48,10 @@ public class OnGroupChat implements Listener {
             if (Config.UsesConfig.getBoolean("forward-chat.prefix.enabled")) {
                 //启用了Prefix
                 if (message.startsWith(Config.UsesConfig.getString("forward-chat.prefix.format.to-qq"))) {
-                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes(message));
+                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', message));
                 }
             } else {
-                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes(message));
+                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', message));
             }
         }
     }
