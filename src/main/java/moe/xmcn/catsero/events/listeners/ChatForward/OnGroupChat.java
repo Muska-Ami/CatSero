@@ -27,6 +27,7 @@ import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.utils.Config;
 import moe.xmcn.catsero.utils.Players;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -47,10 +48,10 @@ public class OnGroupChat implements Listener {
             if (Config.UsesConfig.getBoolean("forward-chat.prefix.enabled")) {
                 //启用了Prefix
                 if (message.startsWith(Config.UsesConfig.getString("forward-chat.prefix.format.to-qq"))) {
-                    Bukkit.broadcastMessage(message);
+                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes(message));
                 }
             } else {
-                Bukkit.broadcastMessage(message);
+                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes(message));
             }
         }
     }
