@@ -40,7 +40,7 @@ public class OnGroupChat implements Listener {
             String groupname = event.getGroupName();
             long senderid = event.getSenderID();
             String sendername = event.getSenderNameCard();
-            if (sendername == null) {
+            if (sendername == "") {
                 sendername = event.getSenderName();
             }
             String emsg = event.getMessage();
