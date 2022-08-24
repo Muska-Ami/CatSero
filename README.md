@@ -23,10 +23,10 @@
 
 - [ ] QQ群娱乐功能(遥遥无期，XD，希望有dalao PR一下)
 - [ ] 自动回复功能
-- [x] QQ群-Minecraft消息互转(异步)
 
 ### 已经实现
 
+- [x] QQ群-Minecraft消息互转
 - [x] 命令Tab补全
 - [x] Q群解析Minecraft命令
 - [x] QQ群自定义命令头
