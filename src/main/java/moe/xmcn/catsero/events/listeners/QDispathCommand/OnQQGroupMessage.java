@@ -35,10 +35,10 @@ public class OnQQGroupMessage implements Listener {
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
         String[] args = QCommandParser.getParser.parse(event.getMessage());
         if (args != null) {
-            if (Config.UsesConfig.getBoolean("qdispatch-command.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && args[0].equals("dispatchcmd") && args.length == 2) {
+            if (Config.UsesConfig.getBoolean("qdispatch-command.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && args[0].equals("dispatchcmd")) {
                 if (event.getSenderID() == Config.QQ_OP) {
                     //Bukkit.dispatchCommand() 执行命令，发送者为 ConsoleCommandSender
-                    Bukkit.getScheduler().runTask(Config.plugin, () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), args[1].replace("+", " ")));
+                    Bukkit.getScheduler().runTask(Config.plugin, () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), iterateArray(args)));
                     Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.qdispatch-command.success"));
                 } else {
                     //无OP权限
@@ -47,5 +47,16 @@ public class OnQQGroupMessage implements Listener {
             }
         }
     }
-
+    
+    /**
+     * 遍历dispatchcmd后面的数组累加
+     */
+    public static String iterateArray(String[] items) {
+        String ifd = "";
+        for (int i = 0; i < items.length-1; i++) {
+            ifd += items[i+1];
+            ifd += " ";
+        }
+        return ifd.substring(0,ifd.length()-1);
+    }
 }
