@@ -30,7 +30,7 @@ format-list:
   prefix:
     to-mc: "&e[&bCatSero&e]"
     to-qq: "[CatSero]"
-  # 自定义Q群命令头
+  # 自定义QQ群命令头
   custom-command-head:
     # 启用此功能
     enabled: false

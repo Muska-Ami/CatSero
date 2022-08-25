@@ -1,4 +1,5 @@
 minecraft:
+  reload: '&a配置文件已重载'
   no-permission: '&c你没有权限这么做'
   invalid-options: '&c不正确的参数格式'
   too-many-args-or-undefined-usage: '&c无法找到使用方法或参数过多，请检查拼写，或检查是否启用'
@@ -28,6 +29,7 @@ minecraft:
     error: '&c发送消息时发生错误'
     too-many-or-low-options: '&c不完整或过多的参数'
 qq:
+  reload: 配置文件已重载
   no-permission: 你没有权限这么做
   invalid-options: 不正确的参数格式
   pinghost:

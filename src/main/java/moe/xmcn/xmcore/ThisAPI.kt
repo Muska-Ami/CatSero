@@ -3,7 +3,7 @@
  */
 package moe.xmcn.xmcore
 
-import moe.xmcn.catsero.utils.Config.plugin
+import moe.xmcn.catsero.util.Config.plugin
 import org.bukkit.ChatColor
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
@@ -15,7 +15,7 @@ import java.util.logging.Level
 class ThisAPI {
     companion object {
 
-        private const val infoFile:String = "xmcore.info"
+        private const val infoFile: String = "xmcore.info"
 
         fun readPlugin(plugin_name: String): YamlConfiguration {
             return YamlConfiguration.loadConfiguration(File(plugin.dataFolder.parent, "XMCore/$plugin_name.info"))

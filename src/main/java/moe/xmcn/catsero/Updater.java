@@ -23,8 +23,8 @@
 package moe.xmcn.catsero;
 
 import com.google.gson.Gson;
-import moe.xmcn.catsero.utils.Config;
-import moe.xmcn.catsero.utils.HttpUtils;
+import moe.xmcn.catsero.util.Config;
+import moe.xmcn.catsero.util.HttpUtils;
 import org.bukkit.ChatColor;
 
 import java.util.Objects;
