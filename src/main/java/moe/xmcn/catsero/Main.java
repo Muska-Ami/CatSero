@@ -23,6 +23,7 @@
 package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.event.pluginsystem.QQHelp;
+import moe.xmcn.catsero.event.pluginsystem.QQReload;
 import moe.xmcn.catsero.util.Config;
 import moe.xmcn.catsero.util.LibChecker;
 import moe.xmcn.catsero.util.Metrics;
@@ -167,5 +168,6 @@ public class Main extends JavaPlugin {
 
         getLogger().log(Level.INFO, "正在注册事件 -> QQ帮助菜单");
         getServer().getPluginManager().registerEvents(new QQHelp(), this);
+        getServer().getPluginManager().registerEvents(new QQReload(), this);
     }
 }

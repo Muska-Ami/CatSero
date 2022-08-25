@@ -69,29 +69,29 @@ class HelpList {
         private fun helpListQQ(): String {
             val list = """
             ----##== CatSero Help ==##----
-            catsero help
+            !catsero help
                 显示此帮助
-            catsero ping <地址>
+            !catsero ping <地址>
                 Ping某一个地址
-            catsero weather <中国大陆城市>
+            !catsero weather <中国大陆城市>
                 获取某个城市的天气
-            catsero punycode <文本> [urlmode]
+            !catsero punycode <文本> [urlmode]
                 Punycode文本 [urlmode]:URL模式
-            catsero setop <玩家名>
+            !catsero setop <玩家名>
                 将玩家设为OP
-            catsero removeop <玩家名>
+            !catsero removeop <玩家名>
                 移除玩家OP
-            catsero kick <玩家名>
+            !catsero kick <玩家名>
                 踢出一个玩家
-            catsero ban <玩家名>
+            !catsero ban <玩家名>
                 封禁一个玩家
-            catsero unban <玩家名>
+            !catsero unban <玩家名>
                 解封一个玩家
-            catsero tps
+            !catsero tps
                 获取服务器TPS
-            catsero dispatchcmd <Minecraft命令>
+            !catsero dispatchcmd <Minecraft命令>
                 以控制台身份运行Minecraft服务器命令
-            catsero reload
+            !catsero reload
                 重载配置文件
             ----##== ++++++++++++ ==##----
         """

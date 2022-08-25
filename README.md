@@ -58,7 +58,7 @@
 | /catsero weather <中国大陆城市>          | 获取某个城市的天气                    |
 | /catsero punycode <文本> \[urlmode\] | Punycode文本 `[urlmode]`:URL模式 |
 | /cms send <消息>                     | 发送群消息                        |
-| /cms sendcustom <机器人号> <群号> <消息>  | 使用指定机器人向指定服务器发送消息            |
+| /cms sendcustom <机器人号> <群号> <消息>   | 使用指定机器人向指定服务器发送消息            |
 
 ### QQ
 
@@ -67,18 +67,19 @@
 1. 要触发命令前必须使用前缀`!`或`/`
 2. 命令头部分可自行定义
 
-| 命令                                | 说明                           |
-|-----------------------------------|------------------------------|
-| !catsero ping <地址>                 | Ping某一个地址                    |
-| !catsero weather <中国大陆城市>          | 获取某个城市的天气                    |
-| !catsero setop <玩家名>               | 给予一个玩家OP                     |
-| !catsero removeop <玩家名>            | 移除一个玩家OP                     |
-| !catsero kick <玩家名>                | 踢出一个在线玩家                     |
-| !catsero ban <玩家名>                 | 封禁一个玩家                       |
-| !catsero unban <玩家名>               | 解封一个玩家                       |
-| !catsero punycode <文本> \[urlmode\] | Punycode文本 `[urlmode]`:URL模式 |
-| !catsero tps                       | 获取服务器TPS                     |
+| 命令                                 | 说明                                       |
+|------------------------------------|------------------------------------------|
+| !catsero ping <地址>                 | Ping某一个地址                                |
+| !catsero weather <中国大陆城市>          | 获取某个城市的天气                                |
+| !catsero setop <玩家名>               | 给予一个玩家OP                                 |
+| !catsero removeop <玩家名>            | 移除一个玩家OP                                 |
+| !catsero kick <玩家名>                | 踢出一个在线玩家                                 |
+| !catsero ban <玩家名>                 | 封禁一个玩家                                   |
+| !catsero unban <玩家名>               | 解封一个玩家                                   |
+| !catsero punycode <文本> \[urlmode\] | Punycode文本 `[urlmode]`:URL模式             |
+| !catsero tps                       | 获取服务器TPS                                 |
 | !catsero dispatchcmd <Minecraft命令> | 执行Minecraft命令 `<Minecraft命令>`:请使用`+`代替空格 |
+| !catsero reload                    | 重载配置文件                                   |
 
 # bStats
 
@@ -92,10 +93,10 @@
 
 ## 权限
 
-| 权限                                 | 说明               |
-|------------------------------------|------------------|
-| catsero.*                          | 所有权限，默认无         |
-| catsero.admin                      | 管理权限，默认OP        |
+| 权限                                 | 说明              |
+|------------------------------------|-----------------|
+| catsero.*                          | 所有权限，默认无        |
+| catsero.admin                      | 管理权限，默认OP       |
 | catsero.send-player-join-quit      | 玩家加入/退出转发权限，默认无 |
-| catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP  |
-| catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP  |
+| catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP |
+| catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP |
