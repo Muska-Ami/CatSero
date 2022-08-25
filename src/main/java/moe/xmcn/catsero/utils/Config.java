@@ -94,7 +94,7 @@ public interface Config {
 
         // 把语言文件保存也塞这里了 XD
         if (!new File(plugin.getDataFolder(), "locale/zh_CN.lang").exists()) {
-            plugin.saveResource("locale/zh_CN.lang", false);
+            plugin.saveResource("locale/zh_CN.lang", Config.getBoolean("update.auto-zh"));
         }
         ThisAPI.Companion.savePlugin("CatSero");
     }
@@ -132,8 +132,9 @@ public interface Config {
      * 重载配置文件
      */
     static void reloadConfig() {
+        saveDefFile();
         plugin.reloadConfig();
-        UsesConfig.setDefaults(YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml")));
+        UsesConfig.getInstance().reloadConfig();// setDefaults(YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml")));
     }
 
 }

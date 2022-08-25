@@ -87,6 +87,10 @@ class HelpList {
                 解封一个玩家
             catsero tps
                 获取服务器TPS
+            catsero dispatchcmd <Minecraft命令>
+                以控制台身份运行Minecraft服务器命令
+            catsero reload
+                重载配置文件
             ----##== ++++++++++++ ==##----
         """
             return list.trimIndent()
