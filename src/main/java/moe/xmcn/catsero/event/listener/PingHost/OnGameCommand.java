@@ -38,23 +38,22 @@ public class OnGameCommand {
     public static boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args[0].equalsIgnoreCase("ping") && Config.UsesConfig.getBoolean("pinghost.enabled")) {
             if (Config.UsesConfig.getBoolean("pinghost.need-permission")) {
-                //OP模式
                 if (sender.hasPermission("catsero.pinghost")) {
-                    //有OP权限
+                    //有权限
                     if (args.length == 2) {
                         PingMain(sender, args);
                     } else {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&c请键入正确的地址"));
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.pinghost.error-address")));
                     }
                 } else {
-                    //无OP权限
+                    //无权限
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.no-permission")));
                 }
             } else if (args.length == 2) {
                 //通用模式
                 PingMain(sender, args);
             } else {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + "&c请键入正确的地址"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.pinghost.error-address")));
             }
             return true;
         }

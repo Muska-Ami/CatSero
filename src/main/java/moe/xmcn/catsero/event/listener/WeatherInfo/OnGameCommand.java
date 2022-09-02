@@ -36,14 +36,15 @@ public class OnGameCommand {
     public static boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args[0].equalsIgnoreCase("weather") && Config.UsesConfig.getBoolean("weatherinfo.enabled")) {
             if (Config.UsesConfig.getBoolean("weatherinfo.need-permission")) {
-                //仅OP模式
                 if (sender.hasPermission("catsero.weatherinfo")) {
-                    //有OP权限
+                    //有权限
                     if (args.length == 2) {
                         WeatherMain(sender, args);
                     } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.weatherinfo.null-city")));
                     }
+                } else {
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.Prefix_MC + Config.getMsgByMsID("minecraft.no-permission")));
                 }
             } else {
                 //通用模式
