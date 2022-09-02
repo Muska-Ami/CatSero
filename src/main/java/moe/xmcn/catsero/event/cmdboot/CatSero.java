@@ -86,7 +86,8 @@ public class CatSero implements TabExecutor {
                     default:
                         return null;
                 }
+            default:
+                return null;
         }
-        return null;
     }
 }

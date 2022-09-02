@@ -45,18 +45,20 @@ public class OnGroupChat implements Listener {
             }
             String emsg = event.getMessage();
 
-            String message = Config.UsesConfig.getString("forward-chat.format.to-mc");
-            message = tryUseBind(message, groupid, groupname, senderid, sendername, emsg);
-            if (Config.UsesConfig.getBoolean("forward-chat.clean-colorcode")) {
-                message = Utils.removeColorCode(message);
-            }
-            if (Config.UsesConfig.getBoolean("forward-chat.prefix.enabled")) {
-                //启用了Prefix
-                if (message.startsWith(Config.UsesConfig.getString("forward-chat.prefix.format.to-qq"))) {
+            if (!emsg.startsWith("!catsero") || !emsg.startsWith("/catsero")) {
+                String message = Config.UsesConfig.getString("forward-chat.format.to-mc");
+                message = tryUseBind(message, groupid, groupname, senderid, sendername, emsg);
+                if (Config.UsesConfig.getBoolean("forward-chat.clean-colorcode")) {
+                    message = Utils.removeColorCode(message);
+                }
+                if (Config.UsesConfig.getBoolean("forward-chat.prefix.enabled")) {
+                    //启用了Prefix
+                    if (message.startsWith(Config.UsesConfig.getString("forward-chat.prefix.format.to-qq"))) {
+                        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', message));
+                    }
+                } else {
                     Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', message));
                 }
-            } else {
-                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', message));
             }
         }
     }

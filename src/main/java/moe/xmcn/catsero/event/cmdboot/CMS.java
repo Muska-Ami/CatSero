@@ -68,7 +68,8 @@ public class CMS implements TabExecutor {
                     sublist.add("消息");
                     return sublist;
                 }
+            default:
+                return null;
         }
-        return null;
     }
 }
