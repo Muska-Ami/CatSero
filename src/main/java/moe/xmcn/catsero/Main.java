@@ -25,7 +25,7 @@ package moe.xmcn.catsero;
 import moe.xmcn.catsero.event.pluginsystem.QQHelp;
 import moe.xmcn.catsero.event.pluginsystem.QQReload;
 import moe.xmcn.catsero.util.Config;
-import moe.xmcn.catsero.util.LibChecker;
+import moe.xmcn.catsero.util.EnvironmentChecker;
 import moe.xmcn.catsero.util.Metrics;
 import moe.xmcn.catsero.util.ServerTPS;
 import org.bukkit.Bukkit;
@@ -48,8 +48,8 @@ public class Main extends JavaPlugin {
     @Override // 加载插件
     public void onLoad() {
         getLogger().log(Level.INFO, "[CatSero] 正在加载CatSero插件");
-        LibChecker.checkLib();
-        LibChecker.listLibInstallation();
+        EnvironmentChecker.checkEnvironment();
+        EnvironmentChecker.listEnvironmentInstallation();
         Config.saveDefFile();
         if (Config.Config.getBoolean("allow-start-warn")) {
             getLogger().warning("请确保正在使用CatSero官方的构建版本,本人只为官方版本提供支持");
@@ -62,7 +62,7 @@ public class Main extends JavaPlugin {
      */
     @Override
     public void onEnable() {
-        if (LibChecker.shouldEnablePlugin()) {
+        if (EnvironmentChecker.shouldEnablePlugin()) {
             regiserEvents();
 
             // bStats
@@ -129,7 +129,11 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.PingHost.OnQQGroupMessage(), this);
 
         // ChatForward聊天转发功能
-        getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.ChatForward.OnGameChat(), this);
+        if (EnvironmentChecker.TrChat) {
+            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.ChatForward.OnTrChatEvent(), this);
+        } else {
+            getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.ChatForward.OnGameChat(), this);
+        }
         getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.event.listener.ChatForward.OnGroupChat(), this);
 
         // BanPlayerQQ封禁功能

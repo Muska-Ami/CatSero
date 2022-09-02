@@ -48,7 +48,7 @@ send-player-join-quit:
 forward-chat:
   # 启用此功能
   enabled: false
-  # 格式
+  # 格式(若安装TrChat请在extra-configs/trchat.yml配置Minecraft转发QQ格式)
   format:
     to-mc: "[%time%][QQ][%groupname%(%groupcode%)]%sendername%(%sendercode%):\n%message%"
     to-qq: "[MC]%player%:\n%message%"

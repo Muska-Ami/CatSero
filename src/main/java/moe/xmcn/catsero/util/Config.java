@@ -48,8 +48,16 @@ public interface Config {
     long QQ_OP = Config.getLong("qq-set.qq-op");
     String Prefix_MC = Config.getString("format-list.prefix.to-mc") + ChatColor.translateAlternateColorCodes('&', "&r");
     String Prefix_QQ = Config.getString("format-list.prefix.to-qq");
-    FileConfiguration UsesConfig = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml"));
+    FileConfiguration UsesConfig = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "uses-config.yml"));
     FileConfiguration PluginInfo = ThisAPI.Companion.readPlugin("CatSero");
+
+    /**
+     * 获取extra-configs
+     * @param exti  extra-config文件名
+     */
+    static FileConfiguration extraConfigs(String exti) {
+        return YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "/extra-configs/" + exti));
+    }
 
     /**
      * 尝试转为PlaceholderAPI文本
@@ -59,7 +67,7 @@ public interface Config {
      * @return 新文本
      */
     static String tryToPAPI(Player player, String text) {
-        if (LibChecker.PlaceholderAPI) {
+        if (EnvironmentChecker.PlaceholderAPI) {
             return PlaceholderAPI.setBracketPlaceholders(player, text);
         }
         return text;
@@ -73,7 +81,7 @@ public interface Config {
      * @return 新文本
      */
     static String tryToPAPI(CommandSender player, String text) {
-        if (LibChecker.PlaceholderAPI) {
+        if (EnvironmentChecker.PlaceholderAPI) {
             Player pl = (Player) player;
             return PlaceholderAPI.setBracketPlaceholders(pl, text);
         }
@@ -87,8 +95,11 @@ public interface Config {
         if (!new File(plugin.getDataFolder(), "config.yml").exists()) {
             plugin.saveResource("config.yml", false);
         }
-        if (!new File(plugin.getDataFolder(), "usesconfig.yml").exists()) {
-            plugin.saveResource("usesconfig.yml", false);
+        if (!new File(plugin.getDataFolder(), "uses-config.yml").exists()) {
+            plugin.saveResource("uses-config.yml", false);
+        }
+        if (!new File(plugin.getDataFolder(), "/extra-configs/trchat.yml").exists()) {
+            plugin.saveResource("extra-configs/trchat.yml", false);
         }
 
         // 把语言文件保存也塞这里了 XD
@@ -133,7 +144,7 @@ public interface Config {
     static void reloadConfig() {
         saveDefFile();
         plugin.reloadConfig();
-        UsesConfig.setDefaults(YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "usesconfig.yml")));
+        UsesConfig.setDefaults(YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "uses-config.yml")));
     }
 
 }
