@@ -24,29 +24,47 @@ package moe.xmcn.catsero.util;
 
 import org.bukkit.Bukkit;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 
-public class LibChecker {
+public class EnvironmentChecker {
 
-    static boolean MiraiMC = false;
-    static boolean PlaceholderAPI = false;
+    public static boolean MiraiMC = false;
+    public static boolean PlaceholderAPI = false;
+    public static boolean TrChat = false;
 
-    public static void checkLib() {
+    public static void checkEnvironment() {
+        checkLib();
+    }
+    private static void checkLib() {
         if (Bukkit.getPluginManager().getPlugin("MiraiMC") != null) {
             MiraiMC = true;
         }
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             PlaceholderAPI = true;
         }
+        if (Bukkit.getPluginManager().getPlugin("TrChat") != null) {
+            TrChat = true;
+        }
     }
 
-    public static void listLibInstallation() {
-        Config.plugin.getLogger().log(Level.INFO, "=== CatSero 运行时环境检查 ===");
-        Config.plugin.getLogger().log(Level.INFO, "MiraiMC => " + MiraiMC);
-        Config.plugin.getLogger().log(Level.INFO, "PlaceholderAPI => " + PlaceholderAPI);
-        Config.plugin.getLogger().log(Level.INFO, "");
-        Config.plugin.getLogger().log(Level.INFO, "Enable plugin: " + shouldEnablePluginText());
-        Config.plugin.getLogger().log(Level.INFO, "=============================");
+    public static void listEnvironmentInstallation() {
+        Set<String> list = new HashSet<>(Arrays.asList(
+                "=== CatSero 运行时环境检查 ===",
+                "MiraiMC => " + MiraiMC,
+                "PlaceholderAPI => " + PlaceholderAPI,
+                "TrChat => " + TrChat,
+                "<--------->",
+                "服务器版本: " + Bukkit.getBukkitVersion(),
+                "启用插件: " + shouldEnablePluginText(),
+                "<--------->",
+                "插件版本: " + Config.PluginInfo.getString("version"),
+                "插件作者: " + Config.PluginInfo.getString("author"),
+                "============================="
+        ));
+        list.forEach(it -> Config.plugin.getLogger().log(Level.INFO, it));
     }
 
     private static String shouldEnablePluginText() {
