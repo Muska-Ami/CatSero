@@ -49,7 +49,7 @@ public class Utils {
     public static String[] getWeather(String cn) throws UnsupportedEncodingException {
         String cityname = URLEncoder.encode(cn, "UTF-8");
         String weather_url = "https://csa-webapi.xmnetwork.ga/api/wthr.php?city=" + cityname;
-        String datajson = HttpUtils.sendGet(weather_url, "UTF-8");
+        String datajson = HttpUtils.sendGet(weather_url, "UTF-8", true);
         if (datajson.equals("undefined")) {
             //String datajson 等于空
             return ("无法与服务器建立连接").split("-");

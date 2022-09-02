@@ -40,7 +40,7 @@ public class HttpUtils {
      *
      * @param url URL包括参数
      */
-    public static String sendGet(String url, String charset) {
+    public static String sendGet(String url, String charset, boolean returnerror) {
         StringBuilder result = new StringBuilder();
         BufferedReader in = null;
         try {
@@ -62,8 +62,10 @@ public class HttpUtils {
                 result.append(line);
             }
         } catch (Exception e) {
-            Config.plugin.getLogger().warning(Config.getMsgByMsID("general.http-utils.send-get-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
-            result.append("undefined");
+            if (returnerror) {
+                Config.plugin.getLogger().warning(Config.getMsgByMsID("general.http-utils.send-get-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
+                result.append("undefined");
+            }
         }
         // 使用finally块来关闭输入流
         finally {
@@ -72,7 +74,9 @@ public class HttpUtils {
                     in.close();
                 }
             } catch (Exception e2) {
-                Config.plugin.getLogger().warning(Config.getMsgByMsID("general.http-utils.send-get-error").replace("%error%", e2 + Arrays.toString(e2.getStackTrace())));
+                if (returnerror) {
+                    Config.plugin.getLogger().warning(Config.getMsgByMsID("general.http-utils.send-get-error").replace("%error%", e2 + Arrays.toString(e2.getStackTrace())));
+                }
             }
         }
         return result.toString();

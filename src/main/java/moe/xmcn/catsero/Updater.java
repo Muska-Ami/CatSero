@@ -54,7 +54,7 @@ public class Updater {
         String nowversion = Config.PluginInfo.getString("version");
         String versiontype = Config.Config.getString("check-update.version");
         if (Config.plugin.getConfig().getBoolean("check-update.enabled")) {
-            String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8");
+            String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8", true);
             if (datajson.equals("undefined")) {
                 if (color) {
                     return ChatColor.RED + "无法与服务器建立连接";
@@ -99,7 +99,7 @@ public class Updater {
         sleep(1000);
         String nowversion = Config.PluginInfo.getString("version");
         String versiontype = Config.Config.getString("check-update.version");
-        String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8");
+        String datajson = HttpUtils.sendGet("https://csu.huahuo-cn.tk/api/updt.php", "UTF-8", false);
         if (!datajson.equals("undefined")) {
             // 得到数据，解析
             Gson gson = new Gson();
