@@ -99,7 +99,7 @@
 
     <dependencies>
 
-        <!-- This adds the Spigot API artifact to the build -->
+        <!-- Spigot API -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
@@ -114,12 +114,16 @@
             <version>1.7</version>
             <scope>provided</scope>
         </dependency>
-        <!--<dependency>
-            <groupId>io.github.dreamvoid</groupId>
-            <artifactId>MiraiMC-Bukkit</artifactId>
-            <version>1.5-pre1</version>
-            <scope>provided</scope>
-        </dependency>-->
+        
+        <!-- TrChat -->
+        <dependency>
+            <groupId>me.arasple.mc.trchat</groupId>
+            <artifactId>TrChat</artifactId>
+            <version>2.0.0-PRE-30</version>
+            <type>jar</type>
+           <scope>system</scope>
+          <systemPath>${basedir}/maven-local-libraries/TrChat-shaded.jar</systemPath>
+        </dependency>
 
         <!-- bStats -->
         <dependency>
@@ -136,7 +140,7 @@
             <version>1.7.0</version>
         </dependency>
 
-        <!-- placeholderapi -->
+        <!-- PlaceholderAPI -->
         <dependency>
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
