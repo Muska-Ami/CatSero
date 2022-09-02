@@ -34,6 +34,36 @@ import java.io.UnsupportedEncodingException;
 
 public class OnQQGroupMessage implements Listener {
 
+    @EventHandler
+    public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
+        String[] args = QCommandParser.getParser.parse(event.getMessage());
+        if (args != null) {
+            if (Config.UsesConfig.getBoolean("weatherinfo.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && args[0].equals("weather")) {
+                if (Config.UsesConfig.getBoolean("weatherinfo.need-permission")) {
+                    //仅OP模式
+                    if (event.getSenderID() == Config.QQ_OP) {
+                        //有OP
+                        if (args.length == 2 && event.getGroupID() == Config.Use_Group) {
+                            WeatherMain(args);
+                        } else {
+                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.null-city"));
+                        }
+                    } else {
+                        //无OP
+                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
+                    }
+                } else {
+                    //通用模式
+                    if (args.length == 2 && event.getGroupID() == Config.Use_Group) {
+                        WeatherMain(args);
+                    } else {
+                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.null-city"));
+                    }
+                }
+            }
+        }
+    }
+
     private static void WeatherMain(@NotNull String[] args) {
         new BukkitRunnable() {
             @Override
@@ -57,36 +87,6 @@ public class OnQQGroupMessage implements Listener {
                 }
             }
         }.runTaskAsynchronously(Config.plugin);
-    }
-
-    @EventHandler
-    public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent event) {
-        String[] args = QCommandParser.getParser.parse(event.getMessage());
-        if (args != null) {
-            if (Config.UsesConfig.getBoolean("weatherinfo.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && args[0].equals("weather")) {
-                if (Config.UsesConfig.getBoolean("weatherinfo.op-only")) {
-                    //仅OP模式
-                    if (event.getSenderID() == Config.QQ_OP) {
-                        //有OP
-                        if (args.length == 2 && event.getGroupID() == Config.Use_Group) {
-                            WeatherMain(args);
-                        } else {
-                            Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.null-city"));
-                        }
-                    } else {
-                        //无OP
-                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.no-permission"));
-                    }
-                } else {
-                    //通用模式
-                    if (args.length == 2 && event.getGroupID() == Config.Use_Group) {
-                        WeatherMain(args);
-                    } else {
-                        Config.sendMiraiGroupMessage(Config.Prefix_QQ + Config.getMsgByMsID("qq.weatherinfo.null-city"));
-                    }
-                }
-            }
-        }
     }
 
 }

@@ -4,15 +4,15 @@
 pinghost:
   # 启用此功能
   enabled: false
-  # 仅OP可用
-  op-only: false
+  # 需要权限
+  need-permission: false
 
 # 天气获取功能
 weatherinfo:
   # 启用此功能
   enabled: false
-  # 仅OP可用
-  op-only: false
+  # 需要权限
+  need-permission: false
 
 # QQ封禁玩家
 qban-player:

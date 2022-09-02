@@ -30,3 +30,9 @@ permissions:
           catsero.send-player-join-quit.quit:
             description: "玩家退出游戏转发权限"
             default: op
+      catsero.pinghost:
+        description: "PingHost功能权限"
+        default: op
+      catsero.weatherinfo:
+        description: "WeatherInfo功能权限"
+        default: op

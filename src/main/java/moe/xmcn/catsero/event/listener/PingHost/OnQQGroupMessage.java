@@ -39,7 +39,7 @@ public class OnQQGroupMessage implements Listener {
         String[] args = QCommandParser.getParser.parse(event.getMessage());
         if (args != null) {
             if (Config.UsesConfig.getBoolean("pinghost.enabled") && event.getGroupID() == Config.Use_Group && event.getBotID() == Config.Use_Bot && args[0].equals("ping")) {
-                if (Config.UsesConfig.getBoolean("pinghost.op-only")) {
+                if (Config.UsesConfig.getBoolean("pinghost.need-permission")) {
                     //OP模式
                     if (event.getSenderID() == Config.QQ_OP) {
                         if (args.length == 2) {

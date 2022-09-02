@@ -37,9 +37,9 @@ public class OnGameCommand {
 
     public static boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args[0].equalsIgnoreCase("ping") && Config.UsesConfig.getBoolean("pinghost.enabled")) {
-            if (Config.UsesConfig.getBoolean("pinghost.op-only")) {
+            if (Config.UsesConfig.getBoolean("pinghost.need-permission")) {
                 //OP模式
-                if (sender.hasPermission("catsero.admin")) {
+                if (sender.hasPermission("catsero.pinghost")) {
                     //有OP权限
                     if (args.length == 2) {
                         PingMain(sender, args);
