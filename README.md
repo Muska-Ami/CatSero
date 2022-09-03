@@ -95,12 +95,15 @@
 
 ## 权限
 
-| 权限                                 | 说明              |
-|------------------------------------|-----------------|
-| catsero.*                          | 所有权限，默认无        |
-| catsero.admin                      | 管理权限，默认OP       |
-| catsero.send-player-join-quit      | 玩家加入/退出转发权限，默认无 |
-| catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP |
-| catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP |
-| catsero.pinghost                   | 使用Ping功能权限，默认OP |
-| catsero.weatherinfo                | 使用天气获取权限，默认OP   |
+| 权限                                 | 说明                         |
+|------------------------------------|----------------------------|
+| catsero.*                          | 所有权限，默认无                   |
+| catsero.admin                      | 管理权限，默认OP                  |
+| catsero.send-player-join-quit      | 玩家加入/退出转发权限，默认无            |
+| catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP            |
+| catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP            |
+| catsero.pinghost                   | 使用Ping功能权限，默认OP            |
+| catsero.weatherinfo                | 使用天气获取权限，默认OP              |
+| catsero.cms                        | 使用CMS命令权限，默认无              |
+| catsero.cms.send                   | 使用/cms send命令权限，默认OP       |
+| catsero.cms.sendcustom             | 使用/cms sendcustom命令权限，默认OP |

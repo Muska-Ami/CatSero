@@ -45,7 +45,7 @@ public class OnGroupChat implements Listener {
             }
             String emsg = event.getMessage();
 
-            if (!emsg.startsWith("!catsero") || !emsg.startsWith("/catsero")) {
+            if (!emsg.startsWith("!catsero") && !emsg.startsWith("/catsero") && !emsg.startsWith("!" + Config.Config.getString("format-list.custom-command-head.prefix")) && !emsg.startsWith("/" + Config.Config.getString("format-list.custom-command-head.prefix"))) {
                 String message = Config.UsesConfig.getString("forward-chat.format.to-mc");
                 message = tryUseBind(message, groupid, groupname, senderid, sendername, emsg);
                 if (Config.UsesConfig.getBoolean("forward-chat.clean-colorcode")) {

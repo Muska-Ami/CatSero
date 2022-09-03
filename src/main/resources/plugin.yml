@@ -36,3 +36,13 @@ permissions:
       catsero.weatherinfo:
         description: "WeatherInfo功能权限"
         default: op
+      catsero.cms:
+        description: "cms命令权限"
+        default: false
+        children:
+          catsero.cms.send:
+            description: "/cms send权限"
+            default: op
+          catsero.cms.sendcustom:
+            description: "/cms sendcustom权限"
+            default: op
