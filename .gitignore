@@ -43,6 +43,7 @@ buildNumber.properties
 # IDEA
 .idea/workspace.xml
 .idea/libraries/
+.idea/shelf/
 .idea/artifacts/
 .idea/dbnavigator.xml
 .idea/jarRepositories.xml
