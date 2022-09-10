@@ -21,13 +21,20 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.v2.listeners.PlayerJoinQuitForward;
+package moe.xmcn.catsero.v2.listeners.ChatForward;
 
-import moe.xmcn.catsero.v2.utils.Configs;
+import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 
-public interface Utils {
+public class OnGroupChatEvent implements Listener {
 
-    String X_Bot = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.var.bot");
-    String X_Group = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.var.group");
+    private boolean Cancel = false;
+    private String message;
+
+    @EventHandler
+    public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent e) {
+        this.message = e.getMessage();
+    }
 
 }

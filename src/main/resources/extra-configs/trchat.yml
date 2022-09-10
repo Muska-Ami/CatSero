@@ -1,8 +1,5 @@
-# 转发MC-QQ聊天
+# 聊天转发
 forward-chat:
   # 要转发的频道
   channel:
     - Default
-  # 格式
-  format:
-    to-qq: "[MC][%channel%]%player%:\n%message%"

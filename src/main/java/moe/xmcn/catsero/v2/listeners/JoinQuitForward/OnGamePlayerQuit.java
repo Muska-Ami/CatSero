@@ -21,7 +21,7 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.v2.listeners.PlayerJoinQuitForward;
+package moe.xmcn.catsero.v2.listeners.JoinQuitForward;
 
 import moe.xmcn.catsero.v2.utils.Configs;
 import moe.xmcn.catsero.v2.utils.Env;

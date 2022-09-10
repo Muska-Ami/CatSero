@@ -1,8 +1,38 @@
 # CatSero功能设置
 
+# 发送玩家加入/退出消息
 send-player-join-quit:
   enabled: false
   var:
     bot: example
     group: example
+  format:
+    join: "%player%加入了游戏"
+    quit: "%player%退出了游戏"
   need-permission: false
+
+# 聊天转发
+chat-forward:
+  enabled: false
+  var:
+    bot: example
+    group: example
+  format:
+    to-mc: |-
+      [MC]%player%:
+      %message%
+    to-qq: |-
+      &e[&aQQ&e]&r%name%(%code%):
+      %message%
+  clean-colorcode: true
+  filter:
+    enabled: false
+    list:
+      - "傻逼"
+      - "fuck"
+    replace-only: false
+  prefix:
+    enabled: false
+    format:
+      to-mc: "#"
+      to-qq: "#"
