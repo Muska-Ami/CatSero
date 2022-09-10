@@ -1,4 +1,4 @@
-package moe.xmcn.catsero.v2.qqlisteners.PlayerJoinQuitForward;
+package moe.xmcn.catsero.v2.listeners.PlayerJoinQuitForward;
 
 import moe.xmcn.catsero.v2.utils.Configs;
 

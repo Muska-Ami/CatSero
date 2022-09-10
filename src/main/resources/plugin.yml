@@ -1,12 +1,15 @@
 name: CatSero
-main: moe.xmcn.catsero.Main
+main: moe.xmcn.catsero.v2.CatSero
 description: 基于MiraiMC的Minecraft功能插件
 version: ${project.version}
 api-version: 1.13
-author: XiaMoHuaHuo_CN
+authors:
+  - XiaMoHuaHuo_CN
+  - The Love ❤
 softdepend:
   - MiraiMC
   - PlaceholderAPI
+  - TrChat
 commands:
   catsero:
     description: "CatSero 基础方法"
@@ -30,12 +33,6 @@ permissions:
           catsero.send-player-join-quit.quit:
             description: "玩家退出游戏转发权限"
             default: op
-      catsero.pinghost:
-        description: "PingHost功能权限"
-        default: op
-      catsero.weatherinfo:
-        description: "WeatherInfo功能权限"
-        default: op
       catsero.cms:
         description: "cms命令权限"
         default: false

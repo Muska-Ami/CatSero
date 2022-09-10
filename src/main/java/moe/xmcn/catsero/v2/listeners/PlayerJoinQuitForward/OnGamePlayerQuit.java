@@ -20,35 +20,35 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.v2.qqlisteners.PlayerJoinQuitForward;
+package moe.xmcn.catsero.v2.listeners.PlayerJoinQuitForward;
 
 import moe.xmcn.catsero.v2.utils.Configs;
 import moe.xmcn.catsero.v2.utils.Env;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
-public class OnGamePlayerJoin implements Listener {
+public class OnGamePlayerQuit implements Listener {
 
     @EventHandler
-    public void onGamePlayerJoinEvent(PlayerJoinEvent pljev) {
+    public void onGamePlayerQuitEvent(PlayerQuitEvent plqev) {
         if (Configs.getConfig("uses-config.yml").getBoolean("send-player-join-quit.enabled")) {
             if (Configs.getConfig("uses-config.yml").getBoolean("send-player-join-quit.need-permission")) {
                 //权限模式
-                if (pljev.getPlayer().hasPermission("catsero.send-player-join-quit.join")) {
-                    String pljname = pljev.getPlayer().getName();
-                    String joinmsg = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.format.join");
-                    joinmsg = joinmsg.replace("%player%", pljname);
-                    joinmsg = Env.APlaceholderAPI.tryToPAPI(pljev.getPlayer(), joinmsg);
-                    Env.AMiraiMC.sendMiraiGroupMessage(joinmsg, Utils.X_Bot, Utils.X_Group);
+                if (plqev.getPlayer().hasPermission("catsero.send-player-join-quit.quit")) {
+                    String plqname = plqev.getPlayer().getName();
+                    String quitmsg = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.format.quit");
+                    quitmsg = quitmsg.replace("%player%", plqname);
+                    quitmsg = Env.APlaceholderAPI.tryToPAPI(plqev.getPlayer(), quitmsg);
+                    Env.AMiraiMC.sendMiraiGroupMessage(quitmsg, Utils.X_Bot, Utils.X_Group);
                 }
             } else {
                 //通用模式
-                String pljname = pljev.getPlayer().getName();
-                String joinmsg = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.format.join");
-                joinmsg = joinmsg.replace("%player%", pljname);
-                joinmsg = Env.APlaceholderAPI.tryToPAPI(pljev.getPlayer(), joinmsg);
-                Env.AMiraiMC.sendMiraiGroupMessage(joinmsg, Utils.X_Bot, Utils.X_Group);
+                String plqname = plqev.getPlayer().getName();
+                String quitmsg = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.format.quit");
+                quitmsg = quitmsg.replace("%player%", plqname);
+                quitmsg = Env.APlaceholderAPI.tryToPAPI(plqev.getPlayer(), quitmsg);
+                Env.AMiraiMC.sendMiraiGroupMessage(quitmsg, Utils.X_Bot, Utils.X_Group);
             }
         }
     }
