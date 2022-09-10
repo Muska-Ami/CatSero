@@ -20,7 +20,7 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.util;
+package moe.xmcn.catsero.v2.utils;
 
 import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;

@@ -15,15 +15,6 @@ check-update:
   # 启动时覆盖旧的zh_CN.lang I18n文件
   auto-zh: false
 
-# QQ机器人相关设置
-qq-set:
-  # 使用的群
-  group: 123456
-  # 使用的机器人
-  bot: 123456
-  # 拥有QQ权限的用户
-  qq-op: 123456
-
 # 通用格式
 format-list:
   # 插件消息前缀

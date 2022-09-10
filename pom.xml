@@ -6,7 +6,7 @@
 
     <groupId>moe.xmcn.catsero</groupId>
     <artifactId>CatSero</artifactId>
-    <version>1.2-pre3</version>
+    <version>2.0-beta-1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -114,15 +114,15 @@
             <version>1.7</version>
             <scope>provided</scope>
         </dependency>
-        
+
         <!-- TrChat -->
         <dependency>
             <groupId>me.arasple.mc.trchat</groupId>
             <artifactId>TrChat</artifactId>
             <version>2.0.0-PRE-30</version>
             <type>jar</type>
-           <scope>system</scope>
-          <systemPath>${basedir}/maven-local-libraries/TrChat-shaded.jar</systemPath>
+            <scope>system</scope>
+            <systemPath>${basedir}/maven-local-libraries/TrChat-shaded.jar</systemPath>
         </dependency>
 
         <!-- bStats -->

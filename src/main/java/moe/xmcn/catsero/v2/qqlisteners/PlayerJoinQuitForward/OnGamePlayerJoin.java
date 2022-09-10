@@ -20,9 +20,10 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.event.listener.PlayerJoinQuitForward;
+package moe.xmcn.catsero.v2.qqlisteners.PlayerJoinQuitForward;
 
-import moe.xmcn.catsero.util.Config;
+import moe.xmcn.catsero.v2.utils.Configs;
+import moe.xmcn.catsero.v2.utils.Env;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -31,23 +32,23 @@ public class OnGamePlayerJoin implements Listener {
 
     @EventHandler
     public void onGamePlayerJoinEvent(PlayerJoinEvent pljev) {
-        if (Config.UsesConfig.getBoolean("send-player-join-quit.enabled")) {
-            if (Config.UsesConfig.getBoolean("send-player-join-quit.need-permission")) {
+        if (Configs.getConfig("uses-config.yml").getBoolean("send-player-join-quit.enabled")) {
+            if (Configs.getConfig("uses-config.yml").getBoolean("send-player-join-quit.need-permission")) {
                 //权限模式
                 if (pljev.getPlayer().hasPermission("catsero.send-player-join-quit.join")) {
                     String pljname = pljev.getPlayer().getName();
-                    String joinmsg = Config.UsesConfig.getString("send-player-join-quit.format.join");
+                    String joinmsg = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.format.join");
                     joinmsg = joinmsg.replace("%player%", pljname);
-                    joinmsg = Config.tryToPAPI(pljev.getPlayer(), joinmsg);
-                    Config.sendMiraiGroupMessage(joinmsg);
+                    joinmsg = Env.APlaceholderAPI.tryToPAPI(pljev.getPlayer(), joinmsg);
+                    Env.AMiraiMC.sendMiraiGroupMessage(joinmsg, Utils.X_Bot, Utils.X_Group);
                 }
             } else {
                 //通用模式
                 String pljname = pljev.getPlayer().getName();
-                String joinmsg = Config.UsesConfig.getString("send-player-join-quit.format.join");
+                String joinmsg = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.format.join");
                 joinmsg = joinmsg.replace("%player%", pljname);
-                joinmsg = Config.tryToPAPI(pljev.getPlayer(), joinmsg);
-                Config.sendMiraiGroupMessage(joinmsg);
+                joinmsg = Env.APlaceholderAPI.tryToPAPI(pljev.getPlayer(), joinmsg);
+                Env.AMiraiMC.sendMiraiGroupMessage(joinmsg, Utils.X_Bot, Utils.X_Group);
             }
         }
     }

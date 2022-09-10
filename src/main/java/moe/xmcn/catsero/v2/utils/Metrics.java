@@ -37,7 +37,7 @@
  *
  * Violations will result in a ban of your plugin and account from bStats.
  */
-package moe.xmcn.catsero.util;
+package moe.xmcn.catsero.v2.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
