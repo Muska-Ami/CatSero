@@ -39,7 +39,7 @@ public class OnGameChatEvent implements Listener {
     @EventHandler
     public void onTrChatEvent(AsyncPlayerChatEvent e) {
         if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.enabled")) {
-            this.message = e.getMessage();
+            message = e.getMessage();
             Player sender = e.getPlayer();
             String world = sender.getWorld().getName();
 
@@ -53,7 +53,7 @@ public class OnGameChatEvent implements Listener {
                     if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.filter.replace-only")) {
                         message = message.replace(it, "***");
                     } else if (!message.contains(it)) {
-                        this.Cancel = true;
+                        Cancel = true;
                     }
                 });
             }
@@ -62,7 +62,7 @@ public class OnGameChatEvent implements Listener {
                 if (message.startsWith(Configs.getConfig("uses-config.yml").getString("chat-forward.prefix.format.to-qq"))) {
                     message = message.replaceFirst(Configs.getConfig("uses-config.yml").getString("chat-forward.prefix.format.to-qq"), "");
                 } else {
-                    this.Cancel = true;
+                    Cancel = true;
                 }
             }
 
