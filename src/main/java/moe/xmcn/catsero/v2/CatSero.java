@@ -22,9 +22,9 @@ public class CatSero extends JavaPlugin {
         Env.checkDependsLoad();
         ArrayList<String> env = new ArrayList<>(Arrays.asList(
                 "依赖装载情况:",
-                "- MiraiMC" + Env.MiraiMC,
-                "- PlaceholderAPI" + Env.PlaceholderAPI,
-                "- TrChat" + Env.TrChat,
+                "- MiraiMC => " + Env.MiraiMC,
+                "- PlaceholderAPI => " + Env.PlaceholderAPI,
+                "- TrChat => " + Env.TrChat,
                 "",
                 "服务器版本: " + Bukkit.getBukkitVersion()
         ));
