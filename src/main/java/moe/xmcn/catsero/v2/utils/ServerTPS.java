@@ -21,13 +21,33 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.v2.listeners.PlayerJoinQuitForward;
+package moe.xmcn.catsero.v2.utils;
 
-import moe.xmcn.catsero.v2.utils.Configs;
+public class ServerTPS implements Runnable {
+    private static final long[] TICKS = new long[600];
+    private static int TICK_COUNT = 0;
 
-public interface Utils {
+    public static double getTPS() {
+        return getTPS(100);
+    }
 
-    String X_Bot = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.var.bot");
-    String X_Group = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.var.group");
+    private static double getTPS(int ticks) {
+        if (TICK_COUNT < ticks) {
+            return 20.0D;
+        }
+        int target = (TICK_COUNT - 1 - ticks) % TICKS.length;
+        long elapsed = System.currentTimeMillis() - TICKS[target];
 
+        return ticks / (elapsed / 1000.0D);
+    }
+
+    private static long getElapsed(int tickID) {
+        long time = TICKS[(tickID % TICKS.length)];
+        return System.currentTimeMillis() - time;
+    }
+
+    public void run() {
+        TICKS[(TICK_COUNT % TICKS.length)] = System.currentTimeMillis();
+        TICK_COUNT += 1;
+    }
 }
