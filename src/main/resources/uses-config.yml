@@ -19,10 +19,10 @@ chat-forward:
     group: example
   format:
     to-mc: |-
-      [MC]%player%:
+      &e[&aQQ&e]&r%name%(%code%):
       %message%
     to-qq: |-
-      &e[&aQQ&e]&r%name%(%code%):
+      [MC]%player%:
       %message%
   clean-colorcode: true
   filter:
