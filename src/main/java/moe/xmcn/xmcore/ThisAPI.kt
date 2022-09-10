@@ -3,7 +3,7 @@
  */
 package moe.xmcn.xmcore
 
-import moe.xmcn.catsero.util.Config.plugin
+import moe.xmcn.catsero.v2.utils.Configs
 import org.bukkit.ChatColor
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
@@ -18,22 +18,22 @@ class ThisAPI {
         private const val infoFile: String = "xmcore.info"
 
         fun readPlugin(plugin_name: String): YamlConfiguration {
-            return YamlConfiguration.loadConfiguration(File(plugin.dataFolder.parent, "XMCore/$plugin_name.info"))
+            return YamlConfiguration.loadConfiguration(File(Configs.plugin.dataFolder.parent, "XMCore/$plugin_name.info"))
         }
 
         fun savePlugin(plugin_name: String) {
-            File(plugin.dataFolder.parent, "XMCore/$plugin_name.info").delete()
-            val outFile = File(plugin.dataFolder.parent.plus("/XMCore"), infoFile)
+            File(Configs.plugin.dataFolder.parent, "XMCore/$plugin_name.info").delete()
+            val outFile = File(Configs.plugin.dataFolder.parent.plus("/XMCore"), infoFile)
             val lastIndex: Int = infoFile.lastIndexOf(47.toChar())
             val outDir =
                 File(
-                    plugin.dataFolder.parent.plus("/XMCore"),
+                    Configs.plugin.dataFolder.parent.plus("/XMCore"),
                     infoFile.substring(0, if (lastIndex >= 0) lastIndex else 0)
                 )
             if (!outDir.exists()) {
                 outDir.mkdirs()
             }
-            val `in` = plugin.getResource(infoFile)
+            val `in` = Configs.plugin.getResource(infoFile)
             try {
                 val out: OutputStream = FileOutputStream(outFile)
                 val buf = ByteArray(1024)
@@ -43,15 +43,15 @@ class ThisAPI {
                 }
                 out.close()
                 `in`.close()
-                File(plugin.dataFolder.parent, "XMCore/$infoFile").renameTo(
+                File(Configs.plugin.dataFolder.parent, "XMCore/$infoFile").renameTo(
                     File(
-                        plugin.dataFolder.parent,
+                        Configs.plugin.dataFolder.parent,
                         "XMCore/$plugin_name.info"
                     )
                 )
-                File(plugin.dataFolder.parent, "XMCore/$infoFile").delete()
+                File(Configs.plugin.dataFolder.parent, "XMCore/$infoFile").delete()
             } catch (var10: IOException) {
-                plugin.logger.log(
+                Configs.plugin.logger.log(
                     Level.INFO,
                     ChatColor.translateAlternateColorCodes(
                         '&',
