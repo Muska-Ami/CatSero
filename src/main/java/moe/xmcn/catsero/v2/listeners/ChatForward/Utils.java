@@ -21,13 +21,25 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.v2.listeners.JoinQuitForward;
+package moe.xmcn.catsero.v2.listeners.ChatForward;
 
 import moe.xmcn.catsero.v2.utils.Configs;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public interface Utils {
 
-    String X_Bot = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.var.bot");
-    String X_Group = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.var.group");
+    String X_Bot = Configs.getConfig("uses-config.yml").getString("chat-forward.var.bot");
+    String X_Group = Configs.getConfig("uses-config.yml").getString("chat-forward.var.group");
+
+    static String cleanColorCode(String string) {
+        Set<String> s = new HashSet<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "a", "b", "c", "d", "e", "f", "k", "l", "o", "r"));
+        for (int i = 0; i < s.toArray().length; i++) {
+            string = string.replace("§" + s.toArray()[i], "");
+        }
+        return string;
+    }
 
 }

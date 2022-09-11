@@ -24,7 +24,6 @@
 package moe.xmcn.catsero.v2.listeners.ChatForward;
 
 import me.arasple.mc.trchat.api.event.TrChatEvent;
-import moe.xmcn.catsero.v2.listeners.JoinQuitForward.Utils;
 import moe.xmcn.catsero.v2.utils.Configs;
 import moe.xmcn.catsero.v2.utils.Env;
 import org.bukkit.entity.Player;

@@ -21,13 +21,13 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.v2.listeners.JoinQuitForward;
+package moe.xmcn.catsero.v2.listeners.DeadthForward;
 
 import moe.xmcn.catsero.v2.utils.Configs;
 
 public interface Utils {
 
-    String X_Bot = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.var.bot");
-    String X_Group = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.var.group");
+    String X_Bot = Configs.getConfig("uses-config.yml").getString("send-player-death.var.bot");
+    String X_Group = Configs.getConfig("uses-config.yml").getString("send-player-death.var.group");
 
 }

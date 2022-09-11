@@ -36,3 +36,11 @@ chat-forward:
     format:
       to-mc: "#"
       to-qq: "#"
+
+# 发送玩家死亡消息
+send-player-death:
+  enabled: false
+  var:
+    bot: example
+    group: example
+  format: "%player%死了,因为\n%deathmes%"
