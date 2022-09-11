@@ -139,7 +139,7 @@ new-group-member-message:
     bot: example
     # GroupID
     group: example
-  #格式
+  # 格式
   format: "欢迎%at%（%code%）加入本群!"
 
 ```
