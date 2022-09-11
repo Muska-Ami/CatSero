@@ -27,16 +27,16 @@ import moe.xmcn.catsero.v2.listeners.ChatForward.OnGameChatEvent;
 import moe.xmcn.catsero.v2.listeners.ChatForward.OnGroupChatEvent;
 import moe.xmcn.catsero.v2.listeners.ChatForward.OnTrChatEvent;
 import moe.xmcn.catsero.v2.listeners.DeadthForward.OnPlayerDeadthEvent;
-import moe.xmcn.catsero.v2.listeners.JoinQuitForward.OnGamePlayerJoin;
-import moe.xmcn.catsero.v2.listeners.JoinQuitForward.OnGamePlayerQuit;
+import moe.xmcn.catsero.v2.listeners.JoinQuitForward.OnPlayerJoinEvent;
+import moe.xmcn.catsero.v2.listeners.JoinQuitForward.OnPlayerQuitEvent;
 import moe.xmcn.catsero.v2.utils.Configs;
 import moe.xmcn.catsero.v2.utils.Env;
 
 public interface ListenerRegister {
 
     static void register() {
-        Configs.plugin.getServer().getPluginManager().registerEvents(new OnGamePlayerJoin(), Configs.plugin);
-        Configs.plugin.getServer().getPluginManager().registerEvents(new OnGamePlayerQuit(), Configs.plugin);
+        Configs.plugin.getServer().getPluginManager().registerEvents(new OnPlayerJoinEvent(), Configs.plugin);
+        Configs.plugin.getServer().getPluginManager().registerEvents(new OnPlayerQuitEvent(), Configs.plugin);
 
         Configs.plugin.getServer().getPluginManager().registerEvents(new OnGroupChatEvent(), Configs.plugin);
         if (Env.TrChat) {
@@ -46,6 +46,8 @@ public interface ListenerRegister {
         }
 
         Configs.plugin.getServer().getPluginManager().registerEvents(new OnPlayerDeadthEvent(), Configs.plugin);
+
+        Configs.plugin.getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.v2.listeners.WhiteList.OnGroupChatEvent(), Configs.plugin);
 
     }
 

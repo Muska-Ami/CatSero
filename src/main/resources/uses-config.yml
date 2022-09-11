@@ -44,3 +44,10 @@ send-player-death:
     bot: example
     group: example
   format: "%player%死了,因为\n%deathmes%"
+
+# 白名单
+whitelist:
+  enabled: false
+  self-get:
+    enabled: false
+    format: "申请白名单"

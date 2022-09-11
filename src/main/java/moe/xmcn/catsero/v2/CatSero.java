@@ -70,9 +70,13 @@ public class CatSero extends JavaPlugin {
             saveResource("mirai-configs/group.yml", false);
         }
         if (!new File(getDataFolder(), "locale/zh_CN.lang").exists()) {
-            saveResource("locale/zh_CN.lang", Configs.getConfig("config.yml").getBoolean("update.auto-zh"));
+            saveResource("locale/zh_CN.lang", false);
+        }
+        if (!new File(getDataFolder(), "/mirai-configs/qq-op.yml").exists()) {
+            saveResource("mirai-configs/qq-op.yml", false);
         }
         ThisAPI.Companion.savePlugin("CatSero");
+        Loggers.CustomLevel.logLoader("成功保存插件文件");
 
         if (Configs.getConfig("config.yml").getBoolean("allow-bstats", true)) {
             Loggers.CustomLevel.logLoader("加载bStats统计");
@@ -86,6 +90,7 @@ public class CatSero extends JavaPlugin {
         Loggers.CustomLevel.logLoader("注册监听器");
         ListenerRegister.register();
         ExecutorRegister.register();
+        Loggers.CustomLevel.logLoader("成功注册监听器");
         Loggers.CustomLevel.logLoader("加载完毕，启用插件");
     }
 

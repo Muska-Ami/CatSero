@@ -4,10 +4,19 @@ minecraft:
   cms:
     sent: '&a消息已发送'
     error: '&c发送消息时发生错误'
+
 qq:
   no-permission: 你没有权限这么做
   invalid-options: 不正确的参数格式
+
+  whitelist:
+    success-add: 绑定白名单成功
+    already-added: 该ID已被绑定
+
 general:
   send-message-qq-error: |-
     发送消息时发生异常:
+    %error%
+  save-file-error: |-
+    保存数据文件时出现异常:
     %error%

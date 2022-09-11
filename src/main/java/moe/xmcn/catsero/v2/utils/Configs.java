@@ -30,6 +30,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public interface Configs {
     Plugin plugin = CatSero.getPlugin(CatSero.class);
@@ -65,4 +66,21 @@ public interface Configs {
         }
     }
 
+    static long getBotCode(String botid) {
+        return getConfig("mirai-configs/bot.yml").getLong("list." + botid);
+    }
+
+    static long getGroupCode(String groupid) {
+        return getConfig("mirai-configs/group.yml").getLong("list." + groupid);
+    }
+
+    static boolean isQQOp(long senderID) {
+        AtomicBoolean isOp = new AtomicBoolean(false);
+        Configs.getConfig("mirai-configs/qq-op.yml").getLongList("list").forEach(it -> {
+            if (it == senderID) {
+                isOp.set(true);
+            }
+        });
+        return isOp.get();
+    }
 }
