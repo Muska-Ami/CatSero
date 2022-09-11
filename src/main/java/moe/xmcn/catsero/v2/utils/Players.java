@@ -30,14 +30,14 @@ import org.bukkit.entity.Player;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Players {
+public interface Players {
     /**
      * 由玩家名获取玩家UUID
      *
      * @param name 玩家名
      * @return 玩家UUID
      */
-    private static UUID getUUIDByName(String name) {
+    static UUID getUUIDByName(String name) {
         return Objects.requireNonNull(Lists.newArrayList(Bukkit.getOfflinePlayers()).parallelStream().filter(
                 i -> Objects.equals(i.getName(), name)
         ).findFirst().orElse(null)).getUniqueId();
@@ -50,7 +50,7 @@ public class Players {
      * @param uuid 玩家UUID
      * @return 玩家名
      */
-    private static String getNameByUUID(UUID uuid) {
+    static String getNameByUUID(UUID uuid) {
         return Objects.requireNonNull(Lists.newArrayList(Bukkit.getOfflinePlayers()).parallelStream().filter(
                 i -> Objects.equals(i.getUniqueId(), uuid)
         ).findFirst().orElse(null)).getName();
@@ -61,7 +61,7 @@ public class Players {
      *
      * @param name 玩家名
      */
-    public static Player getPlayer(String name) {
+    static Player getPlayer(String name) {
         return Bukkit.getPlayer(getUUIDByName(name));
     }
 
@@ -70,7 +70,7 @@ public class Players {
      *
      * @param uuid 玩家UUID
      */
-    public static Player getPlayer(UUID uuid) {
+    static Player getPlayer(UUID uuid) {
         return (Player) Bukkit.getOfflinePlayer(uuid);
     }
 

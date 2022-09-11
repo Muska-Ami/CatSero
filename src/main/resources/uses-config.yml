@@ -45,9 +45,10 @@ send-player-death:
     group: example
   format: "%player%死了,因为\n%deathmes%"
 
-# 白名单
-whitelist:
+# 新人加入群欢迎
+new-group-member-message:
   enabled: false
-  self-get:
-    enabled: false
-    format: "申请白名单"
+  var:
+    bot: example
+    group: example
+  format: "欢迎%at%（%code%）加入本群!"

@@ -21,30 +21,13 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.v2.listeners.WhiteList;
+package moe.xmcn.catsero.v2.listeners.NewGroupMemberWelcome;
 
 import moe.xmcn.catsero.v2.utils.Configs;
-import moe.xmcn.catsero.v2.utils.Loggers;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public interface Utils {
 
-    static void createData() {
-        File f = new File(Configs.plugin.getDataFolder(), "/extra-configs/whitelist.yml");
-        if (!f.exists()) {
-            try {
-                f.createNewFile();
-            } catch (IOException e) {
-                Loggers.logWARN(Configs.getMsgByMsID("general.save-file-error").replace("%error%", Arrays.toString(e.getStackTrace())));
-            }
-        }
-    }
-
-    String X_Bot = Configs.getConfig("uses-config.yml").getString("whitelist.var.bot");
-    String X_Group = Configs.getConfig("uses-config.yml").getString("whitelist.var.group");
+    String X_Bot = Configs.getConfig("uses-config.yml").getString("new-group-member-message.var.bot");
+    String X_Group = Configs.getConfig("uses-config.yml").getString("new-group-member-message.var.group");
 
 }
