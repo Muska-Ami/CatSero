@@ -13,41 +13,92 @@ v2尚未完工，目前发行版本为v1代码，源请转到分支`v1`
     - MCBBS发布页：[https://www.mcbbs.net/thread-1342417-1-1.html](https://www.mcbbs.net/thread-1342417-1-1.html)
     - KLPBBS发布页：[https://klpbbs.com/thread-43498-1-1.html](https://klpbbs.com/thread-43498-1-1.html)
 
-## 帮助改进代码
+### v1使用文档
 
-如果你想帮助改进代码，请先Fork本库，然后修改，接着开PR
+请见此处 [https://github.com/XiaMoHuaHuo-CN/CatSero/blob/v1/README.md](https://github.com/XiaMoHuaHuo-CN/CatSero/blob/v1/README.md)  
+**v1不受支持**
 
-## 未来功能
+## 都有什么功能？
 
-注：以`*`开头的为开发版本特性
+- 玩家死亡转发
+- 聊天转发兼容TrChat
+- QQ群-Minecraft消息互转
+- 加入/退出转发权限控制
+- 玩家加入退出转发
+- 迎新功能
+- PlaceholderAPI变量支持
 
-### 待修复/实现
+## 配置文件
 
-- [ ] QQ群娱乐功能(遥遥无期，XD，希望有dalao PR一下)
-- [ ] 自动回复功能
+#### config.yml
+```yaml
+# CatSero配置文件
 
-### 已经实现
+# 语言文件
+locale: zh_CN
+# 接受bStats统计(https://bstats.org)
+allow-bstats: true
+```
 
-- [x] 聊天转发兼容TrChat
-- [x] 权限化命令
-- [x] QQ群-Minecraft消息互转
-- [x] 命令Tab补全
-- [x] Q群解析Minecraft命令
-- [x] QQ群自定义命令头
-- [x] QQ命令解析调度器
-- [x] 加入/退出转发权限控制
-- [x] 自动检查更新
-- [x] Minecraft玩家加入/退出通知到QQ
-- [x] QQ群Ban人
-- [x] Ping功能(Minecraft内/QQ群内)
-- [x] QQ群给予OP
-- [x] QQ群移除OP
-- [x] 天气获取
-- [x] 迎新功能
-- [x] PlaceholderAPI变量支持
-- [x] Punycode功能
-- [x] QQ群踢人
-- [x] TPS获取功能
+#### config.yml
+```yaml
+# CatSero功能设置
+
+# 发送玩家加入/退出消息
+send-player-join-quit:
+  # 功
+  enabled: false
+  var:
+    bot: example
+    group: example
+  format:
+    join: "%player%加入了游戏"
+    quit: "%player%退出了游戏"
+  need-permission: false
+
+# 聊天转发
+chat-forward:
+  enabled: false
+  var:
+    bot: example
+    group: example
+  format:
+    to-mc: |-
+      &e[&aQQ&e]&r%name%(%code%):
+      %message%
+    to-qq: |-
+      [MC]%player%:
+      %message%
+  clean-colorcode: true
+  filter:
+    enabled: false
+    list:
+      - "傻逼"
+      - "fuck"
+    replace-only: false
+  prefix:
+    enabled: false
+    format:
+      to-mc: "#"
+      to-qq: "#"
+
+# 发送玩家死亡消息
+send-player-death:
+  enabled: false
+  var:
+    bot: example
+    group: example
+  format: "%player%死了,因为\n%deathmes%"
+
+# 新人加入群欢迎
+new-group-member-message:
+  enabled: false
+  var:
+    bot: example
+    group: example
+  format: "欢迎%at%（%code%）加入本群!"
+
+```
 
 ## 命令
 
@@ -55,45 +106,21 @@ v2尚未完工，目前发行版本为v1代码，源请转到分支`v1`
 
 ### Minecraft
 
-| 命令                                 | 说明                           |
-|------------------------------------|------------------------------|
-| /catsero reload                    | 重载配置文件                       |
-| /catsero ping <地址>                 | Ping某一个地址                    |
-| /catsero weather <中国大陆城市>          | 获取某个城市的天气                    |
-| /catsero punycode <文本> \[urlmode\] | Punycode文本 `[urlmode]`:URL模式 |
-| /cms send <消息>                     | 发送群消息                        |
-| /cms sendcustom <机器人号> <群号> <消息>   | 使用指定机器人向指定服务器发送消息            |
+| 命令                                 | 说明       |
+|------------------------------------|----------|
+| /catsero version                   | 插件版本以及信息 |
+| /cms send <Bot ID> <Group ID> <消息> | 发送群消息    |
 
 ### QQ
 
-注：
-
-1. 要触发命令前必须使用前缀`!`或`/`
-2. 命令头部分可自行定义
+_要触发命令前必须使用前缀`!`或`/`_
 
 | 命令                                 | 说明                           |
 |------------------------------------|------------------------------|
-| !catsero ping <地址>                 | Ping某一个地址                    |
-| !catsero weather <中国大陆城市>          | 获取某个城市的天气                    |
-| !catsero setop <玩家名>               | 给予一个玩家OP                     |
-| !catsero removeop <玩家名>            | 移除一个玩家OP                     |
-| !catsero kick <玩家名>                | 踢出一个在线玩家                     |
-| !catsero ban <玩家名>                 | 封禁一个玩家                       |
-| !catsero unban <玩家名>               | 解封一个玩家                       |
-| !catsero punycode <文本> \[urlmode\] | Punycode文本 `[urlmode]`:URL模式 |
-| !catsero tps                       | 获取服务器TPS                     |
-| !catsero dispatchcmd <Minecraft命令> | 执行Minecraft命令                |
-| !catsero reload                    | 重载配置文件                       |
 
 # bStats
 
 <a href="https://bstats.org/plugin/bukkit/CatSero/14767">![https://bstats.org/plugin/bukkit/CatSero/14767](https://bstats.org/signatures/bukkit/CatSero.svg)</a>
-
-# 一点说明
-
-## 为什么pre版本的Releases有时会跳过一个版本?
-
-本项目不会发布所有pre版本的构建，请自行去Actions下载
 
 ## 权限
 
@@ -104,8 +131,4 @@ v2尚未完工，目前发行版本为v1代码，源请转到分支`v1`
 | catsero.send-player-join-quit      | 玩家加入/退出转发权限，默认无            |
 | catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP            |
 | catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP            |
-| catsero.pinghost                   | 使用Ping功能权限，默认OP            |
-| catsero.weatherinfo                | 使用天气获取权限，默认OP              |
 | catsero.cms                        | 使用CMS命令权限，默认无              |
-| catsero.cms.send                   | 使用/cms send命令权限，默认OP       |
-| catsero.cms.sendcustom             | 使用/cms sendcustom命令权限，默认OP |
