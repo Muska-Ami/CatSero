@@ -76,13 +76,11 @@ public class CatSero implements TabExecutor {
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
         if (strings.length >= 1) {
             List<String> sublist = new ArrayList<>();
-            switch (strings.length) {
-                case 1:
-                    sublist.add("version");
-                    return sublist;
-                default:
-                    return null;
+            if (strings.length == 1) {
+                sublist.add("version");
+                return sublist;
             }
+            return null;
         }
         return null;
     }

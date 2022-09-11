@@ -1,17 +1,18 @@
 package moe.xmcn.catsero.v2.listeners.WhiteList;
 
 import moe.xmcn.catsero.v2.utils.Configs;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
-public class OnPlayerJoinEvent implements Listener {
+public class OnPlayerPreLoginEvent implements Listener {
 
     private boolean Allow = false;
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
+    public void onPlayerPreLogin(AsyncPlayerPreLoginEvent e) {
         if (Configs.getConfig("uses-config.yml").getBoolean("whitelist.enabled")) {
             Player player = e.getPlayer();
             Configs.getConfig("extra-configs/whitelist.yml").getStringList("list").forEach(it -> {
@@ -21,8 +22,10 @@ public class OnPlayerJoinEvent implements Listener {
             });
 
             if (!Allow) {
-                e.setJoinMessage("");
-                player.kickPlayer("你没有白名单");
+                e.disallow(
+                        AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST,
+                        ChatColor.translateAlternateColorCodes('&', Configs.getMsgByMsID("whitelist.not-whitelist"))
+                );
             }
         }
     }
