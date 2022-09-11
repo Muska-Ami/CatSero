@@ -40,7 +40,7 @@ locale: zh_CN
 allow-bstats: true
 ```
 
-#### config.yml
+#### uses-config.yml
 ```yaml
 # CatSero功能设置
 
