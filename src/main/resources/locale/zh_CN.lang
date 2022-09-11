@@ -1,85 +1,13 @@
 minecraft:
-  reload: '&a配置文件已重载'
   no-permission: '&c你没有权限这么做'
   invalid-options: '&c不正确的参数格式'
-  too-many-args-or-undefined-usage: '&c无法找到使用方法或参数过多，请检查拼写，或检查是否启用'
-  pinghost:
-    doing: '&aPing进行中，请耐心等待...'
-    error: '&cPing时发生错误'
-    error-address: '&c请键入正确的地址'
-    success: |-
-      %address_original%(%address_punycode%) 的  Ping 统计信息：
-         数据包：已发送 = 4， 已接收 = %withdraw% ,丢失 = %lost% (%lost_percent%% 丢失)
-    failed: '&c无法解析主机名/IP'
-  weatherinfo:
-    doing: '&a天气获取进行中，请耐心等待...'
-    error: '&c获取天气时出现错误'
-    success: |-
-      天气信息:
-       类型:%type%
-       温度:%temperature%
-       风力:%wind%
-       风向:%wind_direction%
-       日期:%date%
-    null-city: '&c请输入城市'
-  punycode:
-    too-many-or-low-options: '&c不完整或过多的参数'
   cms:
     sent: '&a消息已发送'
     error: '&c发送消息时发生错误'
-    too-many-or-low-options: '&c不完整或过多的参数'
 qq:
-  reload: 配置文件已重载
   no-permission: 你没有权限这么做
   invalid-options: 不正确的参数格式
-  pinghost:
-    doing: Ping进行中，请耐心等待...
-    error: Ping时发生错误
-    error-address: 请键入正确的地址
-    success: |-
-      %address_original%(%address_punycode%) 的  Ping 统计信息：
-         数据包：已发送 = 4， 已接收 = %withdraw% ,丢失 = %lost% (%lost_percent%% 丢失)
-    failed: 无法解析主机名/IP
-  weatherinfo:
-    doing: 天气获取进行中，请耐心等待...
-    error: 获取天气时出现错误
-    success: |-
-      天气信息:
-       类型:%type%
-       温度:%temperature%
-       风力:%wind%
-       风向:%wind_direction%
-       日期:%date%
-    null-city: 请输入城市
-  qkick-player:
-    kick: 已尝试踢出玩家%player%
-    not-online: 名为%player%的玩家不在线
-  qop-player:
-    already-is-op: 玩家已是管理员
-    already-not-op: 玩家不是管理员
-    success-add: 已添加新的管理员
-    success-remove: 已移除管理员
-  qban-player:
-    success-ban: 已封禁玩家 %player%
-    success-unban: 已解封玩家 %player%
-  bind-qq:
-    already-bind: 此玩家已绑定QQ，无法添加绑定
-    no-bind-found: 此玩家/QQ未绑定
-    add-success: 成功添加绑定
-    add-ssa-success: 成功添加绑定%name% <-> %code%
-    remove-success: 成功移除绑定
-  punycode:
-    too-many-or-low-options: 不完整或过多的参数
-  qdispatch-command:
-    success: 成功执行命令
 general:
   send-message-qq-error: |-
     发送消息时发生异常:
-    %error%
-  http-utils:
-    send-get-error: |-
-      发送GET请求出现异常:
-      %error%
-  sql-error: |-
-    与数据库通信发生异常:
     %error%

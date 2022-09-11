@@ -1,2 +1,3 @@
-example: 123456789
-example2: 123456789
+list:
+  example: 123456789
+  example2: 123456789

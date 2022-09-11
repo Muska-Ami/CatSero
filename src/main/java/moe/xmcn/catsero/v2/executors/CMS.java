@@ -23,21 +23,54 @@
  */
 package moe.xmcn.catsero.v2.executors;
 
+import moe.xmcn.catsero.v2.utils.Configs;
+import moe.xmcn.catsero.v2.utils.Env;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CMS implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        return false;
+        if (strings.length >= 1) {
+            if (commandSender.hasPermission("catsero.cms")) {
+                if (strings.length == 3) {
+                    Env.AMiraiMC.sendMiraiGroupMessage(strings[0], strings[1], strings[2]);
+                } else {
+                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configs.getMsgByMsID("minecraft.invalid-options")));
+                }
+            }
+        }
+        return true;
     }
 
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
+        if (strings.length >= 1) {
+            List<String> sublist = new ArrayList<>();
+            switch (strings.length) {
+                case 1:
+                    sublist.add("send");
+                    return sublist;
+                case 2:
+                    if ("send".equals(strings[0])) {
+                        sublist.add("BotID");
+                        return sublist;
+                    }
+                    return null;
+                case 3:
+                    if ("send".equals(strings[0])) {
+                        sublist.add("GroupID");
+                        return sublist;
+                    }
+                    return null;
+            }
+        }
         return null;
     }
 

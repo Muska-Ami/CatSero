@@ -4,26 +4,3 @@
 locale: zh_CN
 # 接受bStats统计(https://bstats.org)
 allow-bstats: true
-# 接受插件启动时的警告
-allow-start-warn: true
-# 检查更新功能
-check-update:
-  # 启用
-  enabled: true
-  # 版本(开发版 -> dev || 正式版 -> passed)
-  version: passed
-  # 启动时覆盖旧的zh_CN.lang I18n文件
-  auto-zh: false
-
-# 通用格式
-format-list:
-  # 插件消息前缀
-  prefix:
-    to-mc: "&e[&bCatSero&e]"
-    to-qq: "[CatSero]"
-  # 自定义QQ群命令头
-  custom-command-head:
-    # 启用此功能
-    enabled: false
-    # 前缀
-    prefix: ""

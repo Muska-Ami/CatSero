@@ -42,20 +42,24 @@ public class CatSero implements TabExecutor {
         if (strings.length >= 1) {
             switch (strings[0]) {
                 case "version":
-                    if (commandSender.hasPermission("catsero.admin")) {
-                        ArrayList<String> env = new ArrayList<>(Arrays.asList(
-                                "&e插件版本: &b" + Configs.PluginInfo.getString("version"),
-                                "&e插件作者: &b" + Configs.PluginInfo.getString("author"),
-                                "&e依赖装载情况:",
-                                "- MiraiMC &6=>&r " + Env.MiraiMC,
-                                "- PlaceholderAPI &6=>&r " + Env.PlaceholderAPI,
-                                "- TrChat &6=>&r " + Env.TrChat,
-                                "",
-                                "&e服务器版本: &b" + Bukkit.getBukkitVersion()
-                        ));
-                        for (int i = 1; i <= env.toArray().length; i++) {
-                            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', (String) env.toArray()[i - 1]));
+                    if (strings.length == 2) {
+                        if (commandSender.hasPermission("catsero.admin")) {
+                            ArrayList<String> env = new ArrayList<>(Arrays.asList(
+                                    "&e插件版本: &b" + Configs.PluginInfo.getString("version"),
+                                    "&e插件作者: &b" + Configs.PluginInfo.getString("author"),
+                                    "&e依赖装载情况:",
+                                    "- MiraiMC &6=>&r " + Env.MiraiMC,
+                                    "- PlaceholderAPI &6=>&r " + Env.PlaceholderAPI,
+                                    "- TrChat &6=>&r " + Env.TrChat,
+                                    "",
+                                    "&e服务器版本: &b" + Bukkit.getBukkitVersion()
+                            ));
+                            for (int i = 1; i <= env.toArray().length; i++) {
+                                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', (String) env.toArray()[i - 1]));
+                            }
                         }
+                    } else {
+                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configs.getMsgByMsID("minecraft.invalid-options")));
                     }
                     break;
                 case "send":
@@ -73,7 +77,7 @@ public class CatSero implements TabExecutor {
         if (strings.length >= 1) {
             List<String> sublist = new ArrayList<>();
             switch (strings.length) {
-                case 2:
+                case 1:
                     sublist.add("version");
                     return sublist;
                 default:
