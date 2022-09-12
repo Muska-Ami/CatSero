@@ -30,7 +30,7 @@
 
 #### config.yml
 <details>
-<summary>点此展开</summary>
+<summary>点此展开/收起</summary>
 
 ```yaml
 # CatSero配置文件
@@ -44,7 +44,7 @@ allow-bstats: true
 
 #### uses-config.yml
 <details>
-<summary>点此展开</summary>
+<summary>点此展开/收起</summary>
 
 ```yaml
 # CatSero功能设置
@@ -152,7 +152,11 @@ new-group-member-message:
 
 #### Bot & Group & QQOp配置指南
 <details>
-<summary>点此展开</summary>
+<summary>点此展开/收起</summary>
+
+##### 添加指南
+<details>
+<summary>点此展开/收起</summary>
 
 ### Bot配置指南
 Bot配置位于`mirai-configs/bot.yml`  
@@ -185,6 +189,18 @@ list下的`example`与`example2`即为BotID
 list:
   hello-group: 123456789
 ```
+
+### QQOp配置指南
+QQOp配置位于`mirai-configs/qq-op.yml`  
+您只需要按照YAML数组格式添加用户QQ号即可
+</details>
+
+#### 使用指南
+<details>
+<summary>点此展开/收起</summary>
+
+正在编写
+</details>
 </details>
 
 ## 命令
