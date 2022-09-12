@@ -199,8 +199,15 @@ QQOp配置位于`mirai-configs/qq-op.yml`
 <details>
 <summary>点此展开/收起</summary>
 
-正在编写
 打开`uses-config.yml`，您应该会发现每个功能下会有一个`var`:
+```yaml
+example:
+  var:
+    bot: example
+    group: example
+```
+`var`内的`bot`即为Bot配置中的BotID
+同理`group`即为Group配置中的GroupID
 </details>
 </details>
 
