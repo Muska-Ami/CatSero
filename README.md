@@ -182,7 +182,7 @@ list:
   example: 123456789
   example2: 123456789
 ```
-list下的`example`与`example2`即为BotID  
+list下的`example`与`example2`即为GroupID  
 创建格式为`<id>: <群号>`  
 您可以新建若干Group，例如，让我们把文件改为
 ```yaml
@@ -220,7 +220,7 @@ example:
 | 命令                                 | 说明       |
 |------------------------------------|----------|
 | /catsero version                   | 插件版本以及信息 |
-| /cms send <Bot ID> <Group ID> <消息> | 发送群消息    |
+| /cms send <BotID> <GroupID> <消息> | 发送群消息    |
 
 ### QQ
 
