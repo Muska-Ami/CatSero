@@ -25,10 +25,7 @@ package moe.xmcn.catsero.v2;
 
 import moe.xmcn.catsero.v2.executors.ExecutorRegister;
 import moe.xmcn.catsero.v2.listeners.ListenerRegister;
-import moe.xmcn.catsero.v2.utils.Configs;
-import moe.xmcn.catsero.v2.utils.Env;
-import moe.xmcn.catsero.v2.utils.Loggers;
-import moe.xmcn.catsero.v2.utils.Metrics;
+import moe.xmcn.catsero.v2.utils.*;
 import moe.xmcn.xmcore.ThisAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -91,6 +88,11 @@ public class CatSero extends JavaPlugin {
         ListenerRegister.register();
         ExecutorRegister.register();
         Loggers.CustomLevel.logLoader("成功注册监听器");
+
+        Loggers.CustomLevel.logLoader("启动TPS计算器");
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Configs.plugin, new ServerTPS(), 100L, 1L);
+        Loggers.CustomLevel.logLoader("成功启动TPS计算器");
+
         Loggers.CustomLevel.logLoader("加载完毕，启用插件");
     }
 
