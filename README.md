@@ -195,11 +195,12 @@ QQOp配置位于`mirai-configs/qq-op.yml`
 您只需要按照YAML数组格式添加用户QQ号即可
 </details>
 
-#### 使用指南
+##### 使用指南
 <details>
 <summary>点此展开/收起</summary>
 
 正在编写
+打开`uses-config.yml`，您应该会发现每个功能下会有一个`var`:
 </details>
 </details>
 
