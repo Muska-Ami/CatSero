@@ -42,7 +42,7 @@ public class CatSero implements TabExecutor {
         if (strings.length >= 1) {
             switch (strings[0]) {
                 case "version":
-                    if (strings.length == 3) {
+                    if (strings.length == 1) {
                         if (commandSender.hasPermission("catsero.admin")) {
                             ArrayList<String> env = new ArrayList<>(Arrays.asList(
                                     "&e插件版本: &b" + Configs.PluginInfo.getString("version"),
