@@ -40,62 +40,106 @@ locale: zh_CN
 allow-bstats: true
 ```
 
-#### config.yml
+#### uses-config.yml
 ```yaml
 # CatSero功能设置
 
 # 发送玩家加入/退出消息
 send-player-join-quit:
-  # 功
+  # 功能开关
+  # true | false
   enabled: false
+  # Bot & Group设置
   var:
+    # BotID
     bot: example
+    # GroupID
     group: example
+  # 格式
+  # 内置占位符:
+  # - %player% 加入玩家名称
   format:
+    # 加入
     join: "%player%加入了游戏"
+    # 退出
     quit: "%player%退出了游戏"
+  # 需要拥有权限才会发送
   need-permission: false
 
 # 聊天转发
 chat-forward:
+  # 功能开关
+  # true | false
   enabled: false
+  # Bot & Group设置
   var:
+    # BotID
     bot: example
+    # GroupID
     group: example
+  # 格式
+  # 内置占位符:
+  # - %name%  (To MC)发送者名称
+  # - %code%  (To MC)发送者QQ号
+  # - %message%  消息内容
+  # - %player%  (To QQ)发送玩家名称
+  # - %channel%  (To QQ | TrChat Only)聊天频道ID
   format:
+    # 发送到Minecraft
     to-mc: |-
       &e[&aQQ&e]&r%name%(%code%):
       %message%
+    # 发送到QQ
     to-qq: |-
       [MC]%player%:
       %message%
+  # 清理消息中的格式代码
   clean-colorcode: true
+  # 关键词检测
   filter:
+    # 功能开关
     enabled: false
+    # 关键词列表
     list:
       - "傻逼"
       - "fuck"
+    # 只将关键词变为"***"而不是取消该条消息的转发
     replace-only: false
+  # 聊天前缀
   prefix:
+    # 功能开关
     enabled: false
+    # 格式
     format:
+      # 发送到Minecraft
       to-mc: "#"
+      # 发送到QQ
       to-qq: "#"
 
 # 发送玩家死亡消息
 send-player-death:
+  # 功能开关
   enabled: false
+  # Bot & Group设置
   var:
+    # BotID
     bot: example
+    # GroupID
     group: example
+  # 格式
   format: "%player%死了,因为\n%deathmes%"
 
 # 新人加入群欢迎
 new-group-member-message:
+  # 功能开关
   enabled: false
+  # Bot & Group设置
   var:
+    # BotID
     bot: example
+    # GroupID
     group: example
+  # 格式
   format: "欢迎%at%（%code%）加入本群!"
 
 ```
