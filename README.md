@@ -2,8 +2,6 @@
 
 # CatSero `v2`
 
-v2尚未完工，目前发行版本为v1代码，源请转到分支`v1`
-
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/babcf1e300a44e3684e88840e2b2b803)](https://www.codacy.com/gh/XiaMoHuaHuo-CN/CatSero/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=XiaMoHuaHuo-CN/CatSero&amp;utm_campaign=Badge_Grade)[![Java CI with Maven - Build](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml/badge.svg?branch=main)](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml)  
 一个基于MiraiMC的QQ群功能&MC功能插件  
 支持的Minecraft版本: 1.8+  
@@ -31,6 +29,9 @@ v2尚未完工，目前发行版本为v1代码，源请转到分支`v1`
 ## 配置文件
 
 #### config.yml
+<details>
+<summary>点此展开</summary>
+
 ```yaml
 # CatSero配置文件
 
@@ -39,8 +40,12 @@ locale: zh_CN
 # 接受bStats统计(https://bstats.org)
 allow-bstats: true
 ```
+</details>
 
 #### uses-config.yml
+<details>
+<summary>点此展开</summary>
+
 ```yaml
 # CatSero功能设置
 
@@ -143,6 +148,44 @@ new-group-member-message:
   format: "欢迎%at%（%code%）加入本群!"
 
 ```
+</details>
+
+#### Bot & Group & QQOp配置指南
+<details>
+<summary>点此展开</summary>
+
+### Bot配置指南
+Bot配置位于`mirai-configs/bot.yml`  
+首次打开，您应该会看到如下内容
+```yaml
+list:
+  example: 123456789
+  example2: 123456789
+```
+list下的`example`与`example2`即为BotID  
+创建格式为`<id>: <Bot QQ号>`  
+您可以新建若干Bot，例如，让我们把文件改为
+```yaml
+list:
+  hello-bot: 123456789
+```
+
+### Group配置指南
+Group配置位于`mirai-configs/group.yml`  
+首次打开，您应该会看到如下内容
+```yaml
+list:
+  example: 123456789
+  example2: 123456789
+```
+list下的`example`与`example2`即为BotID  
+创建格式为`<id>: <群号>`  
+您可以新建若干Group，例如，让我们把文件改为
+```yaml
+list:
+  hello-group: 123456789
+```
+</details>
 
 ## 命令
 
