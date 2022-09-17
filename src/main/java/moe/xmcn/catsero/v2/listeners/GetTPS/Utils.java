@@ -27,7 +27,7 @@ import moe.xmcn.catsero.v2.utils.Configs;
 
 public interface Utils {
 
-    String X_Bot = Configs.JPConfig.uses_config.getString("new-group-member-message.var.bot");
-    String X_Group = Configs.JPConfig.uses_config.getString("new-group-member-message.var.group");
+    String X_Bot = Configs.JPConfig.uses_config.getString("get-tps.var.bot");
+    String X_Group = Configs.JPConfig.uses_config.getString("get-tps.var.group");
 
 }

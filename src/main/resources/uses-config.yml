@@ -52,3 +52,7 @@ new-group-member-message:
     bot: example
     group: example
   format: "欢迎%at%（%code%）加入本群!"
+
+# TPS获取
+get-tps:
+  enabled: false

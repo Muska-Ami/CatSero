@@ -149,6 +149,11 @@ new-group-member-message:
     group: example
   # 格式
   format: "欢迎%at%（%code%）加入本群!"
+  
+# TPS获取
+get-tps:
+    # 功能开关
+  enabled: false
 
 ```
 
@@ -235,18 +240,20 @@ example:
 
 ### Minecraft
 
-| 命令                                 | 说明       |
-|------------------------------------|----------|
-| /catsero version                   | 插件版本以及信息 |
-| */catsero reload                   | 重载配置文件   |
+| 命令                                | 说明       |
+|-----------------------------------|----------|
+| /catsero version                  | 插件版本以及信息 |
+| /catsero reload                   | 重载配置文件   |
 | /cms send \<BotID> \<GroupID> <消息> | 发送群消息    |
 
 ### QQ
 
 _要触发命令前必须使用前缀`!`或`/`_
 
-| 命令                                 | 说明                           |
-|------------------------------------|------------------------------|
+| 命令                    | 说明        |
+|-----------------------|-----------|
+| !catsero tps round    | 获取TPS(概数) |
+| !catsero tps accurate | 获取TPS(精确) |
 
 # bStats
 

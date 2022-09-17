@@ -54,7 +54,7 @@ public class OnTrChatEvent implements Listener {
                     Configs.JPConfig.uses_config.getStringList("chat-forward.filter.list").forEach(it -> {
                         if (Configs.JPConfig.uses_config.getBoolean("chat-forward.filter.replace-only")) {
                             message = message.replace(it, "***");
-                        } else if (!message.contains(it)) {
+                        } else if (message.contains(it)) {
                             NotCancel = false;
                         }
                     });
@@ -62,8 +62,8 @@ public class OnTrChatEvent implements Listener {
 
                 if (Configs.JPConfig.uses_config.getBoolean("chat-forward.prefix.enabled")) {
                     if (!message.startsWith(Configs.JPConfig.uses_config.getString("chat-forward.prefix.format.to-qq"))) {
-                        NotCancel = true;
-                    } else {
+                        NotCancel = false;
+                    } else if (message.startsWith(Configs.JPConfig.uses_config.getString("chat-forward.prefix.format.to-qq"))) {
                         message = message.replaceFirst(Configs.JPConfig.uses_config.getString("chat-forward.prefix.format.to-qq"), "");
                     }
                 }
