@@ -68,9 +68,9 @@ public class OnGameChatEvent implements Listener {
                 }
 
                 if (!Cancel) {
-                    format = format.replace("%world%", world);
-                    format = format.replace("%player%", sender.getName());
-                    format = format.replace("%message%", message);
+                    format = format.replace("%world%", world)
+                            .replace("%player%", sender.getName())
+                            .replace("%message%", message);
                     Env.AMiraiMC.sendMiraiGroupMessage(format, Utils.X_Bot, Utils.X_Group);
                 }
             }

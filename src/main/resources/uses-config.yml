@@ -56,3 +56,17 @@ new-group-member-message:
 # TPS获取
 get-tps:
   enabled: false
+  var:
+    bot: example
+    group: example
+
+# 在线玩家获取
+get-online-players:
+  enabled: false
+  var:
+    bot: example
+    group: example
+  format: |-
+    当前在线: %count%
+    最大在线: %max%
+    玩家列表: %list%

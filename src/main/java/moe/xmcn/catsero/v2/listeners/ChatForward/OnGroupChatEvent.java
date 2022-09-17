@@ -56,24 +56,24 @@ public class OnGroupChatEvent implements Listener {
                     Configs.JPConfig.uses_config.getStringList("chat-forward.filter.list").forEach(it -> {
                         if (Configs.JPConfig.uses_config.getBoolean("chat-forward.filter.replace-only")) {
                             message = message.replace(it, "***");
-                        } else if (!message.contains(it)) {
-                            this.Cancel = true;
+                        } else if (message.contains(it)) {
+                            Cancel = true;
                         }
                     });
                 }
 
                 if (Configs.JPConfig.uses_config.getBoolean("chat-forward.prefix.enabled")) {
-                    if (message.startsWith(Configs.JPConfig.uses_config.getString("chat-forward.prefix.format.to-mv"))) {
+                    if (message.startsWith(Configs.JPConfig.uses_config.getString("chat-forward.prefix.format.to-mc"))) {
                         message = message.replaceFirst(Configs.JPConfig.uses_config.getString("chat-forward.prefix.format.to-mc"), "");
                     } else {
-                        this.Cancel = true;
+                        Cancel = true;
                     }
                 }
 
                 if (!Cancel) {
-                    format = format.replace("%name%", sender_name);
-                    format = format.replace("%code%", String.valueOf(sender_code));
-                    format = format.replace("%message%", this.message);
+                    format = format.replace("%name%", sender_name)
+                            .replace("%code%", String.valueOf(sender_code))
+                            .replace("%message%", message);
                     Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
                 }
             }

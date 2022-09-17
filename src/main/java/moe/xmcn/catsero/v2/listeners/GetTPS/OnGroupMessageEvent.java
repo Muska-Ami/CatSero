@@ -21,14 +21,14 @@ public class OnGroupMessageEvent implements Listener {
                 ) {
                     if (strings.length == 2) {
                         double tps = ServerTPS.getTPS();
-                        BigDecimal round_tps = BigDecimal.valueOf(tps + 0.1).setScale(1, RoundingMode.HALF_UP);
+                        BigDecimal round_tps = BigDecimal.valueOf(tps).setScale(1, RoundingMode.HALF_UP);
 
-                        switch (strings[0]) {
+                        switch (strings[1]) {
                             case "accurate":
                                 Env.AMiraiMC.sendMiraiGroupMessage("TPS: " + tps, Utils.X_Bot, Utils.X_Group);
                                 break;
                             case "round":
-                                Env.AMiraiMC.sendMiraiGroupMessage("TPS: " + String.valueOf(round_tps), Utils.X_Bot, Utils.X_Group);
+                                Env.AMiraiMC.sendMiraiGroupMessage("TPS: " + round_tps, Utils.X_Bot, Utils.X_Group);
                                 break;
                         }
                     } else Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.invalid-options"), Utils.X_Bot, Utils.X_Group);

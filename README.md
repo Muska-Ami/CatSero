@@ -154,6 +154,28 @@ new-group-member-message:
 get-tps:
     # 功能开关
   enabled: false
+  # Bot & Group设置
+  var:
+    # BotID
+    bot: example
+    # GroupID
+    group: example
+
+# 在线玩家获取
+get-online-players:
+  # 功能开关
+  enabled: false
+  # Bot & Group设置
+  var:
+    # BotID
+    bot: example
+    # GroupID
+    group: example
+  # 格式
+  format: |-
+    当前在线: %count%
+    最大在线: %max%
+    玩家列表: %list%
 
 ```
 
@@ -250,10 +272,11 @@ example:
 
 _要触发命令前必须使用前缀`!`或`/`_
 
-| 命令                    | 说明        |
-|-----------------------|-----------|
-| !catsero tps round    | 获取TPS(概数) |
-| !catsero tps accurate | 获取TPS(精确) |
+| 命令                    | 说明          |
+|-----------------------|-------------|
+| !catsero tps round    | 获取TPS(概数)   |
+| !catsero tps accurate | 获取TPS(精确)   |
+| !catsero list         | 列出服务器上的所有玩家 |
 
 # bStats
 

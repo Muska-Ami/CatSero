@@ -75,10 +75,10 @@ public class OnTrChatEvent implements Listener {
                 });
 
                 if (NotCancel) {
-                    format = format.replace("%channel%", channel);
-                    format = format.replace("%world%", world);
-                    format = format.replace("%player%", sender.getName());
-                    format = format.replace("%message%", message);
+                    format = format.replace("%channel%", channel)
+                            .replace("%world%", world)
+                            .replace("%player%", sender.getName())
+                            .replace("%message%", message);
                     Env.AMiraiMC.sendMiraiGroupMessage(format, Utils.X_Bot, Utils.X_Group);
                 }
             }
