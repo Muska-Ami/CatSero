@@ -83,13 +83,9 @@ public class Env {
 
     public static class AMiraiMC {
         public static void sendMiraiGroupMessage(String message, String botid, String groupid) {
-            try {
-                long bot = Configs.getBotCode(botid);
-                long group = Configs.getGroupCode(groupid);
-                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message);
-            } catch (Exception e) {
-                Loggers.logWARN(Configs.getMsgByMsID("general.send-message-qq-error").replace("%error%", e + Arrays.toString(e.getStackTrace())));
-            }
+            long bot = Configs.getBotCode(botid);
+            long group = Configs.getGroupCode(groupid);
+            MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message);
         }
     }
 

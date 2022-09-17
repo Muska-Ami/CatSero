@@ -43,24 +43,24 @@ public interface Loggers {
         }
 
         static void logLoader(ArrayList<String> msgs) {
-            for (int i = 1; i < msgs.toArray().length - 1; i++) {
+            for (int i = 1; i < msgs.toArray().length + 1; i++) {
                 logINFO("[Loader] " + msgs.toArray()[i - 1]);
             }
         }
 
         static void logCatch(Exception e) {
-            String error_class_name = e.getClass().getName();
+            String error_type = e.getClass().getName();
             String error_message = e.getMessage();
             String error_info = Arrays.toString(e.getStackTrace());
 
             ArrayList<String> msgs = new ArrayList<>(Arrays.asList(
                     "捕获到一个错误",
-                    "捕获类名称: " + error_class_name,
+                    "错误类型: " + error_type,
                     "捕获消息: " + error_message,
                     "详细信息: " + error_info
             ));
 
-            for (int i = 1; i < msgs.toArray().length - 1; i++) {
+            for (int i = 1; i < msgs.toArray().length + 1; i++) {
                 logWARN("[Catch] " + msgs.toArray()[i - 1]);
             }
         }
