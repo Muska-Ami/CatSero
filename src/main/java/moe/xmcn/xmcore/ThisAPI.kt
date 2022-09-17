@@ -18,7 +18,12 @@ class ThisAPI {
         private const val infoFile: String = "xmcore.info"
 
         fun readPlugin(plugin_name: String): YamlConfiguration {
-            return YamlConfiguration.loadConfiguration(File(Configs.plugin.dataFolder.parent, "XMCore/$plugin_name.info"))
+            return YamlConfiguration.loadConfiguration(
+                File(
+                    Configs.plugin.dataFolder.parent,
+                    "XMCore/$plugin_name.info"
+                )
+            )
         }
 
         fun savePlugin(plugin_name: String) {

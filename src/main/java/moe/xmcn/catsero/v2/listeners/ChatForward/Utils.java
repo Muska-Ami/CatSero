@@ -31,8 +31,8 @@ import java.util.Set;
 
 public interface Utils {
 
-    String X_Bot = Configs.getConfig("uses-config.yml").getString("chat-forward.var.bot");
-    String X_Group = Configs.getConfig("uses-config.yml").getString("chat-forward.var.group");
+    String X_Bot = Configs.JPConfig.uses_config.getString("chat-forward.var.bot");
+    String X_Group = Configs.JPConfig.uses_config.getString("chat-forward.var.group");
 
     static String cleanColorCode(String string) {
         Set<String> s = new HashSet<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "a", "b", "c", "d", "e", "f", "k", "l", "o", "r"));

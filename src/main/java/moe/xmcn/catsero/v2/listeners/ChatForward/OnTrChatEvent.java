@@ -26,53 +26,64 @@ package moe.xmcn.catsero.v2.listeners.ChatForward;
 import me.arasple.mc.trchat.api.event.TrChatEvent;
 import moe.xmcn.catsero.v2.utils.Configs;
 import moe.xmcn.catsero.v2.utils.Env;
+import moe.xmcn.catsero.v2.utils.Loggers;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class OnTrChatEvent implements Listener {
 
-    private boolean Cancel = false;
+    private boolean NotCancel = true;
     private String message;
 
     @EventHandler
     public void onTrChatEvent(TrChatEvent e) {
-        if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.enabled")) {
-            message = e.getMessage();
-            String channel = e.getChannel().getId();
-            Player sender = e.getSession().getPlayer();
-            String world = sender.getWorld().getName();
+        try {
+            if (Configs.JPConfig.uses_config.getBoolean("chat-forward.enabled")) {
+                message = e.getMessage();
+                String channel = e.getChannel().getId();
+                Player sender = e.getSession().getPlayer();
+                String world = sender.getWorld().getName();
 
-            String format = Configs.getConfig("uses-config.yml").getString("chat-forward.format.to-qq");
+                String format = Configs.JPConfig.uses_config.getString("chat-forward.format.to-qq");
 
-            if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.clean-colorcode")) {
-                message = Utils.cleanColorCode(message);
-            }
-            if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.filter.enabled")) {
-                Configs.getConfig("uses-config.yml").getStringList("chat-forward.filter.list").forEach(it -> {
-                    if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.filter.replace-only")) {
-                        message = message.replace(it, "***");
-                    } else if (!message.contains(it)) {
-                        Cancel = true;
+                if (Configs.JPConfig.uses_config.getBoolean("chat-forward.clean-colorcode")) {
+                    message = Utils.cleanColorCode(message);
+                }
+                if (Configs.JPConfig.uses_config.getBoolean("chat-forward.filter.enabled")) {
+                    Configs.JPConfig.uses_config.getStringList("chat-forward.filter.list").forEach(it -> {
+                        if (Configs.JPConfig.uses_config.getBoolean("chat-forward.filter.replace-only")) {
+                            message = message.replace(it, "***");
+                        } else if (!message.contains(it)) {
+                            NotCancel = false;
+                        }
+                    });
+                }
+
+                if (Configs.JPConfig.uses_config.getBoolean("chat-forward.prefix.enabled")) {
+                    if (!message.startsWith(Configs.JPConfig.uses_config.getString("chat-forward.prefix.format.to-qq"))) {
+                        NotCancel = true;
+                    } else {
+                        message = message.replaceFirst(Configs.JPConfig.uses_config.getString("chat-forward.prefix.format.to-qq"), "");
+                    }
+                }
+
+                Configs.JPConfig.trchat_config.getStringList("forward-chat.channel").forEach(it -> {
+                    if (it.equals(channel)) {
+                        NotCancel = true;
                     }
                 });
-            }
 
-            if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.prefix.enabled")) {
-                if (message.startsWith(Configs.getConfig("uses-config.yml").getString("chat-forward.prefix.format.to-qq"))) {
-                    message = message.replaceFirst(Configs.getConfig("uses-config.yml").getString("chat-forward.prefix.format.to-qq"), "");
-                } else {
-                    Cancel = true;
+                if (NotCancel) {
+                    format = format.replace("%channel%", channel);
+                    format = format.replace("%world%", world);
+                    format = format.replace("%player%", sender.getName());
+                    format = format.replace("%message%", message);
+                    Env.AMiraiMC.sendMiraiGroupMessage(format, Utils.X_Bot, Utils.X_Group);
                 }
             }
-
-            if (!Cancel) {
-                format = format.replace("%channel%", channel);
-                format = format.replace("%world%", world);
-                format = format.replace("%player%", sender.getName());
-                format = format.replace("%message%", message);
-                Env.AMiraiMC.sendMiraiGroupMessage(format, Utils.X_Bot, Utils.X_Group);
-            }
+        } catch (Exception ex) {
+            Loggers.CustomLevel.logCatch(ex);
         }
     }
 

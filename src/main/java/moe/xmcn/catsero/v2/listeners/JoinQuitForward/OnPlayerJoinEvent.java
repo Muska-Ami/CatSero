@@ -25,6 +25,7 @@ package moe.xmcn.catsero.v2.listeners.JoinQuitForward;
 
 import moe.xmcn.catsero.v2.utils.Configs;
 import moe.xmcn.catsero.v2.utils.Env;
+import moe.xmcn.catsero.v2.utils.Loggers;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -33,25 +34,29 @@ public class OnPlayerJoinEvent implements Listener {
 
     @EventHandler
     public void onGamePlayerJoinEvent(PlayerJoinEvent pljev) {
-        if (Configs.getConfig("uses-config.yml").getBoolean("send-player-join-quit.enabled")) {
-            if (Configs.getConfig("uses-config.yml").getBoolean("send-player-join-quit.need-permission")) {
-                //权限模式
-                if (pljev.getPlayer().hasPermission("catsero.send-player-join-quit.join")) {
+        try {
+            if (Configs.JPConfig.uses_config.getBoolean("send-player-join-quit.enabled")) {
+                if (Configs.JPConfig.uses_config.getBoolean("send-player-join-quit.need-permission")) {
+                    //权限模式
+                    if (pljev.getPlayer().hasPermission("catsero.send-player-join-quit.join")) {
+                        String pljname = pljev.getPlayer().getName();
+                        String joinmsg = Configs.JPConfig.uses_config.getString("send-player-join-quit.format.join");
+                        joinmsg = joinmsg.replace("%player%", pljname);
+                        joinmsg = Env.APlaceholderAPI.tryToPAPI(pljev.getPlayer(), joinmsg);
+                        Env.AMiraiMC.sendMiraiGroupMessage(joinmsg, Utils.X_Bot, Utils.X_Group);
+                    }
+                } else {
+                    //通用模式
                     String pljname = pljev.getPlayer().getName();
-                    String joinmsg = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.format.join");
+                    String joinmsg = Configs.JPConfig.uses_config.getString("send-player-join-quit.format.join");
                     joinmsg = joinmsg.replace("%player%", pljname);
                     joinmsg = Env.APlaceholderAPI.tryToPAPI(pljev.getPlayer(), joinmsg);
                     Env.AMiraiMC.sendMiraiGroupMessage(joinmsg, Utils.X_Bot, Utils.X_Group);
                 }
-            } else {
-                //通用模式
-                String pljname = pljev.getPlayer().getName();
-                String joinmsg = Configs.getConfig("uses-config.yml").getString("send-player-join-quit.format.join");
-                joinmsg = joinmsg.replace("%player%", pljname);
-                joinmsg = Env.APlaceholderAPI.tryToPAPI(pljev.getPlayer(), joinmsg);
-                Env.AMiraiMC.sendMiraiGroupMessage(joinmsg, Utils.X_Bot, Utils.X_Group);
             }
-        }
+        } catch (Exception ex) {
+                Loggers.CustomLevel.logCatch(ex);
+            }
     }
 
 }

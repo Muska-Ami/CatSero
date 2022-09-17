@@ -25,11 +25,13 @@ package moe.xmcn.catsero.v2.utils;
 
 import moe.xmcn.catsero.v2.CatSero;
 import moe.xmcn.xmcore.ThisAPI;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public interface Configs {
@@ -41,8 +43,8 @@ public interface Configs {
      *
      * @param file extra-config文件名
      */
-    static FileConfiguration getConfig(String file) {
-        return YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), file));
+    static File getConfig(String file) {
+        return new File(plugin.getDataFolder(), file);
     }
 
     /**
@@ -53,8 +55,8 @@ public interface Configs {
      */
     static String getMsgByMsID(String msid) {
         String locale;
-        if (getConfig("config.yml").getString("locale") != null) {
-            locale = getConfig("config.yml").getString("locale");
+        if (JPConfig.config.getString("locale") != null) {
+            locale = JPConfig.config.getString("locale");
         } else {
             locale = "zh_CN";
         }
@@ -67,20 +69,46 @@ public interface Configs {
     }
 
     static long getBotCode(String botid) {
-        return getConfig("mirai-configs/bot.yml").getLong("list." + botid);
+        return JPConfig.mirai_bot_config.getLong("list." + botid);
     }
 
     static long getGroupCode(String groupid) {
-        return getConfig("mirai-configs/group.yml").getLong("list." + groupid);
+        return JPConfig.mirai_group_config.getLong("list." + groupid);
     }
 
     static boolean isQQOp(long senderID) {
         AtomicBoolean isOp = new AtomicBoolean(false);
-        Configs.getConfig("mirai-configs/qq-op.yml").getLongList("list").forEach(it -> {
+        JPConfig.mirai_qqop_config.getLongList("list").forEach(it -> {
             if (it == senderID) {
                 isOp.set(true);
             }
         });
         return isOp.get();
     }
+
+    interface JPConfig {
+
+        FileConfiguration config = YamlConfiguration.loadConfiguration(Configs.getConfig("config.yml"));
+        FileConfiguration uses_config = YamlConfiguration.loadConfiguration(Configs.getConfig("uses-config.yml"));
+
+        FileConfiguration trchat_config = YamlConfiguration.loadConfiguration(Configs.getConfig("extra-configs/trchat.yml"));
+
+        FileConfiguration mirai_bot_config = YamlConfiguration.loadConfiguration(Configs.getConfig("mirai-configs/bot.yml"));
+        FileConfiguration mirai_group_config = YamlConfiguration.loadConfiguration(Configs.getConfig("mirai-configs/group.yml"));
+        FileConfiguration mirai_qqop_config = YamlConfiguration.loadConfiguration(Configs.getConfig("mirai-configs/qq-op.yml"));
+
+        static void reload() throws IOException, InvalidConfigurationException {
+            config.load(Configs.getConfig("config.yml"));
+            uses_config.load(Configs.getConfig("uses-config.yml"));
+
+            trchat_config.load(Configs.getConfig("extra-configs/trchat.yml"));
+
+            mirai_bot_config.load(Configs.getConfig("mirai-configs/bot.yml"));
+            mirai_group_config.load(Configs.getConfig("mirai-configs/group.yml"));
+            mirai_qqop_config.load(Configs.getConfig("mirai-configs/qq-op.yml"));
+
+        }
+
+    }
+
 }

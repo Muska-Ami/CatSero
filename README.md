@@ -29,6 +29,7 @@
 ## 配置文件
 
 #### config.yml
+
 <details>
 <summary>点此展开/收起</summary>
 
@@ -40,9 +41,11 @@ locale: zh_CN
 # 接受bStats统计(https://bstats.org)
 allow-bstats: true
 ```
+
 </details>
 
 #### uses-config.yml
+
 <details>
 <summary>点此展开/收起</summary>
 
@@ -148,64 +151,79 @@ new-group-member-message:
   format: "欢迎%at%（%code%）加入本群!"
 
 ```
+
 </details>
 
 #### Bot & Group & QQOp配置指南
+
 <details>
 <summary>点此展开/收起</summary>
 
 ##### 添加指南
+
 <details>
 <summary>点此展开/收起</summary>
 
 ### Bot配置指南
+
 Bot配置位于`mirai-configs/bot.yml`  
 首次打开，您应该会看到如下内容
+
 ```yaml
 list:
   example: 123456789
   example2: 123456789
 ```
+
 list下的`example`与`example2`即为BotID  
 创建格式为`<id>: <Bot QQ号>`  
 您可以新建若干Bot，例如，让我们把文件改为
+
 ```yaml
 list:
   hello-bot: 123456789
 ```
 
 ### Group配置指南
+
 Group配置位于`mirai-configs/group.yml`  
 首次打开，您应该会看到如下内容
+
 ```yaml
 list:
   example: 123456789
   example2: 123456789
 ```
+
 list下的`example`与`example2`即为GroupID  
 创建格式为`<id>: <群号>`  
 您可以新建若干Group，例如，让我们把文件改为
+
 ```yaml
 list:
   hello-group: 123456789
 ```
 
 ### QQOp配置指南
+
 QQOp配置位于`mirai-configs/qq-op.yml`  
 您只需要按照YAML数组格式添加用户QQ号即可
 </details>
 
 ##### 使用指南
+
 <details>
 <summary>点此展开/收起</summary>
 
 打开`uses-config.yml`，您应该会发现每个功能下会有一个`var`:
+
 ```yaml
 example:
   var:
     bot: example
     group: example
 ```
+
 `var`内的`bot`即为Bot配置中的BotID
 同理`group`即为Group配置中的GroupID
 </details>
@@ -220,7 +238,8 @@ example:
 | 命令                                 | 说明       |
 |------------------------------------|----------|
 | /catsero version                   | 插件版本以及信息 |
-| /cms send <BotID> <GroupID> <消息> | 发送群消息    |
+| */catsero reload                   | 重载配置文件   |
+| /cms send \<BotID> \<GroupID> <消息> | 发送群消息    |
 
 ### QQ
 

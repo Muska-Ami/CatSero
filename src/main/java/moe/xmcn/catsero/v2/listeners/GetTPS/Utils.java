@@ -21,7 +21,7 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.v2.listeners.NewGroupMemberWelcome;
+package moe.xmcn.catsero.v2.listeners.GetTPS;
 
 import moe.xmcn.catsero.v2.utils.Configs;
 

@@ -27,7 +27,7 @@ import moe.xmcn.catsero.v2.utils.Configs;
 
 public interface Utils {
 
-    String X_Bot = Configs.getConfig("uses-config.yml").getString("send-player-death.var.bot");
-    String X_Group = Configs.getConfig("uses-config.yml").getString("send-player-death.var.group");
+    String X_Bot = Configs.JPConfig.uses_config.getString("send-player-death.var.bot");
+    String X_Group = Configs.JPConfig.uses_config.getString("send-player-death.var.group");
 
 }

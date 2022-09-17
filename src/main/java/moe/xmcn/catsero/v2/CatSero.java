@@ -75,7 +75,7 @@ public class CatSero extends JavaPlugin {
         ThisAPI.Companion.savePlugin("CatSero");
         Loggers.CustomLevel.logLoader("成功保存插件文件");
 
-        if (Configs.getConfig("config.yml").getBoolean("allow-bstats", true)) {
+        if (Configs.JPConfig.config.getBoolean("allow-bstats", true)) {
             Loggers.CustomLevel.logLoader("加载bStats统计");
             new Metrics((JavaPlugin) Configs.plugin, 14767);
             Loggers.CustomLevel.logLoader("成功加载bStats统计");

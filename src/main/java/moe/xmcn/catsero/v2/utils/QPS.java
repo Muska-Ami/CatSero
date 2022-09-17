@@ -16,8 +16,8 @@ public interface QPS {
             if (pmhv != null) {
                 return pmhv.split(" ");
             } else if (
-                    Configs.getConfig("config.yml").getBoolean("custom-qq-command-head.enabled") &&
-                    pmhc != null
+                    Configs.JPConfig.config.getBoolean("custom-qq-command-head.enabled") &&
+                            pmhc != null
             ) {
                 return pmhc.split(" ");
             } else {
@@ -51,7 +51,7 @@ public interface QPS {
          * @return 处理后的消息或null
          */
         private static String checkCustomCommandHeader(String message) {
-            String custom_head = Configs.getConfig("config.yml").getString("format-list.custom-command-head.prefix");
+            String custom_head = Configs.JPConfig.config.getString("format-list.custom-command-head.prefix");
             if (message.startsWith("!" + custom_head)) {
                 //解析命令头(!)
                 message = message.replaceFirst("!" + custom_head + " ", "");

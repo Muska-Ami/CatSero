@@ -25,6 +25,7 @@ package moe.xmcn.catsero.v2.listeners.ChatForward;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.v2.utils.Configs;
+import moe.xmcn.catsero.v2.utils.Loggers;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -37,44 +38,48 @@ public class OnGroupChatEvent implements Listener {
 
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent e) {
-        if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.enabled")) {
-            this.message = e.getMessage();
-            String sender_name = e.getSenderNameCard();
-            if (sender_name.equals("")) {
-                sender_name = e.getSenderName();
-            }
-            long sender_code = e.getSenderID();
+        try {
+            if (Configs.JPConfig.uses_config.getBoolean("chat-forward.enabled")) {
+                this.message = e.getMessage();
+                String sender_name = e.getSenderNameCard();
+                if (sender_name.equals("")) {
+                    sender_name = e.getSenderName();
+                }
+                long sender_code = e.getSenderID();
 
-            String format = Configs.getConfig("uses-config.yml").getString("chat-forward.format.to-mc");
+                String format = Configs.JPConfig.uses_config.getString("chat-forward.format.to-mc");
 
-            if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.clean-colorcode")) {
-                message = Utils.cleanColorCode(message);
-            }
-            if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.filter.enabled")) {
-                Configs.getConfig("uses-config.yml").getStringList("chat-forward.filter.list").forEach(it -> {
-                    if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.filter.replace-only")) {
-                        message = message.replace(it, "***");
-                    } else if (!message.contains(it)) {
+                if (Configs.JPConfig.uses_config.getBoolean("chat-forward.clean-colorcode")) {
+                    message = Utils.cleanColorCode(message);
+                }
+                if (Configs.JPConfig.uses_config.getBoolean("chat-forward.filter.enabled")) {
+                    Configs.JPConfig.uses_config.getStringList("chat-forward.filter.list").forEach(it -> {
+                        if (Configs.JPConfig.uses_config.getBoolean("chat-forward.filter.replace-only")) {
+                            message = message.replace(it, "***");
+                        } else if (!message.contains(it)) {
+                            this.Cancel = true;
+                        }
+                    });
+                }
+
+                if (Configs.JPConfig.uses_config.getBoolean("chat-forward.prefix.enabled")) {
+                    if (message.startsWith(Configs.JPConfig.uses_config.getString("chat-forward.prefix.format.to-mv"))) {
+                        message = message.replaceFirst(Configs.JPConfig.uses_config.getString("chat-forward.prefix.format.to-mc"), "");
+                    } else {
                         this.Cancel = true;
                     }
-                });
-            }
+                }
 
-            if (Configs.getConfig("uses-config.yml").getBoolean("chat-forward.prefix.enabled")) {
-                if (message.startsWith(Configs.getConfig("uses-config.yml").getString("chat-forward.prefix.format.to-mv"))) {
-                    message = message.replaceFirst(Configs.getConfig("uses-config.yml").getString("chat-forward.prefix.format.to-mc"), "");
-                } else {
-                    this.Cancel = true;
+                if (!Cancel) {
+                    format = format.replace("%name%", sender_name);
+                    format = format.replace("%code%", String.valueOf(sender_code));
+                    format = format.replace("%message%", this.message);
+                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
                 }
             }
-
-            if (!Cancel) {
-                format = format.replace("%name%", sender_name);
-                format = format.replace("%code%", String.valueOf(sender_code));
-                format = format.replace("%message%", this.message);
-                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
+        } catch (Exception ex) {
+                Loggers.CustomLevel.logCatch(ex);
             }
-        }
     }
 
 }
