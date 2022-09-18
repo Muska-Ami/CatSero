@@ -70,3 +70,11 @@ get-online-players:
     当前在线: %count%
     最大在线: %max%
     玩家列表: %list%
+
+# 玩家管理器
+player-manager:
+  enabled: false
+  tools:
+    - ban
+    - op
+    - kick

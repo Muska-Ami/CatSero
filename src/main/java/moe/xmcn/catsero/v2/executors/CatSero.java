@@ -66,10 +66,12 @@ public class CatSero implements TabExecutor {
                         break;
                     case "reload":
                         if (strings.length == 1) {
-                            Configs.JPConfig.reload();
-                            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a配置文件已重载"));
-                        } else {
-                            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configs.getMsgByMsID("minecraft.invalid-options")));
+                            if (commandSender.hasPermission("catsero.admin")) {
+                                Configs.JPConfig.reload();
+                                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a配置文件已重载"));
+                            } else {
+                                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configs.getMsgByMsID("minecraft.invalid-options")));
+                            }
                         }
                         break;
                     default:

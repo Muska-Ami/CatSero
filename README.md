@@ -106,16 +106,19 @@ chat-forward:
   # 关键词检测
   filter:
     # 功能开关
+    # true | false
     enabled: false
     # 关键词列表
     list:
       - "傻逼"
       - "fuck"
     # 只将关键词变为"***"而不是取消该条消息的转发
+    # true | false
     replace-only: false
   # 聊天前缀
   prefix:
     # 功能开关
+    # true | false
     enabled: false
     # 格式
     format:
@@ -127,6 +130,7 @@ chat-forward:
 # 发送玩家死亡消息
 send-player-death:
   # 功能开关
+  # true | false
   enabled: false
   # Bot & Group设置
   var:
@@ -140,6 +144,7 @@ send-player-death:
 # 新人加入群欢迎
 new-group-member-message:
   # 功能开关
+  # true | false
   enabled: false
   # Bot & Group设置
   var:
@@ -152,7 +157,8 @@ new-group-member-message:
   
 # TPS获取
 get-tps:
-    # 功能开关
+  # 功能开关
+  # true | false
   enabled: false
   # Bot & Group设置
   var:
@@ -164,6 +170,7 @@ get-tps:
 # 在线玩家获取
 get-online-players:
   # 功能开关
+  # true | false
   enabled: false
   # Bot & Group设置
   var:

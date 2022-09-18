@@ -42,7 +42,11 @@ public class OnGroupMessageEvent implements Listener {
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent e) {
         try {
-            if (Configs.JPConfig.uses_config.getBoolean("get-online-players.enabled")) {
+            if (
+                    Configs.JPConfig.uses_config.getBoolean("get-online-players.enabled") &&
+                            e.getGroupID() == Configs.getGroupCode(moe.xmcn.catsero.v2.listeners.ChatForward.Utils.X_Group) &&
+                            e.getBotID() == Configs.getBotCode(moe.xmcn.catsero.v2.listeners.ChatForward.Utils.X_Bot)
+            ) {
                 String[] strings = QPS.getParser.parse(e.getMessage());
                 if (
                         strings != null &&

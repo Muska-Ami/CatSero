@@ -39,7 +39,11 @@ public class OnGroupChatEvent implements Listener {
     @EventHandler
     public void onMiraiGroupMessageEvent(MiraiGroupMessageEvent e) {
         try {
-            if (Configs.JPConfig.uses_config.getBoolean("chat-forward.enabled")) {
+            if (
+                    Configs.JPConfig.uses_config.getBoolean("chat-forward.enabled") &&
+                            e.getGroupID() == Configs.getGroupCode(Utils.X_Group) &&
+                            e.getBotID() == Configs.getBotCode(Utils.X_Bot)
+            ) {
                 this.message = e.getMessage();
                 String sender_name = e.getSenderNameCard();
                 if (sender_name.equals("")) {
