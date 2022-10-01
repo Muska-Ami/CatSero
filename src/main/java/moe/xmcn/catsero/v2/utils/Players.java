@@ -25,6 +25,7 @@ package moe.xmcn.catsero.v2.utils;
 
 import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
@@ -61,8 +62,8 @@ public interface Players {
      *
      * @param name 玩家名
      */
-    static Player getPlayer(String name) {
-        return Bukkit.getPlayer(getUUIDByName(name));
+    static OfflinePlayer getPlayer(String name) {
+        return Bukkit.getOfflinePlayer(getUUIDByName(name));
     }
 
     /**
@@ -70,8 +71,15 @@ public interface Players {
      *
      * @param uuid 玩家UUID
      */
-    static Player getPlayer(UUID uuid) {
-        return (Player) Bukkit.getOfflinePlayer(uuid);
+    static OfflinePlayer getPlayer(UUID uuid) {
+        return Bukkit.getOfflinePlayer(uuid);
     }
 
+    static Player getOnlinePlayer(String name) {
+        return Bukkit.getPlayer(getUUIDByName(name));
+    }
+
+    static Player getOnlinePlayer(UUID uuid) {
+        return Bukkit.getPlayer(uuid);
+    }
 }

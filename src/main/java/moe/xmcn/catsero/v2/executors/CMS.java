@@ -61,20 +61,14 @@ public class CMS implements TabExecutor {
                 List<String> sublist = new ArrayList<>();
                 switch (strings.length) {
                     case 1:
-                        sublist.add("send");
+                        sublist.add("message");
                         return sublist;
                     case 2:
-                        if ("send".equals(strings[0])) {
-                            sublist.add("BotID");
-                            return sublist;
-                        }
-                        return null;
+                        sublist.add("BotID");
+                        return sublist;
                     case 3:
-                        if ("send".equals(strings[0])) {
-                            sublist.add("GroupID");
-                            return sublist;
-                        }
-                        return null;
+                        sublist.add("GroupID");
+                        return sublist;
                 }
             }
         } catch (Exception e) {

@@ -50,50 +50,58 @@ public class CatSero extends JavaPlugin {
         ));
         Loggers.CustomLevel.logLoader(env);
 
-        Loggers.CustomLevel.logLoader("保存插件文件");
-        if (!new File(getDataFolder(), "config.yml").exists()) {
-            saveResource("config.yml", false);
-        }
-        if (!new File(getDataFolder(), "uses-config.yml").exists()) {
-            saveResource("uses-config.yml", false);
-        }
-        if (!new File(getDataFolder(), "/extra-configs/trchat.yml").exists()) {
-            saveResource("extra-configs/trchat.yml", false);
-        }
-        if (!new File(getDataFolder(), "/mirai-configs/bot.yml").exists()) {
-            saveResource("mirai-configs/bot.yml", false);
-        }
-        if (!new File(getDataFolder(), "/mirai-configs/group.yml").exists()) {
-            saveResource("mirai-configs/group.yml", false);
-        }
-        if (!new File(getDataFolder(), "locale/zh_CN.lang").exists()) {
-            saveResource("locale/zh_CN.lang", false);
-        }
-        if (!new File(getDataFolder(), "/mirai-configs/qq-op.yml").exists()) {
-            saveResource("mirai-configs/qq-op.yml", false);
-        }
-        ThisAPI.Companion.savePlugin("CatSero");
-        Loggers.CustomLevel.logLoader("成功保存插件文件");
+        if (Env.MiraiMC) {
+            Loggers.CustomLevel.logLoader("保存插件文件");
+            if (!new File(getDataFolder(), "config.yml").exists()) {
+                saveResource("config.yml", false);
+            }
+            if (!new File(getDataFolder(), "uses-config.yml").exists()) {
+                saveResource("uses-config.yml", false);
+            }
+            if (!new File(getDataFolder(), "/extra-configs/trchat.yml").exists()) {
+                saveResource("extra-configs/trchat.yml", false);
+            }
+            if (!new File(getDataFolder(), "/mirai-configs/bot.yml").exists()) {
+                saveResource("mirai-configs/bot.yml", false);
+            }
+            if (!new File(getDataFolder(), "/mirai-configs/group.yml").exists()) {
+                saveResource("mirai-configs/group.yml", false);
+            }
+            if (!new File(getDataFolder(), "locale/zh_CN.lang").exists()) {
+                saveResource("locale/zh_CN.lang", false);
+            }
+            if (!new File(getDataFolder(), "/mirai-configs/qq-op.yml").exists()) {
+                saveResource("mirai-configs/qq-op.yml", false);
+            }
+            ThisAPI.Companion.savePlugin("CatSero");
+            Loggers.CustomLevel.logLoader("成功保存插件文件");
 
-        if (Configs.JPConfig.config.getBoolean("allow-bstats", true)) {
-            Loggers.CustomLevel.logLoader("加载bStats统计");
-            new Metrics((JavaPlugin) Configs.plugin, 14767);
-            Loggers.CustomLevel.logLoader("成功加载bStats统计");
-        }
+            if (Configs.JPConfig.config.getBoolean("allow-bstats", true)) {
+                Loggers.CustomLevel.logLoader("加载bStats统计");
+                new Metrics((JavaPlugin) Configs.plugin, 14767);
+                Loggers.CustomLevel.logLoader("成功加载bStats统计");
+            }
+        } else Loggers.CustomLevel.logLoader("未检测到MiraiMC");
     }
 
     @Override
     public void onEnable() {
-        Loggers.CustomLevel.logLoader("注册监听器");
-        ListenerRegister.register();
-        ExecutorRegister.register();
-        Loggers.CustomLevel.logLoader("成功注册监听器");
+        if (Env.MiraiMC) {
+            Loggers.CustomLevel.logLoader("注册监听器");
+            ListenerRegister.register();
+            ExecutorRegister.register();
+            Loggers.CustomLevel.logLoader("成功注册监听器");
 
-        Loggers.CustomLevel.logLoader("启动TPS计算器");
-        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Configs.plugin, new ServerTPS(), 100L, 1L);
-        Loggers.CustomLevel.logLoader("成功启动TPS计算器");
+            Loggers.CustomLevel.logLoader("启动TPS计算器");
+            Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Configs.plugin, new ServerTPS(), 100L, 1L);
+            Loggers.CustomLevel.logLoader("成功启动TPS计算器");
 
-        Loggers.CustomLevel.logLoader("加载完毕，启用插件");
+            Loggers.CustomLevel.logLoader("加载完毕，启用插件");
+        } else getServer().getPluginManager().disablePlugin(this);
     }
 
+    @Override
+    public void onDisable() {
+        Loggers.CustomLevel.logLoader("卸载CatSero插件，感谢您使用CatSero");
+    }
 }

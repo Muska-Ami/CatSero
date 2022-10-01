@@ -37,6 +37,15 @@ public interface Utils {
     String X_Bot = Configs.JPConfig.uses_config.getString("player-manager.var.bot");
     String X_Group = Configs.JPConfig.uses_config.getString("player-manager.var.group");
 
+    static String iterateArray(String[] items) {
+        StringBuilder ifd = new StringBuilder();
+        for (int i = 0; i < items.length - 3; i++) {
+            ifd.append(items[i + 3]);
+            ifd.append(" ");
+        }
+        return ifd.substring(0, ifd.length() - 1);
+    }
+
     static void initTool() {
         try {
             Configs.JPConfig.uses_config.getStringList("player-manager.tools").forEach(it -> {

@@ -74,7 +74,24 @@ get-online-players:
 # 玩家管理器
 player-manager:
   enabled: false
+  var:
+    bot: example
+    group: example
   tools:
     - ban
     - op
     - kick
+  configs:
+    ban-tool:
+      ban:
+        default-reason: "你已被此服务器封禁"
+        custom-command:
+          enabled: false
+          command: "ban %player% %reason%"
+      unban:
+        custom-command:
+          enabled: false
+          command: "pardon %player%"
+    kick-tool:
+      kick:
+        default-reason: "你已被踢出"

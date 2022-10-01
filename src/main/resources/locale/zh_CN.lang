@@ -1,20 +1,29 @@
 minecraft:
   no-permission: '&c你没有权限这么做'
   invalid-options: '&c不正确的参数格式'
+
   cms:
     sent: '&a消息已发送'
     error: '&c发送消息时发生错误'
-
-  whitelist:
-    not-whitelist: '&c你没有白名单'
 
 qq:
   no-permission: 你没有权限这么做
   invalid-options: 不正确的参数格式
 
-  whitelist:
-    success-add: 绑定白名单成功
-    already-added: 该ID已被绑定
+  player-manager:
+    ban:
+      success: "操作成功，已封禁玩家 %player%"
+    unban:
+      success: "操作成功，已解封玩家 %player%"
+    op:
+      success: "已将 %player% 设置为OP"
+      already-is-op: "无变化，玩家已是OP"
+    unop:
+      success: "已取消 %player% 的OP权限"
+      is-not-op: "无变化，玩家不是OP"
+    kick:
+      success: "操作成功，已将玩家 %player% 踢出"
+      not-online: "玩家 %player% 不在线"
 
 general:
   send-message-qq-error: |-

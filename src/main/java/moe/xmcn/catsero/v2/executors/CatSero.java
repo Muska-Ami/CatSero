@@ -72,6 +72,8 @@ public class CatSero implements TabExecutor {
                             } else {
                                 commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configs.getMsgByMsID("minecraft.invalid-options")));
                             }
+                        } else {
+                            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configs.getMsgByMsID("minecraft.invalid-options")));
                         }
                         break;
                     default:
