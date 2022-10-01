@@ -186,6 +186,49 @@ get-online-players:
     最大在线: %max%
     玩家列表: %list%
 
+# 玩家管理器
+player-manager:
+  # 功能开关
+  # true | false
+  enabled: false
+  # Bot & Group设置
+  var:
+    # BotID
+    bot: example
+    # GroupID
+    group: example
+  # 启用的工具
+  # 支持：ban, op, kick
+  tools:
+    - ban
+    - op
+    - kick
+  # 子功能配置
+  configs:
+    # Ban工具
+    ban-tool:
+      ban:
+        # 
+        default-reason: "你已被此服务器封禁"
+        custom-command:
+          enabled: false
+          command: "ban %player% %reason%"
+      unban:
+        custom-command:
+          enabled: false
+          command: "pardon %player%"
+    kick-tool:
+      kick:
+        default-reason: "你已被踢出"
+
+# QQ群执行Minecraft命令
+# 正在实验
+dispatch-command:
+  enabled: false
+  var:
+    bot: example
+    group: example
+
 ```
 
 </details>

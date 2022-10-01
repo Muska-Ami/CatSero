@@ -80,7 +80,7 @@ public interface Loggers {
         }
 
         static String getSignBlock(UUID uuid) throws IOException {
-            String reg = "(?<=\\$%\\{CatSignStart@" + uuid + "}%\\$).*?(?=\\$%\\{CatSignEnd@" + uuid + "}%\\$)";
+            String reg = "\\$%\\{CatSignStart@" + uuid + "}%\\$(.*?)\\$%\\{CatSignEnd@" + uuid + "}%\\$";
             Pattern pattern = Pattern.compile(reg);
             BufferedReader in = new BufferedReader(new FileReader("logs/latest.log"));
             StringBuilder chunk;
@@ -92,6 +92,7 @@ public interface Loggers {
             in.close();
             Matcher matcher = pattern.matcher(body.toString());
             if (matcher.find()) {
+                System.out.println(matcher.group());
                 return matcher.group();
             }
 

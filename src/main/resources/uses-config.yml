@@ -96,6 +96,8 @@ player-manager:
       kick:
         default-reason: "你已被踢出"
 
+# QQ群执行Minecraft命令
+# 正在实验
 dispatch-command:
   enabled: false
   var:
