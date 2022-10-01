@@ -336,29 +336,29 @@ example:
 
 ### Minecraft
 
-| 命令                                | 说明       |
-|-----------------------------------|----------|
-| /catsero version                  | 插件版本以及信息 |
-| /catsero reload                   | 重载配置文件   |
+| 命令                                  | 说明       |
+|-------------------------------------|----------|
+| /catsero version                    | 插件版本以及信息 |
+| /catsero reload                     | 重载配置文件   |
 | /cms \<message> \<BotID> \<GroupID> | 发送群消息    |
 
 ### QQ
 
 _要触发命令前必须使用前缀`!`或`/`_
 
-| 命令                    | 说明          |
-|-----------------------|-------------|
-| !catsero tps round    | 获取TPS(概数)   |
-| !catsero tps accurate | 获取TPS(精确)   |
-| !catsero list         | 列出服务器上的所有玩家 |
-| !catsero pm ban \<player> \(reason) | 封禁一个玩家 |
-| !catsero pm unban \<player> | 解除封禁一名玩家 |
-| !catsero pm pardon \<player> | 解除封禁一名玩家 |
-| !catsero pm op \<player> | 将一名玩家设置为OP |
-| !catsero pm unop \<player> | 取消一名玩家OP |
-| !catsero pm deop \<player> | 取消一名玩家OP |
-| !catsero pm kick \<player> (reason) | 踢出一名玩家 |
-| !catsero cmd \<command> | 以控制台身份执行Minecraft命令 |
+| 命令                                  | 说明                  |
+|-------------------------------------|---------------------|
+| !catsero tps round                  | 获取TPS(概数)           |
+| !catsero tps accurate               | 获取TPS(精确)           |
+| !catsero list                       | 列出服务器上的所有玩家         |
+| !catsero pm ban \<player> \(reason) | 封禁一个玩家              |
+| !catsero pm unban \<player>         | 解除封禁一名玩家            |
+| !catsero pm pardon \<player>        | 解除封禁一名玩家            |
+| !catsero pm op \<player>            | 将一名玩家设置为OP          |
+| !catsero pm unop \<player>          | 取消一名玩家OP            |
+| !catsero pm deop \<player>          | 取消一名玩家OP            |
+| !catsero pm kick \<player> (reason) | 踢出一名玩家              |
+| !catsero cmd \<command>             | 以控制台身份执行Minecraft命令 |
 
 # bStats
 
