@@ -32,6 +32,7 @@ import moe.xmcn.catsero.v2.listeners.JoinQuitForward.OnPlayerJoinEvent;
 import moe.xmcn.catsero.v2.listeners.JoinQuitForward.OnPlayerQuitEvent;
 import moe.xmcn.catsero.v2.listeners.PlayerManager.OnMiraiGroupMessageEvent;
 import moe.xmcn.catsero.v2.listeners.PlayerManager.Utils;
+import moe.xmcn.catsero.v2.listeners.WhiteList.OnPlayerPreLoginEvent;
 import moe.xmcn.catsero.v2.utils.Configs;
 import moe.xmcn.catsero.v2.utils.Env;
 
@@ -57,6 +58,9 @@ public interface ListenerRegister {
         Configs.plugin.getServer().getPluginManager().registerEvents(new OnMiraiGroupMessageEvent(), Configs.plugin);
 
         Configs.plugin.getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.v2.listeners.DispatchCommand.OnMiraiGroupMessageEvent(), Configs.plugin);
+
+        Configs.plugin.getServer().getPluginManager().registerEvents(new OnPlayerPreLoginEvent(), Configs.plugin);
+        Configs.plugin.getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.v2.listeners.WhiteList.OnMiraiGroupMessageEvent(), Configs.plugin);
 
         Utils.initTool();
     }

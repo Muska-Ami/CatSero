@@ -6,6 +6,9 @@ minecraft:
     sent: '&a消息已发送'
     error: '&c发送消息时发生错误'
 
+  whitelist:
+    not-whitelist: "&c你没有白名单"
+
 qq:
   no-permission: 你没有权限这么做
   invalid-options: 不正确的参数格式
@@ -25,8 +28,12 @@ qq:
       success: "操作成功，已将玩家 %player% 踢出"
       not-online: "玩家 %player% 不在线"
 
-    dispatch-command:
-      success: "命令已执行，日志输出于私聊中，请注意查看"
+  dispatch-command:
+    success: "命令已执行，日志输出于私聊中，请注意查看"
+
+  whitelist:
+    success: "已将 %player% 与 %code% 绑定"
+    invalid-qq: "QQ号无效！请检查该用是否位于本群"
 
 general:
   send-message-qq-error: |-

@@ -103,3 +103,11 @@ dispatch-command:
   var:
     bot: example
     group: example
+
+# 白名单
+whitelist:
+  enabled: false
+  var:
+    bot: example
+    group: example
+  not-allow-is-not-group-member: true
