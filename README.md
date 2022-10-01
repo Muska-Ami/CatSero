@@ -27,6 +27,9 @@
 - PlaceholderAPI变量支持
 - 获取TPS
 - 获取在线玩家
+- 管理在线玩家
+- (实验性)以控制台身份执行Minecraft命令
+- (实验性,Actions)白名单
 
 ## 配置文件
 
