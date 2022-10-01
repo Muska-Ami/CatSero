@@ -207,11 +207,19 @@ player-manager:
   configs:
     # Ban工具
     ban-tool:
+      # Ban命令
       ban:
-        # 
+        # 默认原因
         default-reason: "你已被此服务器封禁"
+        # 使用自定义命令而不是Bukkit内置封禁
         custom-command:
+          # 功能开关
+          # true | false
           enabled: false
+          # 封禁命令
+          # 内置占位符:
+          # - %player%  玩家名
+          # - %reason%  原因
           command: "ban %player% %reason%"
       unban:
         custom-command:
