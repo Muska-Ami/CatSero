@@ -25,6 +25,9 @@ qq:
       success: "操作成功，已将玩家 %player% 踢出"
       not-online: "玩家 %player% 不在线"
 
+    dispatch-command:
+      success: "命令已执行，日志输出于私聊中，请注意查看"
+
 general:
   send-message-qq-error: |-
     发送消息时发生异常:

@@ -53,7 +53,10 @@ public interface ListenerRegister {
         Configs.plugin.getServer().getPluginManager().registerEvents(new OnGroupMessageEvent(), Configs.plugin);
 
         Configs.plugin.getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.v2.listeners.GetOnlinePlayers.OnGroupMessageEvent(), Configs.plugin);
+
         Configs.plugin.getServer().getPluginManager().registerEvents(new OnMiraiGroupMessageEvent(), Configs.plugin);
+
+        Configs.plugin.getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.v2.listeners.DispatchCommand.OnMiraiGroupMessageEvent(), Configs.plugin);
 
         Utils.initTool();
     }

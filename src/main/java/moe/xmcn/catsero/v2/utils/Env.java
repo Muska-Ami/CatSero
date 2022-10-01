@@ -87,6 +87,12 @@ public class Env {
             long group = Configs.getGroupCode(groupid);
             MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message);
         }
+
+        public static void sendMiraiGroupMemberMessage(String message, String botid, String groupid, long member_code) {
+            long bot = Configs.getBotCode(botid);
+            long group = Configs.getGroupCode(groupid);
+            MiraiBot.getBot(bot).getGroup(group).getMember(member_code).sendMessage(message);
+        }
     }
 
 }

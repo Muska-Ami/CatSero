@@ -23,9 +23,15 @@
  */
 package moe.xmcn.catsero.v2.utils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public interface Loggers {
 
@@ -59,10 +65,37 @@ public interface Loggers {
                     "捕获消息: " + error_message,
                     "详细信息: " + error_info
             ));
-
             for (int i = 1; i < msgs.toArray().length + 1; i++) {
                 logWARN("[Catch] " + msgs.toArray()[i - 1]);
             }
+        }
+
+        static void logSign(String sign, UUID uuid) {
+            if (sign.equals("start")) {
+                logINFO("$%{CatSignStart@" + uuid + "}%$");
+            }
+            if (sign.equals("end")) {
+                logINFO("$%{CatSignEnd@" + uuid + "}%$");
+            }
+        }
+
+        static String getSignBlock(UUID uuid) throws IOException {
+            String reg = "(?<=\\$%\\{CatSignStart@" + uuid + "}%\\$).*?(?=\\$%\\{CatSignEnd@" + uuid + "}%\\$)";
+            Pattern pattern = Pattern.compile(reg);
+            BufferedReader in = new BufferedReader(new FileReader("logs/latest.log"));
+            StringBuilder chunk;
+            StringBuilder body = new StringBuilder();
+            while (in.ready()) {
+                chunk = (new StringBuilder(in.readLine()));
+                body.append(chunk);
+            }
+            in.close();
+            Matcher matcher = pattern.matcher(body.toString());
+            if (matcher.find()) {
+                return matcher.group();
+            }
+
+            return null;
         }
     }
 

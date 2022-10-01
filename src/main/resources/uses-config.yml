@@ -95,3 +95,9 @@ player-manager:
     kick-tool:
       kick:
         default-reason: "你已被踢出"
+
+dispatch-command:
+  enabled: false
+  var:
+    bot: example
+    group: example
