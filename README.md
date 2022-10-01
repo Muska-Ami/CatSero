@@ -221,22 +221,36 @@ player-manager:
           # - %player%  玩家名
           # - %reason%  原因
           command: "ban %player% %reason%"
+      # UnBan命令
       unban:
+        # 使用自定义命令而不是Bukkit内置封禁
         custom-command:
+          # 功能开关
+          # true | false
           enabled: false
+          # 封禁命令
+          # 内置占位符:
+          # - %player%  玩家名
           command: "pardon %player%"
+    # Kick工具
     kick-tool:
+      # Kick命令
       kick:
+        # 默认原因
         default-reason: "你已被踢出"
 
 # QQ群执行Minecraft命令
 # 正在实验
 dispatch-command:
+  # 功能开关
+  # true | false
   enabled: false
+  # Bot & Group设置
   var:
+    # BotID
     bot: example
+    # GroupID
     group: example
-
 ```
 
 </details>
@@ -326,7 +340,7 @@ example:
 |-----------------------------------|----------|
 | /catsero version                  | 插件版本以及信息 |
 | /catsero reload                   | 重载配置文件   |
-| /cms send \<BotID> \<GroupID> <消息> | 发送群消息    |
+| /cms \<message> \<BotID> \<GroupID> | 发送群消息    |
 
 ### QQ
 
@@ -337,6 +351,14 @@ _要触发命令前必须使用前缀`!`或`/`_
 | !catsero tps round    | 获取TPS(概数)   |
 | !catsero tps accurate | 获取TPS(精确)   |
 | !catsero list         | 列出服务器上的所有玩家 |
+| !catsero pm ban \<player> \(reason) | 封禁一个玩家 |
+| !catsero pm unban \<player> | 解除封禁一名玩家 |
+| !catsero pm pardon \<player> | 解除封禁一名玩家 |
+| !catsero pm op \<player> | 将一名玩家设置为OP |
+| !catsero pm unop \<player> | 取消一名玩家OP |
+| !catsero pm deop \<player> | 取消一名玩家OP |
+| !catsero pm kick \<player> (reason) | 踢出一名玩家 |
+| !catsero cmd <command> | 以控制台身份执行Minecraft命令 |
 
 # bStats
 
