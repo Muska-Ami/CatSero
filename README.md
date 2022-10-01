@@ -358,7 +358,7 @@ _要触发命令前必须使用前缀`!`或`/`_
 | !catsero pm unop \<player> | 取消一名玩家OP |
 | !catsero pm deop \<player> | 取消一名玩家OP |
 | !catsero pm kick \<player> (reason) | 踢出一名玩家 |
-| !catsero cmd <command> | 以控制台身份执行Minecraft命令 |
+| !catsero cmd \<command> | 以控制台身份执行Minecraft命令 |
 
 # bStats
 
