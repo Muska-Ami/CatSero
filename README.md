@@ -144,6 +144,9 @@ send-player-death:
     # GroupID
     group: example
   # 格式
+  # 内置占位符:
+  # - %player%  玩家名
+  # - %deathmes%  死亡消息
   format: "%player%死了,因为\n%deathmes%"
 
 # 新人加入群欢迎
@@ -158,6 +161,9 @@ new-group-member-message:
     # GroupID
     group: example
   # 格式
+  # 内置占位符:
+  # - %at%  @新成员
+  # - %code%  新成员QQ号
   format: "欢迎%at%（%code%）加入本群!"
   
 # TPS获取
@@ -184,6 +190,10 @@ get-online-players:
     # GroupID
     group: example
   # 格式
+  # 内置占位符:
+  # - %count%  当前在线玩家数
+  # - %max%  最大在线玩家数
+  # - %list%  当前在线玩家列表
   format: |-
     当前在线: %count%
     最大在线: %max%
