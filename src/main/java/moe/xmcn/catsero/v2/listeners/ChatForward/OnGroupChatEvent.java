@@ -82,8 +82,8 @@ public class OnGroupChatEvent implements Listener {
                 }
             }
         } catch (Exception ex) {
-                Loggers.CustomLevel.logCatch(ex);
-            }
+            Loggers.CustomLevel.logCatch(ex);
+        }
     }
 
 }

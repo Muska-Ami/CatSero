@@ -55,8 +55,8 @@ public class OnPlayerJoinEvent implements Listener {
                 }
             }
         } catch (Exception ex) {
-                Loggers.CustomLevel.logCatch(ex);
-            }
+            Loggers.CustomLevel.logCatch(ex);
+        }
     }
 
 }

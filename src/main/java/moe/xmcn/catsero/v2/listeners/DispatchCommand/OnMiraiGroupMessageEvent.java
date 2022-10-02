@@ -36,13 +36,14 @@ public class OnMiraiGroupMessageEvent implements Listener {
                                 );
                                 Loggers.CustomLevel.logSign("end", uuid);
                             }
-                            );
+                    );
                     String data = Loggers.CustomLevel.getSignBlock(uuid);
                     System.out.println(data);
                     wait(2000);
                     Env.AMiraiMC.sendMiraiGroupMemberMessage(data, Utils.X_Bot, Utils.X_Group, e.getSenderID());
                     Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.dispatch-command.success"), Utils.X_Bot, Utils.X_Group);
-                } else Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.no-permission"), Utils.X_Bot, Utils.X_Group);
+                } else
+                    Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.no-permission"), Utils.X_Bot, Utils.X_Group);
             }
         } catch (Exception ex) {
             Loggers.CustomLevel.logCatch(ex);

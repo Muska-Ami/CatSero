@@ -2,8 +2,10 @@ package moe.xmcn.catsero.v2.listeners.WhiteList;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
-import moe.xmcn.catsero.v2.utils.*;
-import org.bukkit.Bukkit;
+import moe.xmcn.catsero.v2.utils.Configs;
+import moe.xmcn.catsero.v2.utils.Env;
+import moe.xmcn.catsero.v2.utils.Loggers;
+import moe.xmcn.catsero.v2.utils.QPS;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -16,7 +18,7 @@ public class OnMiraiGroupMessageEvent implements Listener {
         try {
             String[] strings = QPS.getParser.parse(e.getMessage());
             if (
-                    Configs.JPConfig.uses_config.getBoolean("whitelist.enabled")  &&
+                    Configs.JPConfig.uses_config.getBoolean("whitelist.enabled") &&
                             e.getBotID() == Configs.getBotCode(Utils.X_Bot) &&
                             e.getGroupID() == Configs.getGroupCode(Utils.X_Group) &&
                             strings != null &&
@@ -59,7 +61,7 @@ public class OnMiraiGroupMessageEvent implements Listener {
                                     case "-n":
                                         Objects.requireNonNull(Utils.getWhiteList()).getStringList("list").forEach(it -> {
                                             String[] strs = it.split(":\\|:");
-                                            if(strs[0].equals(strings[3])) {
+                                            if (strs[0].equals(strings[3])) {
                                                 Objects.requireNonNull(Utils.getWhiteList()).getStringList("list").remove(strings[3] + ":|:" + strs[1]);
                                             }
                                         });
@@ -67,7 +69,7 @@ public class OnMiraiGroupMessageEvent implements Listener {
                                     case "-q":
                                         Objects.requireNonNull(Utils.getWhiteList()).getStringList("list").forEach(it -> {
                                             String[] strs = it.split(":\\|:");
-                                            if(strs[1].equals(strings[3])) {
+                                            if (strs[1].equals(strings[3])) {
                                                 Objects.requireNonNull(Utils.getWhiteList()).getStringList("list").remove(strs[0] + ":|:" + strings[3]);
                                             }
                                         });
@@ -78,8 +80,10 @@ public class OnMiraiGroupMessageEvent implements Listener {
                                 Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.player-manager.invalid-options"), Utils.X_Bot, Utils.X_Group);
                                 break;
                         }
-                    } else Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.player-manager.invalid-options"), Utils.X_Bot, Utils.X_Group);
-                } else Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.player-manager.no-permission"), Utils.X_Bot, Utils.X_Group);
+                    } else
+                        Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.player-manager.invalid-options"), Utils.X_Bot, Utils.X_Group);
+                } else
+                    Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.player-manager.no-permission"), Utils.X_Bot, Utils.X_Group);
             }
         } catch (Exception ex) {
             Loggers.CustomLevel.logCatch(ex);

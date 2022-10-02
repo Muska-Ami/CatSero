@@ -28,12 +28,6 @@ import moe.xmcn.catsero.v2.utils.Loggers;
 
 public interface Utils {
 
-    class v {
-        static boolean ban_tool = false;
-        static boolean op_tool = false;
-        static boolean kick_tool = false;
-    }
-
     String X_Bot = Configs.JPConfig.uses_config.getString("player-manager.var.bot");
     String X_Group = Configs.JPConfig.uses_config.getString("player-manager.var.group");
 
@@ -62,6 +56,12 @@ public interface Utils {
         } catch (Exception ex) {
             Loggers.CustomLevel.logCatch(ex);
         }
+    }
+
+    class v {
+        static boolean ban_tool = false;
+        static boolean op_tool = false;
+        static boolean kick_tool = false;
     }
 
 }

@@ -24,7 +24,6 @@
 package moe.xmcn.catsero.v2.listeners.DispatchCommand;
 
 import moe.xmcn.catsero.v2.utils.Configs;
-import moe.xmcn.catsero.v2.utils.Loggers;
 
 public interface Utils {
 

@@ -56,7 +56,8 @@ public class OnMiraiGroupMessageEvent implements Listener {
                     if (!isSuccessRun) {
                         Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.invalid-options"), Utils.X_Bot, Utils.X_Group);
                     }
-                } else Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.player-manager.no-permission"), Utils.X_Bot, Utils.X_Group);
+                } else
+                    Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.player-manager.no-permission"), Utils.X_Bot, Utils.X_Group);
             }
         } catch (Exception ex) {
             Loggers.CustomLevel.logCatch(ex);
@@ -157,7 +158,7 @@ public class OnMiraiGroupMessageEvent implements Listener {
     }
 
     private void opTool(String[] strings) {
-        switch  (strings[1]) {
+        switch (strings[1]) {
             case "op":
                 if (strings.length == 3) {
                     if (Players.getPlayer(strings[2]).isOp()) {

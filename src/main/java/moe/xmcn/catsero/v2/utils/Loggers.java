@@ -23,7 +23,7 @@
  */
 package moe.xmcn.catsero.v2.utils;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -80,23 +80,27 @@ public interface Loggers {
         }
 
         static String getSignBlock(UUID uuid) throws IOException {
-            String reg = "\\$%\\{CatSignStart@" + uuid + "}%\\$(.*?)\\$%\\{CatSignEnd@" + uuid + "}%\\$";
-            Pattern pattern = Pattern.compile(reg);
-            BufferedReader in = new BufferedReader(new FileReader("logs/latest.log"));
-            StringBuilder chunk;
-            StringBuilder body = new StringBuilder();
-            while (in.ready()) {
-                chunk = (new StringBuilder(in.readLine()));
-                body.append(chunk);
-            }
-            in.close();
-            Matcher matcher = pattern.matcher(body.toString());
-            if (matcher.find()) {
-                System.out.println(matcher.group());
-                return matcher.group();
-            }
+            //String reg = "\\$%\\{CatSignStart@" + uuid + "}%\\$(.*?)\\$%\\{CatSignEnd@" + uuid + "}%\\$";
+            StringBuilder sb = new StringBuilder();
+            File file = new File(new File(Configs.plugin.getDataFolder().getParent()).getParent());
+            System.out.println(file.getPath());
+            FileReader fr = new FileReader(file);
+            char[] a = new char[50];
+            fr.read(a);
+            for (char c : a) sb.append(c);
+            fr.close();
+            String data = sb.toString().replace("\n", "∅");
 
-            return null;
+            // 正则匹配
+            String regex = "(?<=\\$%\\{CatSignStart@" + uuid + "}%\\$).*?(?=\\$%\\{CatSignEnd@" + uuid + "}%\\$)";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(data);
+            StringBuilder res = new StringBuilder();
+            while (matcher.find()) {
+                String mg = matcher.group();
+                res.append(mg);
+            }
+            return res.toString().replace("∅", "\n");
         }
     }
 

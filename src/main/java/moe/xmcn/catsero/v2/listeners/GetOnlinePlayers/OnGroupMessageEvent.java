@@ -56,7 +56,9 @@ public class OnGroupMessageEvent implements Listener {
                         ArrayList<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
                         int players_count = players.toArray().length;
                         players.forEach(it -> online_player_names += it.getName() + ", ");
-                        if (!online_player_names.equals("")) online_player_names = online_player_names.substring(0, online_player_names.length() - 2); else online_player_names += "Not player online";
+                        if (!online_player_names.equals(""))
+                            online_player_names = online_player_names.substring(0, online_player_names.length() - 2);
+                        else online_player_names += "Not player online";
 
                         String format = Configs.JPConfig.uses_config.getString("get-online-players.format");
                         format = format.replace("%count%", String.valueOf(players_count))
@@ -64,7 +66,9 @@ public class OnGroupMessageEvent implements Listener {
                                 .replace("%list%", online_player_names);
 
                         Env.AMiraiMC.sendMiraiGroupMessage(format, Utils.X_Bot, Utils.X_Group);
-                    } else Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.invalid-options"), Utils.X_Bot, Utils.X_Group);
+                        online_player_names = "";
+                    } else
+                        Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.invalid-options"), Utils.X_Bot, Utils.X_Group);
                 }
             }
         } catch (Exception ex) {

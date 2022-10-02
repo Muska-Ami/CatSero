@@ -47,8 +47,8 @@ public class OnPlayerDeadthEvent implements Listener {
                 Env.AMiraiMC.sendMiraiGroupMessage(format, Utils.X_Bot, Utils.X_Group);
             }
         } catch (Exception ex) {
-                Loggers.CustomLevel.logCatch(ex);
-            }
+            Loggers.CustomLevel.logCatch(ex);
+        }
     }
 
 }

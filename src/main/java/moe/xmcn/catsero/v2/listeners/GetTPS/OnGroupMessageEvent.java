@@ -58,7 +58,8 @@ public class OnGroupMessageEvent implements Listener {
                                 Env.AMiraiMC.sendMiraiGroupMessage("TPS: " + round_tps, Utils.X_Bot, Utils.X_Group);
                                 break;
                         }
-                    } else Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.invalid-options"), Utils.X_Bot, Utils.X_Group);
+                    } else
+                        Env.AMiraiMC.sendMiraiGroupMessage(Configs.getMsgByMsID("qq.invalid-options"), Utils.X_Bot, Utils.X_Group);
                 }
             }
         } catch (Exception ex) {
