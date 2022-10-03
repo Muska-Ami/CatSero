@@ -6,7 +6,12 @@
 
     <groupId>moe.xmcn.catsero</groupId>
     <artifactId>CatSero</artifactId>
+    <packaging>pom</packaging>
     <version>2.0-beta-4</version>
+    <modules>
+        <module>CatSero-BungeeCord_Bridge</module>
+        <module>CatSero-Bukkit</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -45,7 +50,7 @@
     <build>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>CatSero-Bukkit/src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
@@ -108,24 +113,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- MiraiMC -->
-        <dependency>
-            <groupId>io.github.dreamvoid</groupId>
-            <artifactId>MiraiMC-Bukkit</artifactId>
-            <version>1.7</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- TrChat -->
-        <dependency>
-            <groupId>me.arasple.mc.trchat</groupId>
-            <artifactId>TrChat</artifactId>
-            <version>2.0.0-PRE-30</version>
-            <type>jar</type>
-            <scope>system</scope>
-            <systemPath>${basedir}/maven-local-libraries/TrChat-shaded.jar</systemPath>
-        </dependency>
-
         <!-- bStats -->
         <dependency>
             <groupId>org.bstats</groupId>
@@ -134,19 +121,6 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- org.jetbrains.annotations -->
-        <dependency>
-            <groupId>org.realityforge.org.jetbrains.annotations</groupId>
-            <artifactId>org.jetbrains.annotations</artifactId>
-            <version>1.7.0</version>
-        </dependency>
-
-        <!-- PlaceholderAPI -->
-        <dependency>
-            <groupId>me.clip</groupId>
-            <artifactId>placeholderapi</artifactId>
-            <version>2.11.2</version>
-        </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
