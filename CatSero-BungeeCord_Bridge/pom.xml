@@ -19,6 +19,15 @@
 
     <dependencies>
 
+        <!-- BungeeCord API -->
+        <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-api</artifactId>
+            <version>1.16-R0.4</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- MiraiMC -->
         <dependency>
             <groupId>io.github.dreamvoid</groupId>

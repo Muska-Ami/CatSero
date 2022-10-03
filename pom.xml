@@ -22,6 +22,10 @@
 
     <repositories>
         <!-- 优先使用镜像源 -->
+        <repository>
+            <id>bungeecord-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
         <!-- Lss233 Maven Repo -->
         <repository>
             <id>lss233-minecraft</id>
@@ -104,22 +108,6 @@
     </build>
 
     <dependencies>
-
-        <!-- Spigot API -->
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.13-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- bStats -->
-        <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>3.0.0</version>
-            <scope>compile</scope>
-        </dependency>
 
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
