@@ -4,3 +4,8 @@
 locale: zh_CN
 # 接受bStats统计(https://bstats.org)
 allow-bstats: true
+
+# 自定义命令头
+qq-command-prefix:
+  enabled: false
+  format: ""

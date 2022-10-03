@@ -44,7 +44,16 @@
 # 语言文件
 locale: zh_CN
 # 接受bStats统计(https://bstats.org)
+# true | false
 allow-bstats: true
+
+# 自定义命令头
+qq-command-prefix:
+  # 功能开关
+  # true | false
+  enabled: false
+  # 格式
+  format: ""
 ```
 
 </details>

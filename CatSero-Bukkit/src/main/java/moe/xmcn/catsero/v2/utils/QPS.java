@@ -39,7 +39,7 @@ public interface QPS {
             if (pmhv != null) {
                 return pmhv.split(" ");
             } else if (
-                    Configs.JPConfig.config.getBoolean("custom-qq-command-head.enabled") &&
+                    Configs.JPConfig.config.getBoolean("qq-command-prefix.enabled") &&
                             pmhc != null
             ) {
                 return pmhc.split(" ");
@@ -74,7 +74,7 @@ public interface QPS {
          * @return 处理后的消息或null
          */
         private static String checkCustomCommandHeader(String message) {
-            String custom_head = Configs.JPConfig.config.getString("format-list.custom-command-head.prefix");
+            String custom_head = Configs.JPConfig.config.getString("qq-command-prefix.format");
             if (message.startsWith("!" + custom_head)) {
                 //解析命令头(!)
                 message = message.replaceFirst("!" + custom_head + " ", "");

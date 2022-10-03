@@ -1,0 +1,33 @@
+# CatSero配置文件
+# Bridge
+
+# 语言文件
+locale: zh_CN
+# 接受bStats统计(https://bstats.org)
+allow-bstats: true
+
+# Chat Bridge
+chat-bridge:
+  enabled: false
+  var:
+    bot: example
+    group: example
+  format:
+    to-mc: |-
+      &e[&aQQ&e]&r%name%(%code%):
+      %message%
+    to-qq: |-
+      [MC]%player%:
+      %message%
+  clean-colorcode: true
+  filter:
+    enabled: false
+    list:
+      - "傻逼"
+      - "fuck"
+    replace-only: false
+  prefix:
+    enabled: false
+    format:
+      to-mc: "#"
+      to-qq: "#"

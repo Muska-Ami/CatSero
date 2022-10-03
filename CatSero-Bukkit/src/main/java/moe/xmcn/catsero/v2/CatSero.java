@@ -102,6 +102,6 @@ public class CatSero extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Loggers.CustomLevel.logLoader("卸载CatSero插件，感谢您使用CatSero");
+        Loggers.CustomLevel.logLoader("卸载CatSero插件");
     }
 }

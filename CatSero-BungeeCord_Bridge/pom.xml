@@ -27,6 +27,14 @@
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-api</artifactId>
+            <version>1.16-R0.4</version>
+            <type>javadoc</type>
+            <scope>provided</scope>
+        </dependency>
+
 
         <!-- MiraiMC -->
         <dependency>
@@ -34,6 +42,16 @@
             <artifactId>MiraiMC-Bungee</artifactId>
             <version>1.7</version>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- TrChat -->
+        <dependency>
+            <groupId>me.arasple.mc.trchat</groupId>
+            <artifactId>TrChat</artifactId>
+            <version>2.0.0-PRE-30</version>
+            <type>jar</type>
+            <scope>system</scope>
+            <systemPath>${basedir}/maven-local-libraries/TrChat-shaded.jar</systemPath>
         </dependency>
 
     </dependencies>
