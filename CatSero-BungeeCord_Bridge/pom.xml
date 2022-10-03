@@ -4,6 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>CatSero</artifactId>
+        <groupId>moe.xmcn.catsero</groupId>
+        <version>2.0-beta-4</version>
+    </parent>
     <artifactId>CatSero-BugeeCord_Bridge</artifactId>
 
     <properties>
