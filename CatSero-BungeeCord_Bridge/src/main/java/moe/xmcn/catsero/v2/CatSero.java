@@ -1,5 +1,6 @@
 package moe.xmcn.catsero.v2;
 
+import moe.xmcn.catsero.v2.listeners.ChatForward.OnProxyChat;
 import moe.xmcn.catsero.v2.utils.Configs;
 import moe.xmcn.catsero.v2.utils.Env;
 import moe.xmcn.catsero.v2.utils.Loggers;
@@ -46,6 +47,7 @@ public class CatSero extends Plugin {
     @Override
     public void onEnable() {
         if (Env.MiraiMC) {
+            getProxy().getPluginManager().registerListener(this, new OnProxyChat());
             Loggers.CustomLevel.logLoader("加载完毕，启用插件");
         }
     }

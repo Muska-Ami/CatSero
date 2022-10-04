@@ -23,15 +23,9 @@
  */
 package moe.xmcn.catsero.v2.utils;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.UUID;
 import java.util.logging.Level;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public interface Loggers {
 
@@ -54,28 +48,20 @@ public interface Loggers {
             }
         }
 
-        static String getSignBlock(UUID uuid) throws IOException {
-            //String reg = "\\$%\\{CatSignStart@" + uuid + "}%\\$(.*?)\\$%\\{CatSignEnd@" + uuid + "}%\\$";
-            StringBuilder sb = new StringBuilder();
-            File file = new File(new File(Configs.plugin.getDataFolder().getParent()).getParent());
-            System.out.println(file.getPath());
-            FileReader fr = new FileReader(file);
-            char[] a = new char[50];
-            fr.read(a);
-            for (char c : a) sb.append(c);
-            fr.close();
-            String data = sb.toString().replace("\n", "∅");
+        static void logCatch(Exception e) {
+            String error_type = e.getClass().getName();
+            String error_message = e.getMessage();
+            String error_info = Arrays.toString(e.getStackTrace());
 
-            // 正则匹配
-            String regex = "(?<=\\$%\\{CatSignStart@" + uuid + "}%\\$).*?(?=\\$%\\{CatSignEnd@" + uuid + "}%\\$)";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(data);
-            StringBuilder res = new StringBuilder();
-            while (matcher.find()) {
-                String mg = matcher.group();
-                res.append(mg);
+            ArrayList<String> msgs = new ArrayList<>(Arrays.asList(
+                    "捕获到一个错误",
+                    "错误类型: " + error_type,
+                    "捕获消息: " + error_message,
+                    "详细信息: " + error_info
+            ));
+            for (int i = 1; i < msgs.toArray().length + 1; i++) {
+                logWARN("[Catch] " + msgs.toArray()[i - 1]);
             }
-            return res.toString().replace("∅", "\n");
         }
     }
 
