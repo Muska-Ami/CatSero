@@ -82,7 +82,7 @@ public interface Loggers {
         static String getSignBlock(UUID uuid) throws IOException {
             //String reg = "\\$%\\{CatSignStart@" + uuid + "}%\\$(.*?)\\$%\\{CatSignEnd@" + uuid + "}%\\$";
             StringBuilder sb = new StringBuilder();
-            File file = new File(new File(Configs.plugin.getDataFolder().getParent()).getParent());
+            File file = new File(new File(Configs.plugin.getDataFolder().getParent()).getParent(), "/logs/latest.log");
             System.out.println(file.getPath());
             FileReader fr = new FileReader(file);
             char[] a = new char[50];
