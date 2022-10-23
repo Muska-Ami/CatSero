@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
     <version>2.0-beta-4</version>
     <modules>
-        <module>CatSero-BungeeCord_Bridge</module>
         <module>CatSero-Bukkit</module>
     </modules>
 

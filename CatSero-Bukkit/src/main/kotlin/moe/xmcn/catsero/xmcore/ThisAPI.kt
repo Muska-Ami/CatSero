@@ -1,7 +1,7 @@
 /*
  * XMCore copyright XMNetwork with XiaMoHuaHuo_CN.
  */
-package moe.xmcn.xmcore
+package moe.xmcn.catsero.xmcore
 
 import moe.xmcn.catsero.v2.utils.Configs
 import org.bukkit.ChatColor

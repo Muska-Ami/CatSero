@@ -26,7 +26,7 @@ package moe.xmcn.catsero.v2;
 import moe.xmcn.catsero.v2.executors.ExecutorRegister;
 import moe.xmcn.catsero.v2.listeners.ListenerRegister;
 import moe.xmcn.catsero.v2.utils.*;
-import moe.xmcn.xmcore.ThisAPI;
+import moe.xmcn.catsero.xmcore.ThisAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

@@ -24,7 +24,7 @@
 package moe.xmcn.catsero.v2.utils;
 
 import moe.xmcn.catsero.v2.CatSero;
-import moe.xmcn.xmcore.ThisAPI;
+import moe.xmcn.catsero.xmcore.ThisAPI;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
