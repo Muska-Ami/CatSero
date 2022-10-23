@@ -1,9 +1,0 @@
-name: CatSero
-main: moe.xmcn.catsero.v2.CatSero
-description: 基于MiraiMC的Minecraft功能插件
-version: ${project.version}
-authors:
-  - XiaMoHuaHuo_CN
-  - The Love ❤
-softdepend:
-  - MiraiMC

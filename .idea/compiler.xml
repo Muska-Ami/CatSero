@@ -10,5 +10,8 @@
         <module name="CatSero-BungeeCord_Bridge" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CatSero-BugeeCord_Bridge" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
