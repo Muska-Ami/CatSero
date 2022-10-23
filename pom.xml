@@ -6,7 +6,7 @@
 
     <groupId>moe.xmcn.catsero</groupId>
     <artifactId>CatSero</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <version>2.0-beta-5</version>
 
     <properties>
@@ -106,13 +106,6 @@
                         <phase>compile</phase>
                         <goals>
                             <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>testCompile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>testCompile</goal>
                         </goals>
                     </execution>
                 </executions>
