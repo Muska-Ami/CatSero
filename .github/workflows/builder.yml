@@ -20,7 +20,7 @@ jobs:
           java-version: '8'
           distribution: 'zulu'
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn package
 
       - name: Upload Build Target
         uses: actions/upload-artifact@v2.3.1
