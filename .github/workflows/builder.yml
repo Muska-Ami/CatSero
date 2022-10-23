@@ -25,5 +25,11 @@ jobs:
       - name: Upload Build Target
         uses: actions/upload-artifact@v2.3.1
         with:
-          name: "CatSero-Bukkit-Artifact"
-          path: CatSero-Bukkit/target/
+          name: "CatSero-Artifact"
+          path: target/
+
+      - name: Upload Build JAR
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: "CatSero-JAR"
+          path: target/CatSero-*.jar
