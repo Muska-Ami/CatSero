@@ -55,8 +55,8 @@ public interface Configs {
      */
     static String getMsgByMsID(String msid) {
         String locale;
-        if (JPConfig.config.getString("locale") != null) {
-            locale = JPConfig.config.getString("locale");
+        if (JPConfig.config.getString("src/main/resources/locale") != null) {
+            locale = JPConfig.config.getString("src/main/resources/locale");
         } else {
             locale = "zh_CN";
         }
@@ -89,23 +89,23 @@ public interface Configs {
     interface JPConfig {
 
         FileConfiguration config = YamlConfiguration.loadConfiguration(Configs.getConfig("config.yml"));
-        FileConfiguration uses_config = YamlConfiguration.loadConfiguration(Configs.getConfig("uses-config.yml"));
+        FileConfiguration uses_config = YamlConfiguration.loadConfiguration(Configs.getConfig("src/main/resources/uses-config.yml"));
 
-        FileConfiguration trchat_config = YamlConfiguration.loadConfiguration(Configs.getConfig("extra-configs/trchat.yml"));
+        FileConfiguration trchat_config = YamlConfiguration.loadConfiguration(Configs.getConfig("src/main/resources/extra-configs/trchat.yml"));
 
-        FileConfiguration mirai_bot_config = YamlConfiguration.loadConfiguration(Configs.getConfig("mirai-configs/bot.yml"));
-        FileConfiguration mirai_group_config = YamlConfiguration.loadConfiguration(Configs.getConfig("mirai-configs/group.yml"));
-        FileConfiguration mirai_qqop_config = YamlConfiguration.loadConfiguration(Configs.getConfig("mirai-configs/qq-op.yml"));
+        FileConfiguration mirai_bot_config = YamlConfiguration.loadConfiguration(Configs.getConfig("src/main/resources/mirai-configs/bot.yml"));
+        FileConfiguration mirai_group_config = YamlConfiguration.loadConfiguration(Configs.getConfig("src/main/resources/mirai-configs/group.yml"));
+        FileConfiguration mirai_qqop_config = YamlConfiguration.loadConfiguration(Configs.getConfig("src/main/resources/mirai-configs/qq-op.yml"));
 
         static void reload() throws IOException, InvalidConfigurationException {
             config.load(Configs.getConfig("config.yml"));
-            uses_config.load(Configs.getConfig("uses-config.yml"));
+            uses_config.load(Configs.getConfig("src/main/resources/uses-config.yml"));
 
-            trchat_config.load(Configs.getConfig("extra-configs/trchat.yml"));
+            trchat_config.load(Configs.getConfig("src/main/resources/extra-configs/trchat.yml"));
 
-            mirai_bot_config.load(Configs.getConfig("mirai-configs/bot.yml"));
-            mirai_group_config.load(Configs.getConfig("mirai-configs/group.yml"));
-            mirai_qqop_config.load(Configs.getConfig("mirai-configs/qq-op.yml"));
+            mirai_bot_config.load(Configs.getConfig("src/main/resources/mirai-configs/bot.yml"));
+            mirai_group_config.load(Configs.getConfig("src/main/resources/mirai-configs/group.yml"));
+            mirai_qqop_config.load(Configs.getConfig("src/main/resources/mirai-configs/qq-op.yml"));
 
         }
 

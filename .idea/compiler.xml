@@ -6,12 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CatSero-Bukkit" />
         <module name="CatSero-BungeeCord_Bridge" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CatSero-BugeeCord_Bridge" target="1.8" />
+      <module name="CatSero-Bukkit" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

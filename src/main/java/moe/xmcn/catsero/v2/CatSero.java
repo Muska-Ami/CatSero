@@ -55,23 +55,23 @@ public class CatSero extends JavaPlugin {
             if (!new File(getDataFolder(), "config.yml").exists()) {
                 saveResource("config.yml", false);
             }
-            if (!new File(getDataFolder(), "uses-config.yml").exists()) {
-                saveResource("uses-config.yml", false);
+            if (!new File(getDataFolder(), "src/main/resources/uses-config.yml").exists()) {
+                saveResource("src/main/resources/uses-config.yml", false);
             }
-            if (!new File(getDataFolder(), "/extra-configs/trchat.yml").exists()) {
-                saveResource("extra-configs/trchat.yml", false);
+            if (!new File(getDataFolder(), "/src/main/resources/extra-configs/trchat.yml").exists()) {
+                saveResource("src/main/resources/extra-configs/trchat.yml", false);
             }
-            if (!new File(getDataFolder(), "/mirai-configs/bot.yml").exists()) {
-                saveResource("mirai-configs/bot.yml", false);
+            if (!new File(getDataFolder(), "/src/main/resources/mirai-configs/bot.yml").exists()) {
+                saveResource("src/main/resources/mirai-configs/bot.yml", false);
             }
-            if (!new File(getDataFolder(), "/mirai-configs/group.yml").exists()) {
-                saveResource("mirai-configs/group.yml", false);
+            if (!new File(getDataFolder(), "/src/main/resources/mirai-configs/group.yml").exists()) {
+                saveResource("src/main/resources/mirai-configs/group.yml", false);
             }
-            if (!new File(getDataFolder(), "locale/zh_CN.lang").exists()) {
-                saveResource("locale/zh_CN.lang", false);
+            if (!new File(getDataFolder(), "src/main/resources/locale/zh_CN.lang").exists()) {
+                saveResource("src/main/resources/locale/zh_CN.lang", false);
             }
-            if (!new File(getDataFolder(), "/mirai-configs/qq-op.yml").exists()) {
-                saveResource("mirai-configs/qq-op.yml", false);
+            if (!new File(getDataFolder(), "/src/main/resources/mirai-configs/qq-op.yml").exists()) {
+                saveResource("src/main/resources/mirai-configs/qq-op.yml", false);
             }
             ThisAPI.Companion.savePlugin("CatSero");
             Loggers.CustomLevel.logLoader("成功保存插件文件");

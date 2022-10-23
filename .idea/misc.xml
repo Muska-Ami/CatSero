@@ -14,6 +14,11 @@
         <option value="$PROJECT_DIR$/CatSero-BungeeCord_Bridge/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/CatSero-Bukkit/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="azul-1.8" project-jdk-type="JavaSDK" />
 </project>

@@ -15,7 +15,7 @@ import java.util.logging.Level
 class ThisAPI {
     companion object {
 
-        private const val infoFile: String = "xmcore.info"
+        private const val infoFile: String = "src/main/resources/xmcore.info"
 
         fun readPlugin(plugin_name: String): YamlConfiguration {
             return YamlConfiguration.loadConfiguration(
