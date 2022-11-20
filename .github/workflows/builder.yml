@@ -1,4 +1,4 @@
-name: Java CI with Maven - Build
+name: Java CI with Maven - Build Development
 
 on:
   push:
@@ -22,8 +22,8 @@ jobs:
         with:
           java-version: '8'
           distribution: 'zulu'
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+      - name: Build with Gradle
+        run: ./gradlew build
 
       - name: Upload a Build Target
         uses: actions/upload-artifact@v2.3.1

@@ -1,5 +1,0 @@
-# 聊天转发
-forward-chat:
-  # 要转发的频道
-  channel:
-    - Default
