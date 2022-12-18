@@ -1,3 +1,6 @@
+import org.apache.tools.ant.filters.FixCrLfFilter
+import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins {
     id("java")
 }
@@ -24,4 +27,62 @@ dependencies {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.compileJava {
+    options.encoding = "UTF-8"
+}
+
+// 替换文本内容
+fun loadEnv(): Any {
+    val configFile = file("config.groovy")
+    val env = "prod"
+    val confProp = groovy.util.ConfigSlurper(env).parse(configFile.toURL())
+    //config.groovy配置文件,配置占位符 (@key@)
+    val tokens = confProp.toProperties()
+    logger.lifecycle("Tokens: $tokens")
+    return tokens;
+}
+
+fun delFiles(dir:String){
+    val configs=fileTree(dir)
+    for (f in configs) {
+        f.delete()
+    }
+}
+
+tasks.processResources {
+    delFiles("$buildDir/resources")
+    filter(ReplaceTokens::class, "tokens" to loadEnv())
+    filter(
+            FixCrLfFilter::class,
+            "eol" to FixCrLfFilter.CrLf.newInstance("lf"),
+            "tab" to FixCrLfFilter.AddAsisRemove.newInstance("asis"),
+            "tablength" to 4,
+            "eof" to FixCrLfFilter.AddAsisRemove.newInstance("remove"),
+            "fixlast" to true
+    )
+
+}
+
+task<Copy>("processShell") {
+    //必须先删除原sh目录下文件后重新生成,不然使用gradle build -Penv参数切换环境时,无法替换占位符变量
+    delFiles("$buildDir/sh")
+    from("src/main/sh") {
+        filter(ReplaceTokens::class, "tokens" to loadEnv())
+        filter(
+                FixCrLfFilter::class,
+                "eol" to FixCrLfFilter.CrLf.newInstance("lf"),
+                "tab" to FixCrLfFilter.AddAsisRemove.newInstance("asis"),
+                "tablength" to 4,
+                "eof" to FixCrLfFilter.AddAsisRemove.newInstance("remove"),
+                "fixlast" to true
+        )
+    }
+    into("$buildDir/sh")
+}
+
+//build命令依赖的其他命令
+tasks.build {
+    dependsOn("processShell",tasks.processResources)
 }

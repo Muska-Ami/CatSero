@@ -1,0 +1,115 @@
+Index: src/main/java/moe/xmcn/catsero/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package moe.xmcn.catsero;\r\n\r\nimport org.bukkit.plugin.java.JavaPlugin;\r\n\r\npublic class Main extends JavaPlugin {\r\n\r\n    @Override\r\n    public void onLoad() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void onEnable() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void onDisable() {\r\n\r\n    }\r\n\r\n}
+===================================================================
+diff --git a/src/main/java/moe/xmcn/catsero/Main.java b/src/main/java/moe/xmcn/catsero/Main.java
+--- a/src/main/java/moe/xmcn/catsero/Main.java	
++++ b/src/main/java/moe/xmcn/catsero/Main.java	
+@@ -1,12 +1,24 @@
+ package moe.xmcn.catsero;
+ 
++import moe.xmcn.catsero.utils.Logger;
++import org.bukkit.Bukkit;
+ import org.bukkit.plugin.java.JavaPlugin;
+ 
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.List;
++
+ public class Main extends JavaPlugin {
+ 
+     @Override
+     public void onLoad() {
+-
++        Logger.log("Loader", "Start loading CatSero");
++        List<String> env = Arrays.asList(
++                "Server Version: " + getServer().getVersion(),
++                "Bukkit Version: " + getServer().getBukkitVersion(),
++                "CatSero Version: " +
++        );
++        Logger.log("Loader", env);
+     }
+ 
+     @Override
+Index: src/main/java/moe/xmcn/catsero/Config.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package moe.xmcn.catsero;\r\n\r\npublic interface Config {\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/moe/xmcn/catsero/Config.java b/src/main/java/moe/xmcn/catsero/Config.java
+--- a/src/main/java/moe/xmcn/catsero/Config.java	
++++ b/src/main/java/moe/xmcn/catsero/Config.java	
+@@ -1,4 +1,7 @@
+ package moe.xmcn.catsero;
+ 
+ public interface Config {
++
++    String Version =
++
+ }
+Index: build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id(\"java\")\r\n}\r\n\r\ngroup = \"moe.xmcn.catsero\"\r\nversion = \"2.0-beta5\"\r\n\r\nrepositories {\r\n    mavenCentral()\r\n    maven(\"https://hub.spigotmc.org/nexus/content/repositories/snapshots\")\r\n    maven(\"https://repo.extendedclip.com/content/repositories/placeholderapi\")\r\n    maven(\"https://lss233.littleservice.cn/repositories/minecraft\")\r\n}\r\n\r\ndependencies {\r\n    implementation(fileTree(mapOf(\"dir\" to \"libs\", \"include\" to listOf(\"*.jar\"))))\r\n    implementation(\"org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT\")\r\n    implementation(\"org.bstats:bstats-bukkit:3.0.0\")\r\n    implementation(\"me.clip:placeholderapi:2.11.2\")\r\n    implementation(\"io.github.dreamvoid:MiraiMC-Bukkit:1.7.1\")\r\n    testImplementation(\"org.junit.jupiter:junit-jupiter-api:5.8.1\")\r\n    testRuntimeOnly(\"org.junit.jupiter:junit-jupiter-engine:5.8.1\")\r\n}\r\n\r\ntasks.getByName<Test>(\"test\") {\r\n    useJUnitPlatform()\r\n}
+===================================================================
+diff --git a/build.gradle.kts b/build.gradle.kts
+--- a/build.gradle.kts	
++++ b/build.gradle.kts	
+@@ -24,4 +24,4 @@
+ 
+ tasks.getByName<Test>("test") {
+     useJUnitPlatform()
+-}
+\ No newline at end of file
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"8258646c-1a2f-4913-bc04-e0dd65b8fe75\" name=\"变更\" comment=\"?\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/build.gradle.kts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/build.gradle.kts\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Config.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Config.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"CatSero\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"CatSero\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"CatSero\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"build\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"CatSero\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Dependencies\" type=\"6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2HnjFcJO4Kc55uQ8nO1lqZImsDk\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\" selected=\"Gradle.CatSero [build]\">\r\n    <configuration name=\"CatSero [build]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"build\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"CatSero [clean]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"clean\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"CatSero [jar]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"jar\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"CatSero.test\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"CatSero.test\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Gradle.CatSero [build]\" />\r\n        <item itemvalue=\"Gradle.CatSero [clean]\" />\r\n        <item itemvalue=\"Gradle.CatSero [jar]\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"应用程序级\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"StandaloneScriptsStorage\">\r\n    <option name=\"files\">\r\n      <set>\r\n        <option value=\"$PROJECT_DIR$/build.gradle.kts\" />\r\n      </set>\r\n    </option>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"默认任务\">\r\n      <changelist id=\"8258646c-1a2f-4913-bc04-e0dd65b8fe75\" name=\"变更\" comment=\"\" />\r\n      <created>1668927643545</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1668927643545</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"首次提交至dev\">\r\n      <created>1668936326161</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1668936326161</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"test buildscript gradle\">\r\n      <created>1671360069526</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1671360069526</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"test build\">\r\n      <created>1671360256606</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1671360256606</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"啊这\">\r\n      <created>1671360893293</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1671360893293</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"?\">\r\n      <created>1671361819867</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1671361819867</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <ignored-roots>\r\n      <path value=\"$PROJECT_DIR$/de\" />\r\n    </ignored-roots>\r\n    <MESSAGE value=\"首次提交至`dev`\" />\r\n    <MESSAGE value=\"首次提交至dev\" />\r\n    <MESSAGE value=\"test buildscript gradle\" />\r\n    <MESSAGE value=\"test build\" />\r\n    <MESSAGE value=\"啊这\" />\r\n    <MESSAGE value=\"?\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"?\" />\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -5,9 +5,11 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="?">
++      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Logger.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Config.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Main.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -54,6 +56,13 @@
+         </projects_view>
+       </state>
+     </system>
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Interface" />
++      </list>
++    </option>
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+@@ -219,7 +228,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1671361819867</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="?">
++      <created>1671362059083</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1671362059083</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">

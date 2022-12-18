@@ -1,0 +1,20 @@
+# 语言文件
+locale: zh_CN
+
+# bStats
+bstats: true
+
+# 检查更新
+check-update:
+  # 是否启用
+  enable: true
+  # 检查更新间隔
+  # 单位: 秒
+  interval: 3600
+  # 检查更新服务器API地址，一般情况请勿修改
+  api-url: https://api.huahuo-cn.tk/mcp/CatSero/version
+
+# 自定义QQ命令头
+custom-qq-command-prefix:
+  enable: false
+  prefix: ""
