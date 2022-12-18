@@ -1,2 +1,4 @@
-package moe.xmcn.catsero;public interface Config {
+package moe.xmcn.catsero;
+
+public interface Config {
 }

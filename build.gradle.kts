@@ -7,9 +7,9 @@ version = "2.0-beta5"
 
 repositories {
     mavenCentral()
-    maven("https://lss233.littleservice.cn/repositories/minecraft")
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi")
+    maven("https://lss233.littleservice.cn/repositories/minecraft")
 }
 
 dependencies {
