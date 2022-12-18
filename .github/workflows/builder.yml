@@ -35,5 +35,5 @@ jobs:
       - name: Upload Build Jar
         uses: actions/upload-artifact@v2.3.1
         with:
-          name: "CatSero-Artifact"
+          name: "CatSero-Jar"
           path: build/libs/CatSero*.jar
