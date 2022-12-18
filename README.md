@@ -43,21 +43,31 @@
 <summary>点此展开/收起</summary>
 
 ```yaml
-# CatSero配置文件
+# CatSero Plugin Config
+# Generate by CatSero v@plugin.version@
 
 # 语言文件
 locale: zh_CN
-# 接受bStats统计(https://bstats.org)
-# true | false
-allow-bstats: true
 
-# 自定义命令头
-qq-command-prefix:
-  # 功能开关
-  # true | false
-  enabled: false
-  # 格式
-  format: ""
+# bStats
+bstats: true
+
+# 检查更新
+check-update:
+  # 是否启用
+  enable: true
+  # 检查更新间隔
+  # 单位: 秒
+  interval: 3600
+  # 检查更新服务器API地址，一般情况请勿修改
+  api-url: https://api.huahuo-cn.tk/mcp/CatSero/version
+
+# 自定义QQ命令头
+custom-qq-command-prefix:
+  # 是否启用
+  enable: false
+  # 命令头
+  prefix: ""
 ```
 
 </details>

@@ -1,3 +1,6 @@
+# CatSero Plugin Config
+# Generate by CatSero v@plugin.version@
+
 # 语言文件
 locale: zh_CN
 
@@ -16,5 +19,7 @@ check-update:
 
 # 自定义QQ命令头
 custom-qq-command-prefix:
+  # 是否启用
   enable: false
+  # 命令头
   prefix: ""
