@@ -66,6 +66,7 @@ public interface Configuration {
             boolean ENABLE = CFI.plugin_config.getBoolean(sub_node + "enable");
             int INTERVAL = CFI.plugin_config.getInt(sub_node + "interval");
             String API_URL = CFI.plugin_config.getString(sub_node + "api-url");
+            String MODE = CFI.plugin_config.getString(sub_node + "mode");
         }
         interface CUSTOM_QQ_COMMAND_PREFIX {
             String sub_node = "custom-qq-command-prefix" + ".";
@@ -98,7 +99,7 @@ public interface Configuration {
     static void reloadFiles() {
         Logger.logLoader("Saving files...");
         saveFiles();
-        Logger.logLoader("Saved.");
+        Logger.logLoader("Saved all files.");
 
         Logger.logLoader("Reloading files...");
         CFI.plugin_config = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "config.yml"));

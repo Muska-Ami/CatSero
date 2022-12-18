@@ -27,9 +27,6 @@ import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,15 +38,21 @@ public class CatSero extends JavaPlugin {
 
         Logger.logLoader("Saving files...");
         Configuration.saveFiles();
-        Logger.logLoader("Saved.");
+        Logger.logLoader("Saved all files.");
 
         Logger.logLoader("Checking server information...");
+        Envrionment.check();
         List<String> env = Arrays.asList(
-                "=== CatSero Runtime Checker ===",
+                "===== CatSero Runtime Checker =====",
                 "Server Version: " + Envrionment.server_version,
                 "Bukkit Version: " + Envrionment.bukkit_version,
                 "Plugin Version: " + Envrionment.plugin_version,
-                "================================"
+                "Depends:",
+                "- MiraiMC => " + Envrionment.Depends.MiraiMC,
+                "Soft-depends:",
+                "- PlaceholderAPI => " + Envrionment.Depends.PlaceholderAPI,
+                "- TrChat => " + Envrionment.Depends.TrChat,
+                "==================================="
         );
         Logger.logLoader(env);
     }
@@ -57,11 +60,16 @@ public class CatSero extends JavaPlugin {
     @Override
     public void onEnable() {
         Logger.logLoader("CatSero loaded.");
+        if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
+            Logger.logLoader("Start auto check update.");
+            getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
+            getServer().getPluginManager().registerEvents(new Updater(), this);
+        }
     }
 
     @Override
     public void onDisable() {
-
+        Logger.logLoader("Stopping CatSero.");
     }
 
 }

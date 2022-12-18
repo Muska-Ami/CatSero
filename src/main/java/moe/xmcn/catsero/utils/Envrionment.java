@@ -25,6 +25,7 @@ package moe.xmcn.catsero.utils;
 
 import com.alibaba.fastjson.JSON;
 import moe.xmcn.catsero.Configuration;
+import org.bukkit.Bukkit;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -33,6 +34,17 @@ public interface Envrionment {
     String server_version = Configuration.plugin.getServer().getVersion();
     String bukkit_version = Configuration.plugin.getServer().getBukkitVersion();
     String plugin_version = getVersion();
+
+    class Depends {
+        public static boolean MiraiMC = false;
+        public static boolean PlaceholderAPI = false;
+        public static boolean TrChat = false;
+    }
+    static void check() {
+        if (Bukkit.getPluginManager().getPlugin("MiraiMC") != null) Depends.MiraiMC = true;
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) Depends.PlaceholderAPI = true;
+        if (Bukkit.getPluginManager().getPlugin("TrChat") != null) Depends.TrChat = true;
+    }
 
     static String getVersion() {
         try {
