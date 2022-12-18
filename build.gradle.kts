@@ -21,6 +21,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("me.clip:placeholderapi:2.11.2")
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.7.1")
+    implementation("com.alibaba:fastjson:2.0.21")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
@@ -83,7 +84,20 @@ task<Copy>("processShell") {
     into("$buildDir/sh")
 }
 
+tasks.create<Jar>("fatJar") {
+    appendix = ""
+    setDuplicatesStrategy(DuplicatesStrategy.FAIL)
+    val sourceMain = java.sourceSets["main"]
+    from(sourceMain.output)
+
+    configurations.runtimeClasspath.filter {
+        it.name.startsWith("fastjson")
+    }.forEach { jar ->
+        from(zipTree(jar))
+    }
+}
+
 //build命令依赖的其他命令
 tasks.build {
-    dependsOn("processShell",tasks.processResources)
+    dependsOn("processShell",tasks.processResources,"fatJar")
 }

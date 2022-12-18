@@ -23,10 +23,29 @@
  */
 package moe.xmcn.catsero.utils;
 
+import com.alibaba.fastjson.JSON;
 import moe.xmcn.catsero.Configuration;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public interface Envrionment {
     String server_version = Configuration.plugin.getServer().getVersion();
     String bukkit_version = Configuration.plugin.getServer().getBukkitVersion();
-    String plugin_version = "@plugin.version@";
+    String plugin_version = getVersion();
+
+    static String getVersion() {
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(Configuration.CFI.version_file));
+            String body;
+            StringBuilder data = new StringBuilder();
+            while ((body = in.readLine()) != null) {
+                data.append(body);
+            }
+            return JSON.parseObject(data.toString()).getString("version");
+        } catch (Exception e) {
+            Logger.logCatch(e);
+        }
+        return null;
+    }
 }

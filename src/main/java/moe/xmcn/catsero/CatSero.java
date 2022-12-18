@@ -27,6 +27,9 @@ import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,6 +38,11 @@ public class CatSero extends JavaPlugin {
     @Override
     public void onLoad() {
         Logger.logLoader("Start loading CatSero...");
+
+        Logger.logLoader("Saving files...");
+        Configuration.saveFiles();
+        Logger.logLoader("Saved.");
+
         Logger.logLoader("Checking server information...");
         List<String> env = Arrays.asList(
                 "=== CatSero Runtime Checker ===",
@@ -44,9 +52,6 @@ public class CatSero extends JavaPlugin {
                 "================================"
         );
         Logger.logLoader(env);
-        Logger.logLoader("Saving files...");
-        Configuration.saveFiles();
-        Logger.logLoader("Saved.");
     }
 
     @Override

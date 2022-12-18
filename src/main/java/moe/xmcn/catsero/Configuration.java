@@ -42,6 +42,7 @@ public interface Configuration {
         static File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
         static File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
         static File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
+        public static File version_file = new File(plugin.getDataFolder(), "version");
 
         static FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(config_file);
         static FileConfiguration uses_config = YamlConfiguration.loadConfiguration(usesconfig_file);
@@ -52,6 +53,7 @@ public interface Configuration {
 
     // 配置定义
     interface PLUGIN {
+
         String LOCALE = CFI.plugin_config.getString("locale");
         boolean BSTATS = CFI.plugin_config.getBoolean("bstats");
         interface CHECK_UPDATE {
@@ -87,6 +89,10 @@ public interface Configuration {
 
         Logger.logLoader("Saving default locale...");
         if (!new File(plugin.getDataFolder(), "locale/zh_CN.yml").exists()) plugin.saveResource("locale/zh_CN.yml", false);
+        Logger.logLoader("Saved.");
+
+        Logger.logLoader("Saving version...");
+        plugin.saveResource("version", true);
         Logger.logLoader("Saved.");
     }
     static void reloadFiles() {
