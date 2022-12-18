@@ -53,6 +53,7 @@ fun delFiles(dir:String){
 
 tasks.processResources {
     delFiles("$buildDir/resources")
+    filteringCharset = "UTF-8"
     filter(ReplaceTokens::class, "tokens" to loadEnv())
     filter(
             FixCrLfFilter::class,

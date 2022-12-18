@@ -1,5 +1,5 @@
 name: CatSero
-main: moe.xmcn.catsero.v2.CatSero
+main: moe.xmcn.catsero.CatSero
 description: 基于MiraiMC的Minecraft功能插件
 version: @plugin.version@
 api-version: 1.13
