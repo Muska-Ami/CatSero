@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[ci skip]">
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Updater.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/HttpClient.java" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="部分完工x4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Envrionment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Envrionment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Updater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Updater.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +97,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Otr\IdeaProjects\CatSero\server-test\plugins" />
+      <recent name="D:\Otr\IdeaProjects\CatSero\build\libs" />
       <recent name="D:\Otr\IdeaProjects\CatSero\src\main\java" />
     </key>
   </component>
@@ -290,7 +286,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671377757151</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="部分完工x4">
+      <created>1671386887060</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1671386887060</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -322,7 +325,8 @@
     <MESSAGE value="部分完工x3" />
     <MESSAGE value="更新ci脚本" />
     <MESSAGE value="[ci skip]" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ci skip]" />
+    <MESSAGE value="部分完工x4" />
+    <option name="LAST_COMMIT_MESSAGE" value="部分完工x4" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

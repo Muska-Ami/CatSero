@@ -15,9 +15,9 @@ import java.util.Arrays;
 
 public class Updater implements Runnable, Listener {
 
-    private final String now_version = Envrionment.plugin_version;
-    private String latest_version;
-    private String[] beta_version;
+    private static final String now_version = Envrionment.plugin_version;
+    private static String latest_version;
+    private static String[] beta_version;
 
     @Override
     public void run() {
