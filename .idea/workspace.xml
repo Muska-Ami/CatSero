@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="I18n 改为JSON而不是YAML">
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/MessageSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/Method.java" afterDir="false" />
-    </list>
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="/cms命令" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -316,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671425788440</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="/cms命令">
+      <created>1671427645985</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1671427645985</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -352,7 +354,8 @@
     <MESSAGE value="部分完工x5" />
     <MESSAGE value="部分完工x6" />
     <MESSAGE value="I18n 改为JSON而不是YAML" />
-    <option name="LAST_COMMIT_MESSAGE" value="I18n 改为JSON而不是YAML" />
+    <MESSAGE value="/cms命令" />
+    <option name="LAST_COMMIT_MESSAGE" value="/cms命令" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
