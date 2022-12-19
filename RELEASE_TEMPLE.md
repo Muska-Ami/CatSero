@@ -6,7 +6,7 @@ Updates
 
 - Changes
 
-Full change log: `[v@version@...v@version@](https://github.com/XiaMoHuaHuo-CN/CatSero/compare/v@version@...v@version@)`
+Full change log: [@version@...@version@](https://github.com/XiaMoHuaHuo-CN/CatSero/compare/@version@...@version@)
 
 ## Assets说明
 
