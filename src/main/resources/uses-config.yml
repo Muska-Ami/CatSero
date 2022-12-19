@@ -75,7 +75,7 @@ send-advancement:
   # = %player%  玩家名
   # - %name%  成就名
   # - %description%  成就描述
-  format: "%player%获得了成就: %name%\n%description%"
+  format: "%player%获得了成就: %name%\n描述: %description%"
 
 # TPS获取
 get-tps:

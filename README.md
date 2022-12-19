@@ -29,6 +29,7 @@
 - 玩家死亡转发
 - 玩家加入/退出转发
 - TPS获取
+- 玩家获得成就转发
 
 ## 配置文件
 
@@ -154,7 +155,7 @@ send-advancement:
   # = %player%  玩家名
   # - %name%  成就名
   # - %description%  成就描述
-  format: "%player%获得了成就: %name%\n%description%"
+  format: "%player%获得了成就: %name%\n描述: %description%"
 
 # TPS获取
 get-tps:

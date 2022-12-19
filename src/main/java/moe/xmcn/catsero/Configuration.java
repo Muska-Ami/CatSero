@@ -181,6 +181,19 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+        interface SEND_ADVANCEMENT {
+            String sub_node = "send-advancement" + ".";
+
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            String FORMAT = CFI.uses_config.getString(sub_node + "format");
+
+            interface MIRAI {
+                String sub_node = "send-advancement.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
     }
 
     interface I18N {

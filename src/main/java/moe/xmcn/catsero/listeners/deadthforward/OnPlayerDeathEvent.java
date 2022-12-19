@@ -26,6 +26,7 @@ package moe.xmcn.catsero.listeners.deadthforward;
 import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
+import moe.xmcn.catsero.utils.PAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -44,8 +45,9 @@ public class OnPlayerDeathEvent implements Listener {
 
                         String message = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.FORMAT;
 
-                        message = message.replace("%player%", player.getName());
-                        message = message.replace("%message%", death_message);
+                        message = message.replace("%player%", player.getName())
+                                .replace("%message%", death_message);
+                        message = PAPI.toPAPI(player, message);
                         MessageSender.sendGroup(message, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.GROUP);
                     }
                 } else {
@@ -54,8 +56,9 @@ public class OnPlayerDeathEvent implements Listener {
 
                     String message = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.FORMAT;
 
-                    message = message.replace("%player%", player.getName());
-                    message = message.replace("%message%", death_message);
+                    message = message.replace("%player%", player.getName())
+                            .replace("%message%", death_message);
+                    message = PAPI.toPAPI(player, message);
                     MessageSender.sendGroup(message, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.GROUP);
                 }
             }

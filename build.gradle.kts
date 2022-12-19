@@ -92,7 +92,7 @@ tasks.create<Jar>("fatJar") {
     from(sourceMain.output)
 
     configurations.runtimeClasspath.filter {
-        it.name.startsWith("fastjson")
+        it.name.startsWith("fastjson") or it.name.startsWith("AdvancementInfo")
     }.forEach { jar ->
         from(zipTree(jar))
     }
