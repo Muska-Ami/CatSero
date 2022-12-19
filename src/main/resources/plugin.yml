@@ -36,6 +36,9 @@ permissions:
       catsero.send-death:
         description: "玩家死亡转发权限"
         default: op
+      catsero.send-advancement:
+        description: "玩家进度达成转发权限"
+        default: op
       catsero.cms:
         description: "cms命令权限"
         default: op

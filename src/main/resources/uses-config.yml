@@ -76,6 +76,8 @@ send-advancement:
   # - %name%  进度名
   # - %description%  进度描述
   format: "%player%达成了进度: %name%\n描述: %description%"
+  # 需要拥有权限才会发送
+  need-permission: false
 
 # TPS获取
 get-tps:
