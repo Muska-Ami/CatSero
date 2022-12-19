@@ -21,15 +21,17 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.executors;
+package moe.xmcn.catsero.listeners;
 
 import moe.xmcn.catsero.Configuration;
-import moe.xmcn.catsero.executors.catsero.Method;
+import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerJoinEvent;
+import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerQuitEvent;
 
-public interface ExecutorRegister {
+public interface ListenerRegister {
 
     static void register() {
-        Configuration.plugin.getServer().getPluginCommand("cms").setExecutor(new moe.xmcn.catsero.executors.cms.Method());
-        Configuration.plugin.getServer().getPluginCommand("catsero").setExecutor(new Method());
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerJoinEvent(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerQuitEvent(), Configuration.plugin);
     }
+
 }

@@ -135,7 +135,26 @@ public interface Configuration {
     }
 
     interface USES_CONFIG {
+        interface SEND_PLAYER_JOIN_QUIT {
+            String sub_node = "send-player-join-quit" + ".";
 
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            boolean NEED_PERMISSION = CFI.uses_config.getBoolean(sub_node + "need-permission");
+
+            interface FORMAT {
+                String sub_node = "send-player-join-quit.format" + ".";
+
+                String JOIN = CFI.uses_config.getString(sub_node + "join");
+                String QUIT = CFI.uses_config.getString(sub_node + "quit");
+            }
+
+            interface MIRAI {
+                String sub_node = "send-player-join-quit.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
     }
 
     interface I18N {

@@ -24,6 +24,7 @@
 package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.executors.ExecutorRegister;
+import moe.xmcn.catsero.listeners.ListenerRegister;
 import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.bStatsMetrics;
@@ -65,13 +66,18 @@ public class CatSero extends JavaPlugin {
             Logger.logLoader("Registering Executors...");
             ExecutorRegister.register();
             Logger.logLoader("Registered.");
+
             Logger.logLoader("Registering Listeners...");
+            ListenerRegister.register();
             Logger.logLoader("Registered.");
+
             if (Configuration.PLUGIN.BSTATS) {
                 Logger.logINFO("Start bStats.");
                 new bStatsMetrics(this, 14767);
             }
+
             Logger.logLoader("CatSero loaded.");
+
             if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
                 Logger.logLoader("Start checking update...");
                 getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);

@@ -58,17 +58,21 @@ bstats: true
 
 # 检查更新
 check-update:
-  # 是否启用
+  # 功能开关
+  # true | false
   enable: true
   # 检查更新间隔
   # 单位: 秒
   interval: 3600
+  # 版本模式
+  mode: latest
   # 检查更新服务器API地址，一般情况请勿修改
-  api-url: https://api.huahuo-cn.tk/mcp/CatSero/version
+  api-url: https://mcp.huahuo-cn.tk/api/CatSero/version
 
 # 自定义QQ命令头
 custom-qq-command-prefix:
-  # 是否启用
+  # 功能开关
+  # true | false
   enable: false
   # 命令头
   prefix: ""
@@ -82,19 +86,20 @@ custom-qq-command-prefix:
 <summary>点此展开/收起</summary>
 
 ```yaml
-# CatSero功能设置
+# CatSero UsesConfig
+# Generate by CatSero v@plugin.version@
 
 # 发送玩家加入/退出消息
 send-player-join-quit:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 格式
   # 内置占位符:
   # - %player% 加入玩家名称
@@ -110,13 +115,13 @@ send-player-join-quit:
 chat-forward:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 格式
   # 内置占位符:
   # - %name%  (To MC)发送者名称
@@ -139,7 +144,7 @@ chat-forward:
   filter:
     # 功能开关
     # true | false
-    enabled: false
+    enable: false
     # 关键词列表
     list:
       - "傻逼"
@@ -151,7 +156,7 @@ chat-forward:
   prefix:
     # 功能开关
     # true | false
-    enabled: false
+    enable: false
     # 格式
     format:
       # 发送到Minecraft
@@ -163,13 +168,13 @@ chat-forward:
 send-player-death:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 格式
   # 内置占位符:
   # - %player%  玩家名
@@ -180,13 +185,13 @@ send-player-death:
 new-group-member-message:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 格式
   # 内置占位符:
   # - %at%  @新成员
@@ -197,25 +202,25 @@ new-group-member-message:
 get-tps:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
 
 # 在线玩家获取
 get-online-players:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 格式
   # 内置占位符:
   # - %count%  当前在线玩家数
@@ -230,13 +235,13 @@ get-online-players:
 player-manager:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 启用的工具
   # 支持：ban, op, kick
   tools:
@@ -255,7 +260,7 @@ player-manager:
         custom-command:
           # 功能开关
           # true | false
-          enabled: false
+          enable: false
           # 封禁命令
           # 内置占位符:
           # - %player%  玩家名
@@ -267,7 +272,7 @@ player-manager:
         custom-command:
           # 功能开关
           # true | false
-          enabled: false
+          enable: false
           # 封禁命令
           # 内置占位符:
           # - %player%  玩家名
@@ -284,13 +289,13 @@ player-manager:
 dispatch-command:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
 ```
 
 </details>
@@ -352,10 +357,10 @@ list:
 打开`uses-config.yml`，您应该会发现每个功能下会有一个`var`:
 
 ```yaml
-example:
+demo-use:
   var:
-    bot: example
-    group: example
+    bot: hello-bot
+    group: hello-group
 ```
 
 `var`内的`bot`即为Bot配置中的BotID
@@ -402,14 +407,11 @@ _要触发命令前必须使用前缀`!`或`/`_
 
 ## 权限
 
-| 权限            | 说明            |
-|---------------|---------------|
-| catsero.*     | 所有权限，默认无      |
-| catsero.admin | 管理权限，默认OP     |
-| catsero.cms   | 使用CMS命令权限，默认无 |
-
-<!--
-| catsero.send-player-join-quit      | 玩家加入/退出转发权限，默认无            |
-| catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP            |
-| catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP            |
--->
+| 权限                                 | 说明              |
+|------------------------------------|-----------------|
+| catsero.*                          | 所有权限，默认无        |
+| catsero.admin                      | 管理权限，默认OP       |
+| catsero.cms                        | 使用CMS命令权限，默认无   |
+| catsero.send-player-join-quit      | 玩家加入/退出转发权限，默认无 |
+| catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP |
+| catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP |
