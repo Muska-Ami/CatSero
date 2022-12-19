@@ -27,6 +27,7 @@ import moe.xmcn.catsero.executors.ExecutorRegister;
 import moe.xmcn.catsero.listeners.ListenerRegister;
 import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Logger;
+import moe.xmcn.catsero.utils.TPSCalculator;
 import moe.xmcn.catsero.utils.bStatsMetrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -75,6 +76,9 @@ public class CatSero extends JavaPlugin {
                 Logger.logINFO("Start bStats.");
                 new bStatsMetrics(this, 14767);
             }
+
+            Logger.logLoader("Start TPSCalculator.");
+            getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSCalculator(), 100L, 1L);
 
             Logger.logLoader("CatSero loaded.");
 

@@ -27,17 +27,9 @@
 ## 功能
 
 - 玩家死亡转发
-- 聊天转发兼容TrChat
-- QQ群-Minecraft消息互转
-- 加入/退出转发权限控制
-- 玩家加入退出转发
-- 迎新功能
-- PlaceholderAPI变量支持
-- 获取TPS
-- 获取在线玩家
-- 管理在线玩家
-- (实验性)以控制台身份执行Minecraft命令
-- (实验性,Actions)白名单
+- 玩家加入/退出转发
+- TPS获取
+- 玩家达成进度转发
 
 ## 配置文件
 
@@ -111,59 +103,6 @@ send-player-join-quit:
   # 需要拥有权限才会发送
   need-permission: false
 
-# 聊天转发
-chat-forward:
-  # 功能开关
-  # true | false
-  enable: false
-  # Bot & Group设置
-  var:
-    # BotID
-    bot: hello-bot
-    # GroupID
-    group: hello-group
-  # 格式
-  # 内置占位符:
-  # - %name%  (To MC)发送者名称
-  # - %code%  (To MC)发送者QQ号
-  # - %message%  消息内容
-  # - %player%  (To QQ)发送玩家名称
-  # - %channel%  (To QQ | TrChat Only)聊天频道ID
-  format:
-    # 发送到Minecraft
-    to-mc: |-
-      &e[&aQQ&e]&r%name%(%code%):
-      %message%
-    # 发送到QQ
-    to-qq: |-
-      [MC]%player%:
-      %message%
-  # 清理消息中的格式代码
-  clean-colorcode: true
-  # 关键词检测
-  filter:
-    # 功能开关
-    # true | false
-    enable: false
-    # 关键词列表
-    list:
-      - "傻逼"
-      - "fuck"
-    # 只将关键词变为"***"而不是取消该条消息的转发
-    # true | false
-    replace-only: false
-  # 聊天前缀
-  prefix:
-    # 功能开关
-    # true | false
-    enable: false
-    # 格式
-    format:
-      # 发送到Minecraft
-      to-mc: "#"
-      # 发送到QQ
-      to-qq: "#"
-
 # 发送玩家死亡消息
 send-player-death:
   # 功能开关
@@ -178,8 +117,10 @@ send-player-death:
   # 格式
   # 内置占位符:
   # - %player%  玩家名
-  # - %deathmes%  死亡消息
-  format: "%player%死了,因为\n%deathmes%"
+  # - %message%  死亡消息
+  format: "%player%死了,因为\n%message%"
+  # 需要拥有权限才会发送
+  need-permission: false
 
 # 新人加入群欢迎
 new-group-member-message:
@@ -197,6 +138,24 @@ new-group-member-message:
   # - %at%  @新成员
   # - %code%  新成员QQ号
   format: "欢迎%at%（%code%）加入本群!"
+
+# 玩家解锁进度转发
+send-advancement:
+  # 功能开关
+  # true | false
+  enable: false
+  # Bot & Group设置
+  var:
+    # BotID
+    bot: hello-bot
+    # GroupID
+    group: hello-group
+  # 格式
+  # 内置占位符:
+  # = %player%  玩家名
+  # - %name%  进度名
+  # - %description%  进度描述
+  format: "%player%达成了进度: %name%\n描述: %description%"
 
 # TPS获取
 get-tps:
@@ -230,72 +189,6 @@ get-online-players:
     当前在线: %count%
     最大在线: %max%
     玩家列表: %list%
-
-# 玩家管理器
-player-manager:
-  # 功能开关
-  # true | false
-  enable: false
-  # Bot & Group设置
-  var:
-    # BotID
-    bot: hello-bot
-    # GroupID
-    group: hello-group
-  # 启用的工具
-  # 支持：ban, op, kick
-  tools:
-    - ban
-    - op
-    - kick
-  # 子功能配置
-  configs:
-    # Ban工具
-    ban-tool:
-      # Ban命令
-      ban:
-        # 默认原因
-        default-reason: "你已被此服务器封禁"
-        # 使用自定义命令而不是Bukkit内置封禁
-        custom-command:
-          # 功能开关
-          # true | false
-          enable: false
-          # 封禁命令
-          # 内置占位符:
-          # - %player%  玩家名
-          # - %reason%  原因
-          command: "ban %player% %reason%"
-      # UnBan命令
-      unban:
-        # 使用自定义命令而不是Bukkit内置封禁
-        custom-command:
-          # 功能开关
-          # true | false
-          enable: false
-          # 封禁命令
-          # 内置占位符:
-          # - %player%  玩家名
-          command: "pardon %player%"
-    # Kick工具
-    kick-tool:
-      # Kick命令
-      kick:
-        # 默认原因
-        default-reason: "你已被踢出"
-
-# QQ群执行Minecraft命令
-# 正在实验
-dispatch-command:
-  # 功能开关
-  # true | false
-  enable: false
-  # Bot & Group设置
-  var:
-    # BotID
-    bot: hello-bot
-    # GroupID
-    group: hello-group
 ```
 
 </details>
@@ -384,12 +277,11 @@ demo-use:
 
 _要触发命令前必须使用前缀`!`或`/`_
 
-| 命令  | 说明  |
-|-----|-----|
-
+| 命令                    | 说明        |
+|-----------------------|-----------|
+| !catsero tps around   | 获取TPS(概数) |
+| !catsero tps accurate | 获取TPS(精确) |
 <!--
-| !catsero tps round                  | 获取TPS(概数)           |
-| !catsero tps accurate               | 获取TPS(精确)           |
 | !catsero list                       | 列出服务器上的所有玩家         |
 | !catsero pm ban \<player> \(reason) | 封禁一个玩家              |
 | !catsero pm unban \<player>         | 解除封禁一名玩家            |
@@ -415,3 +307,4 @@ _要触发命令前必须使用前缀`!`或`/`_
 | catsero.send-player-join-quit      | 玩家加入/退出转发权限，默认无 |
 | catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP |
 | catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP |
+| catsero.send-death                 | 玩家死亡转发权限，默认OP   |

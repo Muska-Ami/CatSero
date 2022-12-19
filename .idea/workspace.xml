@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="完成一个功能：JoinQuitForward" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[ci skip]">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,7 +126,7 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" value="--warning-mode all" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -346,7 +348,63 @@
       <option name="project" value="LOCAL" />
       <updated>1671430825929</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="合并分支">
+      <created>1671431102102</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1671431102102</updated>
+    </task>
+    <task id="LOCAL-00020" summary="合并分支">
+      <created>1671431127880</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1671431127880</updated>
+    </task>
+    <task id="LOCAL-00021" summary="TPS获取 玩家死亡转发">
+      <created>1671438404791</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1671438404791</updated>
+    </task>
+    <task id="LOCAL-00022" summary="[ci skip]">
+      <created>1671438528150</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1671438528150</updated>
+    </task>
+    <task id="LOCAL-00023" summary="[ci skip]移除`build.gradle.kts`中过时的内容">
+      <created>1671438762221</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1671438762221</updated>
+    </task>
+    <task id="LOCAL-00024" summary="成就转发">
+      <created>1671441760834</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1671441760834</updated>
+    </task>
+    <task id="LOCAL-00025" summary="修正：因Minecraft进度与配方解锁提示不做区分而导致的空指针">
+      <created>1671442310350</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1671442310350</updated>
+    </task>
+    <task id="LOCAL-00026" summary="[ci skip]">
+      <created>1671442374866</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1671442374866</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -377,7 +435,6 @@
     <MESSAGE value="部分完工x2" />
     <MESSAGE value="部分完工x3" />
     <MESSAGE value="更新ci脚本" />
-    <MESSAGE value="[ci skip]" />
     <MESSAGE value="部分完工x4" />
     <MESSAGE value="部分完工x5" />
     <MESSAGE value="部分完工x6" />
@@ -387,7 +444,13 @@
     <MESSAGE value="兼容旧版不支持增强switch" />
     <MESSAGE value="break;" />
     <MESSAGE value="完成一个功能：JoinQuitForward" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成一个功能：JoinQuitForward" />
+    <MESSAGE value="合并分支" />
+    <MESSAGE value="TPS获取 玩家死亡转发" />
+    <MESSAGE value="[ci skip]移除`build.gradle.kts`中过时的内容" />
+    <MESSAGE value="成就转发" />
+    <MESSAGE value="修正：因Minecraft进度与配方解锁提示不做区分而导致的空指针" />
+    <MESSAGE value="[ci skip]" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ci skip]" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

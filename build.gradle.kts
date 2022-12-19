@@ -13,6 +13,7 @@ repositories {
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi")
     maven("https://lss233.littleservice.cn/repositories/minecraft")
+    maven("https://jitpack.io")
 }
 
 dependencies {
@@ -22,6 +23,7 @@ dependencies {
     implementation("me.clip:placeholderapi:2.11.2")
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.7.1")
     implementation("com.alibaba:fastjson:2.0.21")
+    implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
 }
@@ -85,13 +87,12 @@ task<Copy>("processShell") {
 }
 
 tasks.create<Jar>("fatJar") {
-    appendix = ""
     setDuplicatesStrategy(DuplicatesStrategy.FAIL)
     val sourceMain = java.sourceSets["main"]
     from(sourceMain.output)
 
     configurations.runtimeClasspath.filter {
-        it.name.startsWith("fastjson")
+        it.name.startsWith("fastjson") or it.name.startsWith("AdvancementInfo")
     }.forEach { jar ->
         from(zipTree(jar))
     }
