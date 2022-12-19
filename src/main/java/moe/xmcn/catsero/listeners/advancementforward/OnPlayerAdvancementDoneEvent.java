@@ -22,12 +22,13 @@ public class OnPlayerAdvancementDoneEvent implements Listener {
                 Player player = e.getPlayer();
 
                 String format = Configuration.USES_CONFIG.SEND_ADVANCEMENT.FORMAT;
-                assert adv_name != null;
-                format = format.replace("%player%", player.getName())
-                        .replace("%name%", adv_name)
-                        .replace("%description%", adv_description);
-                format = PAPI.toPAPI(player, format);
-                MessageSender.sendGroup(format, Configuration.USES_CONFIG.SEND_ADVANCEMENT.MIRAI.BOT, Configuration.USES_CONFIG.SEND_ADVANCEMENT.MIRAI.GROUP);
+                if (adv_name != null) {
+                    format = format.replace("%player%", player.getName())
+                            .replace("%name%", adv_name)
+                            .replace("%description%", adv_description);
+                    format = PAPI.toPAPI(player, format);
+                    MessageSender.sendGroup(format, Configuration.USES_CONFIG.SEND_ADVANCEMENT.MIRAI.BOT, Configuration.USES_CONFIG.SEND_ADVANCEMENT.MIRAI.GROUP);
+                }
             }
         } catch (Exception ex) {
             Logger.logCatch(ex);

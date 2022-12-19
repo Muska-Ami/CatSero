@@ -139,7 +139,7 @@ new-group-member-message:
   # - %code%  新成员QQ号
   format: "欢迎%at%（%code%）加入本群!"
 
-# 成就玩家获得成就转发
+# 玩家解锁进度转发
 send-advancement:
   # 功能开关
   # true | false
@@ -153,9 +153,9 @@ send-advancement:
   # 格式
   # 内置占位符:
   # = %player%  玩家名
-  # - %name%  成就名
-  # - %description%  成就描述
-  format: "%player%获得了成就: %name%\n描述: %description%"
+  # - %name%  进度名
+  # - %description%  进度描述
+  format: "%player%达成了进度: %name%\n描述: %description%"
 
 # TPS获取
 get-tps:
