@@ -81,7 +81,7 @@ custom-qq-command-prefix:
 
 ```yaml
 # CatSero UsesConfig
-# Generate by CatSero v2.0-beta5
+# Generate by CatSero v@plugin.version@
 
 # 所有的发送至QQ群的消息都支持miraicode
 # 参见：
@@ -183,7 +183,7 @@ get-tps:
 get-online-list:
   # 功能开关
   # true | false
-  enable: true
+  enable: false
   # Bot & Group设置
   var:
     # BotID
