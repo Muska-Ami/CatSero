@@ -41,6 +41,7 @@ public class Method implements TabExecutor {
                         } else {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
                         }
+                        break;
                     case "reload":
                         if (args.length == 1) {
                             if (sender.hasPermission("catsero.admin")) {
@@ -51,11 +52,12 @@ public class Method implements TabExecutor {
                         } else {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
                         }
+                        break;
                     default:
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
                 }
             } else
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eCatSero &bby &eXiaMoHuaHuo_CN&b, version: " + Envrionment.plugin_version));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eCatSero &bby &eXiaMoHuaHuo_CN, version: " + Envrionment.plugin_version));
 
         } catch (Exception e) {
             Logger.logCatch(e);

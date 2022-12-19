@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="/cms命令" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="兼容旧版不支持增强switch">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/Method.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/Method.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -318,7 +322,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671427645985</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="漏掉的颜色">
+      <created>1671427732526</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1671427732526</updated>
+    </task>
+    <task id="LOCAL-00016" summary="兼容旧版不支持增强switch">
+      <created>1671427882419</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1671427882419</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -355,7 +373,9 @@
     <MESSAGE value="部分完工x6" />
     <MESSAGE value="I18n 改为JSON而不是YAML" />
     <MESSAGE value="/cms命令" />
-    <option name="LAST_COMMIT_MESSAGE" value="/cms命令" />
+    <MESSAGE value="漏掉的颜色" />
+    <MESSAGE value="兼容旧版不支持增强switch" />
+    <option name="LAST_COMMIT_MESSAGE" value="兼容旧版不支持增强switch" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

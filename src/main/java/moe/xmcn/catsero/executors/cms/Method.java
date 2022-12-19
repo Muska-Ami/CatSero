@@ -48,15 +48,12 @@ public class Method implements TabExecutor {
                     case 1:
                         sublist.add("BotID");
                         return sublist;
-
                     case 2:
                         sublist.add("GroupID");
                         return sublist;
-
                     case 3:
                         sublist.add("Message");
                         return sublist;
-
                 }
             }
         } catch (Exception e) {
