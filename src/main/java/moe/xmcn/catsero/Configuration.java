@@ -23,12 +23,17 @@
  */
 package moe.xmcn.catsero;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
-import java.io.File;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public interface Configuration {
 
@@ -56,6 +61,7 @@ public interface Configuration {
 
         String LOCALE = CFI.plugin_config.getString("locale");
         boolean BSTATS = CFI.plugin_config.getBoolean("bstats");
+
         interface CHECK_UPDATE {
             /* 定义节点 为了区分
              用拼凑的`"check-update" + "."`
@@ -68,6 +74,7 @@ public interface Configuration {
             String API_URL = CFI.plugin_config.getString(sub_node + "api-url");
             String MODE = CFI.plugin_config.getString(sub_node + "mode");
         }
+
         interface CUSTOM_QQ_COMMAND_PREFIX {
             String sub_node = "custom-qq-command-prefix" + ".";
 
@@ -80,26 +87,81 @@ public interface Configuration {
 
     }
 
+    interface I18N {
+        JSONObject object = getIJObject();
+
+        interface MINECRAFT {
+            JSONObject minecraft = object.getJSONObject("minecraft");
+            interface COMMAND {
+                JSONObject command = minecraft.getJSONObject("command");
+
+                String INVALID_OPTION = command.getString("invalid-option");
+                String NO_PERMISSION = command.getString("no-permission");
+                interface RELOAD {
+                    JSONObject reload = command.getJSONObject("reload");
+
+                    String SUCCESS = reload.getString("success");
+                }
+                interface CMS {
+                    JSONObject cms = command.getJSONObject("cms");
+
+                    String SENT = cms.getString("sent");
+                    String ERROR = cms.getString("error");
+                }
+            }
+        }
+    }
+
+    private static JSONObject buildObject() throws IOException {
+        String locale;
+        locale = Objects.requireNonNull(PLUGIN.LOCALE, "zh_CN");
+
+        InputStreamReader isr = new InputStreamReader(new FileInputStream(plugin.getDataFolder() + "/locale/" + locale + ".json"), StandardCharsets.UTF_8);
+        BufferedReader in = new BufferedReader(isr);
+        String body;
+        StringBuilder data = new StringBuilder();
+        while ((body = in.readLine()) != null) {
+            data.append(body);
+        }
+
+        return JSON.parseObject(data.toString());
+    }
+
+    private static JSONObject getIJObject() {
+        try {
+            return buildObject();
+        } catch (IOException e) {
+            Logger.logCatch(e);
+        }
+        return null;
+    }
+
     static void saveFiles() {
         Logger.logLoader("Saving plugin & uses config...");
         if (!new File(plugin.getDataFolder(), "config.yml").exists()) plugin.saveResource("config.yml", false);
-        if (!new File(plugin.getDataFolder(), "uses-config.yml").exists()) plugin.saveResource("uses-config.yml", false);
+        if (!new File(plugin.getDataFolder(), "uses-config.yml").exists())
+            plugin.saveResource("uses-config.yml", false);
         Logger.logLoader("Saved.");
 
         Logger.logLoader("Saving mirai-configs...");
-        if (!new File(plugin.getDataFolder(), "mirai-configs/bot.yml").exists()) plugin.saveResource("mirai-configs/bot.yml", false);
-        if (!new File(plugin.getDataFolder(), "mirai-configs/group.yml").exists()) plugin.saveResource("mirai-configs/group.yml", false);
-        if (!new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml").exists()) plugin.saveResource("mirai-configs/qq-op.yml", false);
+        if (!new File(plugin.getDataFolder(), "mirai-configs/bot.yml").exists())
+            plugin.saveResource("mirai-configs/bot.yml", false);
+        if (!new File(plugin.getDataFolder(), "mirai-configs/group.yml").exists())
+            plugin.saveResource("mirai-configs/group.yml", false);
+        if (!new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml").exists())
+            plugin.saveResource("mirai-configs/qq-op.yml", false);
         Logger.logLoader("Saved.");
 
         Logger.logLoader("Saving default locale...");
-        if (!new File(plugin.getDataFolder(), "locale/zh_CN.yml").exists()) plugin.saveResource("locale/zh_CN.yml", false);
+        if (!new File(plugin.getDataFolder(), "locale/zh_CN.json").exists())
+            plugin.saveResource("locale/zh_CN.json", false);
         Logger.logLoader("Saved.");
 
         Logger.logLoader("Saving version...");
         plugin.saveResource("version", true);
         Logger.logLoader("Saved.");
     }
+
     static void reloadFiles() {
         Logger.logLoader("Saving files...");
         saveFiles();
@@ -115,6 +177,59 @@ public interface Configuration {
 
         CFI.plugin_config = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "locale" + PLUGIN.LOCALE + ".yml"));
         Logger.logLoader("Reloaded.");
+    }
+
+    interface Interface {
+        /*
+        /**
+         * 获得回执文本
+         *
+         * @param iid 文本I18nID
+         * @return 回执文本/undefined
+         *\/
+        static String getI18n(String iid) throws IOException {
+            String locale;
+            locale = Objects.requireNonNull(PLUGIN.LOCALE, "zh_CN");
+
+            BufferedReader in = new BufferedReader(new FileReader(plugin.getDataFolder() + "locale/" + locale + ".json"));
+            String body;
+            StringBuilder data = new StringBuilder();
+            while ((body = in.readLine()) != null) {
+                data.append(body);
+            }
+
+            JSONObject object = JSON.parseObject(data.toString());
+
+            String[] node_tree = iid.split("\\.");
+            for (var i = 0;i<=node_tree.length - 1;i++) {
+                object.get()
+            }
+
+            /*if (messageData.getString(iid) != null) {
+                return messageData.getString(iid);
+            } else {
+                return "undefined";
+            }*\/
+        }
+        */
+
+        static long getBotCode(String botid) {
+            return CFI.bot_config.getLong("list." + botid);
+        }
+
+        static long getGroupCode(String groupid) {
+            return CFI.group_config.getLong("list." + groupid);
+        }
+
+        static boolean isQQOp(long senderID) {
+            AtomicBoolean isOp = new AtomicBoolean(false);
+            CFI.qqop_config.getLongList("list").forEach(it -> {
+                if (it == senderID) {
+                    isOp.set(true);
+                }
+            });
+            return isOp.get();
+        }
     }
 
 }

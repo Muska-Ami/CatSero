@@ -15,12 +15,16 @@
     - MCBBS发布页：[https://www.mcbbs.net/thread-1342417-1-1.html](https://www.mcbbs.net/thread-1342417-1-1.html)
     - KLPBBS发布页：[https://klpbbs.com/thread-43498-1-1.html](https://klpbbs.com/thread-43498-1-1.html)
 
+## Tip
+
+本插件会覆盖JSON解析库 `com.alibaba.fastjson` `com.alibaba.fastjson2` 等FastJSON的相关类
+
 ### v1使用文档
 
 请见此处 [https://github.com/XiaMoHuaHuo-CN/CatSero/blob/v1/README.md](https://github.com/XiaMoHuaHuo-CN/CatSero/blob/v1/README.md)  
 **v1不受支持**
 
-## 都有什么功能？
+## 功能
 
 - 玩家死亡转发
 - 聊天转发兼容TrChat

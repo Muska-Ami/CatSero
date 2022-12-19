@@ -23,6 +23,7 @@
  */
 package moe.xmcn.catsero;
 
+import moe.xmcn.catsero.executors.ExecutorRegister;
 import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.bStatsMetrics;
@@ -61,6 +62,11 @@ public class CatSero extends JavaPlugin {
     @Override
     public void onEnable() {
         if (Envrionment.Depends.MiraiMC) {
+            Logger.logLoader("Registering Executors...");
+            ExecutorRegister.register();
+            Logger.logLoader("Registered.");
+            Logger.logLoader("Registering Listeners...");
+            Logger.logLoader("Registered.");
             if (Configuration.PLUGIN.BSTATS) {
                 Logger.logINFO("Start bStats.");
                 new bStatsMetrics(this, 14767);

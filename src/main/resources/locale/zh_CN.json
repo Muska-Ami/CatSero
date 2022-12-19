@@ -1,0 +1,21 @@
+{
+    "minecraft": {
+        "command": {
+            "invalid-option": "&c不正确的参数格式",
+            "no-permission": "&c你没有权限这么做",
+            "reload": {
+                "success": "&a配置文件已重载"
+            },
+            "cms": {
+                "sent": "&a消息已发送",
+                "error": "&c发送消息时发生错误"
+            }
+        }
+    },
+    "qq": {
+        "command": {
+            "invalid-option": "不正确的参数格式",
+            "no-permission": "你没有权限这么做"
+        }
+    }
+}

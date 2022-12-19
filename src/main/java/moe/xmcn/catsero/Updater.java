@@ -25,10 +25,10 @@ public class Updater implements Runnable, Listener {
         String data = hc.getRequest(Configuration.PLUGIN.CHECK_UPDATE.API_URL);
         JSONObject object = JSON.parseObject(data);
 
-        latest_version = JSON.parseObject(object.get("latest").toString()).getString("tag");
+        latest_version = object.getJSONObject("latest").getString("tag");
         beta_version = Arrays.asList(
-                JSON.parseObject(object.get("beta").toString()).getString("jar_zip"),
-                JSON.parseObject(object.get("beta").toString()).getString("full_zip")
+                object.getJSONObject("beta").getString("jar_zip"),
+                object.getJSONObject("beta").getString("full_zip")
         ).toArray(new String[0]);
         if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest")) {
             Logger.logINFO("CatSero latest version: " + latest_version);
@@ -46,7 +46,7 @@ public class Updater implements Runnable, Listener {
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         if (player.isOp()) {
-            if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest") && !now_version.equals(latest_version))
+            if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest") && latest_version != null && !now_version.equals(latest_version))
                 player.sendMessage(
                         ChatColor.translateAlternateColorCodes(
                                 '&',
@@ -55,7 +55,7 @@ public class Updater implements Runnable, Listener {
                                         "&b, your version: &e" + now_version
                         )
                 );
-            else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta"))
+            else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta") && beta_version != null)
                 player.sendMessage(
                         ChatColor.translateAlternateColorCodes(
                                 '&',

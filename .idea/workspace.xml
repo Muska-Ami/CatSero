@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="部分完工x6">
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/bStatsMetrics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/ExecutorRegister.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/Method.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/Method.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/locale/zh_CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_12_18_20_07____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2022_12_18_20_07____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_12_18_20_07____1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2022_12_18_20_07____1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Updater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Updater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/HttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/zh_CN.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/zh_CN.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +69,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -103,6 +111,12 @@
       <recent name="D:\Otr\IdeaProjects\CatSero\server-test\plugins" />
       <recent name="D:\Otr\IdeaProjects\CatSero\build\libs" />
       <recent name="D:\Otr\IdeaProjects\CatSero\src\main\java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Otr\IdeaProjects\CatSero\" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="moe.xmcn.catsero.commands.catsero" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.CatSero [build]">
