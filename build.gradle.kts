@@ -24,8 +24,8 @@ dependencies {
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.7.1")
     implementation("com.alibaba:fastjson:2.0.21")
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
 }
 
 tasks.getByName<Test>("test") {
