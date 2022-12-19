@@ -39,32 +39,27 @@ public class OnPlayerDeathEvent implements Listener {
         try {
             if (Configuration.USES_CONFIG.SEND_PLAYER_DEATH.ENABLE) {
                 if (Configuration.USES_CONFIG.SEND_PLAYER_DEATH.NEED_PERMISSION) {
-                    if (e.getEntity().hasPermission("catsero.send-death")) {
-                        Player player = e.getEntity();
-                        String death_message = e.getDeathMessage();
-
-                        String message = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.FORMAT;
-
-                        message = message.replace("%player%", player.getName())
-                                .replace("%message%", death_message);
-                        message = PAPI.toPAPI(player, message);
-                        MessageSender.sendGroup(message, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.GROUP);
-                    }
-                } else {
-                    Player player = e.getEntity();
-                    String death_message = e.getDeathMessage();
-
-                    String message = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.FORMAT;
-
-                    message = message.replace("%player%", player.getName())
-                            .replace("%message%", death_message);
-                    message = PAPI.toPAPI(player, message);
-                    MessageSender.sendGroup(message, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.GROUP);
-                }
+                    if (e.getEntity().hasPermission("catsero.send-death"))
+                        run(e);
+                } else
+                    run(e);
             }
         } catch (Exception ex) {
             Logger.logCatch(ex);
         }
+    }
+
+    public void run(PlayerDeathEvent e) {
+        Player player = e.getEntity();
+        String death_message = e.getDeathMessage();
+
+        String message = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.FORMAT;
+
+        message = message.replace("%player%", player.getName())
+                .replace("%message%", death_message);
+        message = PAPI.toPAPI(player, message);
+        MessageSender.sendGroup(message, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.GROUP);
+
     }
 
 }

@@ -39,25 +39,22 @@ public class OnPlayerJoinEvent implements Listener {
             if (Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.ENABLE) {
                 if (Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.NEED_PERMISSION) {
                     //权限模式
-                    if (pje.getPlayer().hasPermission("catsero.send-player-join-quit.join")) {
-                        String player_name = pje.getPlayer().getName();
-                        String join_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.JOIN;
-                        join_message = join_message.replace("%player%", player_name);
-                        join_message = PAPI.toPAPI(pje.getPlayer(), join_message);
-                        MessageSender.sendGroup(join_message, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.GROUP);
-                    }
-                } else {
-                    //通用模式
-                    String player_name = pje.getPlayer().getName();
-                    String join_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.JOIN;
-                    join_message = join_message.replace("%player%", player_name);
-                    join_message = PAPI.toPAPI(pje.getPlayer(), join_message);
-                    MessageSender.sendGroup(join_message, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.GROUP);
-                }
+                    if (pje.getPlayer().hasPermission("catsero.send-player-join-quit.join"))
+                        run(pje);
+                } else
+                    run(pje);
             }
         } catch (Exception e) {
             Logger.logCatch(e);
         }
+    }
+
+    public void run(PlayerJoinEvent pje) {
+        String player_name = pje.getPlayer().getName();
+        String join_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.JOIN;
+        join_message = join_message.replace("%player%", player_name);
+        join_message = PAPI.toPAPI(pje.getPlayer(), join_message);
+        MessageSender.sendGroup(join_message, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.GROUP);
     }
 
 }

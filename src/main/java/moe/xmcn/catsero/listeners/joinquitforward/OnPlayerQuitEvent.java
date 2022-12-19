@@ -34,30 +34,27 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class OnPlayerQuitEvent implements Listener {
 
     @EventHandler
-    public void onGamePlayerQuitEvent(PlayerQuitEvent plqev) {
+    public void onGamePlayerQuitEvent(PlayerQuitEvent pqe) {
         try {
             if (Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.ENABLE) {
                 if (Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.NEED_PERMISSION) {
                     //权限模式
-                    if (plqev.getPlayer().hasPermission("catsero.send-player-join-quit.quit")) {
-                        String player_name = plqev.getPlayer().getName();
-                        String quit_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.QUIT;
-                        quit_message = quit_message.replace("%player%", player_name);
-                        quit_message = PAPI.toPAPI(plqev.getPlayer(), quit_message);
-                        MessageSender.sendGroup(quit_message, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.GROUP);
-                    }
-                } else {
-                    //通用模式
-                    String player_name = plqev.getPlayer().getName();
-                    String quit_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.QUIT;
-                    quit_message = quit_message.replace("%player%", player_name);
-                    quit_message = PAPI.toPAPI(plqev.getPlayer(), quit_message);
-                    MessageSender.sendGroup(quit_message, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.GROUP);
-                }
+                    if (pqe.getPlayer().hasPermission("catsero.send-player-join-quit.quit"))
+                        run(pqe);
+                } else
+                    run(pqe);
             }
         } catch (Exception e) {
             Logger.logCatch(e);
         }
+    }
+
+    public void run(PlayerQuitEvent pqe) {
+        String player_name = pqe.getPlayer().getName();
+        String quit_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.QUIT;
+        quit_message = quit_message.replace("%player%", player_name);
+        quit_message = PAPI.toPAPI(pqe.getPlayer(), quit_message);
+        MessageSender.sendGroup(quit_message, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.GROUP);
     }
 
 }

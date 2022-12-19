@@ -26,6 +26,7 @@ package moe.xmcn.catsero;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import moe.xmcn.catsero.utils.Logger;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -90,20 +91,18 @@ public interface Configuration {
         Logger.logLoader("Saved.");
     }
 
-    static void reloadFiles() {
+    static void reloadFiles() throws IOException, InvalidConfigurationException {
         Logger.logLoader("Saving files...");
         saveFiles();
         Logger.logLoader("Saved all files.");
 
         Logger.logLoader("Reloading files...");
-        CFI.plugin_config = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "config.yml"));
-        CFI.plugin_config = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "uses-config.yml"));
+        CFI.plugin_config.load(new CFI().config_file);
+        CFI.uses_config.load(new CFI().usesconfig_file);
 
-        CFI.plugin_config = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "mirai-configs/bot.yml"));
-        CFI.plugin_config = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "mirai-configs/group.yml"));
-        CFI.plugin_config = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml"));
-
-        CFI.plugin_config = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "locale" + PLUGIN.LOCALE + ".yml"));
+        CFI.bot_config.load(new CFI().mirai_bot_file);
+        CFI.group_config.load(new CFI().mirai_group_file);
+        CFI.qqop_config.load(new CFI().mirai_qqop_file);
         Logger.logLoader("Reloaded.");
     }
 
@@ -186,9 +185,37 @@ public interface Configuration {
 
             boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
             String FORMAT = CFI.uses_config.getString(sub_node + "format");
+            boolean NEED_PERMISSION = CFI.uses_config.getBoolean(sub_node + "need-permission");
 
             interface MIRAI {
                 String sub_node = "send-advancement.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
+        interface NEW_GROUP_MEMBER {
+            String sub_node = "new-group-member" + ".";
+
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            String FORMAT = CFI.uses_config.getString(sub_node + "format");
+
+            interface MIRAI {
+                String sub_node = "new-group-member.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
+        interface GET_ONLINE_LIST {
+            String sub_node = "get-online-list" + ".";
+
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            String FORMAT_0 = CFI.uses_config.getString(sub_node + "format.0");
+            String FORMAT_1 = CFI.uses_config.getString(sub_node + "format.1");
+
+            interface MIRAI {
+                String sub_node = "get-online-list.var" + ".";
 
                 String BOT = CFI.uses_config.getString(sub_node + "bot");
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
@@ -290,16 +317,16 @@ public interface Configuration {
     class CFI {
         public static File version_file = new File(plugin.getDataFolder(), "version");
         // File
-        static File config_file = new File(plugin.getDataFolder(), "config.yml");
-        static File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
-        static File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
-        static File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
-        static File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
-        static FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(config_file);
-        static FileConfiguration uses_config = YamlConfiguration.loadConfiguration(usesconfig_file);
-        static FileConfiguration bot_config = YamlConfiguration.loadConfiguration(mirai_bot_file);
-        static FileConfiguration group_config = YamlConfiguration.loadConfiguration(mirai_group_file);
-        static FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
+        File config_file = new File(plugin.getDataFolder(), "config.yml");
+        File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
+        File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
+        File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
+        File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
+        static FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(new CFI().config_file);
+        static FileConfiguration uses_config = YamlConfiguration.loadConfiguration(new CFI().usesconfig_file);
+        static FileConfiguration bot_config = YamlConfiguration.loadConfiguration(new CFI().mirai_bot_file);
+        static FileConfiguration group_config = YamlConfiguration.loadConfiguration(new CFI().mirai_group_file);
+        static FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(new CFI().mirai_qqop_file);
     }
 
 }
