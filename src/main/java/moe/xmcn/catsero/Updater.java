@@ -32,39 +32,39 @@ public class Updater implements Runnable, Listener {
         ).toArray(new String[0]);
         if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest")) {
             Logger.logINFO("CatSero latest version: " + latest_version);
-        } else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta")) {
+            if (!now_version.equals(latest_version))
+                Logger.logINFO("Your version is not latest, your version: " + now_version);
+        } else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta"))
             Logger.logINFO(
                     "CatSero actions build:" +
-                    "\nJar Artifact - " + beta_version[0] +
-                    "\nFull Artifact - " + beta_version[1]
+                    " \nJar Artifact - " + beta_version[0] +
+                    " \nFull Artifact - " + beta_version[1]
             );
-        }
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         if (player.isOp()) {
-            if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest") && !now_version.equals(latest_version)) {
+            if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest") && !now_version.equals(latest_version))
                 player.sendMessage(
                         ChatColor.translateAlternateColorCodes(
                                 '&',
                                 "&bCatSero has new version: &e" +
                                         latest_version +
-                                        "&b,your version: &e" + now_version
+                                        "&b, your version: &e" + now_version
                         )
                 );
-            } else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta")) {
+            else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta"))
                 player.sendMessage(
                         ChatColor.translateAlternateColorCodes(
                                 '&',
                                 "&bCatSero actions build:" +
-                                        "\nJar Artifact - &e" + beta_version[0] +
-                                        "\n&bFull Artifact - &e" + beta_version[1] +
+                                        "\n Jar Artifact - &e" + beta_version[0] +
+                                        "\n &bFull Artifact - &e" + beta_version[1] +
                                         "\n&byour version: &e" + now_version
                         )
                 );
-            }
         }
     }
 

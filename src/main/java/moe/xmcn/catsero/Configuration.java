@@ -76,6 +76,10 @@ public interface Configuration {
         }
     }
 
+    interface USES_CONFIG {
+
+    }
+
     static void saveFiles() {
         Logger.logLoader("Saving plugin & uses config...");
         if (!new File(plugin.getDataFolder(), "config.yml").exists()) plugin.saveResource("config.yml", false);

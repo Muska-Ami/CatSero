@@ -25,6 +25,7 @@ package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Logger;
+import moe.xmcn.catsero.utils.bStatsMetrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
@@ -59,11 +60,20 @@ public class CatSero extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Logger.logLoader("CatSero loaded.");
-        if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
-            Logger.logLoader("Start auto check update.");
-            getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
-            getServer().getPluginManager().registerEvents(new Updater(), this);
+        if (Envrionment.Depends.MiraiMC) {
+            if (Configuration.PLUGIN.BSTATS) {
+                Logger.logINFO("Start bStats.");
+                new bStatsMetrics(this, 14767);
+            }
+            Logger.logLoader("CatSero loaded.");
+            if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
+                Logger.logLoader("Start checking update...");
+                getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
+                getServer().getPluginManager().registerEvents(new Updater(), this);
+            }
+        } else {
+            Logger.logWARN("[Loader] Warning, not install MiraiMC, CatSero will not run!");
+            getServer().getPluginManager().disablePlugin(this);
         }
     }
 
