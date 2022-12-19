@@ -384,12 +384,11 @@ demo-use:
 
 _要触发命令前必须使用前缀`!`或`/`_
 
-| 命令  | 说明  |
-|-----|-----|
-
+| 命令                    | 说明        |
+|-----------------------|-----------|
+| !catsero tps around   | 获取TPS(概数) |
+| !catsero tps accurate | 获取TPS(精确) |
 <!--
-| !catsero tps round                  | 获取TPS(概数)           |
-| !catsero tps accurate               | 获取TPS(精确)           |
 | !catsero list                       | 列出服务器上的所有玩家         |
 | !catsero pm ban \<player> \(reason) | 封禁一个玩家              |
 | !catsero pm unban \<player>         | 解除封禁一名玩家            |
@@ -415,3 +414,4 @@ _要触发命令前必须使用前缀`!`或`/`_
 | catsero.send-player-join-quit      | 玩家加入/退出转发权限，默认无 |
 | catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP |
 | catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP |
+| catsero.send-death                 | 玩家死亡转发权限，默认OP   |

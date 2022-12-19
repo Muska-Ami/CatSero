@@ -155,6 +155,32 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+        interface SEND_PLAYER_DEATH {
+            String sub_node = "send-player-death" + ".";
+
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            String FORMAT = CFI.uses_config.getString(sub_node + "format");
+            boolean NEED_PERMISSION = CFI.uses_config.getBoolean(sub_node + "need-permission");
+
+            interface MIRAI {
+                String sub_node = "send-player-death.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
+        interface GET_TPS {
+            String sub_node = "get-tps" + ".";
+
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+
+            interface MIRAI {
+                String sub_node = "get-tps.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
     }
 
     interface I18N {
@@ -181,6 +207,16 @@ public interface Configuration {
                     String SENT = cms.getString("sent");
                     String ERROR = cms.getString("error");
                 }
+            }
+        }
+        interface QQ {
+            JSONObject qq = object.getJSONObject("qq");
+
+            interface COMMAND {
+                JSONObject command = qq.getJSONObject("command");
+
+                String INVALID_OPTION = command.getString("invalid-option");
+                String NO_PERMISSION = command.getString("no-permission");
             }
         }
     }

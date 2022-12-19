@@ -24,7 +24,7 @@ permissions:
         description: "CatSero OP权限组"
         default: op
       catsero.send-player-join-quit:
-        description: "玩家加入/退出游戏转发权限"
+        description: "玩家加入/退出游戏转发权限组"
         default: false
         children:
           catsero.send-player-join-quit.join:
@@ -33,6 +33,9 @@ permissions:
           catsero.send-player-join-quit.quit:
             description: "玩家退出游戏转发权限"
             default: op
+      catsero.send-death:
+        description: "玩家死亡转发权限"
+        default: op
       catsero.cms:
         description: "cms命令权限"
         default: op

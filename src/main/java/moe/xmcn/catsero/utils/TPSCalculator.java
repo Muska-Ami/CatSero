@@ -21,21 +21,33 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners;
+package moe.xmcn.catsero.utils;
 
-import moe.xmcn.catsero.Configuration;
-import moe.xmcn.catsero.listeners.deadthforward.OnPlayerDeathEvent;
-import moe.xmcn.catsero.listeners.gettps.OnGroupMessageEvent;
-import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerJoinEvent;
-import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerQuitEvent;
+public class TPSCalculator implements Runnable {
+    private static final long[] TICKS = new long[600];
+    private static int TICK_COUNT = 0;
 
-public interface ListenerRegister {
-
-    static void register() {
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerJoinEvent(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerQuitEvent(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerDeathEvent(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnGroupMessageEvent(), Configuration.plugin);
+    public static double getTPS() {
+        return getTPS(100);
     }
 
+    private static double getTPS(int ticks) {
+        if (TICK_COUNT < ticks) {
+            return 20.0D;
+        }
+        int target = (TICK_COUNT - 1 - ticks) % TICKS.length;
+        long elapsed = System.currentTimeMillis() - TICKS[target];
+
+        return ticks / (elapsed / 1000.0D);
+    }
+
+    private static long getElapsed(int tickID) {
+        long time = TICKS[(tickID % TICKS.length)];
+        return System.currentTimeMillis() - time;
+    }
+
+    public void run() {
+        TICKS[(TICK_COUNT % TICKS.length)] = System.currentTimeMillis();
+        TICK_COUNT += 1;
+    }
 }
