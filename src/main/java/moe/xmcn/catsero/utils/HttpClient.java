@@ -40,13 +40,13 @@ public class HttpClient {
             //设置通用的请求属性
             conn.setRequestProperty("accept", "charset=UTF-8");
             conn.setRequestProperty("connection", "Keep-Alive");
-            conn.setRequestProperty("user-agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
+            conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
             //建立实际的连接
             conn.connect();
             //定义BufferedReader输入流来读取URL的响应
             in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line;
-            while ((line = in .readLine()) != null) {
+            while ((line = in.readLine()) != null) {
                 result.append(line);
             }
         } catch (Exception e) {
@@ -55,7 +55,8 @@ public class HttpClient {
         //使用finally块来关闭输入流
         finally {
             try {
-                if ( in != null) { in .close();
+                if (in != null) {
+                    in.close();
                 }
             } catch (Exception ex) {
                 Logger.logCatch(ex);
@@ -63,6 +64,7 @@ public class HttpClient {
         }
         return result.toString();
     }
+
     public String getRequest(String url, String param) {
         StringBuilder result = new StringBuilder();
         BufferedReader in = null;
@@ -74,13 +76,13 @@ public class HttpClient {
             //设置通用的请求属性
             conn.setRequestProperty("accept", "charset=UTF-8");
             conn.setRequestProperty("connection", "Keep-Alive");
-            conn.setRequestProperty("user-agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
+            conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)");
             //建立实际的连接
             conn.connect();
             //定义BufferedReader输入流来读取URL的响应
             in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line;
-            while ((line = in .readLine()) != null) {
+            while ((line = in.readLine()) != null) {
                 result.append(line);
             }
         } catch (Exception e) {
@@ -89,7 +91,8 @@ public class HttpClient {
         //使用finally块来关闭输入流
         finally {
             try {
-                if ( in != null) { in .close();
+                if (in != null) {
+                    in.close();
                 }
             } catch (Exception ex) {
                 Logger.logCatch(ex);

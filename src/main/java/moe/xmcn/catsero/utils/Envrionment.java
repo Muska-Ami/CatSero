@@ -35,11 +35,6 @@ public interface Envrionment {
     String bukkit_version = Configuration.plugin.getServer().getBukkitVersion();
     String plugin_version = getVersion();
 
-    class Depends {
-        public static boolean MiraiMC = false;
-        public static boolean PlaceholderAPI = false;
-        public static boolean TrChat = false;
-    }
     static void check() {
         if (Bukkit.getPluginManager().getPlugin("MiraiMC") != null) Depends.MiraiMC = true;
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) Depends.PlaceholderAPI = true;
@@ -59,5 +54,11 @@ public interface Envrionment {
             Logger.logCatch(e);
         }
         return null;
+    }
+
+    class Depends {
+        public static boolean MiraiMC = false;
+        public static boolean PlaceholderAPI = false;
+        public static boolean TrChat = false;
     }
 }

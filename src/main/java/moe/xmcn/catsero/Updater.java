@@ -37,8 +37,8 @@ public class Updater implements Runnable, Listener {
         } else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta"))
             Logger.logINFO(
                     "CatSero actions build:" +
-                    " \nJar Artifact - " + beta_version[0] +
-                    " \nFull Artifact - " + beta_version[1]
+                            " \nJar Artifact - " + beta_version[0] +
+                            " \nFull Artifact - " + beta_version[1]
             );
     }
 

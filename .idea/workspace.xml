@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="部分完工x6">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/ExecutorRegister.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/Method.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/Method.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/locale/zh_CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_12_18_20_07____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2022_12_18_20_07____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_12_18_20_07____1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2022_12_18_20_07____1.xml" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="I18n 改为JSON而不是YAML">
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/MessageSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Updater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Updater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/zh_CN.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/zh_CN.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/Method.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671387100927</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="I18n 改为JSON而不是YAML">
+      <created>1671425788440</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1671425788440</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -353,7 +351,8 @@
     <MESSAGE value="部分完工x4" />
     <MESSAGE value="部分完工x5" />
     <MESSAGE value="部分完工x6" />
-    <option name="LAST_COMMIT_MESSAGE" value="部分完工x6" />
+    <MESSAGE value="I18n 改为JSON而不是YAML" />
+    <option name="LAST_COMMIT_MESSAGE" value="I18n 改为JSON而不是YAML" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

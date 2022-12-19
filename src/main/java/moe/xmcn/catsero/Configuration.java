@@ -40,78 +40,6 @@ public interface Configuration {
     // 定义plugin
     Plugin plugin = CatSero.getPlugin(CatSero.class);
 
-    class CFI {
-        // File
-        static File config_file = new File(plugin.getDataFolder(), "config.yml");
-        static File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
-        static File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
-        static File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
-        static File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
-        public static File version_file = new File(plugin.getDataFolder(), "version");
-
-        static FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(config_file);
-        static FileConfiguration uses_config = YamlConfiguration.loadConfiguration(usesconfig_file);
-        static FileConfiguration bot_config = YamlConfiguration.loadConfiguration(mirai_bot_file);
-        static FileConfiguration group_config = YamlConfiguration.loadConfiguration(mirai_group_file);
-        static FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
-    }
-
-    // 配置定义
-    interface PLUGIN {
-
-        String LOCALE = CFI.plugin_config.getString("locale");
-        boolean BSTATS = CFI.plugin_config.getBoolean("bstats");
-
-        interface CHECK_UPDATE {
-            /* 定义节点 为了区分
-             用拼凑的`"check-update" + "."`
-             而不是`"check-update."`
-             */
-            String sub_node = "check-update" + ".";
-
-            boolean ENABLE = CFI.plugin_config.getBoolean(sub_node + "enable");
-            int INTERVAL = CFI.plugin_config.getInt(sub_node + "interval");
-            String API_URL = CFI.plugin_config.getString(sub_node + "api-url");
-            String MODE = CFI.plugin_config.getString(sub_node + "mode");
-        }
-
-        interface CUSTOM_QQ_COMMAND_PREFIX {
-            String sub_node = "custom-qq-command-prefix" + ".";
-
-            boolean ENABLE = CFI.plugin_config.getBoolean(sub_node + "enable");
-            String PREFIX = CFI.plugin_config.getString(sub_node + "prefix");
-        }
-    }
-
-    interface USES_CONFIG {
-
-    }
-
-    interface I18N {
-        JSONObject object = getIJObject();
-
-        interface MINECRAFT {
-            JSONObject minecraft = object.getJSONObject("minecraft");
-            interface COMMAND {
-                JSONObject command = minecraft.getJSONObject("command");
-
-                String INVALID_OPTION = command.getString("invalid-option");
-                String NO_PERMISSION = command.getString("no-permission");
-                interface RELOAD {
-                    JSONObject reload = command.getJSONObject("reload");
-
-                    String SUCCESS = reload.getString("success");
-                }
-                interface CMS {
-                    JSONObject cms = command.getJSONObject("cms");
-
-                    String SENT = cms.getString("sent");
-                    String ERROR = cms.getString("error");
-                }
-            }
-        }
-    }
-
     private static JSONObject buildObject() throws IOException {
         String locale;
         locale = Objects.requireNonNull(PLUGIN.LOCALE, "zh_CN");
@@ -179,6 +107,65 @@ public interface Configuration {
         Logger.logLoader("Reloaded.");
     }
 
+    // 配置定义
+    interface PLUGIN {
+
+        String LOCALE = CFI.plugin_config.getString("locale");
+        boolean BSTATS = CFI.plugin_config.getBoolean("bstats");
+
+        interface CHECK_UPDATE {
+            /* 定义节点 为了区分
+             用拼凑的`"check-update" + "."`
+             而不是`"check-update."`
+             */
+            String sub_node = "check-update" + ".";
+
+            boolean ENABLE = CFI.plugin_config.getBoolean(sub_node + "enable");
+            int INTERVAL = CFI.plugin_config.getInt(sub_node + "interval");
+            String API_URL = CFI.plugin_config.getString(sub_node + "api-url");
+            String MODE = CFI.plugin_config.getString(sub_node + "mode");
+        }
+
+        interface CUSTOM_QQ_COMMAND_PREFIX {
+            String sub_node = "custom-qq-command-prefix" + ".";
+
+            boolean ENABLE = CFI.plugin_config.getBoolean(sub_node + "enable");
+            String PREFIX = CFI.plugin_config.getString(sub_node + "prefix");
+        }
+    }
+
+    interface USES_CONFIG {
+
+    }
+
+    interface I18N {
+        JSONObject object = getIJObject();
+
+        interface MINECRAFT {
+            JSONObject minecraft = object.getJSONObject("minecraft");
+
+            interface COMMAND {
+                JSONObject command = minecraft.getJSONObject("command");
+
+                String INVALID_OPTION = command.getString("invalid-option");
+                String NO_PERMISSION = command.getString("no-permission");
+
+                interface RELOAD {
+                    JSONObject reload = command.getJSONObject("reload");
+
+                    String SUCCESS = reload.getString("success");
+                }
+
+                interface CMS {
+                    JSONObject cms = command.getJSONObject("cms");
+
+                    String SENT = cms.getString("sent");
+                    String ERROR = cms.getString("error");
+                }
+            }
+        }
+    }
+
     interface Interface {
         /*
         /**
@@ -230,6 +217,21 @@ public interface Configuration {
             });
             return isOp.get();
         }
+    }
+
+    class CFI {
+        public static File version_file = new File(plugin.getDataFolder(), "version");
+        // File
+        static File config_file = new File(plugin.getDataFolder(), "config.yml");
+        static File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
+        static File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
+        static File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
+        static File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
+        static FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(config_file);
+        static FileConfiguration uses_config = YamlConfiguration.loadConfiguration(usesconfig_file);
+        static FileConfiguration bot_config = YamlConfiguration.loadConfiguration(mirai_bot_file);
+        static FileConfiguration group_config = YamlConfiguration.loadConfiguration(mirai_group_file);
+        static FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
     }
 
 }

@@ -45,8 +45,8 @@ fun loadEnv(): Any {
     return tokens;
 }
 
-fun delFiles(dir:String){
-    val configs=fileTree(dir)
+fun delFiles(dir: String) {
+    val configs = fileTree(dir)
     for (f in configs) {
         f.delete()
     }
@@ -99,5 +99,5 @@ tasks.create<Jar>("fatJar") {
 
 //build命令依赖的其他命令
 tasks.build {
-    dependsOn("processShell",tasks.processResources,"fatJar")
+    dependsOn("processShell", tasks.processResources, "fatJar")
 }

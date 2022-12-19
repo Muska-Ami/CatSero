@@ -23,10 +23,11 @@
  */
 package moe.xmcn.catsero.utils;
 
+import moe.xmcn.catsero.Configuration;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
-import moe.xmcn.catsero.Configuration;
 
 public interface Logger {
 
@@ -41,6 +42,7 @@ public interface Logger {
     static void logLoader(String msg) {
         logINFO("[Loader] " + msg);
     }
+
     static void logLoader(List<String> msgs) {
         for (int i = 1; i < msgs.toArray().length + 1; i++) {
             logINFO("[Loader] " + msgs.toArray()[i - 1]);

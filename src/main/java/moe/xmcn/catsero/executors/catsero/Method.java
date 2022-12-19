@@ -5,8 +5,8 @@ import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.TabExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +36,8 @@ public class Method implements TabExecutor {
                                 for (int i = 1; i <= env.toArray().length; i++) {
                                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', (String) env.toArray()[i - 1]));
                                 }
-                            }
+                            } else
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.NO_PERMISSION));
                         } else {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
                         }
@@ -46,9 +47,8 @@ public class Method implements TabExecutor {
                             if (sender.hasPermission("catsero.admin")) {
                                 Configuration.reloadFiles();
                                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.RELOAD.SUCCESS));
-                            } else {
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
-                            }
+                            } else
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.NO_PERMISSION));
                         } else {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
                         }
@@ -57,7 +57,7 @@ public class Method implements TabExecutor {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
                 }
             } else
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bCatSero&r by &eXiaMoHuaHuo_CN"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eCatSero &bby &eXiaMoHuaHuo_CN, version: " + Envrionment.plugin_version));
 
         } catch (Exception e) {
             Logger.logCatch(e);

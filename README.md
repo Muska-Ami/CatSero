@@ -192,7 +192,7 @@ new-group-member-message:
   # - %at%  @新成员
   # - %code%  新成员QQ号
   format: "欢迎%at%（%code%）加入本群!"
-  
+
 # TPS获取
 get-tps:
   # 功能开关
@@ -312,18 +312,11 @@ Bot配置位于`mirai-configs/bot.yml`
 
 ```yaml
 list:
-  example: 123456789
-  example2: 123456789
+  hello-bot: 123456789
 ```
 
 list下的`example`与`example2`即为BotID  
-创建格式为`<id>: <Bot QQ号>`  
-您可以新建若干Bot，例如，让我们把文件改为
-
-```yaml
-list:
-  hello-bot: 123456789
-```
+创建格式为`<id>: <Bot QQ号>`
 
 ### Group配置指南
 
@@ -332,22 +325,22 @@ Group配置位于`mirai-configs/group.yml`
 
 ```yaml
 list:
-  example: 123456789
-  example2: 123456789
+  hello-group: 123456789
 ```
 
 list下的`example`与`example2`即为GroupID  
-创建格式为`<id>: <群号>`  
-您可以新建若干Group，例如，让我们把文件改为
-
-```yaml
-list:
-  hello-group: 123456789
-```
+创建格式为`<id>: <群号>`
 
 ### QQOp配置指南
 
 QQOp配置位于`mirai-configs/qq-op.yml`  
+首次打开，您应该会看到如下内容
+
+```yaml
+list:
+  - 123456789
+```
+
 您只需要按照YAML数组格式添加用户QQ号即可
 </details>
 
@@ -380,14 +373,16 @@ example:
 |-------------------------------------|----------|
 | /catsero version                    | 插件版本以及信息 |
 | /catsero reload                     | 重载配置文件   |
-| /cms \<message> \<BotID> \<GroupID> | 发送群消息    |
+| /cms \<BotID> \<GroupID> \<message> | 发送群消息    |
 
 ### QQ
 
 _要触发命令前必须使用前缀`!`或`/`_
 
-| 命令                                  | 说明                  |
-|-------------------------------------|---------------------|
+| 命令  | 说明  |
+|-----|-----|
+
+<!--
 | !catsero tps round                  | 获取TPS(概数)           |
 | !catsero tps accurate               | 获取TPS(精确)           |
 | !catsero list                       | 列出服务器上的所有玩家         |
@@ -399,6 +394,7 @@ _要触发命令前必须使用前缀`!`或`/`_
 | !catsero pm deop \<player>          | 取消一名玩家OP            |
 | !catsero pm kick \<player> (reason) | 踢出一名玩家              |
 | !catsero cmd \<command>             | 以控制台身份执行Minecraft命令 |
+-->
 
 # bStats
 
@@ -406,11 +402,14 @@ _要触发命令前必须使用前缀`!`或`/`_
 
 ## 权限
 
-| 权限                                 | 说明                         |
-|------------------------------------|----------------------------|
-| catsero.*                          | 所有权限，默认无                   |
-| catsero.admin                      | 管理权限，默认OP                  |
+| 权限            | 说明            |
+|---------------|---------------|
+| catsero.*     | 所有权限，默认无      |
+| catsero.admin | 管理权限，默认OP     |
+| catsero.cms   | 使用CMS命令权限，默认无 |
+
+<!--
 | catsero.send-player-join-quit      | 玩家加入/退出转发权限，默认无            |
 | catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP            |
 | catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP            |
-| catsero.cms                        | 使用CMS命令权限，默认无              |
+-->
