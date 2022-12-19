@@ -45,18 +45,18 @@ public class Method implements TabExecutor {
             if (args.length >= 1) {
                 List<String> sublist = new ArrayList<>();
                 switch (args.length) {
-                    case 1 -> {
+                    case 1:
                         sublist.add("BotID");
                         return sublist;
-                    }
-                    case 2 -> {
+
+                    case 2:
                         sublist.add("GroupID");
                         return sublist;
-                    }
-                    case 3 -> {
+
+                    case 3:
                         sublist.add("Message");
                         return sublist;
-                    }
+
                 }
             }
         } catch (Exception e) {

@@ -18,7 +18,7 @@ public class Method implements TabExecutor {
         try {
             if (args.length >= 1) {
                 switch (args[0]) {
-                    case "version" -> {
+                    case "version":
                         if (args.length == 1) {
                             if (sender.hasPermission("catsero.admin")) {
                                 List<String> env = Arrays.asList(
@@ -41,8 +41,7 @@ public class Method implements TabExecutor {
                         } else {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
                         }
-                    }
-                    case "reload" -> {
+                    case "reload":
                         if (args.length == 1) {
                             if (sender.hasPermission("catsero.admin")) {
                                 Configuration.reloadFiles();
@@ -52,8 +51,7 @@ public class Method implements TabExecutor {
                         } else {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
                         }
-                    }
-                    default ->
+                    default:
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
                 }
             } else
