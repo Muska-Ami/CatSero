@@ -15,12 +15,16 @@
     - MCBBS发布页：[https://www.mcbbs.net/thread-1342417-1-1.html](https://www.mcbbs.net/thread-1342417-1-1.html)
     - KLPBBS发布页：[https://klpbbs.com/thread-43498-1-1.html](https://klpbbs.com/thread-43498-1-1.html)
 
+## Tip
+
+本插件会覆盖JSON解析库 `com.alibaba.fastjson` `com.alibaba.fastjson2` 等FastJSON的相关类
+
 ### v1使用文档
 
 请见此处 [https://github.com/XiaMoHuaHuo-CN/CatSero/blob/v1/README.md](https://github.com/XiaMoHuaHuo-CN/CatSero/blob/v1/README.md)  
 **v1不受支持**
 
-## 都有什么功能？
+## 功能
 
 - 玩家死亡转发
 - 聊天转发兼容TrChat
@@ -43,21 +47,35 @@
 <summary>点此展开/收起</summary>
 
 ```yaml
-# CatSero配置文件
+# CatSero Plugin Config
+# Generate by CatSero v@plugin.version@
 
 # 语言文件
 locale: zh_CN
-# 接受bStats统计(https://bstats.org)
-# true | false
-allow-bstats: true
 
-# 自定义命令头
-qq-command-prefix:
+# bStats
+bstats: true
+
+# 检查更新
+check-update:
   # 功能开关
   # true | false
-  enabled: false
-  # 格式
-  format: ""
+  enable: true
+  # 检查更新间隔
+  # 单位: 秒
+  interval: 3600
+  # 版本模式
+  mode: latest
+  # 检查更新服务器API地址，一般情况请勿修改
+  api-url: https://mcp.huahuo-cn.tk/api/CatSero/version
+
+# 自定义QQ命令头
+custom-qq-command-prefix:
+  # 功能开关
+  # true | false
+  enable: false
+  # 命令头
+  prefix: ""
 ```
 
 </details>
@@ -68,19 +86,20 @@ qq-command-prefix:
 <summary>点此展开/收起</summary>
 
 ```yaml
-# CatSero功能设置
+# CatSero UsesConfig
+# Generate by CatSero v@plugin.version@
 
 # 发送玩家加入/退出消息
 send-player-join-quit:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 格式
   # 内置占位符:
   # - %player% 加入玩家名称
@@ -96,13 +115,13 @@ send-player-join-quit:
 chat-forward:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 格式
   # 内置占位符:
   # - %name%  (To MC)发送者名称
@@ -125,7 +144,7 @@ chat-forward:
   filter:
     # 功能开关
     # true | false
-    enabled: false
+    enable: false
     # 关键词列表
     list:
       - "傻逼"
@@ -137,7 +156,7 @@ chat-forward:
   prefix:
     # 功能开关
     # true | false
-    enabled: false
+    enable: false
     # 格式
     format:
       # 发送到Minecraft
@@ -149,13 +168,13 @@ chat-forward:
 send-player-death:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 格式
   # 内置占位符:
   # - %player%  玩家名
@@ -166,42 +185,42 @@ send-player-death:
 new-group-member-message:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 格式
   # 内置占位符:
   # - %at%  @新成员
   # - %code%  新成员QQ号
   format: "欢迎%at%（%code%）加入本群!"
-  
+
 # TPS获取
 get-tps:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
 
 # 在线玩家获取
 get-online-players:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 格式
   # 内置占位符:
   # - %count%  当前在线玩家数
@@ -216,13 +235,13 @@ get-online-players:
 player-manager:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
   # 启用的工具
   # 支持：ban, op, kick
   tools:
@@ -241,7 +260,7 @@ player-manager:
         custom-command:
           # 功能开关
           # true | false
-          enabled: false
+          enable: false
           # 封禁命令
           # 内置占位符:
           # - %player%  玩家名
@@ -253,7 +272,7 @@ player-manager:
         custom-command:
           # 功能开关
           # true | false
-          enabled: false
+          enable: false
           # 封禁命令
           # 内置占位符:
           # - %player%  玩家名
@@ -270,13 +289,13 @@ player-manager:
 dispatch-command:
   # 功能开关
   # true | false
-  enabled: false
+  enable: false
   # Bot & Group设置
   var:
     # BotID
-    bot: example
+    bot: hello-bot
     # GroupID
-    group: example
+    group: hello-group
 ```
 
 </details>
@@ -298,18 +317,11 @@ Bot配置位于`mirai-configs/bot.yml`
 
 ```yaml
 list:
-  example: 123456789
-  example2: 123456789
+  hello-bot: 123456789
 ```
 
 list下的`example`与`example2`即为BotID  
-创建格式为`<id>: <Bot QQ号>`  
-您可以新建若干Bot，例如，让我们把文件改为
-
-```yaml
-list:
-  hello-bot: 123456789
-```
+创建格式为`<id>: <Bot QQ号>`
 
 ### Group配置指南
 
@@ -318,22 +330,22 @@ Group配置位于`mirai-configs/group.yml`
 
 ```yaml
 list:
-  example: 123456789
-  example2: 123456789
+  hello-group: 123456789
 ```
 
 list下的`example`与`example2`即为GroupID  
-创建格式为`<id>: <群号>`  
-您可以新建若干Group，例如，让我们把文件改为
-
-```yaml
-list:
-  hello-group: 123456789
-```
+创建格式为`<id>: <群号>`
 
 ### QQOp配置指南
 
 QQOp配置位于`mirai-configs/qq-op.yml`  
+首次打开，您应该会看到如下内容
+
+```yaml
+list:
+  - 123456789
+```
+
 您只需要按照YAML数组格式添加用户QQ号即可
 </details>
 
@@ -345,10 +357,10 @@ QQOp配置位于`mirai-configs/qq-op.yml`
 打开`uses-config.yml`，您应该会发现每个功能下会有一个`var`:
 
 ```yaml
-example:
+demo-use:
   var:
-    bot: example
-    group: example
+    bot: hello-bot
+    group: hello-group
 ```
 
 `var`内的`bot`即为Bot配置中的BotID
@@ -366,14 +378,16 @@ example:
 |-------------------------------------|----------|
 | /catsero version                    | 插件版本以及信息 |
 | /catsero reload                     | 重载配置文件   |
-| /cms \<message> \<BotID> \<GroupID> | 发送群消息    |
+| /cms \<BotID> \<GroupID> \<message> | 发送群消息    |
 
 ### QQ
 
 _要触发命令前必须使用前缀`!`或`/`_
 
-| 命令                                  | 说明                  |
-|-------------------------------------|---------------------|
+| 命令  | 说明  |
+|-----|-----|
+
+<!--
 | !catsero tps round                  | 获取TPS(概数)           |
 | !catsero tps accurate               | 获取TPS(精确)           |
 | !catsero list                       | 列出服务器上的所有玩家         |
@@ -385,6 +399,7 @@ _要触发命令前必须使用前缀`!`或`/`_
 | !catsero pm deop \<player>          | 取消一名玩家OP            |
 | !catsero pm kick \<player> (reason) | 踢出一名玩家              |
 | !catsero cmd \<command>             | 以控制台身份执行Minecraft命令 |
+-->
 
 # bStats
 
@@ -392,11 +407,11 @@ _要触发命令前必须使用前缀`!`或`/`_
 
 ## 权限
 
-| 权限                                 | 说明                         |
-|------------------------------------|----------------------------|
-| catsero.*                          | 所有权限，默认无                   |
-| catsero.admin                      | 管理权限，默认OP                  |
-| catsero.send-player-join-quit      | 玩家加入/退出转发权限，默认无            |
-| catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP            |
-| catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP            |
-| catsero.cms                        | 使用CMS命令权限，默认无              |
+| 权限                                 | 说明              |
+|------------------------------------|-----------------|
+| catsero.*                          | 所有权限，默认无        |
+| catsero.admin                      | 管理权限，默认OP       |
+| catsero.cms                        | 使用CMS命令权限，默认无   |
+| catsero.send-player-join-quit      | 玩家加入/退出转发权限，默认无 |
+| catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP |
+| catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP |

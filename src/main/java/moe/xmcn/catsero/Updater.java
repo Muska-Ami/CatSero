@@ -1,0 +1,71 @@
+package moe.xmcn.catsero;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import moe.xmcn.catsero.utils.Envrionment;
+import moe.xmcn.catsero.utils.HttpClient;
+import moe.xmcn.catsero.utils.Logger;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+
+import java.util.Arrays;
+
+public class Updater implements Runnable, Listener {
+
+    private static final String now_version = Envrionment.plugin_version;
+    private static String latest_version;
+    private static String[] beta_version;
+
+    @Override
+    public void run() {
+        HttpClient hc = new HttpClient();
+        String data = hc.getRequest(Configuration.PLUGIN.CHECK_UPDATE.API_URL);
+        JSONObject object = JSON.parseObject(data);
+
+        latest_version = object.getJSONObject("latest").getString("tag");
+        beta_version = Arrays.asList(
+                object.getJSONObject("beta").getString("jar_zip"),
+                object.getJSONObject("beta").getString("full_zip")
+        ).toArray(new String[0]);
+        if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest")) {
+            Logger.logINFO("CatSero latest version: " + latest_version);
+            if (!now_version.equals(latest_version))
+                Logger.logINFO("Your version is not latest, your version: " + now_version);
+        } else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta"))
+            Logger.logINFO(
+                    "CatSero actions build:" +
+                            " \nJar Artifact - " + beta_version[0] +
+                            " \nFull Artifact - " + beta_version[1]
+            );
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent e) {
+        Player player = e.getPlayer();
+        if (player.isOp()) {
+            if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest") && latest_version != null && !now_version.equals(latest_version))
+                player.sendMessage(
+                        ChatColor.translateAlternateColorCodes(
+                                '&',
+                                "&bCatSero has new version: &e" +
+                                        latest_version +
+                                        "&b, your version: &e" + now_version
+                        )
+                );
+            else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta") && beta_version != null)
+                player.sendMessage(
+                        ChatColor.translateAlternateColorCodes(
+                                '&',
+                                "&bCatSero actions build:" +
+                                        "\n Jar Artifact - &e" + beta_version[0] +
+                                        "\n &bFull Artifact - &e" + beta_version[1] +
+                                        "\n&byour version: &e" + now_version
+                        )
+                );
+        }
+    }
+
+}
