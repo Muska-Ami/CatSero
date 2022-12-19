@@ -87,7 +87,6 @@ task<Copy>("processShell") {
 }
 
 tasks.create<Jar>("fatJar") {
-    appendix = ""
     setDuplicatesStrategy(DuplicatesStrategy.FAIL)
     val sourceMain = java.sourceSets["main"]
     from(sourceMain.output)
