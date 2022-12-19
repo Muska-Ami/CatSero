@@ -34,7 +34,7 @@ tasks.compileJava {
     options.encoding = "UTF-8"
 }
 
-// 替换文本内容
+// 替换资源文件的Tokens`config.groovy`
 fun loadEnv(): Any {
     val configFile = file("config.groovy")
     val env = "prod"
