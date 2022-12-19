@@ -29,6 +29,7 @@ import moe.xmcn.catsero.listeners.deadthforward.OnPlayerDeathEvent;
 import moe.xmcn.catsero.listeners.gettps.OnGroupMessageEvent;
 import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerJoinEvent;
 import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerQuitEvent;
+import moe.xmcn.catsero.listeners.newgroupmemberwelcome.OnMemberJoinEvent;
 
 public interface ListenerRegister {
 
@@ -38,6 +39,8 @@ public interface ListenerRegister {
         Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerDeathEvent(), Configuration.plugin);
         Configuration.plugin.getServer().getPluginManager().registerEvents(new OnGroupMessageEvent(), Configuration.plugin);
         Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerAdvancementDoneEvent(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnMemberJoinEvent(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.listeners.getonlinelist.OnGroupMessageEvent(), Configuration.plugin);
     }
 
 }

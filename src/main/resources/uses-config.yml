@@ -1,6 +1,12 @@
 # CatSero UsesConfig
 # Generate by CatSero v@plugin.version@
 
+# 所有的发送至QQ群的消息都支持miraicode
+# 参见：
+# https://docs.mirai.mamoe.net/Messages.html#mirai-%E7%A0%81
+# https://docs.mirai.mamoe.net/Messages.html#%E6%B6%88%E6%81%AF%E5%85%83%E7%B4%A0
+# https://docs.mirai.mamoe.net/Messages.html#%E6%B6%88%E6%81%AF%E9%93%BE%E7%9A%84-mirai-%E7%A0%81
+
 # 发送玩家加入/退出消息
 send-player-join-quit:
   # 功能开关
@@ -43,7 +49,7 @@ send-player-death:
   need-permission: false
 
 # 新人加入群欢迎
-new-group-member-message:
+new-group-member:
   # 功能开关
   # true | false
   enable: false
@@ -92,7 +98,7 @@ get-tps:
     group: hello-group
 
 # 在线玩家获取
-get-online-players:
+get-online-list:
   # 功能开关
   # true | false
   enable: false
@@ -103,11 +109,18 @@ get-online-players:
     # GroupID
     group: hello-group
   # 格式
-  # 内置占位符:
-  # - %count%  当前在线玩家数
-  # - %max%  最大在线玩家数
-  # - %list%  当前在线玩家列表
-  format: |-
-    当前在线: %count%
-    最大在线: %max%
-    玩家列表: %list%
+  format:
+    # 无论是否有玩家在线都会发送
+    # 内置占位符:
+    # - %count%  当前在线玩家数
+    # - %max%  最大在线玩家数
+    0: |-
+      当前在线: %count%
+      最大在线: %max%
+    # 当有玩家在线才发送
+    # 内置占位符:
+    # - %count%  当前在线玩家数
+    # - %max%  最大在线玩家数
+    # - %list%  当前在线玩家列表
+    1: |-
+      玩家列表: %list%

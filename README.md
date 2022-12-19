@@ -30,6 +30,8 @@
 - 玩家加入/退出转发
 - TPS获取
 - 玩家达成进度转发
+- 获取在线玩家
+- 欢迎新群员
 
 ## 配置文件
 
@@ -79,7 +81,13 @@ custom-qq-command-prefix:
 
 ```yaml
 # CatSero UsesConfig
-# Generate by CatSero v@plugin.version@
+# Generate by CatSero v2.0-beta5
+
+# 所有的发送至QQ群的消息都支持miraicode
+# 参见：
+# https://docs.mirai.mamoe.net/Messages.html#mirai-%E7%A0%81
+# https://docs.mirai.mamoe.net/Messages.html#%E6%B6%88%E6%81%AF%E5%85%83%E7%B4%A0
+# https://docs.mirai.mamoe.net/Messages.html#%E6%B6%88%E6%81%AF%E9%93%BE%E7%9A%84-mirai-%E7%A0%81
 
 # 发送玩家加入/退出消息
 send-player-join-quit:
@@ -123,7 +131,7 @@ send-player-death:
   need-permission: false
 
 # 新人加入群欢迎
-new-group-member-message:
+new-group-member:
   # 功能开关
   # true | false
   enable: false
@@ -156,6 +164,8 @@ send-advancement:
   # - %name%  进度名
   # - %description%  进度描述
   format: "%player%达成了进度: %name%\n描述: %description%"
+  # 需要拥有权限才会发送
+  need-permission: false
 
 # TPS获取
 get-tps:
@@ -170,10 +180,10 @@ get-tps:
     group: hello-group
 
 # 在线玩家获取
-get-online-players:
+get-online-list:
   # 功能开关
   # true | false
-  enable: false
+  enable: true
   # Bot & Group设置
   var:
     # BotID
@@ -181,14 +191,21 @@ get-online-players:
     # GroupID
     group: hello-group
   # 格式
-  # 内置占位符:
-  # - %count%  当前在线玩家数
-  # - %max%  最大在线玩家数
-  # - %list%  当前在线玩家列表
-  format: |-
-    当前在线: %count%
-    最大在线: %max%
-    玩家列表: %list%
+  format:
+    # 无论是否有玩家在线都会发送
+    # 内置占位符:
+    # - %count%  当前在线玩家数
+    # - %max%  最大在线玩家数
+    0: |-
+      当前在线: %count%
+      最大在线: %max%
+    # 当有玩家在线才发送
+    # 内置占位符:
+    # - %count%  当前在线玩家数
+    # - %max%  最大在线玩家数
+    # - %list%  当前在线玩家列表
+    1: |-
+      玩家列表: %list%
 ```
 
 </details>
@@ -277,12 +294,12 @@ demo-use:
 
 _要触发命令前必须使用前缀`!`或`/`_
 
-| 命令                    | 说明        |
-|-----------------------|-----------|
-| !catsero tps around   | 获取TPS(概数) |
-| !catsero tps accurate | 获取TPS(精确) |
+| 命令                    | 说明          |
+|-----------------------|-------------|
+| !catsero tps around   | 获取TPS(概数)   |
+| !catsero tps accurate | 获取TPS(精确)   |
+| !catsero list         | 列出服务器上的所有玩家 |
 <!--
-| !catsero list                       | 列出服务器上的所有玩家         |
 | !catsero pm ban \<player> \(reason) | 封禁一个玩家              |
 | !catsero pm unban \<player>         | 解除封禁一名玩家            |
 | !catsero pm pardon \<player>        | 解除封禁一名玩家            |

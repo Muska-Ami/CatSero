@@ -194,6 +194,33 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+        interface NEW_GROUP_MEMBER {
+            String sub_node = "new-group-member" + ".";
+
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            String FORMAT = CFI.uses_config.getString(sub_node + "format");
+
+            interface MIRAI {
+                String sub_node = "new-group-member.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
+        interface GET_ONLINE_LIST {
+            String sub_node = "get-online-list" + ".";
+
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            String FORMAT_0 = CFI.uses_config.getString(sub_node + "format.0");
+            String FORMAT_1 = CFI.uses_config.getString(sub_node + "format.1");
+
+            interface MIRAI {
+                String sub_node = "get-online-list.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
     }
 
     interface I18N {
