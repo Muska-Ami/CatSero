@@ -18,8 +18,8 @@
             "no-permission": "你没有权限这么做"
         },
         "call": {
-            "member": "成员"
-            "admin": "管理员"
+            "member": "成员",
+            "admin": "管理员",
             "owner": "群主"
         }
     }
