@@ -37,8 +37,16 @@ public class OnGroupMessageEvent implements Listener {
         format = format.replace("%message%", message);
                 //.replace("%name%", );
         int sender_permission = e.getSenderPermission();
-        if (sender_permission == 0) {
-            format = format.replace("%sender_permission%", Configuration.I18N.QQ.);
+        switch (sender_permission) {
+            case 0:
+                format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.MEMBER);
+                break;
+            case 1:
+                format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.ADMIN);
+                break;
+            case 2:
+                format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.OWNER);
+                break;
         }
 
     }
