@@ -1,9 +1,34 @@
+/*
+ * CatSero v2
+ * 此文件为 Minecraft服务器 插件 CatSero 的一部分
+ * 请在符合开源许可证的情况下修改/发布
+ * This file is part of the Minecraft Server plugin CatSero
+ * Please modify/publish subject to open source license
+ *
+ * Copyright 2022 XiaMoHuaHuo_CN.
+ *
+ * GitHub: https://github.com/XiaMoHuaHuo-CN/CatSero
+ * License: GNU Affero General Public License v3.0
+ * https://github.com/XiaMoHuaHuo-CN/CatSero/blob/main/LICENSE
+ *
+ * Permissions of this strongest copyleft license are
+ * conditioned on making available complete source code
+ * of licensed works and modifications, which include
+ * larger works using a licensed work, under the same
+ * license. Copyright and license notices must be preserved.
+ * Contributors provide an express grant of patent rights.
+ * When a modified version is used to provide a service over
+ * a network, the complete source code of the modified
+ * version must be made available.
+ */
 package moe.xmcn.catsero.listeners.chatforward;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import me.dreamvoid.miraimc.api.MiraiMC;
 import moe.xmcn.catsero.utils.Player;
 import moe.xmcn.catsero.Configuration;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 
@@ -38,16 +63,16 @@ public class OnGroupMessageEvent implements Listener {
             message = cleanStyleCodes(message);
         format = format.replace("%message%", message);
 
-        String name = e.getSenderName();
+        String name = e.getSenderNameCard();
 
         if (name.equals("")) {
-            name = e.getSenderNameCard();
+            name = e.getSenderName();
         }
         if (
-                Configuration.USES_CONFIG.CHAT_FORWARD.USE_BIND) {
-                && MiraiMC.getBinding(e.getSenderID()) != ""
+                Configuration.USES_CONFIG.CHAT_FORWARD.USE_BIND
+                && MiraiMC.getBind(e.getSenderID()) != null
         )
-            name = Player.getPlayer(MiraiMC.getBinding(e.getSenderID())).getName();
+            name = Player.getPlayer(MiraiMC.getBind(e.getSenderID())).getName();
         
         format = format.replace("%name%", name);
         
@@ -63,6 +88,7 @@ public class OnGroupMessageEvent implements Listener {
                 format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.OWNER);
                 break;
         }
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
 
     }
 
