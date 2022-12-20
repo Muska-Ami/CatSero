@@ -7,6 +7,36 @@
 # https://docs.mirai.mamoe.net/Messages.html#%E6%B6%88%E6%81%AF%E5%85%83%E7%B4%A0
 # https://docs.mirai.mamoe.net/Messages.html#%E6%B6%88%E6%81%AF%E9%93%BE%E7%9A%84-mirai-%E7%A0%81
 
+# 聊天转发
+chat-forward:
+  # 功能开关
+  # true | false
+  enable: false
+  # Bot & Group设置
+  var:
+    # BotID
+    bot: hello-bot
+    # GroupID
+    group: hello-group
+  # 自动清理样式代码
+  clean-stylecode:
+    to-mc: false
+    to-qq: true
+  # miraicode
+  allow-miraicode: false
+  filter:
+    enable: false
+    list:
+      to-mc:
+        - sb
+      to-qq:
+        - sb
+  use-bind: true
+  format:
+    to-mc: ""
+    to-qq: ""
+
+
 # 发送玩家加入/退出消息
 send-player-join-quit:
   # 功能开关
