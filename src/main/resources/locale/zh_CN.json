@@ -17,6 +17,10 @@
             "invalid-option": "不正确的参数格式",
             "no-permission": "你没有权限这么做"
         },
-        "call"
+        "call": {
+            "member": "成员",
+            "admin": "管理员",
+            "owner": "群主"
+        }
     }
 }
