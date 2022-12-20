@@ -295,6 +295,13 @@ public interface Configuration {
                 String INVALID_OPTION = command.getString("invalid-option");
                 String NO_PERMISSION = command.getString("no-permission");
             }
+            interface CALL {
+                JSONObject call = qq.getJSONObject("call");
+
+                String MEMBER = call.getString("member");
+                String ADMIN = call.getString("admin");
+                String OWNER = call.getString("owner");
+            }
         }
     }
 
