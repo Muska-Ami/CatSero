@@ -221,6 +221,43 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+        interface CHAT_FORWARD {
+            String sub_node = "chat-forward" + ".";
+
+            boolean ENAbLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            interface CLEAN_STYLECODE {
+                String sub_node = "chat-forward.clean-stylecode" + ".";
+
+                boolean TO_MC = CFI.uses_config.getBoolean(sub_node + "to-mc");
+                boolean TO_QQ = CFI.uses_config.getBoolean(sub_node + "to-qq");
+            }
+            boolean ALLOW_MIRAICODE = CFI.uses_config.getBoolean(sub_node + "allow-miraicode");
+            interface FILTER {
+                String sub_node = "chat-forward.filter" + ".";
+
+                boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+                interface LIST {
+                    String sub_node = "chat-forward.filter.list" + ".";
+
+                    String TO_MC = CFI.uses_config.getString(sub_node + "to-mc");
+                    String TO_QQ = CFI.uses_config.getString(sub_node + "to-qq");
+                }
+            }
+            boolean USE_BIND = CFI.uses_config.getBoolean(sub_node + "use-bind");
+            interface FORMAT {
+                String sub_node = "chat-forward.format" + ".";
+
+                String TO_MC = CFI.uses_config.getString(sub_node + "to-mc");
+                String TO_QQ = CFI.uses_config.getString(sub_node + "to-qq");
+            }
+
+            interface MIRAI {
+                String sub_node = "chat-forward.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
     }
 
     interface I18N {

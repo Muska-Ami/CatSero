@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "moe.xmcn.catsero"
-version = "2.0-beta5"
+version = "2.0-beta-6"
 
 repositories {
     mavenCentral()
@@ -69,6 +69,7 @@ tasks.processResources {
 
 }
 
+/*
 task<Copy>("processShell") {
     //必须先删除原sh目录下文件后重新生成,不然使用gradle build -Penv参数切换环境时,无法替换占位符变量
     delFiles("$buildDir/sh")
@@ -85,6 +86,7 @@ task<Copy>("processShell") {
     }
     into("$buildDir/sh")
 }
+ */
 
 tasks.create<Jar>("fatJar") {
     setDuplicatesStrategy(DuplicatesStrategy.FAIL)
@@ -100,5 +102,9 @@ tasks.create<Jar>("fatJar") {
 
 //build命令依赖的其他命令
 tasks.build {
-    dependsOn("processShell", tasks.processResources, "fatJar")
+    dependsOn(
+        /*"processShell",*/
+        tasks.processResources,
+        "fatJar"
+    )
 }
