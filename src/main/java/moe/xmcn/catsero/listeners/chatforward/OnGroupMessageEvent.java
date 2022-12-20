@@ -1,6 +1,8 @@
 package moe.xmcn.catsero.listeners.chatforward;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
+import me.dreamvoid.miraimc.api.MiraiMC;
+import moe.xmcn.catsero.utils.Player;
 import moe.xmcn.catsero.Configuration;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
@@ -35,7 +37,20 @@ public class OnGroupMessageEvent implements Listener {
         if (Configuration.USES_CONFIG.CHAT_FORWARD.CLEAN_STYLECODE.TO_MC)
             message = cleanStyleCodes(message);
         format = format.replace("%message%", message);
-                //.replace("%name%", );
+
+        String name = e.getSenderName();
+
+        if (name.equals("")) {
+            name = e.getSenderNameCard();
+        }
+        if (
+                Configuration.USES_CONFIG.CHAT_FORWARD.USE_BIND) {
+                && MiraiMC.getBinding(e.getSenderID()) != ""
+        )
+            name = Player.getPlayer(MiraiMC.getBinding(e.getSenderID())).getName();
+        
+        format = format.replace("%name%", name);
+        
         int sender_permission = e.getSenderPermission();
         switch (sender_permission) {
             case 0:
