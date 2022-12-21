@@ -224,7 +224,7 @@ public interface Configuration {
         interface CHAT_FORWARD {
             String sub_node = "chat-forward" + ".";
 
-            boolean ENAbLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
             interface CLEAN_STYLECODE {
                 String sub_node = "chat-forward.clean-stylecode" + ".";
 

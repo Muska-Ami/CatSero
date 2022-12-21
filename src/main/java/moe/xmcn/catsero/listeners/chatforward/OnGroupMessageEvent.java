@@ -41,7 +41,7 @@ public class OnGroupMessageEvent implements Listener {
     @EventHandler
     public void onGroupMessage(MiraiGroupMessageEvent e) {
         if (
-                Configuration.USES_CONFIG.CHAT_FORWARD.ENAbLE
+                Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE
                 && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT)
                 && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP)
         ) {
