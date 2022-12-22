@@ -41,6 +41,7 @@ public interface ListenerRegister {
         Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerAdvancementDoneEvent(), Configuration.plugin);
         Configuration.plugin.getServer().getPluginManager().registerEvents(new OnMemberJoinEvent(), Configuration.plugin);
         Configuration.plugin.getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.listeners.getonlinelist.OnGroupMessageEvent(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.listeners.chatforward.OnGroupMessageEvent(), Configuration.plugin);
     }
 
 }

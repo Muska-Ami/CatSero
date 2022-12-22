@@ -22,10 +22,15 @@ chat-forward:
   clean-stylecode:
     to-mc: false
     to-qq: true
-  # miraicode
-  allow-miraicode: false
+  # miraicode(can't use now)
+  #allow-miraicode: false
+  # 过滤器
+  # 检测到消息内含有列表中的文本
   filter:
+    # 功能开关
+    # true | false
     enable: false
+    # 列表
     list:
       to-mc:
         - sb
@@ -33,7 +38,7 @@ chat-forward:
         - sb
   use-bind: true
   format:
-    to-mc: ""
+    to-mc: "&e[&aQQ&e]&e[&d%sender_permission%&e]&b%name%&r: %message%"
     to-qq: ""
 
 
