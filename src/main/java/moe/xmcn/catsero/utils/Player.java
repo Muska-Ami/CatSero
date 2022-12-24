@@ -26,7 +26,6 @@ package moe.xmcn.catsero.utils;
 import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -62,11 +61,11 @@ public interface Player {
         return Bukkit.getOfflinePlayer(uuid);
     }
 
-    static Player getOnlinePlayer(String name) {
+    static org.bukkit.entity.Player getOnlinePlayer(String name) {
         return Bukkit.getPlayer(getUUIDByName(name));
     }
 
-    static Player getOnlinePlayer(UUID uuid) {
+    static org.bukkit.entity.Player getOnlinePlayer(UUID uuid) {
         return Bukkit.getPlayer(uuid);
     }
 }

@@ -33,6 +33,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -81,6 +82,12 @@ public interface Configuration {
             plugin.saveResource("mirai-configs/qq-op.yml", false);
         Logger.logLoader("Saved.");
 
+        Logger.logLoader("Saving extra-configs...");
+        if (!new File(plugin.getDataFolder(), "extra-configs/trchat.yml").exists()) {
+            plugin.saveResource("extra-configs/trchat.yml", false);
+        }
+        Logger.logLoader("Saved.");
+
         Logger.logLoader("Saving default locale...");
         if (!new File(plugin.getDataFolder(), "locale/zh_CN.json").exists())
             plugin.saveResource("locale/zh_CN.json", false);
@@ -97,12 +104,14 @@ public interface Configuration {
         Logger.logLoader("Saved all files.");
 
         Logger.logLoader("Reloading files...");
-        CFI.plugin_config.load(new CFI().config_file);
-        CFI.uses_config.load(new CFI().usesconfig_file);
+        CFI.plugin_config.load(new File("config.yml"));
+        CFI.uses_config.load(new File("uses-config.yml"));
 
-        CFI.bot_config.load(new CFI().mirai_bot_file);
-        CFI.group_config.load(new CFI().mirai_group_file);
-        CFI.qqop_config.load(new CFI().mirai_qqop_file);
+        CFI.bot_config.load(new File("mirai-configs/qq.yml"));
+        CFI.group_config.load(new File(plugin.getDataFolder(), "mirai-configs/group.yml"));
+        CFI.qqop_config.load(new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml"));
+
+        CFI.ext_trchat_config.load(new File(plugin.getDataFolder(), "extra-configs/trchat.yml"));
         Logger.logLoader("Reloaded.");
     }
 
@@ -154,6 +163,7 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+
         interface SEND_PLAYER_DEATH {
             String sub_node = "send-player-death" + ".";
 
@@ -168,6 +178,7 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+
         interface GET_TPS {
             String sub_node = "get-tps" + ".";
 
@@ -180,6 +191,7 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+
         interface SEND_ADVANCEMENT {
             String sub_node = "send-advancement" + ".";
 
@@ -194,6 +206,7 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+
         interface NEW_GROUP_MEMBER {
             String sub_node = "new-group-member" + ".";
 
@@ -207,6 +220,7 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+
         interface GET_ONLINE_LIST {
             String sub_node = "get-online-list" + ".";
 
@@ -221,29 +235,34 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+
         interface CHAT_FORWARD {
             String sub_node = "chat-forward" + ".";
 
             boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            boolean ALLOW_MIRAICODE = CFI.uses_config.getBoolean(sub_node + "allow-miraicode");
+            boolean USE_BIND = CFI.uses_config.getBoolean(sub_node + "use-bind");
+
             interface CLEAN_STYLECODE {
                 String sub_node = "chat-forward.clean-stylecode" + ".";
 
                 boolean TO_MC = CFI.uses_config.getBoolean(sub_node + "to-mc");
                 boolean TO_QQ = CFI.uses_config.getBoolean(sub_node + "to-qq");
             }
-            boolean ALLOW_MIRAICODE = CFI.uses_config.getBoolean(sub_node + "allow-miraicode");
+
             interface FILTER {
                 String sub_node = "chat-forward.filter" + ".";
 
                 boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+
                 interface LIST {
                     String sub_node = "chat-forward.filter.list" + ".";
 
-                    String TO_MC = CFI.uses_config.getString(sub_node + "to-mc");
-                    String TO_QQ = CFI.uses_config.getString(sub_node + "to-qq");
+                    List<String> TO_MC = CFI.uses_config.getStringList(sub_node + "to-mc");
+                    List<String> TO_QQ = CFI.uses_config.getStringList(sub_node + "to-qq");
                 }
             }
-            boolean USE_BIND = CFI.uses_config.getBoolean(sub_node + "use-bind");
+
             interface FORMAT {
                 String sub_node = "chat-forward.format" + ".";
 
@@ -256,6 +275,16 @@ public interface Configuration {
 
                 String BOT = CFI.uses_config.getString(sub_node + "bot");
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
+    }
+
+    interface EXTRA_CONFIG {
+        interface TRCHAT {
+            interface CHAT_FORWARD {
+                String sub_node = "chat-forward" + ".";
+
+                List<String> CHANNEL = CFI.ext_trchat_config.getStringList(sub_node + "channel");
             }
         }
     }
@@ -285,7 +314,25 @@ public interface Configuration {
                     String ERROR = cms.getString("error");
                 }
             }
+
+            interface USE {
+                JSONObject use = minecraft.getJSONObject("use");
+
+                interface CHAT_FORWARD {
+                    JSONObject chat_forward = use.getJSONObject("chat-forward");
+
+                    String CASE_MIRAICODE = chat_forward.getString("case-miraicode");
+                }
+            }
+
+            interface CALL {
+                JSONObject call = minecraft.getJSONObject("call");
+
+                String PLAYER = call.getString("player");
+                String ADMIN = call.getString("admin");
+            }
         }
+
         interface QQ {
             JSONObject qq = object.getJSONObject("qq");
 
@@ -295,6 +342,7 @@ public interface Configuration {
                 String INVALID_OPTION = command.getString("invalid-option");
                 String NO_PERMISSION = command.getString("no-permission");
             }
+
             interface CALL {
                 JSONObject call = qq.getJSONObject("call");
 
@@ -361,16 +409,18 @@ public interface Configuration {
     class CFI {
         public static File version_file = new File(plugin.getDataFolder(), "version");
         // File
-        File config_file = new File(plugin.getDataFolder(), "config.yml");
-        File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
-        File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
-        File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
-        File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
-        static FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(new CFI().config_file);
-        static FileConfiguration uses_config = YamlConfiguration.loadConfiguration(new CFI().usesconfig_file);
-        static FileConfiguration bot_config = YamlConfiguration.loadConfiguration(new CFI().mirai_bot_file);
-        static FileConfiguration group_config = YamlConfiguration.loadConfiguration(new CFI().mirai_group_file);
-        static FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(new CFI().mirai_qqop_file);
+        static File config_file = new File(plugin.getDataFolder(), "config.yml");
+        static FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(config_file);
+        static File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
+        static FileConfiguration uses_config = YamlConfiguration.loadConfiguration(usesconfig_file);
+        static File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
+        static FileConfiguration bot_config = YamlConfiguration.loadConfiguration(mirai_bot_file);
+        static File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
+        static FileConfiguration group_config = YamlConfiguration.loadConfiguration(mirai_group_file);
+        static File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
+        static FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
+        static File ext_trchat_file = new File(plugin.getDataFolder(), "extra-configs/trchat.yml");
+        static FileConfiguration ext_trchat_config = YamlConfiguration.loadConfiguration(ext_trchat_file);
     }
 
 }

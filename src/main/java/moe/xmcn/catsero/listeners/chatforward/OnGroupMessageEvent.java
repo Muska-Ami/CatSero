@@ -23,77 +23,24 @@
  */
 package moe.xmcn.catsero.listeners.chatforward;
 
-import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import me.dreamvoid.miraimc.api.MiraiMC;
-import moe.xmcn.catsero.utils.Player;
+import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.utils.Player;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class OnGroupMessageEvent implements Listener {
 
-    @EventHandler
-    public void onGroupMessage(MiraiGroupMessageEvent e) {
-        if (
-                Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE
-                && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT)
-                && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP)
-        ) {
-            String message = e.getMessage();
-
-            if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
-                if (!message.contains(Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.TO_MC))
-                    run(e, message);
-            } else
-                run(e, message);
-
-        }
-    }
-
-    private void run(MiraiGroupMessageEvent e, String message) {
-        String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_MC;
-
-        if (Configuration.USES_CONFIG.CHAT_FORWARD.CLEAN_STYLECODE.TO_MC)
-            message = cleanStyleCodes(message);
-        format = format.replace("%message%", message);
-
-        String name = e.getSenderNameCard();
-
-        if (name.equals("")) {
-            name = e.getSenderName();
-        }
-        if (
-                Configuration.USES_CONFIG.CHAT_FORWARD.USE_BIND
-                && MiraiMC.getBind(e.getSenderID()) != null
-        )
-            name = Player.getPlayer(MiraiMC.getBind(e.getSenderID())).getName();
-        
-        format = format.replace("%name%", name);
-        
-        int sender_permission = e.getSenderPermission();
-        switch (sender_permission) {
-            case 0:
-                format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.MEMBER);
-                break;
-            case 1:
-                format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.ADMIN);
-                break;
-            case 2:
-                format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.OWNER);
-                break;
-        }
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
-
-    }
+    private boolean filter = false;
 
     private static String cleanStyleCodes(String s) {
-        Set<String> s0 = new HashSet<>(Arrays.asList(
+        List<String> s0 = Arrays.asList(
                 "1",
                 "2",
                 "3",
@@ -113,11 +60,70 @@ public class OnGroupMessageEvent implements Listener {
                 "l",
                 "o",
                 "r"
-        ));
-        for (var i=0;i<s0.toArray().length; i++) {
+        );
+        for (var i = 0; i < s0.toArray().length; i++) {
             s = s.replace("" + s0.toArray()[i], "");
         }
         return s;
+    }
+
+    @EventHandler
+    public void onGroupMessage(MiraiGroupMessageEvent e) {
+        if (
+                Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE
+                        && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT)
+                        && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP)
+        ) {
+            String message = e.getMessage();
+
+            if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
+                Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.TO_MC.forEach(it -> {
+                    if (message.contains(it)) filter = true;
+                });
+                if (!filter)
+                    run(e, message);
+                else
+                    filter = false;
+            } else
+                run(e, message);
+
+        }
+    }
+
+    private void run(MiraiGroupMessageEvent e, String message) {
+        String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_MC;
+
+        if (Configuration.USES_CONFIG.CHAT_FORWARD.CLEAN_STYLECODE.TO_MC)
+            message = cleanStyleCodes(message);
+
+        format = format.replace("%message%", message);
+
+        String name = e.getSenderNameCard();
+
+        if (name.equals("")) {
+            name = e.getSenderName();
+        }
+        if (
+                Configuration.USES_CONFIG.CHAT_FORWARD.USE_BIND
+                        && MiraiMC.getBind(e.getSenderID()) != null
+        )
+            name = Player.getPlayer(MiraiMC.getBind(e.getSenderID())).getName();
+
+        format = format.replace("%name%", name);
+
+        int sender_permission = e.getSenderPermission();
+        switch (sender_permission) {
+            case 0:
+                format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.MEMBER);
+                break;
+            case 1:
+                format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.ADMIN);
+                break;
+            case 2:
+                format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.OWNER);
+                break;
+        }
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
     }
 
 }

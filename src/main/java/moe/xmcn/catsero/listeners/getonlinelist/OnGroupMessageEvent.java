@@ -32,6 +32,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OnGroupMessageEvent implements Listener {
@@ -44,12 +45,12 @@ public class OnGroupMessageEvent implements Listener {
         if (args != null) {
             if (
                     Configuration.USES_CONFIG.GET_ONLINE_LIST.ENABLE
-                    && args[0].equalsIgnoreCase("list")
-                    && Configuration.Interface.isQQOp(e.getSenderID())
-                    && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
-                    && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
+                            && args[0].equalsIgnoreCase("list")
+                            && Configuration.Interface.isQQOp(e.getSenderID())
+                            && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
+                            && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
             ) {
-                List<Player> list = (List<Player>) Bukkit.getOnlinePlayers();
+                List<Player> list = new ArrayList<>(Bukkit.getOnlinePlayers());
 
                 String format;
 

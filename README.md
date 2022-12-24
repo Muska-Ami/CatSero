@@ -1,9 +1,5 @@
 ![Logo](https://repository-images.githubusercontent.com/460782323/eee698e3-0952-472d-96d2-d08c784c0cc2)
 
-# 作者已寄
-
-![](Screenshot_20221222_175438.jpg)
-
 # CatSero `v2`
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/babcf1e300a44e3684e88840e2b2b803)](https://www.codacy.com/gh/XiaMoHuaHuo-CN/CatSero/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=XiaMoHuaHuo-CN/CatSero&amp;utm_campaign=Badge_Grade)[![Java CI with Maven - Build](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml/badge.svg?branch=main)](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml)  
@@ -26,6 +22,7 @@
 
 ## 功能
 
+- 聊天转发
 - 玩家死亡转发
 - 玩家加入/退出转发
 - TPS获取
@@ -83,11 +80,57 @@ custom-qq-command-prefix:
 # CatSero UsesConfig
 # Generate by CatSero v@plugin.version@
 
-# 所有的发送至QQ群的消息都支持miraicode
+# 所有的发送至QQ群的消息都支持mirai码
 # 参见：
 # https://docs.mirai.mamoe.net/Messages.html#mirai-%E7%A0%81
 # https://docs.mirai.mamoe.net/Messages.html#%E6%B6%88%E6%81%AF%E5%85%83%E7%B4%A0
 # https://docs.mirai.mamoe.net/Messages.html#%E6%B6%88%E6%81%AF%E9%93%BE%E7%9A%84-mirai-%E7%A0%81
+
+# 聊天转发
+chat-forward:
+  # 功能开关
+  # true | false
+  enable: false
+  # Bot & Group设置
+  var:
+    # BotID
+    bot: hello-bot
+    # GroupID
+    group: hello-group
+  # 自动清理样式代码
+  clean-stylecode:
+    to-mc: false
+    to-qq: true
+  # 允许游戏内玩家使用mirai码
+  allow-miraicode: false
+  # 过滤器
+  # 检测到消息内含有列表中的文本
+  filter:
+    # 功能开关
+    # true | false
+    enable: false
+    # 列表
+    list:
+      to-mc:
+        - sb
+      to-qq:
+        - sb
+  # 使用MiraiMC内置绑定数据库查询QQ发言者名称
+  use-bind: true
+  # 格式
+  format:
+    # 内置占位符:
+    # - %sender_permission%  发言者群权限(member，admin，owner)
+    # - %name%  发言者名称
+    # - %message%  消息
+    to-mc: "&e[&aQQ&e]&e[&d%sender_permission%&e]&b%name%&r: %message%"
+    # 内置占位符:
+    # - %sender_permission%  发言者权限(player，admin)
+    # - %name%  发言者名称
+    # - %display_name%  发言者游戏中显示名称
+    # - %message%  消息
+    to-qq: "[MC][%sender_permission%]%name%: %message%"
+
 
 # 发送玩家加入/退出消息
 send-player-join-quit:
