@@ -38,21 +38,21 @@ public class Method implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         try {
-                if (sender.hasPermission("catsero.cms")) {
-                    if (args.length >= 3) {
-                        StringBuilder message = new StringBuilder();
-                        for (var i = 2; i <= args.length - 1; i++) {
-                            message.append(args[i])
-                                    .append(" ");
-                        }
-                        message = new StringBuilder(message.substring(0, message.length() - 1));
-                        MessageSender.sendGroup(message.toString(), args[0], args[1]);
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.CMS.SENT));
-                    } else {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
+            if (sender.hasPermission("catsero.cms")) {
+                if (args.length >= 3) {
+                    StringBuilder message = new StringBuilder();
+                    for (var i = 2; i <= args.length - 1; i++) {
+                        message.append(args[i])
+                                .append(" ");
                     }
-                } else
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.NO_PERMISSION));
+                    message = new StringBuilder(message.substring(0, message.length() - 1));
+                    MessageSender.sendGroup(message.toString(), args[0], args[1]);
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.CMS.SENT));
+                } else {
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
+                }
+            } else
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.NO_PERMISSION));
         } catch (Exception e) {
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.CMS.ERROR));
             Logger.logCatch(e);

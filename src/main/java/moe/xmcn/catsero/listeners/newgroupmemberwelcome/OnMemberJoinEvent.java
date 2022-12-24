@@ -37,8 +37,8 @@ public class OnMemberJoinEvent implements Listener {
         try {
             if (
                     Configuration.USES_CONFIG.NEW_GROUP_MEMBER.ENABLE
-                    && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.BOT)
-                    && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.GROUP)
+                            && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.BOT)
+                            && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.GROUP)
             ) {
                 String format = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.FORMAT;
                 format = format.replace("%at%", "[mirai:at:" + e.getMember().getId() + "]")

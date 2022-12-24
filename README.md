@@ -1,9 +1,5 @@
 ![Logo](https://repository-images.githubusercontent.com/460782323/eee698e3-0952-472d-96d2-d08c784c0cc2)
 
-# 作者已寄
-
-![](Screenshot_20221222_175438.jpg)
-
 # CatSero `v2`
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/babcf1e300a44e3684e88840e2b2b803)](https://www.codacy.com/gh/XiaMoHuaHuo-CN/CatSero/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=XiaMoHuaHuo-CN/CatSero&amp;utm_campaign=Badge_Grade)[![Java CI with Maven - Build](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml/badge.svg?branch=main)](https://github.com/XiaMoHuaHuo-CN/CatSero/actions/workflows/builder.yml)  
@@ -26,6 +22,7 @@
 
 ## 功能
 
+- 聊天转发
 - 玩家死亡转发
 - 玩家加入/退出转发
 - TPS获取

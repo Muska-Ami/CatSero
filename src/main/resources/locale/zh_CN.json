@@ -10,6 +10,15 @@
                 "sent": "&a消息已发送",
                 "error": "&c发送消息时发生错误"
             }
+        },
+        "use": {
+            "chat-forward": {
+                "case-miraicode": "&c您要发送的消息内含有mirai码，该功能已被禁止"
+            }
+        },
+        "call": {
+            "player": "玩家",
+            "admin": "管理员"
         }
     },
     "qq": {
