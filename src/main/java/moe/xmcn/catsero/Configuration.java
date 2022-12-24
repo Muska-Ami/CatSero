@@ -82,6 +82,12 @@ public interface Configuration {
             plugin.saveResource("mirai-configs/qq-op.yml", false);
         Logger.logLoader("Saved.");
 
+        Logger.logLoader("Saving extra-configs...");
+        if (!new File(plugin.getDataFolder(), "extra-configs/trchat.yml").exists()) {
+            plugin.saveResource("extra-configs/trchat.yml", false);
+        }
+        Logger.logLoader("Saved.");
+
         Logger.logLoader("Saving default locale...");
         if (!new File(plugin.getDataFolder(), "locale/zh_CN.json").exists())
             plugin.saveResource("locale/zh_CN.json", false);
@@ -98,12 +104,14 @@ public interface Configuration {
         Logger.logLoader("Saved all files.");
 
         Logger.logLoader("Reloading files...");
-        CFI.plugin_config.load(new CFI().config_file);
-        CFI.uses_config.load(new CFI().usesconfig_file);
+        CFI.plugin_config.load(new File("config.yml"));
+        CFI.uses_config.load(new File("uses-config.yml"));
 
-        CFI.bot_config.load(new CFI().mirai_bot_file);
-        CFI.group_config.load(new CFI().mirai_group_file);
-        CFI.qqop_config.load(new CFI().mirai_qqop_file);
+        CFI.bot_config.load(new File("mirai-configs/qq.yml"));
+        CFI.group_config.load(new File(plugin.getDataFolder(), "mirai-configs/group.yml"));
+        CFI.qqop_config.load(new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml"));
+
+        CFI.ext_trchat_config.load(new File(plugin.getDataFolder(), "extra-configs/trchat.yml"));
         Logger.logLoader("Reloaded.");
     }
 
@@ -271,6 +279,16 @@ public interface Configuration {
         }
     }
 
+    interface EXTRA_CONFIG {
+        interface TRCHAT {
+            interface CHAT_FORWARD {
+                String sub_node = "chat-forward" + ".";
+
+                List<String> CHANNEL = CFI.ext_trchat_config.getStringList(sub_node + "channel");
+            }
+        }
+    }
+
     interface I18N {
         JSONObject object = getIJObject();
 
@@ -390,17 +408,19 @@ public interface Configuration {
 
     class CFI {
         public static File version_file = new File(plugin.getDataFolder(), "version");
-        static FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(new CFI().config_file);
-        static FileConfiguration uses_config = YamlConfiguration.loadConfiguration(new CFI().usesconfig_file);
-        static FileConfiguration bot_config = YamlConfiguration.loadConfiguration(new CFI().mirai_bot_file);
-        static FileConfiguration group_config = YamlConfiguration.loadConfiguration(new CFI().mirai_group_file);
-        static FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(new CFI().mirai_qqop_file);
         // File
-        File config_file = new File(plugin.getDataFolder(), "config.yml");
-        File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
-        File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
-        File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
-        File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
+        static File config_file = new File(plugin.getDataFolder(), "config.yml");
+        static FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(config_file);
+        static File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
+        static FileConfiguration uses_config = YamlConfiguration.loadConfiguration(usesconfig_file);
+        static File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
+        static FileConfiguration bot_config = YamlConfiguration.loadConfiguration(mirai_bot_file);
+        static File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
+        static FileConfiguration group_config = YamlConfiguration.loadConfiguration(mirai_group_file);
+        static File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
+        static FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
+        static File ext_trchat_file = new File(plugin.getDataFolder(), "extra-configs/trchat.yml");
+        static FileConfiguration ext_trchat_config = YamlConfiguration.loadConfiguration(ext_trchat_file);
     }
 
 }
