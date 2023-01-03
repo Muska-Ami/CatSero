@@ -34,14 +34,14 @@ import org.bukkit.command.TabExecutor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Method implements TabExecutor {
+public class OnCommand implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         try {
             if (sender.hasPermission("catsero.cms")) {
                 if (args.length >= 3) {
                     StringBuilder message = new StringBuilder();
-                    for (var i = 2; i <= args.length - 1; i++) {
+                    for (int i = 2; i <= args.length - 1; i++) {
                         message.append(args[i])
                                 .append(" ");
                     }

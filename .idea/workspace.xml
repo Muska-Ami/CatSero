@@ -4,13 +4,61 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="聊天转发已完成，未适配TrChat&#10;还没吃早餐就起来赶工了（">
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatforward/OnTrChatEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/extra-configs/trchat.yml" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="新增屏蔽词系统从外部导入屏蔽词功能&#10;灵感来源：TrChat">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/AddWhiteList.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/RefuseNoWhiteList.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/extra-configs/whitelist.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/FileReaderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/HttpClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TestGetFileProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_12_18_20_07____1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_12_20_1_13____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_12_20_1_14____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2022_12_20_下午1_14_取消提交了变更_[变更]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2022_12_18_20_07_取消提交了变更_[变更]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2022_12_20_下午1_13_取消提交了变更_[变更]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/config.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/ExecutorRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/ExecutorRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/OnCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/OnCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/ListenerRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/ListenerRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/advancementforward/OnPlayerAdvancementDoneEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/advancementforward/OnPlayerAdvancementDone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatforward/OnAsyncPlayerChatEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatforward/OnAsyncPlayerChatToQQ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatforward/OnGroupMessageEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatforward/OnGroupMessageToMC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatforward/OnTrChatEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatforward/OnTrChatToQQ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/deadthforward/OnPlayerDeathEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/deadthforward/OnPlayerDeath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/getonlinelist/OnGroupMessageEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/getonlinelist/OnGroupMessageRequestList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/gettps/OnGroupMessageEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/gettps/OnGroupMessageRequestTPS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/joinquitforward/OnPlayerJoinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/joinquitforward/OnPlayerJoin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/joinquitforward/OnPlayerQuitEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/joinquitforward/OnPlayerQuit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/newgroupmemberwelcome/OnMemberJoinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/newgroupmemberwelcome/OnMemberJoin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Envrionment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Envrionment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/QPS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/QPS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/zh_CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/zh_CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uses-config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/uses-config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/version" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +111,7 @@
       <list>
         <option value="AnnotationType" />
         <option value="Interface" />
+        <option value="Kotlin Class" />
         <option value="Class" />
       </list>
     </option>
@@ -87,27 +136,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-1.8",
-    "last_opened_file_path": "E:/IdeaProjects/CatSero/server-test/plugins",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.editor"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/CatSero/server-test/plugins&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\CatSero\server-test\plugins" />
       <recent name="E:\IdeaProjects\CatSero\server-test\plugins" />
       <recent name="D:\Otr\IdeaProjects\CatSero\server-test\plugins" />
       <recent name="D:\Otr\IdeaProjects\CatSero\build\libs" />
       <recent name="D:\Otr\IdeaProjects\CatSero\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\CatSero\src\test\java" />
       <recent name="E:\IdeaProjects\CatSero\server-test\plugins" />
       <recent name="D:\Otr\IdeaProjects\CatSero\" />
     </key>
@@ -129,6 +180,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FileReaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FileReaderTest" />
+      <module name="CatSero.test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestGetFileProtocol" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestGetFileProtocol" />
+      <module name="CatSero.test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CatSero [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -141,27 +206,6 @@
         <option name="taskNames">
           <list>
             <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="CatSero [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -195,9 +239,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.CatSero [build]" />
+        <item itemvalue="应用程序.FileReaderTest" />
+        <item itemvalue="应用程序.TestGetFileProtocol" />
         <item itemvalue="应用程序.CatSero" />
         <item itemvalue="Gradle.CatSero [jar]" />
-        <item itemvalue="Gradle.CatSero [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -455,7 +500,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671866789827</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="聊天转发适配TrChat">
+      <created>1671876039566</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1671876039566</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Release: 2.0">
+      <created>1671876067202</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1671876067202</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -476,9 +535,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="部分完工" />
-    <MESSAGE value="部分完工x2" />
-    <MESSAGE value="部分完工x3" />
     <MESSAGE value="更新ci脚本" />
     <MESSAGE value="部分完工x4" />
     <MESSAGE value="部分完工x5" />
@@ -501,7 +557,10 @@
     <MESSAGE value="[ci skip]Releases发布模板" />
     <MESSAGE value="[ci skip]finish one event of chat-forward" />
     <MESSAGE value="聊天转发已完成，未适配TrChat&#10;还没吃早餐就起来赶工了（" />
-    <option name="LAST_COMMIT_MESSAGE" value="聊天转发已完成，未适配TrChat&#10;还没吃早餐就起来赶工了（" />
+    <MESSAGE value="聊天转发适配TrChat" />
+    <MESSAGE value="Release: 2.0" />
+    <MESSAGE value="新增屏蔽词系统从外部导入屏蔽词功能&#10;灵感来源：TrChat" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增屏蔽词系统从外部导入屏蔽词功能&#10;灵感来源：TrChat" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

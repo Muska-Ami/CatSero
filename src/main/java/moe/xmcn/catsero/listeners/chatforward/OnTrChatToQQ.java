@@ -11,9 +11,9 @@ import org.bukkit.event.Listener;
 import java.util.Arrays;
 import java.util.List;
 
-public class OnTrChatEvent implements Listener {
+public class OnTrChatToQQ implements Listener {
 
-    private boolean filter = false;
+    private String message;
 
     private static String cleanStyleCodes(String s) {
         List<String> s0 = Arrays.asList(
@@ -37,7 +37,7 @@ public class OnTrChatEvent implements Listener {
                 "o",
                 "r"
         );
-        for (var i = 0; i < s0.toArray().length; i++) {
+        for (int i = 0; i < s0.toArray().length; i++) {
             s = s.replace("" + s0.toArray()[i], "");
         }
         return s;
@@ -46,13 +46,16 @@ public class OnTrChatEvent implements Listener {
     @EventHandler
     public void onTrChat(TrChatEvent e) {
         if (Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE) {
-            String message = e.getMessage();
+            message = e.getMessage();
             String channel = e.getChannel().getId();
 
-            if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
-                Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.TO_QQ.forEach(it -> {
-                    if (message.contains(it)) filter = true;
-                });
+            // 先检查聊天频道
+            if (Configuration.EXTRA_CONFIG.TRCHAT.CHAT_FORWARD.CHANNEL.contains(channel)) {
+                // Filter
+                if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
+                    Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
+                    run(e.getSession(), message);
+                /*
                 if (
                         !filter
                         && Configuration.EXTRA_CONFIG.TRCHAT.CHAT_FORWARD.CHANNEL.contains(channel)
@@ -60,15 +63,23 @@ public class OnTrChatEvent implements Listener {
                         run(e.getSession(), message);
                 else
                     filter = false;
-            } else
-                run(e.getSession(), message);
+
+                 */
+                } else
+                    run(e.getSession(), message);
+            }
         }
     }
 
     private void run(ChatSession e, String message) {
         String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_QQ;
 
-        if (!message.contains("[mirai:")) {
+        // 检查消息是否含有Mirai码
+        if (
+                !Configuration.USES_CONFIG.CHAT_FORWARD.ALLOW_MIRAICODE
+                    && !message.contains("[mirai:")
+        ) {
+            // 清理样式代码
             if (Configuration.USES_CONFIG.CHAT_FORWARD.CLEAN_STYLECODE.TO_QQ)
                 message = cleanStyleCodes(message);
 
@@ -76,6 +87,7 @@ public class OnTrChatEvent implements Listener {
                     .replace("%name%", e.getPlayer().getName())
                     .replace("%display_name%", e.getPlayer().getDisplayName());
 
+            // 权限
             if (e.getPlayer().isOp())
                 format = format.replace("%sender_permission%", Configuration.I18N.MINECRAFT.CALL.ADMIN);
             else

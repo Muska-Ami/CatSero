@@ -1,12 +1,15 @@
 import org.apache.tools.ant.filters.FixCrLfFilter
 import org.apache.tools.ant.filters.ReplaceTokens
+import org.jetbrains.kotlin.gradle.internal.encodePluginOptions
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("java")
+    kotlin("jvm") version "1.7.22"
 }
 
 group = "moe.xmcn.catsero"
-version = "2.0"
+version = "2.1-beta-1"
 
 repositories {
     mavenCentral()
@@ -26,6 +29,7 @@ dependencies {
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
+    testImplementation(kotlin("test"))
 }
 
 tasks.getByName<Test>("test") {
@@ -33,6 +37,9 @@ tasks.getByName<Test>("test") {
 }
 
 tasks.compileJava {
+    options.encoding = "UTF-8"
+}
+tasks.compileTestJava {
     options.encoding = "UTF-8"
 }
 
@@ -69,25 +76,6 @@ tasks.processResources {
 
 }
 
-/*
-task<Copy>("processShell") {
-    //必须先删除原sh目录下文件后重新生成,不然使用gradle build -Penv参数切换环境时,无法替换占位符变量
-    delFiles("$buildDir/sh")
-    from("src/main/sh") {
-        filter(ReplaceTokens::class, "tokens" to loadEnv())
-        filter(
-                FixCrLfFilter::class,
-                "eol" to FixCrLfFilter.CrLf.newInstance("lf"),
-                "tab" to FixCrLfFilter.AddAsisRemove.newInstance("asis"),
-                "tablength" to 4,
-                "eof" to FixCrLfFilter.AddAsisRemove.newInstance("remove"),
-                "fixlast" to true
-        )
-    }
-    into("$buildDir/sh")
-}
- */
-
 tasks.create<Jar>("fatJar") {
     setDuplicatesStrategy(DuplicatesStrategy.FAIL)
     val sourceMain = java.sourceSets["main"]
@@ -103,7 +91,6 @@ tasks.create<Jar>("fatJar") {
 //build命令依赖的其他命令
 tasks.build {
     dependsOn(
-        /*"processShell",*/
         tasks.processResources,
         "fatJar"
     )

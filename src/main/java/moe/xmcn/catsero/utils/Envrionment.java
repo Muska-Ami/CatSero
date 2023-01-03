@@ -26,8 +26,10 @@ package moe.xmcn.catsero.utils;
 import com.alibaba.fastjson.JSON;
 import moe.xmcn.catsero.Configuration;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.InvalidDescriptionException;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 
 public interface Envrionment {
@@ -42,18 +44,7 @@ public interface Envrionment {
     }
 
     static String getVersion() {
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(Configuration.CFI.version_file));
-            String body;
-            StringBuilder data = new StringBuilder();
-            while ((body = in.readLine()) != null) {
-                data.append(body);
-            }
-            return JSON.parseObject(data.toString()).getString("version");
-        } catch (Exception e) {
-            Logger.logCatch(e);
-        }
-        return null;
+        return Configuration.plugin.getDescription().getVersion();
     }
 
     class Depends {

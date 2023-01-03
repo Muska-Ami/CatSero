@@ -35,14 +35,16 @@ import org.bukkit.event.Listener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OnGroupMessageEvent implements Listener {
+public class OnGroupMessageRequestList implements Listener {
 
     private String player_list = null;
 
     @EventHandler
     public void onGroupMessage(MiraiGroupMessageEvent e) {
         String[] args = QPS.parse(e.getMessage());
+
         if (args != null) {
+            // 条件
             if (
                     Configuration.USES_CONFIG.GET_ONLINE_LIST.ENABLE
                             && args[0].equalsIgnoreCase("list")

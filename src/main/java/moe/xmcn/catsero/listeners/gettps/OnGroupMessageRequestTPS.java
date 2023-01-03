@@ -34,25 +34,33 @@ import org.bukkit.event.Listener;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class OnGroupMessageEvent implements Listener {
+public class OnGroupMessageRequestTPS implements Listener {
 
     @EventHandler
     public void onGroupMessageEvent(MiraiGroupMessageEvent e) {
         String[] args = QPS.parse(e.getMessage());
+
         if (args != null) {
+            // 条件
             if (
                     Configuration.USES_CONFIG.GET_TPS.ENABLE
                             && args[0].equalsIgnoreCase("tps")
+                            && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
+                            && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
+
             ) {
                 if (args.length == 2) {
+                    // 处理TPS
                     double tps = TPSCalculator.getTPS();
                     BigDecimal around_tps = BigDecimal.valueOf(tps).setScale(1, RoundingMode.HALF_UP);
 
                     switch (args[1]) {
                         case "accurate":
+                            // 精确
                             MessageSender.sendGroup("TPS: " + tps, Configuration.USES_CONFIG.GET_TPS.MIRAI.BOT, Configuration.USES_CONFIG.GET_TPS.MIRAI.GROUP);
                             break;
                         case "around":
+                            // 大概
                             MessageSender.sendGroup("TPS: " + around_tps, Configuration.USES_CONFIG.GET_TPS.MIRAI.BOT, Configuration.USES_CONFIG.GET_TPS.MIRAI.GROUP);
                             break;
                         default:

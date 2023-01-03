@@ -21,7 +21,7 @@ check-update:
   api-url: https://mcp.huahuo-cn.tk/api/CatSero/version
 
 # 自定义QQ命令头
-custom-qq-command-prefix:
+command-prefix:
   # 功能开关
   # true | false
   enable: false

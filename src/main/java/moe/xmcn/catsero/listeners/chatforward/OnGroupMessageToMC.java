@@ -35,9 +35,9 @@ import org.bukkit.event.Listener;
 import java.util.Arrays;
 import java.util.List;
 
-public class OnGroupMessageEvent implements Listener {
+public class OnGroupMessageToMC implements Listener {
 
-    private boolean filter = false;
+    private String message;
 
     private static String cleanStyleCodes(String s) {
         List<String> s0 = Arrays.asList(
@@ -61,7 +61,7 @@ public class OnGroupMessageEvent implements Listener {
                 "o",
                 "r"
         );
-        for (var i = 0; i < s0.toArray().length; i++) {
+        for (int i = 0; i < s0.toArray().length; i++) {
             s = s.replace("" + s0.toArray()[i], "");
         }
         return s;
@@ -74,16 +74,22 @@ public class OnGroupMessageEvent implements Listener {
                         && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT)
                         && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP)
         ) {
-            String message = e.getMessage();
+            message = e.getMessage();
 
+            // Filter
             if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
-                Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.TO_MC.forEach(it -> {
+                Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_MC().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
+                run(e, message);
+                /*
+                Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.VIA.TO_MC.forEach(it -> {
                     if (message.contains(it)) filter = true;
                 });
                 if (!filter)
                     run(e, message);
                 else
                     filter = false;
+
+                 */
             } else
                 run(e, message);
 
@@ -93,11 +99,13 @@ public class OnGroupMessageEvent implements Listener {
     private void run(MiraiGroupMessageEvent e, String message) {
         String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_MC;
 
+        // 清理样式代码
         if (Configuration.USES_CONFIG.CHAT_FORWARD.CLEAN_STYLECODE.TO_MC)
             message = cleanStyleCodes(message);
 
         format = format.replace("%message%", message);
 
+        // 处理名称
         String name = e.getSenderNameCard();
 
         if (name.equals("")) {
@@ -111,6 +119,7 @@ public class OnGroupMessageEvent implements Listener {
 
         format = format.replace("%name%", name);
 
+        // 权限
         int sender_permission = e.getSenderPermission();
         switch (sender_permission) {
             case 0:

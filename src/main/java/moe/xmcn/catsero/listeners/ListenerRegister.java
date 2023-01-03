@@ -24,31 +24,35 @@
 package moe.xmcn.catsero.listeners;
 
 import moe.xmcn.catsero.Configuration;
-import moe.xmcn.catsero.listeners.advancementforward.OnPlayerAdvancementDoneEvent;
-import moe.xmcn.catsero.listeners.chatforward.OnAsyncPlayerChatEvent;
-import moe.xmcn.catsero.listeners.chatforward.OnTrChatEvent;
-import moe.xmcn.catsero.listeners.deadthforward.OnPlayerDeathEvent;
-import moe.xmcn.catsero.listeners.gettps.OnGroupMessageEvent;
-import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerJoinEvent;
-import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerQuitEvent;
-import moe.xmcn.catsero.listeners.newgroupmemberwelcome.OnMemberJoinEvent;
+import moe.xmcn.catsero.listeners.advancementforward.OnPlayerAdvancementDone;
+import moe.xmcn.catsero.listeners.chatforward.OnAsyncPlayerChatToQQ;
+import moe.xmcn.catsero.listeners.chatforward.OnGroupMessageToMC;
+import moe.xmcn.catsero.listeners.chatforward.OnTrChatToQQ;
+import moe.xmcn.catsero.listeners.deadthforward.OnPlayerDeath;
+import moe.xmcn.catsero.listeners.getonlinelist.OnGroupMessageRequestList;
+import moe.xmcn.catsero.listeners.gettps.OnGroupMessageRequestTPS;
+import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerJoin;
+import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerQuit;
+import moe.xmcn.catsero.listeners.newgroupmemberwelcome.OnMemberJoin;
+import moe.xmcn.catsero.listeners.qwhitelist.RefuseNoWhiteList;
 import moe.xmcn.catsero.utils.Envrionment;
 
 public interface ListenerRegister {
 
     static void register() {
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerJoinEvent(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerQuitEvent(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerDeathEvent(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnGroupMessageEvent(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerAdvancementDoneEvent(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnMemberJoinEvent(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.listeners.getonlinelist.OnGroupMessageEvent(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new moe.xmcn.catsero.listeners.chatforward.OnGroupMessageEvent(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerJoin(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerQuit(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerDeath(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnGroupMessageRequestTPS(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerAdvancementDone(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnMemberJoin(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnGroupMessageRequestList(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnGroupMessageToMC(), Configuration.plugin);
         if (Envrionment.Depends.TrChat)
-            Configuration.plugin.getServer().getPluginManager().registerEvents(new OnTrChatEvent(), Configuration.plugin);
+            Configuration.plugin.getServer().getPluginManager().registerEvents(new OnTrChatToQQ(), Configuration.plugin);
         else
-            Configuration.plugin.getServer().getPluginManager().registerEvents(new OnAsyncPlayerChatEvent(), Configuration.plugin);
+            Configuration.plugin.getServer().getPluginManager().registerEvents(new OnAsyncPlayerChatToQQ(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new RefuseNoWhiteList(), Configuration.plugin);
     }
 
 }

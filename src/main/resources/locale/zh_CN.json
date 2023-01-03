@@ -14,6 +14,9 @@
         "use": {
             "chat-forward": {
                 "case-miraicode": "&c您要发送的消息内含有mirai码，该功能已被禁止"
+            },
+            "qwhitelist": {
+                "no-whitelist": "&e您不在本服务器的白名单之内！"
             }
         },
         "call": {
