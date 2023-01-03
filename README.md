@@ -101,6 +101,16 @@ chat-forward:
   clean-stylecode:
     to-mc: false
     to-qq: true
+  # 消息头检测
+  # 只有消息以这个字符串开头才会被转发
+  header:
+    # 功能开关
+    # true | false
+    enable: false
+    # 消息头设置
+    prefix:
+      to-mc: "#"
+      to-qq: "#"
   # 允许游戏内玩家使用mirai码
   allow-miraicode: false
   # 过滤器
@@ -111,10 +121,22 @@ chat-forward:
     enable: false
     # 列表
     list:
-      to-mc:
-        - sb
-      to-qq:
-        - sb
+      # 原生的列表
+      via:
+        to-mc: [ ]
+        to-qq: [ ]
+      # 从外部导入
+      import:
+        # 本地
+        local: [ ]
+        # 远程
+        # 此处使用的是TrChat的默认远程源
+        # 感谢南城提供的词库
+        # CDN JsDelivr
+        remote:
+          - "https://cdn.jsdelivr.net/gh/Yurinann/Filter-Thesaurus-Cloud@main/database.json"
+    # 替换成的字符
+    replace: "**"
   # 使用MiraiMC内置绑定数据库查询QQ发言者名称
   use-bind: true
   # 格式
@@ -249,6 +271,12 @@ get-online-list:
     # - %list%  当前在线玩家列表
     1: |-
       玩家列表: %list%
+
+# QQ白名单
+#qwhitelist:
+#  # 功能开关
+#  # true | false
+#  enable: false
 ```
 
 </details>
@@ -342,6 +370,7 @@ _要触发命令前必须使用前缀`!`或`/`_
 | !catsero tps around   | 获取TPS(概数)   |
 | !catsero tps accurate | 获取TPS(精确)   |
 | !catsero list         | 列出服务器上的所有玩家 |
+
 <!--
 | !catsero pm ban \<player> \(reason) | 封禁一个玩家              |
 | !catsero pm unban \<player>         | 解除封禁一名玩家            |

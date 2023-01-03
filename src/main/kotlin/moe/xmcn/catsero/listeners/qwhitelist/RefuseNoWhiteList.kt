@@ -8,12 +8,15 @@ import org.bukkit.event.player.AsyncPlayerPreLoginEvent
 class RefuseNoWhiteList : Listener {
 
     @EventHandler
-    fun onPlayerPreLogin(e : AsyncPlayerPreLoginEvent) {
+    fun onPlayerPreLogin(e: AsyncPlayerPreLoginEvent) {
         if (
             Configuration.USES_CONFIG.QWHITELIST.ENABLE
             && !Configuration.CFI.whitelist_list.getStringList("list").contains(e.name)
         ) {
-            e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST, Configuration.I18N.MINECRAFT.USE.QWHITELIST.NO_WHITELIST);
+            e.disallow(
+                AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST,
+                Configuration.I18N.MINECRAFT.USE.QWHITELIST.NO_WHITELIST
+            );
         }
     }
 

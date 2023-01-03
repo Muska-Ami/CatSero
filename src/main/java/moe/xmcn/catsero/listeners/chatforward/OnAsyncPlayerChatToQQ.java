@@ -88,7 +88,11 @@ public class OnAsyncPlayerChatToQQ implements Listener {
             else
                 format = format.replace("%sender_permission%", Configuration.I18N.MINECRAFT.CALL.PLAYER);
 
-            MessageSender.sendGroup(format, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP);
+            if (Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.ENABLE) {
+                if (message.startsWith(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_QQ))
+                    MessageSender.sendGroup(format, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP);
+            } else
+                MessageSender.sendGroup(format, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP);
         } else
             e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.CHAT_FORWARD.CASE_MIRAICODE));
     }

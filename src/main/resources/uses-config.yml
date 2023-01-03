@@ -22,6 +22,16 @@ chat-forward:
   clean-stylecode:
     to-mc: false
     to-qq: true
+  # 消息头检测
+  # 只有消息以这个字符串开头才会被转发
+  header:
+    # 功能开关
+    # true | false
+    enable: false
+    # 消息头设置
+    prefix:
+      to-mc: "#"
+      to-qq: "#"
   # 允许游戏内玩家使用mirai码
   allow-miraicode: false
   # 过滤器
@@ -34,12 +44,12 @@ chat-forward:
     list:
       # 原生的列表
       via:
-        to-mc: []
-        to-qq: []
+        to-mc: [ ]
+        to-qq: [ ]
       # 从外部导入
       import:
         # 本地
-        local: []
+        local: [ ]
         # 远程
         # 此处使用的是TrChat的默认远程源
         # 感谢南城提供的词库
@@ -184,7 +194,7 @@ get-online-list:
       玩家列表: %list%
 
 # QQ白名单
-qwhitelist:
-  # 功能开关
-  # true | false
-  enable: false
+#qwhitelist:
+#  # 功能开关
+#  # true | false
+#  enable: false

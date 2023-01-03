@@ -132,7 +132,11 @@ public class OnGroupMessageToMC implements Listener {
                 format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.OWNER);
                 break;
         }
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
+        if (Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.ENABLE) {
+            if (message.startsWith(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_MC))
+                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
+        } else
+            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
     }
 
 }

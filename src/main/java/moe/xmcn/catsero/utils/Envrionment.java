@@ -23,14 +23,8 @@
  */
 package moe.xmcn.catsero.utils;
 
-import com.alibaba.fastjson.JSON;
 import moe.xmcn.catsero.Configuration;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.InvalidDescriptionException;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 
 public interface Envrionment {
     String server_version = Configuration.plugin.getServer().getVersion();

@@ -33,14 +33,17 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
-import javax.swing.*;
-import java.io.*;
-import java.math.BigDecimal;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public interface Configuration {
@@ -258,6 +261,19 @@ public interface Configuration {
             boolean ALLOW_MIRAICODE = CFI.uses_config.getBoolean(sub_node + "allow-miraicode");
             boolean USE_BIND = CFI.uses_config.getBoolean(sub_node + "use-bind");
 
+            interface HEADER {
+                String sub_node = "chat-forward.header" + ".";
+
+                boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+
+                interface PREFIX {
+                    String sub_node = "chat-forward.header.prefix" + ".";
+
+                    String TO_MC = CFI.uses_config.getString(sub_node + "to-mc");
+                    String TO_QQ = CFI.uses_config.getString(sub_node + "to-qq");
+                }
+            }
+
             interface CLEAN_STYLECODE {
                 String sub_node = "chat-forward.clean-stylecode" + ".";
 
@@ -270,6 +286,7 @@ public interface Configuration {
 
                 boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
                 String REPLACE = CFI.uses_config.getString(sub_node + "replace");
+
                 interface LIST {
                     String sub_node = "chat-forward.filter.list" + ".";
 
@@ -285,7 +302,7 @@ public interface Configuration {
                                     // 遍历并添加屏蔽词
                                     int words_length = ja.toArray().length;
 
-                                    for (int i=0; i < words_length; i++) {
+                                    for (int i = 0; i < words_length; i++) {
                                         list.add(ja.get(i).toString());
                                     }
                                 }
@@ -300,7 +317,7 @@ public interface Configuration {
 
                                         // 遍历并添加屏蔽词
                                         int words_length = ja.toArray().length;
-                                        for (int i=0; i < words_length; i++) {
+                                        for (int i = 0; i < words_length; i++) {
                                             list.add(ja.get(i).toString());
                                         }
                                     } catch (Exception e) {
@@ -310,6 +327,7 @@ public interface Configuration {
                         );
                         return list;
                     }
+
                     static List<String> ALL_TO_QQ() {
                         List<String> list = new ArrayList<>(VIA.TO_QQ);
                         IMPORT.REMOTE.forEach(
@@ -319,7 +337,7 @@ public interface Configuration {
                                     ).getJSONArray("words");
                                     int words_length = ja.toArray().length;
 
-                                    for (int i=0; i < words_length; i++) {
+                                    for (int i = 0; i < words_length; i++) {
                                         list.add(ja.get(i).toString());
                                     }
                                 }
@@ -334,7 +352,7 @@ public interface Configuration {
 
                                         // 遍历并添加屏蔽词
                                         int words_length = ja.toArray().length;
-                                        for (int i=0; i < words_length; i++) {
+                                        for (int i = 0; i < words_length; i++) {
                                             list.add(ja.get(i).toString());
                                         }
                                     } catch (Exception e) {
@@ -344,12 +362,14 @@ public interface Configuration {
                         );
                         return list;
                     }
+
                     interface IMPORT {
                         String sub_node = "chat-forward.filter.list.import" + ".";
 
                         List<String> LOCAL = CFI.uses_config.getStringList(sub_node + "local");
                         List<String> REMOTE = CFI.uses_config.getStringList(sub_node + "remote");
                     }
+
                     interface VIA {
                         String sub_node = "chat-forward.filter.list.via" + ".";
 
@@ -373,6 +393,7 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+
         interface QWHITELIST {
             String sub_node = "qwhitelist" + ".";
 
@@ -424,6 +445,7 @@ public interface Configuration {
 
                     String CASE_MIRAICODE = chat_forward.getString("case-miraicode");
                 }
+
                 interface QWHITELIST {
                     JSONObject qwhitelist = use.getJSONObject("qwhitelist");
 

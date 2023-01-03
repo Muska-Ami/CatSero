@@ -9,7 +9,7 @@ import org.bukkit.event.Listener
 class AddWhiteList : Listener {
 
     @EventHandler
-    fun onGroupMessage(e : MiraiGroupMessageEvent) {
+    fun onGroupMessage(e: MiraiGroupMessageEvent) {
         val args = QPS.parse(e.message)
         if (args != null) {
             if (

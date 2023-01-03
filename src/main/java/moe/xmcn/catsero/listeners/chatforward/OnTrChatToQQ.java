@@ -77,7 +77,7 @@ public class OnTrChatToQQ implements Listener {
         // 检查消息是否含有Mirai码
         if (
                 !Configuration.USES_CONFIG.CHAT_FORWARD.ALLOW_MIRAICODE
-                    && !message.contains("[mirai:")
+                        && !message.contains("[mirai:")
         ) {
             // 清理样式代码
             if (Configuration.USES_CONFIG.CHAT_FORWARD.CLEAN_STYLECODE.TO_QQ)
@@ -93,7 +93,11 @@ public class OnTrChatToQQ implements Listener {
             else
                 format = format.replace("%sender_permission%", Configuration.I18N.MINECRAFT.CALL.PLAYER);
 
-            MessageSender.sendGroup(format, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP);
+            if (Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.ENABLE) {
+                if (message.startsWith(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_QQ))
+                    MessageSender.sendGroup(format, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP);
+            } else
+                MessageSender.sendGroup(format, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP);
         } else
             e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.CHAT_FORWARD.CASE_MIRAICODE));
     }

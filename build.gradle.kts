@@ -1,7 +1,5 @@
 import org.apache.tools.ant.filters.FixCrLfFilter
 import org.apache.tools.ant.filters.ReplaceTokens
-import org.jetbrains.kotlin.gradle.internal.encodePluginOptions
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("java")
@@ -66,12 +64,12 @@ tasks.processResources {
     filteringCharset = "UTF-8"
     filter(ReplaceTokens::class, "tokens" to loadEnv())
     filter(
-            FixCrLfFilter::class,
-            "eol" to FixCrLfFilter.CrLf.newInstance("lf"),
-            "tab" to FixCrLfFilter.AddAsisRemove.newInstance("asis"),
-            "tablength" to 4,
-            "eof" to FixCrLfFilter.AddAsisRemove.newInstance("remove"),
-            "fixlast" to true
+        FixCrLfFilter::class,
+        "eol" to FixCrLfFilter.CrLf.newInstance("lf"),
+        "tab" to FixCrLfFilter.AddAsisRemove.newInstance("asis"),
+        "tablength" to 4,
+        "eof" to FixCrLfFilter.AddAsisRemove.newInstance("remove"),
+        "fixlast" to true
     )
 
 }
