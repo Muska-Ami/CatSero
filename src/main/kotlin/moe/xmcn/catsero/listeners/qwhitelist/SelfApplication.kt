@@ -85,9 +85,9 @@ class SelfApplication : Listener {
             )
     }
 
-    /**
-     * 没有replaceLast(String, String)方法差评，自己写一个
-     * String.replaceLast(strToReplace: String, replaceWithThis: String)
+    /*
+    没有replaceLast(String, String)方法差评，自己写一个
+    String.replaceLast(strToReplace: String, replaceWithThis: String)
      */
     private fun String.replaceLast(strToReplace: String, replaceWithThis: String): String {
         return this.replaceFirst(

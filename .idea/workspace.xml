@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="I18n修复，白名单自助申请&#10;修复I18n读取错误&#10;新增自助白名单申请">
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/QPS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/QPS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/RefuseNoWhiteList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/RefuseNoWhiteList.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/SelfApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/SelfApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/WhiteListEditor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/WhiteListEditor.kt" afterDir="false" />
-    </list>
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="修复Codacy报告的一些Issue" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,6 +110,7 @@
       <recent name="D:\Otr\IdeaProjects\CatSero\" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="moe.xmcn.catsero" />
       <recent name="moe.xmcn.catsero.commands.catsero" />
     </key>
   </component>
@@ -135,14 +129,14 @@
       </method>
     </configuration>
     <configuration name="FileReaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="FileReaderTest" />
+      <option name="MAIN_CLASS_NAME" value="moe.xmcn.catsero.FileReaderTest" />
       <module name="CatSero.test" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="TestGetFileProtocol" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="TestGetFileProtocol" />
+      <option name="MAIN_CLASS_NAME" value="moe.xmcn.catsero.TestGetFileProtocol" />
       <module name="CatSero.test" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -517,7 +511,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672823560911</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="修复Codacy报告的一些Issue">
+      <created>1672824211199</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1672824211199</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -538,7 +539,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="漏掉的颜色" />
     <MESSAGE value="兼容旧版不支持增强switch" />
     <MESSAGE value="break;" />
     <MESSAGE value="完成一个功能：JoinQuitForward" />
@@ -563,7 +563,8 @@
     <MESSAGE value="修复聊天转发吞字符问题" />
     <MESSAGE value="I18n 白名单&#10;修复I18n读取错误&#10;新增自助白名单申请" />
     <MESSAGE value="I18n修复，白名单自助申请&#10;修复I18n读取错误&#10;新增自助白名单申请" />
-    <option name="LAST_COMMIT_MESSAGE" value="I18n修复，白名单自助申请&#10;修复I18n读取错误&#10;新增自助白名单申请" />
+    <MESSAGE value="修复Codacy报告的一些Issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复Codacy报告的一些Issue" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
