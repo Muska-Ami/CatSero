@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Method implements TabExecutor {
+public class OnCommand implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         try {
@@ -68,7 +68,7 @@ public class Method implements TabExecutor {
                     case "reload":
                         if (args.length == 1) {
                             if (sender.hasPermission("catsero.admin")) {
-                                Configuration.reloadFiles();
+                                Configuration.plugin.reloadConfig();
                                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.RELOAD.SUCCESS));
                             } else
                                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.NO_PERMISSION));

@@ -31,6 +31,7 @@ import moe.xmcn.catsero.utils.TPSCalculator;
 import moe.xmcn.catsero.utils.bStatsMetrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,6 +44,23 @@ public class CatSero extends JavaPlugin {
         Logger.logLoader("Saving files...");
         Configuration.saveFiles();
         Logger.logLoader("Saved all files.");
+
+        /*
+        if (
+                Configuration.USES_CONFIG.QWHITELIST.ENABLE
+                        && !new File(getDataFolder(), "extra-configs/whitelist.yml").exists()
+        ) {
+            Logger.logLoader("Creating whitelist data...");
+            saveResource("extra-configs/whitelist.yml", false);
+            Logger.logLoader("Created.");
+        }
+
+         */
+        if (Configuration.USES_CONFIG.QWHITELIST.ENABLE) {
+            Logger.logLoader("Init whitelist database...");
+            WhiteListDatabase.initDatabase();
+            Logger.logLoader("Init success.");
+        }
 
         Logger.logLoader("Checking server information...");
         Envrionment.check();

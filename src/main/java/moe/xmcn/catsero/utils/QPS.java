@@ -25,6 +25,9 @@ package moe.xmcn.catsero.utils;
 
 import moe.xmcn.catsero.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface QPS {
 
     /**
@@ -39,7 +42,7 @@ public interface QPS {
         if (pmhv != null) {
             return pmhv.split(" ");
         } else if (
-                Configuration.PLUGIN.CUSTOM_QQ_COMMAND_PREFIX.ENABLE &&
+                Configuration.PLUGIN.COMMAND_PREFIX.ENABLE &&
                         pmhc != null
         ) {
             return pmhc.split(" ");
@@ -76,7 +79,7 @@ public interface QPS {
          * @return 处理后的消息或null
          */
         private static String checkCustomCommandHeader(String message) {
-            String custom_head = Configuration.PLUGIN.CUSTOM_QQ_COMMAND_PREFIX.PREFIX;
+            String custom_head = Configuration.PLUGIN.COMMAND_PREFIX.PREFIX;
             if (message.startsWith("!" + custom_head)) {
                 //解析命令头(!)
                 message = message.replaceFirst("!" + custom_head + " ", "");

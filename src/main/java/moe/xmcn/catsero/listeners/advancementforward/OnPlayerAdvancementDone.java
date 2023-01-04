@@ -33,7 +33,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 
-public class OnPlayerAdvancementDoneEvent implements Listener {
+public class OnPlayerAdvancementDone implements Listener {
 
     @EventHandler
     public void onPlayerAchievement(PlayerAdvancementDoneEvent e) {

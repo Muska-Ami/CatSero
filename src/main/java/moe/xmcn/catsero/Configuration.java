@@ -24,15 +24,24 @@
 package moe.xmcn.catsero;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import moe.xmcn.catsero.utils.HttpClient;
 import moe.xmcn.catsero.utils.Logger;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -42,11 +51,11 @@ public interface Configuration {
     // 定义plugin
     Plugin plugin = CatSero.getPlugin(CatSero.class);
 
-    private static JSONObject buildObject() throws IOException {
+    static JSONObject buildObject() throws IOException {
         String locale;
         locale = Objects.requireNonNull(PLUGIN.LOCALE, "zh_CN");
 
-        InputStreamReader isr = new InputStreamReader(new FileInputStream(plugin.getDataFolder() + "/locale/" + locale + ".json"), StandardCharsets.UTF_8);
+        InputStreamReader isr = new InputStreamReader(Files.newInputStream(Paths.get(plugin.getDataFolder() + "/locale/" + locale + ".json")), StandardCharsets.UTF_8);
         BufferedReader in = new BufferedReader(isr);
         String body;
         StringBuilder data = new StringBuilder();
@@ -57,7 +66,7 @@ public interface Configuration {
         return JSON.parseObject(data.toString());
     }
 
-    private static JSONObject getIJObject() {
+    static JSONObject getIJObject() {
         try {
             return buildObject();
         } catch (IOException e) {
@@ -68,7 +77,8 @@ public interface Configuration {
 
     static void saveFiles() {
         Logger.logLoader("Saving plugin & uses config...");
-        if (!new File(plugin.getDataFolder(), "config.yml").exists()) plugin.saveResource("config.yml", false);
+        if (!new File(plugin.getDataFolder(), "config.yml").exists())
+            plugin.saveResource("config.yml", false);
         if (!new File(plugin.getDataFolder(), "uses-config.yml").exists())
             plugin.saveResource("uses-config.yml", false);
         Logger.logLoader("Saved.");
@@ -92,34 +102,52 @@ public interface Configuration {
         if (!new File(plugin.getDataFolder(), "locale/zh_CN.json").exists())
             plugin.saveResource("locale/zh_CN.json", false);
         Logger.logLoader("Saved.");
-
-        Logger.logLoader("Saving version...");
-        plugin.saveResource("version", true);
-        Logger.logLoader("Saved.");
     }
 
+    /*
     static void reloadFiles() throws IOException, InvalidConfigurationException {
         Logger.logLoader("Saving files...");
         saveFiles();
         Logger.logLoader("Saved all files.");
 
-        Logger.logLoader("Reloading files...");
-        CFI.plugin_config.load(new File("config.yml"));
-        CFI.uses_config.load(new File("uses-config.yml"));
+        if (
+                USES_CONFIG.QWHITELIST.ENABLE
+                        && !new File(plugin.getDataFolder(), "extra-configs/whitelist.yml").exists()
+        ) {
+            Logger.logLoader("Creating whitelist data...");
+            plugin.saveResource("extra-configs/whitelist.yml", false);
+            Logger.logLoader("Created.");
+        }
 
-        CFI.bot_config.load(new File("mirai-configs/qq.yml"));
+        Logger.logLoader("Reloading files...");
+        CFI.plugin_config.load(new File(plugin.getDataFolder(), "config.yml"));
+        CFI.uses_config.load(new File(plugin.getDataFolder(), "uses-config.yml"));
+
+        CFI.bot_config.load(new File(plugin.getDataFolder(), "mirai-configs/bot.yml"));
         CFI.group_config.load(new File(plugin.getDataFolder(), "mirai-configs/group.yml"));
         CFI.qqop_config.load(new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml"));
 
         CFI.ext_trchat_config.load(new File(plugin.getDataFolder(), "extra-configs/trchat.yml"));
+
+        if (USES_CONFIG.QWHITELIST.ENABLE) {
+            CFI.whitelist_list.load(new File(plugin.getDataFolder(), "extra-configs/whitelist.yml"));
+        }
         Logger.logLoader("Reloaded.");
     }
+
+     */
 
     // 配置定义
     interface PLUGIN {
 
         String LOCALE = CFI.plugin_config.getString("locale");
         boolean BSTATS = CFI.plugin_config.getBoolean("bstats");
+
+        interface JDBC {
+            String sub_node = "jdbc" + ".";
+
+            String CLASS_NAME = CFI.plugin_config.getString(sub_node + "class-name");
+        }
 
         interface CHECK_UPDATE {
             /* 定义节点 为了区分
@@ -134,8 +162,8 @@ public interface Configuration {
             String MODE = CFI.plugin_config.getString(sub_node + "mode");
         }
 
-        interface CUSTOM_QQ_COMMAND_PREFIX {
-            String sub_node = "custom-qq-command-prefix" + ".";
+        interface COMMAND_PREFIX {
+            String sub_node = "command-prefix" + ".";
 
             boolean ENABLE = CFI.plugin_config.getBoolean(sub_node + "enable");
             String PREFIX = CFI.plugin_config.getString(sub_node + "prefix");
@@ -243,6 +271,19 @@ public interface Configuration {
             boolean ALLOW_MIRAICODE = CFI.uses_config.getBoolean(sub_node + "allow-miraicode");
             boolean USE_BIND = CFI.uses_config.getBoolean(sub_node + "use-bind");
 
+            interface HEADER {
+                String sub_node = "chat-forward.header" + ".";
+
+                boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+
+                interface PREFIX {
+                    String sub_node = "chat-forward.header.prefix" + ".";
+
+                    String TO_MC = CFI.uses_config.getString(sub_node + "to-mc");
+                    String TO_QQ = CFI.uses_config.getString(sub_node + "to-qq");
+                }
+            }
+
             interface CLEAN_STYLECODE {
                 String sub_node = "chat-forward.clean-stylecode" + ".";
 
@@ -254,12 +295,97 @@ public interface Configuration {
                 String sub_node = "chat-forward.filter" + ".";
 
                 boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+                String REPLACE = CFI.uses_config.getString(sub_node + "replace");
 
                 interface LIST {
-                    String sub_node = "chat-forward.filter.list" + ".";
+                    //String sub_node = "chat-forward.filter.list" + ".";
 
-                    List<String> TO_MC = CFI.uses_config.getStringList(sub_node + "to-mc");
-                    List<String> TO_QQ = CFI.uses_config.getStringList(sub_node + "to-qq");
+                    static List<String> ALL_TO_MC() {
+                        List<String> list = new ArrayList<>(VIA.TO_MC);
+                        // 读取url列表并遍历
+                        IMPORT.REMOTE.forEach(
+                                url -> {
+                                    // 发Http请求
+                                    String data = new HttpClient().getRequest(url);
+                                    JSONArray ja = JSON.parseObject(data).getJSONArray("words");
+
+                                    // 遍历并添加屏蔽词
+                                    int words_length = ja.toArray().length;
+
+                                    for (int i = 0; i < words_length; i++) {
+                                        list.add(ja.get(i).toString());
+                                    }
+                                }
+                        );
+                        IMPORT.LOCAL.forEach(
+                                path -> {
+                                    try {
+                                        //读取文件
+                                        String data = Files.readString(Path.of(path));
+
+                                        JSONArray ja = JSON.parseObject(data).getJSONArray("words");
+
+                                        // 遍历并添加屏蔽词
+                                        int words_length = ja.toArray().length;
+                                        for (int i = 0; i < words_length; i++) {
+                                            list.add(ja.get(i).toString());
+                                        }
+                                    } catch (Exception e) {
+                                        Logger.logCatch(e);
+                                    }
+                                }
+                        );
+                        return list;
+                    }
+
+                    static List<String> ALL_TO_QQ() {
+                        List<String> list = new ArrayList<>(VIA.TO_QQ);
+                        IMPORT.REMOTE.forEach(
+                                url -> {
+                                    JSONArray ja = JSON.parseObject(
+                                            new HttpClient().getRequest(url)
+                                    ).getJSONArray("words");
+                                    int words_length = ja.toArray().length;
+
+                                    for (int i = 0; i < words_length; i++) {
+                                        list.add(ja.get(i).toString());
+                                    }
+                                }
+                        );
+                        IMPORT.LOCAL.forEach(
+                                path -> {
+                                    try {
+                                        //读取文件
+                                        String data = Files.readString(Path.of(path));
+
+                                        JSONArray ja = JSON.parseObject(data).getJSONArray("words");
+
+                                        // 遍历并添加屏蔽词
+                                        int words_length = ja.toArray().length;
+                                        for (int i = 0; i < words_length; i++) {
+                                            list.add(ja.get(i).toString());
+                                        }
+                                    } catch (Exception e) {
+                                        Logger.logCatch(e);
+                                    }
+                                }
+                        );
+                        return list;
+                    }
+
+                    interface IMPORT {
+                        String sub_node = "chat-forward.filter.list.import" + ".";
+
+                        List<String> LOCAL = CFI.uses_config.getStringList(sub_node + "local");
+                        List<String> REMOTE = CFI.uses_config.getStringList(sub_node + "remote");
+                    }
+
+                    interface VIA {
+                        String sub_node = "chat-forward.filter.list.via" + ".";
+
+                        List<String> TO_MC = CFI.uses_config.getStringList(sub_node + "to-mc");
+                        List<String> TO_QQ = CFI.uses_config.getStringList(sub_node + "to-qq");
+                    }
                 }
             }
 
@@ -272,6 +398,19 @@ public interface Configuration {
 
             interface MIRAI {
                 String sub_node = "chat-forward.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
+
+        interface QWHITELIST {
+            String sub_node = "qwhitelist" + ".";
+
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+
+            interface MIRAI {
+                String sub_node = "qwhitelist.var" + ".";
 
                 String BOT = CFI.uses_config.getString(sub_node + "bot");
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
@@ -323,6 +462,14 @@ public interface Configuration {
 
                     String CASE_MIRAICODE = chat_forward.getString("case-miraicode");
                 }
+
+                interface QWHITELIST {
+                    JSONObject qwhitelist = use.getJSONObject("qwhitelist");
+
+                    String NO_WHITELIST = qwhitelist.getString("no-whitelist");
+                    String REMOVE_KICK = qwhitelist.getString("remove-kick");
+                    String CHANGE_KICK = qwhitelist.getString("change-kick");
+                }
             }
 
             interface CALL {
@@ -349,6 +496,24 @@ public interface Configuration {
                 String MEMBER = call.getString("member");
                 String ADMIN = call.getString("admin");
                 String OWNER = call.getString("owner");
+            }
+
+            interface USE {
+                JSONObject use = qq.getJSONObject("use");
+
+                interface QWHITELIST {
+                    JSONObject qwhitelist = use.getJSONObject("qwhitelist");
+
+                    String ADD_SUCCESS = qwhitelist.getString("add-success");
+                    String ADD_ERROR_SQL = qwhitelist.getString("add-error-sql");
+                    String ADD_ERROR_REPEAT = qwhitelist.getString("add-error-repeat");
+                    String REMOVE_SUCCESS = qwhitelist.getString("remove-success");
+                    String REMOVE_ERROR_SQL = qwhitelist.getString("remove-error-sql");
+                    String REMOVE_ERROR_NOT_FOUND = qwhitelist.getString("remove-error-not-found");
+                    String CHANGE_SUCCESS = qwhitelist.getString("change-success");
+                    String CHANGE_ERROR_SQL = qwhitelist.getString("change-error-sql");
+                    String CHANGE_ERROR_NOT_FOUND = qwhitelist.getString("change-error-not-found");
+                }
             }
         }
     }
@@ -407,20 +572,19 @@ public interface Configuration {
     }
 
     class CFI {
-        public static File version_file = new File(plugin.getDataFolder(), "version");
         // File
-        static File config_file = new File(plugin.getDataFolder(), "config.yml");
-        static FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(config_file);
-        static File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
-        static FileConfiguration uses_config = YamlConfiguration.loadConfiguration(usesconfig_file);
-        static File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
-        static FileConfiguration bot_config = YamlConfiguration.loadConfiguration(mirai_bot_file);
-        static File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
-        static FileConfiguration group_config = YamlConfiguration.loadConfiguration(mirai_group_file);
-        static File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
-        static FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
-        static File ext_trchat_file = new File(plugin.getDataFolder(), "extra-configs/trchat.yml");
-        static FileConfiguration ext_trchat_config = YamlConfiguration.loadConfiguration(ext_trchat_file);
+        static final File config_file = new File(plugin.getDataFolder(), "config.yml");
+        static final FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(config_file);
+        static final File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
+        static final FileConfiguration uses_config = YamlConfiguration.loadConfiguration(usesconfig_file);
+        static final File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
+        static final FileConfiguration bot_config = YamlConfiguration.loadConfiguration(mirai_bot_file);
+        static final File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
+        static final FileConfiguration group_config = YamlConfiguration.loadConfiguration(mirai_group_file);
+        static final File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
+        static final FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
+        static final File ext_trchat_file = new File(plugin.getDataFolder(), "extra-configs/trchat.yml");
+        static final FileConfiguration ext_trchat_config = YamlConfiguration.loadConfiguration(ext_trchat_file);
     }
 
 }

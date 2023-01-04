@@ -14,6 +14,11 @@
         "use": {
             "chat-forward": {
                 "case-miraicode": "&c您要发送的消息内含有mirai码，该功能已被禁止"
+            },
+            "qwhitelist": {
+                "no-whitelist": "&e您不在本服务器的白名单之内！",
+                "remove-kick": "&c您的白名单已被移除！",
+                "change-kick": "&e白名单已变更，请重新加入！"
             }
         },
         "call": {
@@ -30,6 +35,19 @@
             "member": "成员",
             "admin": "管理员",
             "owner": "群主"
+        },
+        "use": {
+            "qwhitelist": {
+                "add-success": "添加成功",
+                "add-error-sql": "添加失败，数据库写入失败",
+                "add-error-repeat": "添加失败，白名单中已存在相同名称的玩家",
+                "remove-success": "移除成功",
+                "remove-error-sql": "移除失败，数据库写入失败",
+                "remove-error-not-found": "移除失败，未查询到白名单",
+                "change-success": "更新成功",
+                "change-error-sql": "更新失败，数据库写入失败",
+                "change-error-not-found": "更新失败，未查询到白名单"
+            }
         }
     }
 }
