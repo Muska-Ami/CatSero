@@ -194,7 +194,13 @@ get-online-list:
       玩家列表: %list%
 
 # QQ白名单
-#qwhitelist:
-#  # 功能开关
-#  # true | false
-#  enable: false
+qwhitelist:
+  # 功能开关
+  # true | false
+  enable: false
+  # Bot & Group设置
+  var:
+    # BotID
+    bot: hello-bot
+    # GroupID
+    group: hello-group

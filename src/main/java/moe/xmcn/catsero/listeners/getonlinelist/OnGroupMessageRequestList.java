@@ -25,6 +25,7 @@ package moe.xmcn.catsero.listeners.getonlinelist;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
 import moe.xmcn.catsero.utils.QPS;
 import org.bukkit.Bukkit;
@@ -41,41 +42,44 @@ public class OnGroupMessageRequestList implements Listener {
 
     @EventHandler
     public void onGroupMessage(MiraiGroupMessageEvent e) {
-        String[] args = QPS.parse(e.getMessage());
+        try {
+            String[] args = QPS.parse(e.getMessage());
 
-        if (args != null) {
-            // 条件
-            if (
-                    Configuration.USES_CONFIG.GET_ONLINE_LIST.ENABLE
-                            && args[0].equalsIgnoreCase("list")
-                            && Configuration.Interface.isQQOp(e.getSenderID())
-                            && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
-                            && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
-            ) {
-                List<Player> list = new ArrayList<>(Bukkit.getOnlinePlayers());
+            if (args != null) {
+                // 条件
+                if (
+                        Configuration.USES_CONFIG.GET_ONLINE_LIST.ENABLE
+                                && args[0].equalsIgnoreCase("list")
+                                && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
+                                && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
+                ) {
+                    List<Player> list = new ArrayList<>(Bukkit.getOnlinePlayers());
 
-                String format;
+                    String format;
 
-                // 0
-                format = Configuration.USES_CONFIG.GET_ONLINE_LIST.FORMAT_0;
-                format = format.replace("%count%", String.valueOf(list.toArray().length))
-                        .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()));
-                MessageSender.sendGroup(format, Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT, Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP);
-
-                // 1
-                if (list.toArray().length != 0) {
-                    list.forEach(it -> player_list += it.getName() + ", ");
-                    player_list = player_list.substring(4, player_list.length() - 2);
-
-                    format = Configuration.USES_CONFIG.GET_ONLINE_LIST.FORMAT_1;
+                    // 0
+                    format = Configuration.USES_CONFIG.GET_ONLINE_LIST.FORMAT_0;
                     format = format.replace("%count%", String.valueOf(list.toArray().length))
-                            .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()))
-                            .replace("%list%", player_list);
+                            .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()));
                     MessageSender.sendGroup(format, Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT, Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP);
 
-                    player_list = null;
+                    // 1
+                    if (list.toArray().length != 0) {
+                        list.forEach(it -> player_list += it.getName() + ", ");
+                        player_list = player_list.substring(4, player_list.length() - 2);
+
+                        format = Configuration.USES_CONFIG.GET_ONLINE_LIST.FORMAT_1;
+                        format = format.replace("%count%", String.valueOf(list.toArray().length))
+                                .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()))
+                                .replace("%list%", player_list);
+                        MessageSender.sendGroup(format, Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT, Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP);
+
+                        player_list = null;
+                    }
                 }
             }
+        } catch (Exception ex) {
+            Logger.logCatch(ex);
         }
     }
 

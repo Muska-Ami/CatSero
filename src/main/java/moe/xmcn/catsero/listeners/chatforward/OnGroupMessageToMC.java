@@ -26,6 +26,7 @@ package moe.xmcn.catsero.listeners.chatforward;
 import me.dreamvoid.miraimc.api.MiraiMC;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.Player;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -69,17 +70,18 @@ public class OnGroupMessageToMC implements Listener {
 
     @EventHandler
     public void onGroupMessage(MiraiGroupMessageEvent e) {
-        if (
-                Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE
-                        && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT)
-                        && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP)
-        ) {
-            message = e.getMessage();
+        try {
+            if (
+                    Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE
+                            && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT)
+                            && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP)
+            ) {
+                message = e.getMessage();
 
-            // Filter
-            if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
-                Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_MC().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
-                run(e, message);
+                // Filter
+                if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
+                    Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_MC().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
+                    run(e, message);
                 /*
                 Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.VIA.TO_MC.forEach(it -> {
                     if (message.contains(it)) filter = true;
@@ -90,9 +92,12 @@ public class OnGroupMessageToMC implements Listener {
                     filter = false;
 
                  */
-            } else
-                run(e, message);
+                } else
+                    run(e, message);
 
+            }
+        } catch (Exception ex) {
+            Logger.logCatch(ex);
         }
     }
 

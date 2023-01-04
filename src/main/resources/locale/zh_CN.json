@@ -33,6 +33,16 @@
             "member": "成员",
             "admin": "管理员",
             "owner": "群主"
+        },
+        "use": {
+            "qwhitelist": {
+                "add-success": "添加成功",
+                "add-error-repeat": "添加失败，白名单中已存在相同名称的玩家",
+                "remove-success": "移除成功",
+                "remove-error-not-found": "移除失败，未查询到白名单",
+                "change-success": "更新成功",
+                "change-error-not-found": "更新失败，未查询到白名单"
+            }
         }
     }
 }

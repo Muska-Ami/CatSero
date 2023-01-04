@@ -3,6 +3,7 @@ package moe.xmcn.catsero.listeners.chatforward;
 import me.arasple.mc.trchat.api.event.TrChatEvent;
 import me.arasple.mc.trchat.module.display.ChatSession;
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -45,16 +46,17 @@ public class OnTrChatToQQ implements Listener {
 
     @EventHandler
     public void onTrChat(TrChatEvent e) {
-        if (Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE) {
-            message = e.getMessage();
-            String channel = e.getChannel().getId();
+        try {
+            if (Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE) {
+                message = e.getMessage();
+                String channel = e.getChannel().getId();
 
-            // 先检查聊天频道
-            if (Configuration.EXTRA_CONFIG.TRCHAT.CHAT_FORWARD.CHANNEL.contains(channel)) {
-                // Filter
-                if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
-                    Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
-                    run(e.getSession(), message);
+                // 先检查聊天频道
+                if (Configuration.EXTRA_CONFIG.TRCHAT.CHAT_FORWARD.CHANNEL.contains(channel)) {
+                    // Filter
+                    if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
+                        Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
+                        run(e.getSession(), message);
                 /*
                 if (
                         !filter
@@ -65,9 +67,12 @@ public class OnTrChatToQQ implements Listener {
                     filter = false;
 
                  */
-                } else
-                    run(e.getSession(), message);
+                    } else
+                        run(e.getSession(), message);
+                }
             }
+        } catch (Exception ex) {
+            Logger.logCatch(ex);
         }
     }
 

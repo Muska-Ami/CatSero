@@ -288,7 +288,7 @@ public interface Configuration {
                 String REPLACE = CFI.uses_config.getString(sub_node + "replace");
 
                 interface LIST {
-                    String sub_node = "chat-forward.filter.list" + ".";
+                    //String sub_node = "chat-forward.filter.list" + ".";
 
                     static List<String> ALL_TO_MC() {
                         List<String> list = new ArrayList<>(VIA.TO_MC);
@@ -398,6 +398,13 @@ public interface Configuration {
             String sub_node = "qwhitelist" + ".";
 
             boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+
+            interface MIRAI {
+                String sub_node = "qwhitelist.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
         }
     }
 
@@ -478,6 +485,21 @@ public interface Configuration {
                 String ADMIN = call.getString("admin");
                 String OWNER = call.getString("owner");
             }
+
+            interface USE {
+                JSONObject use = qq.getJSONObject("use");
+
+                interface QWHITELIST {
+                    JSONObject qwhitelist = use.getJSONObject("qwhitelist");
+
+                    String ADD_SUCCESS = qwhitelist.getString("add-success");
+                    String ADD_ERROR_REPEAT = qwhitelist.getString("add-error-repeat");
+                    String REMOVE_SUCCESS = qwhitelist.getString("remove-success");
+                    String REMOVE_ERROR_NOT_FOUND = qwhitelist.getString("remove-error-not-found");
+                    String CHANGE_SUCCESS = qwhitelist.getString("change-success");
+                    String CHANGE_ERROR_NOT_FOUND = qwhitelist.getString("change-error-not-found");
+                }
+            }
         }
     }
 
@@ -548,7 +570,7 @@ public interface Configuration {
         static FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
         static File ext_trchat_file = new File(plugin.getDataFolder(), "extra-configs/trchat.yml");
         static FileConfiguration ext_trchat_config = YamlConfiguration.loadConfiguration(ext_trchat_file);
-        static File whitelist_file = new File(plugin.getDataFolder(), "extra-configs/whitelist.yml");
+        public static File whitelist_file = new File(plugin.getDataFolder(), "extra-configs/whitelist.yml");
         public static FileConfiguration whitelist_list = YamlConfiguration.loadConfiguration(whitelist_file);
     }
 
