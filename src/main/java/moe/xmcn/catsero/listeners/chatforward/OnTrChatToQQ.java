@@ -39,7 +39,8 @@ public class OnTrChatToQQ implements Listener {
                 "r"
         );
         for (int i = 0; i < s0.toArray().length; i++) {
-            s = s.replace("" + s0.toArray()[i], "");
+            s = s.replace("&" + s0.toArray()[i], "");
+            s = s.replace("§" + s0.toArray()[i], "");
         }
         return s;
     }
