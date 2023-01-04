@@ -1,9 +1,11 @@
 package moe.xmcn.catsero.utils;
 
 import moe.xmcn.catsero.Configuration;
-import moe.xmcn.catsero.utils.Logger;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +41,8 @@ public class WhiteListDatabase {
 
     /**
      * 获取白名单列表
-     * @return  所有在白名单的玩家名
+     *
+     * @return 所有在白名单的玩家名
      */
     public List<String> getList() {
         Connection c;
@@ -55,7 +58,7 @@ public class WhiteListDatabase {
             c.setAutoCommit(false);
             sm = c.createStatement();
 
-            ResultSet rs = sm.executeQuery( "select * from RECORDS;" );
+            ResultSet rs = sm.executeQuery("select * from RECORDS;");
             while (rs.next()) {
                 list.add(rs.getString("name"));
             }

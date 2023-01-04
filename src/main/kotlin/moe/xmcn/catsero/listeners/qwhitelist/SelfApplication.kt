@@ -63,7 +63,7 @@ class SelfApplication : Listener {
         }
     }
 
-    private fun run(name : String) {
+    private fun run(name: String) {
         if (!WhiteListDatabase().list.contains(name)) {
             if (WhiteListDatabase().insertList(name))
                 MessageSender.sendGroup(

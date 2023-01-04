@@ -4,24 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="修复聊天转发吞字符问题">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/SelfApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="I18n修复，白名单自助申请&#10;修复I18n读取错误&#10;新增自助白名单申请">
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/WhiteListDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/ListenerRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/ListenerRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/QPS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/QPS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/RefuseNoWhiteList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/RefuseNoWhiteList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/SelfApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/SelfApplication.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/WhiteListEditor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/WhiteListEditor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/zh_CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/locale/zh_CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/uses-config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/uses-config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -521,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672816624991</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="I18n修复，白名单自助申请&#10;修复I18n读取错误&#10;新增自助白名单申请">
+      <created>1672823560911</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1672823560911</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -542,8 +538,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="I18n 改为JSON而不是YAML" />
-    <MESSAGE value="/cms命令" />
     <MESSAGE value="漏掉的颜色" />
     <MESSAGE value="兼容旧版不支持增强switch" />
     <MESSAGE value="break;" />
@@ -567,7 +561,9 @@
     <MESSAGE value="写 了 个 寂 寞 #57" />
     <MESSAGE value="完成 #57" />
     <MESSAGE value="修复聊天转发吞字符问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复聊天转发吞字符问题" />
+    <MESSAGE value="I18n 白名单&#10;修复I18n读取错误&#10;新增自助白名单申请" />
+    <MESSAGE value="I18n修复，白名单自助申请&#10;修复I18n读取错误&#10;新增自助白名单申请" />
+    <option name="LAST_COMMIT_MESSAGE" value="I18n修复，白名单自助申请&#10;修复I18n读取错误&#10;新增自助白名单申请" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

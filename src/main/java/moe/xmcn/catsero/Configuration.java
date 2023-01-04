@@ -31,8 +31,6 @@ import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -409,6 +407,7 @@ public interface Configuration {
             String sub_node = "qwhitelist" + ".";
 
             boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+
             interface SELF_APPLICATION {
                 String sub_node = "qwhitelist.self-application" + ".";
 
