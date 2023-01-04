@@ -45,6 +45,7 @@ public class CatSero extends JavaPlugin {
         Configuration.saveFiles();
         Logger.logLoader("Saved all files.");
 
+        /*
         if (
                 Configuration.USES_CONFIG.QWHITELIST.ENABLE
                         && !new File(getDataFolder(), "extra-configs/whitelist.yml").exists()
@@ -52,6 +53,13 @@ public class CatSero extends JavaPlugin {
             Logger.logLoader("Creating whitelist data...");
             saveResource("extra-configs/whitelist.yml", false);
             Logger.logLoader("Created.");
+        }
+
+         */
+        if (Configuration.USES_CONFIG.QWHITELIST.ENABLE) {
+            Logger.logLoader("Init whitelist database...");
+            WhiteListDatabase.initDatabase();
+            Logger.logLoader("Init success.");
         }
 
         Logger.logLoader("Checking server information...");

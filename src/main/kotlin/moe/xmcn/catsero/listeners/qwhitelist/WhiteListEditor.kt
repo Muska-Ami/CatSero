@@ -2,17 +2,17 @@ package moe.xmcn.catsero.listeners.qwhitelist
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent
 import moe.xmcn.catsero.Configuration
+import moe.xmcn.catsero.WhiteListDatabase
 import moe.xmcn.catsero.utils.Logger
 import moe.xmcn.catsero.utils.MessageSender
+import moe.xmcn.catsero.utils.Player
 import moe.xmcn.catsero.utils.QPS
-import org.bukkit.configuration.file.FileConfiguration
+import org.bukkit.Bukkit
+import org.bukkit.ChatColor
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
-import java.lang.Exception
 
 class WhiteListEditor : Listener {
-
-    val list: FileConfiguration = Configuration.CFI.whitelist_list
 
     @EventHandler
     fun onGroupMessage(e: MiraiGroupMessageEvent) {
@@ -30,16 +30,26 @@ class WhiteListEditor : Listener {
                             // 添加
                             "add" -> {
                                 if (args.size == 3) {
-                                    if (!list.getStringList("list").contains(args[2])) {
+                                    if (!WhiteListDatabase().list.contains(args[2])) {
+                                        /*
                                         list.getStringList("list").add(args[2])
-                                        list.save(Configuration.CFI.whitelist_file)
-                                        list.load(Configuration.CFI.whitelist_file)
+                                        list.save(configuration.whitelist_file)
+                                        list.load(configuration.whitelist_file)
 
-                                        MessageSender.sendGroup(
-                                            Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                                        )
+                                         */
+                                        if (WhiteListDatabase().insertList(args[2])) {
+
+                                            MessageSender.sendGroup(
+                                                Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                            )
+                                        } else
+                                            MessageSender.sendGroup(
+                                                Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_SQL,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                            )
                                     } else
                                         MessageSender.sendGroup(
                                             Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_REPEAT,
@@ -57,16 +67,38 @@ class WhiteListEditor : Listener {
                             // 移除
                             "remove" -> {
                                 if (args.size == 3) {
-                                    if (list.getStringList("list").contains(args[2])) {
+                                    if (WhiteListDatabase().list.contains(args[2])) {
+                                        /*
                                         list.getStringList("list").remove(args[2])
-                                        list.save(Configuration.CFI.whitelist_file)
-                                        list.load(Configuration.CFI.whitelist_file)
+                                        list.save(configuration.whitelist_file)
+                                        list.load(configuration.whitelist_file)
 
-                                        MessageSender.sendGroup(
-                                            Configuration.I18N.QQ.USE.QWHITELIST.REMOVE_SUCCESS,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                                        )
+                                         */
+
+                                        if (WhiteListDatabase().removeList(args[2])) {
+                                            // 如果玩家在线，将玩家踢出
+                                            if (Player.getPlayer(args[2]).isOnline) {
+                                                Bukkit.getScheduler().runTask(
+                                                    Configuration.plugin
+                                                ) {
+                                                    Player.getOnlinePlayer(args[2])
+                                                        .kickPlayer(
+                                                            ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_KICK)
+                                                        )
+                                                }
+                                            }
+
+                                            MessageSender.sendGroup(
+                                                Configuration.I18N.QQ.USE.QWHITELIST.REMOVE_SUCCESS,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                            )
+                                        } else
+                                            MessageSender.sendGroup(
+                                                Configuration.I18N.QQ.USE.QWHITELIST.REMOVE_ERROR_SQL,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                            )
                                     } else
                                         MessageSender.sendGroup(
                                             Configuration.I18N.QQ.USE.QWHITELIST.REMOVE_ERROR_NOT_FOUND,
@@ -84,17 +116,39 @@ class WhiteListEditor : Listener {
                             // 更新
                             "change" -> {
                                 if (args.size == 4) {
-                                    if (list.getStringList("list").contains(args[2])) {
+                                    if (WhiteListDatabase().list.contains(args[2])) {
+                                        /*
                                         list.getStringList("list").remove(args[2])
                                         list.getStringList("list").add(args[3])
-                                        list.save(Configuration.CFI.whitelist_file)
-                                        list.load(Configuration.CFI.whitelist_file)
+                                        list.save(configuration.whitelist_file)
+                                        list.load(configuration.whitelist_file)
 
-                                        MessageSender.sendGroup(
-                                            Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_SUCCESS,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                                        )
+                                         */
+
+                                        if (WhiteListDatabase().updateList(args[2], args[3])) {
+                                            // 如果玩家在线，将玩家踢出
+                                            if (Player.getPlayer(args[2]).isOnline) {
+                                                Bukkit.getScheduler().runTask(
+                                                    Configuration.plugin
+                                                ) {
+                                                    Player.getOnlinePlayer(args[2])
+                                                        .kickPlayer(
+                                                            ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_KICK)
+                                                        )
+                                                }
+                                            }
+
+                                            MessageSender.sendGroup(
+                                                Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_SUCCESS,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                            )
+                                        } else
+                                            MessageSender.sendGroup(
+                                                Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_SQL,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                            )
                                     } else
                                         MessageSender.sendGroup(
                                             Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_NOT_FOUND,

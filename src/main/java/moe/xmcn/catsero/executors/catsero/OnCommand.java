@@ -68,7 +68,7 @@ public class OnCommand implements TabExecutor {
                     case "reload":
                         if (args.length == 1) {
                             if (sender.hasPermission("catsero.admin")) {
-                                Configuration.reloadFiles();
+                                Configuration.plugin.reloadConfig();
                                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.RELOAD.SUCCESS));
                             } else
                                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.NO_PERMISSION));

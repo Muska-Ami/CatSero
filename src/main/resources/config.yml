@@ -20,6 +20,11 @@ check-update:
   # 检查更新服务器API地址，一般情况请勿修改
   api-url: https://mcp.huahuo-cn.tk/api/CatSero/version
 
+# JDBC
+jdbc:
+  # JDBC class名称
+  class-name: "org.sqlite.JDBC"
+
 # 自定义QQ命令头
 command-prefix:
   # 功能开关

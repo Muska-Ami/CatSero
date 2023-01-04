@@ -28,10 +28,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import moe.xmcn.catsero.utils.HttpClient;
 import moe.xmcn.catsero.utils.Logger;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -77,7 +77,8 @@ public interface Configuration {
 
     static void saveFiles() {
         Logger.logLoader("Saving plugin & uses config...");
-        if (!new File(plugin.getDataFolder(), "config.yml").exists()) plugin.saveResource("config.yml", false);
+        if (!new File(plugin.getDataFolder(), "config.yml").exists())
+            plugin.saveResource("config.yml", false);
         if (!new File(plugin.getDataFolder(), "uses-config.yml").exists())
             plugin.saveResource("uses-config.yml", false);
         Logger.logLoader("Saved.");
@@ -103,6 +104,7 @@ public interface Configuration {
         Logger.logLoader("Saved.");
     }
 
+    /*
     static void reloadFiles() throws IOException, InvalidConfigurationException {
         Logger.logLoader("Saving files...");
         saveFiles();
@@ -133,11 +135,19 @@ public interface Configuration {
         Logger.logLoader("Reloaded.");
     }
 
+     */
+
     // 配置定义
     interface PLUGIN {
 
         String LOCALE = CFI.plugin_config.getString("locale");
         boolean BSTATS = CFI.plugin_config.getBoolean("bstats");
+
+        interface JDBC {
+            String sub_node = "jdbc" + ".";
+
+            String CLASS_NAME = CFI.plugin_config.getString(sub_node + "class-name");
+        }
 
         interface CHECK_UPDATE {
             /* 定义节点 为了区分
@@ -457,6 +467,8 @@ public interface Configuration {
                     JSONObject qwhitelist = use.getJSONObject("qwhitelist");
 
                     String NO_WHITELIST = qwhitelist.getString("no-whitelist");
+                    String REMOVE_KICK = qwhitelist.getString("remove-kick");
+                    String CHANGE_KICK = qwhitelist.getString("change-kick");
                 }
             }
 
@@ -493,10 +505,13 @@ public interface Configuration {
                     JSONObject qwhitelist = use.getJSONObject("qwhitelist");
 
                     String ADD_SUCCESS = qwhitelist.getString("add-success");
+                    String ADD_ERROR_SQL = qwhitelist.getString("add-error-sql");
                     String ADD_ERROR_REPEAT = qwhitelist.getString("add-error-repeat");
                     String REMOVE_SUCCESS = qwhitelist.getString("remove-success");
+                    String REMOVE_ERROR_SQL = qwhitelist.getString("remove-error-sql");
                     String REMOVE_ERROR_NOT_FOUND = qwhitelist.getString("remove-error-not-found");
                     String CHANGE_SUCCESS = qwhitelist.getString("change-success");
+                    String CHANGE_ERROR_SQL = qwhitelist.getString("change-error-sql");
                     String CHANGE_ERROR_NOT_FOUND = qwhitelist.getString("change-error-not-found");
                 }
             }
@@ -558,20 +573,18 @@ public interface Configuration {
 
     class CFI {
         // File
-        static File config_file = new File(plugin.getDataFolder(), "config.yml");
-        static FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(config_file);
-        static File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
-        static FileConfiguration uses_config = YamlConfiguration.loadConfiguration(usesconfig_file);
-        static File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
-        static FileConfiguration bot_config = YamlConfiguration.loadConfiguration(mirai_bot_file);
-        static File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
-        static FileConfiguration group_config = YamlConfiguration.loadConfiguration(mirai_group_file);
-        static File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
-        static FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
-        static File ext_trchat_file = new File(plugin.getDataFolder(), "extra-configs/trchat.yml");
-        static FileConfiguration ext_trchat_config = YamlConfiguration.loadConfiguration(ext_trchat_file);
-        public static File whitelist_file = new File(plugin.getDataFolder(), "extra-configs/whitelist.yml");
-        public static FileConfiguration whitelist_list = YamlConfiguration.loadConfiguration(whitelist_file);
+        static final File config_file = new File(plugin.getDataFolder(), "config.yml");
+        static final FileConfiguration plugin_config = YamlConfiguration.loadConfiguration(config_file);
+        static final File usesconfig_file = new File(plugin.getDataFolder(), "uses-config.yml");
+        static final FileConfiguration uses_config = YamlConfiguration.loadConfiguration(usesconfig_file);
+        static final File mirai_bot_file = new File(plugin.getDataFolder(), "mirai-configs/bot.yml");
+        static final FileConfiguration bot_config = YamlConfiguration.loadConfiguration(mirai_bot_file);
+        static final File mirai_group_file = new File(plugin.getDataFolder(), "mirai-configs/group.yml");
+        static final FileConfiguration group_config = YamlConfiguration.loadConfiguration(mirai_group_file);
+        static final File mirai_qqop_file = new File(plugin.getDataFolder(), "mirai-configs/qq-op.yml");
+        static final FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
+        static final File ext_trchat_file = new File(plugin.getDataFolder(), "extra-configs/trchat.yml");
+        static final FileConfiguration ext_trchat_config = YamlConfiguration.loadConfiguration(ext_trchat_file);
     }
 
 }

@@ -30,8 +30,6 @@ import java.util.List;
 
 public interface QPS {
 
-    static List<String> custom = new ArrayList<>();
-
     /**
      * 解析QQ群命令
      *
@@ -91,13 +89,6 @@ public interface QPS {
                 message = message.replaceFirst("/" + custom_head + " ", "");
                 return message;
             }
-            return null;
-        }
-
-        /**
-         * 判定是否是自定义命令
-         */
-        private static String checkCustomCommand() {
             return null;
         }
 

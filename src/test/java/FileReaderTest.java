@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileReaderTest {
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
         File file = new File("E:/Temp/Hello1.txt");
         // 创建文件
         file.createNewFile();

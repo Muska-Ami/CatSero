@@ -22,13 +22,14 @@
 
 ## 功能
 
-- 聊天转发
+- 聊天转发（支持TrChat）
 - 玩家死亡转发
 - 玩家加入/退出转发
 - TPS获取
 - 玩家达成进度转发
 - 获取在线玩家
 - 欢迎新群员
+- 白名单
 
 ## 配置文件
 
@@ -60,8 +61,13 @@ check-update:
   # 检查更新服务器API地址，一般情况请勿修改
   api-url: https://mcp.huahuo-cn.tk/api/CatSero/version
 
+# JDBC
+jdbc:
+  # JDBC class名称
+  class-name: "org.sqlite.JDBC"
+
 # 自定义QQ命令头
-custom-qq-command-prefix:
+command-prefix:
   # 功能开关
   # true | false
   enable: false
@@ -273,10 +279,16 @@ get-online-list:
       玩家列表: %list%
 
 # QQ白名单
-#qwhitelist:
-#  # 功能开关
-#  # true | false
-#  enable: false
+qwhitelist:
+  # 功能开关
+  # true | false
+  enable: false
+  # Bot & Group设置
+  var:
+    # BotID
+    bot: hello-bot
+    # GroupID
+    group: hello-group
 ```
 
 </details>
@@ -355,21 +367,24 @@ demo-use:
 
 ### Minecraft
 
-| 命令                                  | 说明       |
-|-------------------------------------|----------|
-| /catsero version                    | 插件版本以及信息 |
-| /catsero reload                     | 重载配置文件   |
-| /cms \<BotID> \<GroupID> \<message> | 发送群消息    |
+| 命令                                  | 说明           |
+|-------------------------------------|--------------|
+| /catsero version                    | 插件版本以及信息     |
+| /catsero reload                     | 重载config.yml |
+| /cms \<BotID> \<GroupID> \<message> | 发送群消息        |
 
 ### QQ
 
 _要触发命令前必须使用前缀`!`或`/`_
 
-| 命令                    | 说明          |
-|-----------------------|-------------|
-| !catsero tps around   | 获取TPS(概数)   |
-| !catsero tps accurate | 获取TPS(精确)   |
-| !catsero list         | 列出服务器上的所有玩家 |
+| 命令                                                          | 说明          |
+|-------------------------------------------------------------|-------------|
+| !catsero tps around                                         | 获取TPS(概数)   |
+| !catsero tps accurate                                       | 获取TPS(精确)   |
+| !catsero list                                               | 列出服务器上的所有玩家 |
+| !catsero whitelist add \<Player>                            | 添加白名单       |
+| !catsero whitelist change \<PlayerOldName> \<PlayerNewName> | 更新白名单       |
+| !catsero whitelist remove \<Player>                         | 移除白名单       |
 
 <!--
 | !catsero pm ban \<player> \(reason) | 封禁一个玩家              |
