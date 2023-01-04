@@ -31,6 +31,7 @@ import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
@@ -408,6 +409,12 @@ public interface Configuration {
             String sub_node = "qwhitelist" + ".";
 
             boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            interface SELF_APPLICATION {
+                String sub_node = "qwhitelist.self-application" + ".";
+
+                boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+                String format = CFI.uses_config.getString(sub_node + "format");
+            }
 
             interface MIRAI {
                 String sub_node = "qwhitelist.var" + ".";
@@ -488,6 +495,7 @@ public interface Configuration {
 
                 String INVALID_OPTION = command.getString("invalid-option");
                 String NO_PERMISSION = command.getString("no-permission");
+                String CONFIG_ERROR = command.getString("config-error");
             }
 
             interface CALL {

@@ -35,6 +35,7 @@ import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerJoin;
 import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerQuit;
 import moe.xmcn.catsero.listeners.newgroupmemberwelcome.OnMemberJoin;
 import moe.xmcn.catsero.listeners.qwhitelist.RefuseNoWhiteList;
+import moe.xmcn.catsero.listeners.qwhitelist.SelfApplication;
 import moe.xmcn.catsero.listeners.qwhitelist.WhiteListEditor;
 import moe.xmcn.catsero.utils.Envrionment;
 
@@ -55,6 +56,7 @@ public interface ListenerRegister {
             Configuration.plugin.getServer().getPluginManager().registerEvents(new OnAsyncPlayerChatToQQ(), Configuration.plugin);
         Configuration.plugin.getServer().getPluginManager().registerEvents(new RefuseNoWhiteList(), Configuration.plugin);
         Configuration.plugin.getServer().getPluginManager().registerEvents(new WhiteListEditor(), Configuration.plugin);
+        Configuration.plugin.getServer().getPluginManager().registerEvents(new SelfApplication(), Configuration.plugin);
     }
 
 }

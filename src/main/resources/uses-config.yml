@@ -204,3 +204,12 @@ qwhitelist:
     bot: hello-bot
     # GroupID
     group: hello-group
+  # 自助申请白名单
+  self-application:
+    # 功能开关
+    # true | false
+    enable: false
+    # 申请格式
+    # 内置占位符:
+    # - %name%  玩家名（只能设置一个）
+    format: "!申请白名单 %name%"

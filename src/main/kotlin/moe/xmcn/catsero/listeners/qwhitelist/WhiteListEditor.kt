@@ -2,7 +2,7 @@ package moe.xmcn.catsero.listeners.qwhitelist
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent
 import moe.xmcn.catsero.Configuration
-import moe.xmcn.catsero.WhiteListDatabase
+import moe.xmcn.catsero.utils.WhiteListDatabase
 import moe.xmcn.catsero.utils.Logger
 import moe.xmcn.catsero.utils.MessageSender
 import moe.xmcn.catsero.utils.Player
@@ -83,7 +83,7 @@ class WhiteListEditor : Listener {
                                                 ) {
                                                     Player.getOnlinePlayer(args[2])
                                                         .kickPlayer(
-                                                            ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_KICK)
+                                                            ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.REMOVE_KICK)
                                                         )
                                                 }
                                             }
@@ -125,7 +125,8 @@ class WhiteListEditor : Listener {
 
                                          */
 
-                                        if (WhiteListDatabase().updateList(args[2], args[3])) {
+                                        if (WhiteListDatabase()
+                                                .updateList(args[2], args[3])) {
                                             // 如果玩家在线，将玩家踢出
                                             if (Player.getPlayer(args[2]).isOnline) {
                                                 Bukkit.getScheduler().runTask(

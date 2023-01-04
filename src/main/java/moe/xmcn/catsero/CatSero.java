@@ -25,13 +25,9 @@ package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.executors.ExecutorRegister;
 import moe.xmcn.catsero.listeners.ListenerRegister;
-import moe.xmcn.catsero.utils.Envrionment;
-import moe.xmcn.catsero.utils.Logger;
-import moe.xmcn.catsero.utils.TPSCalculator;
-import moe.xmcn.catsero.utils.bStatsMetrics;
+import moe.xmcn.catsero.utils.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 

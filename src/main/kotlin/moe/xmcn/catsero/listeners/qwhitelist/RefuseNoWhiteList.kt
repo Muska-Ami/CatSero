@@ -1,7 +1,7 @@
 package moe.xmcn.catsero.listeners.qwhitelist
 
 import moe.xmcn.catsero.Configuration
-import moe.xmcn.catsero.WhiteListDatabase
+import moe.xmcn.catsero.utils.WhiteListDatabase
 import moe.xmcn.catsero.utils.Logger
 import org.bukkit.ChatColor
 import org.bukkit.event.EventHandler

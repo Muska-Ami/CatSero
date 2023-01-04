@@ -1,5 +1,6 @@
-package moe.xmcn.catsero;
+package moe.xmcn.catsero.utils;
 
+import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.utils.Logger;
 
 import java.sql.*;
