@@ -1,4 +1,4 @@
-/*
+package moe.xmcn.catsero.utils;/*
  * CatSero v2
  * 此文件为 Minecraft服务器 插件 CatSero 的一部分
  * 请在符合开源许可证的情况下修改/发布

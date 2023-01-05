@@ -31,7 +31,6 @@ import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -146,7 +145,23 @@ public interface Configuration {
         interface JDBC {
             String sub_node = "jdbc" + ".";
 
-            String CLASS_NAME = CFI.plugin_config.getString(sub_node + "class-name");
+            String SQLITE_CLASS_NAME = CFI.plugin_config.getString(sub_node + "sqlite-class-name");
+            String MYSQL_CLASS_NAME = CFI.plugin_config.getString(sub_node + "mysql-class-name");
+            String TYPE = CFI.plugin_config.getString(sub_node + "type");
+
+            interface MYSQL {
+                String sub_node = "jdbc.mysql-config" + ".";
+
+                String HOST = CFI.plugin_config.getString(sub_node + "host");
+                int PORT = CFI.plugin_config.getInt(sub_node + "port");
+                String USERNAME = CFI.plugin_config.getString(sub_node + "username");
+                String PASSWORD = CFI.plugin_config.getString(sub_node + "password");
+                String TIMEZONE = CFI.plugin_config.getString(sub_node + "timezone");
+                boolean UNICODE = CFI.plugin_config.getBoolean(sub_node + "unicode");
+                String ENCODING = CFI.plugin_config.getString(sub_node + "encoding");
+                boolean SSL = CFI.plugin_config.getBoolean(sub_node + "ssl");
+                String DATABASE = CFI.plugin_config.getString(sub_node + "database");
+            }
         }
 
         interface CHECK_UPDATE {
@@ -409,6 +424,13 @@ public interface Configuration {
 
             boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
 
+            interface SELF_APPLICATION {
+                String sub_node = "qwhitelist.self-application" + ".";
+
+                boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+                String format = CFI.uses_config.getString(sub_node + "format");
+            }
+
             interface MIRAI {
                 String sub_node = "qwhitelist.var" + ".";
 
@@ -488,6 +510,7 @@ public interface Configuration {
 
                 String INVALID_OPTION = command.getString("invalid-option");
                 String NO_PERMISSION = command.getString("no-permission");
+                String CONFIG_ERROR = command.getString("config-error");
             }
 
             interface CALL {

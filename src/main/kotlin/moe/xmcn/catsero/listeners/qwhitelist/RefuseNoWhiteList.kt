@@ -1,8 +1,8 @@
 package moe.xmcn.catsero.listeners.qwhitelist
 
 import moe.xmcn.catsero.Configuration
-import moe.xmcn.catsero.WhiteListDatabase
 import moe.xmcn.catsero.utils.Logger
+import moe.xmcn.catsero.utils.WhiteListDatabase
 import org.bukkit.ChatColor
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -19,10 +19,13 @@ class RefuseNoWhiteList : Listener {
             ) {
                 e.disallow(
                     AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST,
-                    ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.NO_WHITELIST)
+                    ChatColor.translateAlternateColorCodes(
+                        '&',
+                        Configuration.I18N.MINECRAFT.USE.QWHITELIST.NO_WHITELIST
+                    )
                 )
             }
-        } catch (ex : Exception) {
+        } catch (ex: Exception) {
             Logger.logCatch(ex)
         }
     }

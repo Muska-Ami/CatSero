@@ -29,7 +29,8 @@
     "qq": {
         "command": {
             "invalid-option": "不正确的参数格式",
-            "no-permission": "你没有权限这么做"
+            "no-permission": "你没有权限这么做",
+            "config-error": "配置错误，请联系管理员修正"
         },
         "call": {
             "member": "成员",

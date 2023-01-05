@@ -25,9 +25,6 @@ package moe.xmcn.catsero.utils;
 
 import moe.xmcn.catsero.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public interface QPS {
 
     /**

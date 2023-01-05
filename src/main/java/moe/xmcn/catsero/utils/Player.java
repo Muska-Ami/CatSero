@@ -38,9 +38,13 @@ public interface Player {
      * @return 玩家UUID
      */
     static UUID getUUIDByName(String name) {
-        return Objects.requireNonNull(Lists.newArrayList(Bukkit.getOfflinePlayers()).parallelStream().filter(
+        OfflinePlayer player = Lists.newArrayList(Bukkit.getOfflinePlayers()).parallelStream().filter(
                 i -> Objects.equals(i.getName(), name)
-        ).findFirst().orElse(null)).getUniqueId();
+        ).findFirst().orElse(null);
+        if (player != null)
+            return player.getUniqueId();
+        else
+            return null;
     }
 
     /**

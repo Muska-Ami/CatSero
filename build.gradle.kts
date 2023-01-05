@@ -7,13 +7,13 @@ plugins {
 }
 
 group = "moe.xmcn.catsero"
-version = "2.1-beta-1"
+version = "2.1-beta-2"
 
 repositories {
     mavenCentral()
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi")
-    maven("https://lss233.littleservice.cn/repositories/minecraft")
+    maven("https://crystal.app.lss233.com/repositories/minecraft")
     maven("https://jitpack.io")
 }
 
@@ -25,6 +25,7 @@ dependencies {
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.7.1")
     implementation("com.alibaba:fastjson:2.0.22")
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
+    implementation("com.zaxxer:HikariCP:4.0.3")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
     testImplementation(kotlin("test"))
@@ -80,7 +81,9 @@ tasks.create<Jar>("fatJar") {
     from(sourceMain.output)
 
     configurations.runtimeClasspath.filter {
-        it.name.startsWith("fastjson") or it.name.startsWith("AdvancementInfo")
+        it.name.startsWith("fastjson") or
+                it.name.startsWith("AdvancementInfo") or
+                it.name.startsWith("HikariCP")
     }.forEach { jar ->
         from(zipTree(jar))
     }

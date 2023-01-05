@@ -75,6 +75,8 @@ public class OnCommand implements TabExecutor {
                     case 3:
                         sublist.add("Message");
                         return sublist;
+                    default:
+                        return null;
                 }
             }
         } catch (Exception e) {
