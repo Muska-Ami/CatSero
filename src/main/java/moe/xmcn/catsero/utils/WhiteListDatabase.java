@@ -1,11 +1,10 @@
 package moe.xmcn.catsero.utils;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import moe.xmcn.catsero.Configuration;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +17,8 @@ public class WhiteListDatabase {
         Connection c;
         Statement sm;
         try {
-            Class.forName(Configuration.PLUGIN.JDBC.CLASS_NAME);
-            c = DriverManager.getConnection(
-                    "jdbc:sqlite:" +
-                            Configuration.plugin.getDataFolder() +
-                            "/whitelist.db"
-            );
-            c.setAutoCommit(false);
+            c = createDatabaseConnection();
+            assert c != null;
             sm = c.createStatement();
 
             String cmd = "create TABLE if not exists RECORDS " +
@@ -49,13 +43,8 @@ public class WhiteListDatabase {
         Statement sm;
         List<String> list = new ArrayList<>();
         try {
-            Class.forName(Configuration.PLUGIN.JDBC.CLASS_NAME);
-            c = DriverManager.getConnection(
-                    "jdbc:sqlite:" +
-                            Configuration.plugin.getDataFolder() +
-                            "/whitelist.db"
-            );
-            c.setAutoCommit(false);
+            c = createDatabaseConnection();
+            assert c != null;
             sm = c.createStatement();
 
             ResultSet rs = sm.executeQuery("select * from RECORDS;");
@@ -76,13 +65,8 @@ public class WhiteListDatabase {
         Connection c;
         Statement sm;
         try {
-            Class.forName(Configuration.PLUGIN.JDBC.CLASS_NAME);
-            c = DriverManager.getConnection(
-                    "jdbc:sqlite:" +
-                            Configuration.plugin.getDataFolder() +
-                            "/whitelist.db"
-            );
-            c.setAutoCommit(false);
+            c = createDatabaseConnection();
+            assert c != null;
             sm = c.createStatement();
 
             String cmd = "insert into RECORDS" +
@@ -103,13 +87,8 @@ public class WhiteListDatabase {
         Connection c;
         Statement sm;
         try {
-            Class.forName(Configuration.PLUGIN.JDBC.CLASS_NAME);
-            c = DriverManager.getConnection(
-                    "jdbc:sqlite:" +
-                            Configuration.plugin.getDataFolder() +
-                            "/whitelist.db"
-            );
-            c.setAutoCommit(false);
+            c = createDatabaseConnection();
+            assert c != null;
             sm = c.createStatement();
 
             String cmd = "update RECORDS" +
@@ -131,13 +110,8 @@ public class WhiteListDatabase {
         Connection c;
         Statement sm;
         try {
-            Class.forName(Configuration.PLUGIN.JDBC.CLASS_NAME);
-            c = DriverManager.getConnection(
-                    "jdbc:sqlite:" +
-                            Configuration.plugin.getDataFolder() +
-                            "/whitelist.db"
-            );
-            c.setAutoCommit(false);
+            c = createDatabaseConnection();
+            assert c != null;
             sm = c.createStatement();
 
             String cmd = "delete from RECORDS" +
@@ -152,6 +126,50 @@ public class WhiteListDatabase {
             Logger.logCatch(e);
             return false;
         }
+    }
+
+    private static Connection createDatabaseConnection() throws SQLException {
+
+        HikariConfig hc = new HikariConfig();
+
+        if (Configuration.PLUGIN.JDBC.TYPE.equals("sqlite")) {
+            // SQLite
+            hc.setPoolName("SQLiteConnectionPool");
+            hc.setDriverClassName(Configuration.PLUGIN.JDBC.SQLITE_CLASS_NAME);
+            hc.setJdbcUrl(
+                    "jdbc:sqlite:" +
+                            Configuration.plugin.getDataFolder() +
+                            "/whitelist.db"
+            );
+            hc.setAutoCommit(false);
+            HikariDataSource ds = new HikariDataSource(hc);
+            return ds.getConnection();
+        } else if (Configuration.PLUGIN.JDBC.TYPE.equals("mysql")) {
+            // MySQL
+            hc.setDriverClassName(Configuration.PLUGIN.JDBC.MYSQL_CLASS_NAME);
+            hc.setJdbcUrl(
+                    "jdbc:mysql://" +
+                            Configuration.PLUGIN.JDBC.MYSQL.HOST +
+                            ":" +
+                            Configuration.PLUGIN.JDBC.MYSQL.PORT +
+                            "/" +
+                            Configuration.PLUGIN.JDBC.MYSQL.DATABASE +
+                            "?serverTimezone=" +
+                            Configuration.PLUGIN.JDBC.MYSQL.TIMEZONE +
+                            "&useUnicode=" +
+                            Configuration.PLUGIN.JDBC.MYSQL.UNICODE +
+                            "&characterEncoding=" +
+                            Configuration.PLUGIN.JDBC.MYSQL.ENCODING +
+                            "&useSSL=" +
+                            Configuration.PLUGIN.JDBC.MYSQL.SSL
+            );
+            hc.setUsername(Configuration.PLUGIN.JDBC.MYSQL.USERNAME);
+            hc.setPassword(Configuration.PLUGIN.JDBC.MYSQL.PASSWORD);
+            hc.setAutoCommit(false);
+            HikariDataSource ds = new HikariDataSource(hc);
+            return ds.getConnection();
+        }
+        return null;
     }
 
 }

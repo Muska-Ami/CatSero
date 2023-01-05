@@ -73,7 +73,10 @@ class WhiteListEditor : Listener {
 
                                         if (WhiteListDatabase().removeList(args[2])) {
                                             // 如果玩家在线，将玩家踢出
-                                            if (Player.getPlayer(args[2]).isOnline) {
+                                            if (
+                                                Player.getUUIDByName(args[2]) != null
+                                                && Player.getPlayer(args[2]).isOnline
+                                            ) {
                                                 Bukkit.getScheduler().runTask(
                                                     Configuration.plugin
                                                 ) {
@@ -128,7 +131,10 @@ class WhiteListEditor : Listener {
                                                 .updateList(args[2], args[3])
                                         ) {
                                             // 如果玩家在线，将玩家踢出
-                                            if (Player.getPlayer(args[2]).isOnline) {
+                                            if (
+                                                Player.getUUIDByName(args[2]) != null
+                                                && Player.getPlayer(args[2]).isOnline
+                                            ) {
                                                 Bukkit.getScheduler().runTask(
                                                     Configuration.plugin
                                                 ) {

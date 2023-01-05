@@ -145,7 +145,23 @@ public interface Configuration {
         interface JDBC {
             String sub_node = "jdbc" + ".";
 
-            String CLASS_NAME = CFI.plugin_config.getString(sub_node + "class-name");
+            String SQLITE_CLASS_NAME = CFI.plugin_config.getString(sub_node + "sqlite-class-name");
+            String MYSQL_CLASS_NAME = CFI.plugin_config.getString(sub_node + "mysql-class-name");
+            String TYPE = CFI.plugin_config.getString(sub_node + "type");
+
+            interface MYSQL {
+                String sub_node = "jdbc.mysql-config" + ".";
+
+                String HOST = CFI.plugin_config.getString(sub_node + "host");
+                int PORT = CFI.plugin_config.getInt(sub_node + "port");
+                String USERNAME = CFI.plugin_config.getString(sub_node + "username");
+                String PASSWORD = CFI.plugin_config.getString(sub_node + "password");
+                String TIMEZONE = CFI.plugin_config.getString(sub_node + "timezone");
+                boolean UNICODE = CFI.plugin_config.getBoolean(sub_node + "unicode");
+                String ENCODING = CFI.plugin_config.getString(sub_node + "encoding");
+                boolean SSL = CFI.plugin_config.getBoolean(sub_node + "ssl");
+                String DATABASE = CFI.plugin_config.getString(sub_node + "database");
+            }
         }
 
         interface CHECK_UPDATE {
