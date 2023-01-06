@@ -3,7 +3,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id("java")
-    kotlin("jvm") version "1.7.22"
+    kotlin("jvm") version "1.8.0"
 }
 
 group = "moe.xmcn.catsero"
@@ -23,7 +23,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("me.clip:placeholderapi:2.11.2")
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.7.1")
-    implementation("com.alibaba:fastjson:2.0.21")
+    implementation("com.alibaba:fastjson:2.0.22")
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     implementation("com.zaxxer:HikariCP:4.0.3")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
