@@ -326,7 +326,22 @@ qwhitelist:
 
 </details>
 
-#### extra-conigs/command-alias.yml
+#### extra-configs/trchat.yml
+
+<details>
+<summary>点此展开/收起</summary>
+
+```yaml
+# 聊天转发
+chat-forward:
+  # 需要转发的频道
+  channel:
+    - Normal
+```
+
+</details>
+
+#### extra-configs/command-alias.yml
 
 <details>
 <summary>点此展开/收起</summary>
