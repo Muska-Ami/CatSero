@@ -95,6 +95,9 @@ public interface Configuration {
         if (!new File(plugin.getDataFolder(), "extra-configs/trchat.yml").exists()) {
             plugin.saveResource("extra-configs/trchat.yml", false);
         }
+        if (!new File(plugin.getDataFolder(), "extra-configs/command-alias.yml").exists()) {
+            plugin.saveResource("extra-configs/command-alias.yml", false);
+        }
         Logger.logLoader("Saved.");
 
         Logger.logLoader("Saving default locale...");
@@ -608,6 +611,8 @@ public interface Configuration {
         static final FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
         static final File ext_trchat_file = new File(plugin.getDataFolder(), "extra-configs/trchat.yml");
         static final FileConfiguration ext_trchat_config = YamlConfiguration.loadConfiguration(ext_trchat_file);
+        static final File command_alias_file = new File(plugin.getDataFolder(), "extra-configs/command-alias.yml");
+        public static final FileConfiguration command_alias_config = YamlConfiguration.loadConfiguration(command_alias_file);
     }
 
 }

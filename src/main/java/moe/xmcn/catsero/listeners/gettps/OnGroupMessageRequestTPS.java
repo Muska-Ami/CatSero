@@ -38,23 +38,22 @@ public class OnGroupMessageRequestTPS implements Listener {
 
     @EventHandler
     public void onGroupMessageEvent(MiraiGroupMessageEvent e) {
-        String[] args = QPS.parse(e.getMessage());
+        String[] args = QPS.parse(e.getMessage(), "tps");
 
         if (args != null) {
             // 条件
             if (
                     Configuration.USES_CONFIG.GET_TPS.ENABLE
-                            && args[0].equalsIgnoreCase("tps")
                             && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
                             && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
 
             ) {
-                if (args.length == 2) {
+                if (args.length == 1) {
                     // 处理TPS
                     double tps = TPSCalculator.getTPS();
                     BigDecimal around_tps = BigDecimal.valueOf(tps).setScale(1, RoundingMode.HALF_UP);
 
-                    switch (args[1]) {
+                    switch (args[0]) {
                         case "accurate":
                             // 精确
                             MessageSender.sendGroup("TPS: " + tps, Configuration.USES_CONFIG.GET_TPS.MIRAI.BOT, Configuration.USES_CONFIG.GET_TPS.MIRAI.GROUP);
