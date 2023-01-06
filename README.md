@@ -326,6 +326,30 @@ qwhitelist:
 
 </details>
 
+#### extra-conigs/command-alias.yml
+
+<details>
+<summary>点此展开/收起</summary>
+
+```yaml
+# CatSero QQ CommandAlias Config
+# Generate by CatSero v@plugin.version@
+
+# 功能开关
+# true | false
+enable: false
+
+# 别名列表
+tps:
+  - ctps
+list:
+  - clist
+whitelist:
+  - cwl
+```
+
+</details>
+
 #### Bot & Group & QQOp配置指南
 
 <details>
