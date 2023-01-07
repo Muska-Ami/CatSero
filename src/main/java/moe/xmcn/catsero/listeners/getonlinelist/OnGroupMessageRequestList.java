@@ -43,13 +43,12 @@ public class OnGroupMessageRequestList implements Listener {
     @EventHandler
     public void onGroupMessage(MiraiGroupMessageEvent e) {
         try {
-            String[] args = QPS.parse(e.getMessage());
+            String[] args = QPS.parse(e.getMessage(), "list");
 
             if (args != null) {
                 // 条件
                 if (
                         Configuration.USES_CONFIG.GET_ONLINE_LIST.ENABLE
-                                && args[0].equalsIgnoreCase("list")
                                 && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
                                 && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
                 ) {

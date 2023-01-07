@@ -13,27 +13,26 @@ class WhiteListEditor : Listener {
     @EventHandler
     fun onGroupMessage(e: MiraiGroupMessageEvent) {
         try {
-            val args = QPS.parse(e.message)
+            val args = QPS.parse(e.message, "whitelist")
             if (args != null) {
                 if (
                     Configuration.USES_CONFIG.QWHITELIST.ENABLE
-                    && args[0].equals("whitelist", true)
                     && e.botID == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
                     && e.groupID == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
                 ) {
                     if (Configuration.Interface.isQQOp(e.senderID)) {
-                        when (args[1]) {
+                        when (args[0]) {
                             // 添加
                             "add" -> {
-                                if (args.size == 3) {
-                                    if (!WhiteListDatabase().list.contains(args[2])) {
+                                if (args.size == 2) {
+                                    if (!WhiteListDatabase().list.contains(args[1])) {
                                         /*
                                         list.getStringList("list").add(args[2])
                                         list.save(configuration.whitelist_file)
                                         list.load(configuration.whitelist_file)
 
                                          */
-                                        if (WhiteListDatabase().insertList(args[2])) {
+                                        if (WhiteListDatabase().insertList(args[1])) {
 
                                             MessageSender.sendGroup(
                                                 Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS,
@@ -62,8 +61,8 @@ class WhiteListEditor : Listener {
 
                             // 移除
                             "remove" -> {
-                                if (args.size == 3) {
-                                    if (WhiteListDatabase().list.contains(args[2])) {
+                                if (args.size == 2) {
+                                    if (WhiteListDatabase().list.contains(args[1])) {
                                         /*
                                         list.getStringList("list").remove(args[2])
                                         list.save(configuration.whitelist_file)
@@ -71,16 +70,16 @@ class WhiteListEditor : Listener {
 
                                          */
 
-                                        if (WhiteListDatabase().removeList(args[2])) {
+                                        if (WhiteListDatabase().removeList(args[1])) {
                                             // 如果玩家在线，将玩家踢出
                                             if (
-                                                Player.getUUIDByName(args[2]) != null
-                                                && Player.getPlayer(args[2]).isOnline
+                                                Player.getUUIDByName(args[1]) != null
+                                                && Player.getPlayer(args[1]).isOnline
                                             ) {
                                                 Bukkit.getScheduler().runTask(
                                                     Configuration.plugin
                                                 ) {
-                                                    Player.getOnlinePlayer(args[2])
+                                                    Player.getOnlinePlayer(args[1])
                                                         .kickPlayer(
                                                             ChatColor.translateAlternateColorCodes(
                                                                 '&',
@@ -117,8 +116,8 @@ class WhiteListEditor : Listener {
 
                             // 更新
                             "change" -> {
-                                if (args.size == 4) {
-                                    if (WhiteListDatabase().list.contains(args[2])) {
+                                if (args.size == 3) {
+                                    if (WhiteListDatabase().list.contains(args[1])) {
                                         /*
                                         list.getStringList("list").remove(args[2])
                                         list.getStringList("list").add(args[3])
@@ -128,17 +127,17 @@ class WhiteListEditor : Listener {
                                          */
 
                                         if (WhiteListDatabase()
-                                                .updateList(args[2], args[3])
+                                                .updateList(args[1], args[2])
                                         ) {
                                             // 如果玩家在线，将玩家踢出
                                             if (
-                                                Player.getUUIDByName(args[2]) != null
-                                                && Player.getPlayer(args[2]).isOnline
+                                                Player.getUUIDByName(args[1]) != null
+                                                && Player.getPlayer(args[1]).isOnline
                                             ) {
                                                 Bukkit.getScheduler().runTask(
                                                     Configuration.plugin
                                                 ) {
-                                                    Player.getOnlinePlayer(args[2])
+                                                    Player.getOnlinePlayer(args[1])
                                                         .kickPlayer(
                                                             ChatColor.translateAlternateColorCodes(
                                                                 '&',

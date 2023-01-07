@@ -24,8 +24,42 @@
 package moe.xmcn.catsero.utils;
 
 import moe.xmcn.catsero.Configuration;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public interface QPS {
+
+    /**
+     * 解析命令
+     * @param message 接收消息原文
+     * @param command 命令名称
+     * @return 解析后的数组，如果解析失败则直接返回null
+     */
+    static String[] parse(@NotNull String message, @NotNull String command) {
+        /*
+        思路：先检查默认的命令，如不成功则继续检查别名
+        直接将命令去除，返回参数
+         */
+        String vcp = new ParseTool().vCheckP(message, command);
+        String ccp = new ParseTool().cCheckP(message, command);
+        String ecp = new ParseTool().eCheckP(message, command);
+
+        /*
+        System.out.println(vcp);
+        System.out.println(ccp);
+        System.out.println(ecp);
+
+         */
+
+        if (vcp != null)
+            return vcp.split(" ");
+        else if (ccp != null)
+            return ccp.split(" ");
+        else if (ecp != null)
+            return ecp.split(" ");
+        return null;
+    }
 
     /**
      * 解析QQ群命令
@@ -33,6 +67,7 @@ public interface QPS {
      * @param message 消息
      * @return 数组或null
      */
+    @Deprecated
     static String[] parse(String message) {
         String pmhv = getParser.checkViaCommandHeader(message);
         String pmhc = getParser.checkCustomCommandHeader(message);
@@ -48,6 +83,68 @@ public interface QPS {
         }
     }
 
+    class ParseTool {
+
+        String ess = null;
+
+        private String vCheckP(@NotNull String message, @NotNull String command) {
+            //解析命令头(/,!)
+            if (message.startsWith("!catsero " + command)) {
+                return message.replaceFirst(
+                        "!catsero " + command + " ",
+                        ""
+                );
+            } else if (message.startsWith("/catsero " + command)) {
+                return message.replaceFirst(
+                        "/catsero " + command + " ",
+                        ""
+                );
+            }
+            return null;
+        }
+
+        private String cCheckP(@NotNull String message, @NotNull String command) {
+            if (message.startsWith("!" + Configuration.PLUGIN.COMMAND_PREFIX.PREFIX + " " + command)) {
+                // CH -> !
+                return message.replaceFirst(
+                        "!" + Configuration.PLUGIN.COMMAND_PREFIX.PREFIX + command + " ",
+                        ""
+                );
+            } else if (message.startsWith("/" + Configuration.PLUGIN.COMMAND_PREFIX.PREFIX + " " + command)) {
+                // CH -> /
+                return message.replaceFirst(
+                        "/" + Configuration.PLUGIN.COMMAND_PREFIX.PREFIX + command + " ",
+                        ""
+                );
+            }
+            return null;
+        }
+
+        private String eCheckP(@NotNull String message, @NotNull String command) {
+            if (Configuration.CFI.command_alias_config.getBoolean("enable")) {
+                List<String> aliasList = Configuration.CFI.command_alias_config.getStringList(command);
+                aliasList.forEach(alias -> {
+                    if (message.startsWith("!" + alias)) {
+                        // CH -> !
+                        ess = message.replaceFirst(
+                                "!" + alias + " ",
+                                ""
+                        );
+                    } else if (message.startsWith("/" + alias)) {
+                        // CH -> /
+                        ess = message.replaceFirst(
+                                "/" + alias + " ",
+                                ""
+                        );
+                    }
+                });
+                return ess;
+            }
+            return null;
+        }
+    }
+
+    @Deprecated
     class getParser {
 
         /**
