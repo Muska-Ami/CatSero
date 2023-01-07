@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "moe.xmcn.catsero"
-version = "2.1-beta-3"
+version = "2.1"
 
 repositories {
     mavenCentral()
