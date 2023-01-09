@@ -313,6 +313,9 @@ qwhitelist:
     bot: hello-bot
     # GroupID
     group: hello-group
+  # 检查是否在群内
+  # 若存在白名单但不在群内则视为无
+  check-if-on-group: true
   # 自助申请白名单
   self-application:
     # 功能开关
@@ -322,6 +325,8 @@ qwhitelist:
     # 内置占位符:
     # - %name%  玩家名（只能设置一个）
     format: "!申请白名单 %name%"
+    # 限制每个QQ只能拥有一个白名单
+    a-qq-only-an-account: true
 ```
 
 </details>

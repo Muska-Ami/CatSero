@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "moe.xmcn.catsero"
-version = "2.1"
+version = "2.2"
 
 repositories {
     mavenCentral()
@@ -18,7 +18,10 @@ repositories {
 }
 
 dependencies {
+    // 本地
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+
+    // 远程
     implementation("org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT")
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("me.clip:placeholderapi:2.11.2")
@@ -26,6 +29,8 @@ dependencies {
     implementation("com.alibaba:fastjson:2.0.22")
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     implementation("com.zaxxer:HikariCP:4.0.3")
+    implementation("me.zhenxin:qqbot-sdk:1.2.0")
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
     testImplementation(kotlin("test"))

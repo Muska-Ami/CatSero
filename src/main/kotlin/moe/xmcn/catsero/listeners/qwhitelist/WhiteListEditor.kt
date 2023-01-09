@@ -24,15 +24,15 @@ class WhiteListEditor : Listener {
                         when (args[0]) {
                             // 添加
                             "add" -> {
-                                if (args.size == 2) {
-                                    if (!WhiteListDatabase().list.contains(args[1])) {
+                                if (args.size == 3) {
+                                    if (!WhiteListDatabase.getNameList().contains(args[1])) {
                                         /*
                                         list.getStringList("list").add(args[2])
                                         list.save(configuration.whitelist_file)
                                         list.load(configuration.whitelist_file)
 
                                          */
-                                        if (WhiteListDatabase().insertList(args[1])) {
+                                        if (WhiteListDatabase.insertList(args[1], args[2].toLong())) {
 
                                             MessageSender.sendGroup(
                                                 Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS,
@@ -62,7 +62,7 @@ class WhiteListEditor : Listener {
                             // 移除
                             "remove" -> {
                                 if (args.size == 2) {
-                                    if (WhiteListDatabase().list.contains(args[1])) {
+                                    if (WhiteListDatabase.getNameList().contains(args[1])) {
                                         /*
                                         list.getStringList("list").remove(args[2])
                                         list.save(configuration.whitelist_file)
@@ -70,7 +70,7 @@ class WhiteListEditor : Listener {
 
                                          */
 
-                                        if (WhiteListDatabase().removeList(args[1])) {
+                                        if (WhiteListDatabase.removeList(args[1])) {
                                             // 如果玩家在线，将玩家踢出
                                             if (
                                                 Player.getUUIDByName(args[1]) != null
@@ -117,7 +117,7 @@ class WhiteListEditor : Listener {
                             // 更新
                             "change" -> {
                                 if (args.size == 3) {
-                                    if (WhiteListDatabase().list.contains(args[1])) {
+                                    if (WhiteListDatabase.getNameList().contains(args[1])) {
                                         /*
                                         list.getStringList("list").remove(args[2])
                                         list.getStringList("list").add(args[3])
@@ -126,9 +126,7 @@ class WhiteListEditor : Listener {
 
                                          */
 
-                                        if (WhiteListDatabase()
-                                                .updateList(args[1], args[2])
-                                        ) {
+                                        if (WhiteListDatabase.updateList(args[1], args[2])) {
                                             // 如果玩家在线，将玩家踢出
                                             if (
                                                 Player.getUUIDByName(args[1]) != null

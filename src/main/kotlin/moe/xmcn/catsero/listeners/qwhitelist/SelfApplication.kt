@@ -19,7 +19,9 @@ class SelfApplication : Listener {
                 && e.botID == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
                 && e.groupID == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
             ) {
-                val sf = Configuration.USES_CONFIG.QWHITELIST.SELF_APPLICATION.format.split("%name%")
+                val sf = Configuration.USES_CONFIG.QWHITELIST.SELF_APPLICATION.FORMAT.split("%name%")
+
+                val code = e.senderID
 
                 if (sf.size == 1) {
                     // 情况1: 占位符后无字符(串)
@@ -30,7 +32,7 @@ class SelfApplication : Listener {
                             .replaceFirst(sf[0], "")
 
                         //println(playerName)
-                        run(playerName)
+                        run(playerName, code)
                     }
                 } else if (sf.size == 2) {
                     // 情况2: 占位符后有字符(串)
@@ -43,7 +45,7 @@ class SelfApplication : Listener {
                             .replaceLast(sf[1], "")
 
                         //println(playerName)
-                        run(playerName)
+                        run(playerName, code)
                     }
                 } else
                 /*
@@ -63,26 +65,46 @@ class SelfApplication : Listener {
         }
     }
 
-    private fun run(name: String) {
-        if (!WhiteListDatabase().list.contains(name)) {
-            if (WhiteListDatabase().insertList(name))
-                MessageSender.sendGroup(
-                    Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS,
-                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                )
+    private fun run(name: String, code: Long) {
+        if (
+            !WhiteListDatabase.getNameList().contains(name)
+        ) {
+            // 1Q1号
+            if (Configuration.USES_CONFIG.QWHITELIST.SELF_APPLICATION.A_QQ_ONLY_AN_ACCOUNT
+            )
+                if (!WhiteListDatabase.getCodeList().contains(code))
+                    run2(name, code)
+                else
+                    MessageSender.sendGroup(
+                        Configuration.I18N.QQ.USE.QWHITELIST.AQOAA_ERROR_REPEAT,
+                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                    )
             else
-                MessageSender.sendGroup(
-                    Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_SQL,
-                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                )
+                run2(name, code)
         } else
             MessageSender.sendGroup(
                 Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_REPEAT,
                 Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
                 Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
             )
+    }
+
+    private fun run2(name: String, code: Long) {
+
+        if (WhiteListDatabase.insertList(name, code))
+            MessageSender.sendGroup(
+                Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS,
+                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+            )
+        else
+            MessageSender.sendGroup(
+                Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_SQL,
+                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+            )
+
     }
 
     /*
