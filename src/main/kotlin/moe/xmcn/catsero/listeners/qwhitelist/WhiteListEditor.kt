@@ -116,9 +116,10 @@ class WhiteListEditor : Listener {
 
                             // 更新
                             "change" -> {
-                                if (args.size == 3) {
-                                    if (WhiteListDatabase.getNameList().contains(args[1])) {
-                                        /*
+                                if (args.size == 4) {
+                                    if (args[1].equals("name", true)) {
+                                        if (WhiteListDatabase.getNameList().contains(args[2])) {
+                                            /*
                                         list.getStringList("list").remove(args[2])
                                         list.getStringList("list").add(args[3])
                                         list.save(configuration.whitelist_file)
@@ -126,42 +127,81 @@ class WhiteListEditor : Listener {
 
                                          */
 
-                                        if (WhiteListDatabase.updateList(args[1], args[2])) {
-                                            // 如果玩家在线，将玩家踢出
-                                            if (
-                                                Player.getUUIDByName(args[1]) != null
-                                                && Player.getPlayer(args[1]).isOnline
-                                            ) {
-                                                Bukkit.getScheduler().runTask(
-                                                    Configuration.plugin
+                                            if (WhiteListDatabase.updateList(args[2], args[3])) {
+                                                // 如果玩家在线，将玩家踢出
+                                                if (
+                                                    Player.getUUIDByName(args[2]) != null
+                                                    && Player.getPlayer(args[2]).isOnline
                                                 ) {
-                                                    Player.getOnlinePlayer(args[1])
-                                                        .kickPlayer(
-                                                            ChatColor.translateAlternateColorCodes(
-                                                                '&',
-                                                                Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_KICK
+                                                    Bukkit.getScheduler().runTask(
+                                                        Configuration.plugin
+                                                    ) {
+                                                        Player.getOnlinePlayer(args[2])
+                                                            .kickPlayer(
+                                                                ChatColor.translateAlternateColorCodes(
+                                                                    '&',
+                                                                    Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_KICK
+                                                                )
                                                             )
-                                                        )
+                                                    }
                                                 }
-                                            }
 
-                                            MessageSender.sendGroup(
-                                                Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_SUCCESS,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                                            )
+                                                MessageSender.sendGroup(
+                                                    Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_SUCCESS,
+                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                )
+                                            } else
+                                                MessageSender.sendGroup(
+                                                    Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_SQL,
+                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                )
                                         } else
                                             MessageSender.sendGroup(
-                                                Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_SQL,
+                                                Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_NOT_FOUND,
                                                 Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
                                                 Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
                                             )
-                                    } else
-                                        MessageSender.sendGroup(
-                                            Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_NOT_FOUND,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                                        )
+                                    } else if (args[1].equals("qq", true)) {
+                                        if (WhiteListDatabase.getCodeList().contains(args[2].toLong())) {
+                                            if (WhiteListDatabase.updateList(args[2].toLong(), args[3].toLong())) {
+                                                // 如果玩家在线，将玩家踢出
+                                                //if (
+                                                //    Player.getUUIDByName(args[2]) != null
+                                                //    && Player.getPlayer(args[2]).isOnline
+                                                //) {
+                                                //    Bukkit.getScheduler().runTask(
+                                                //        Configuration.plugin
+                                                //    ) {
+                                                //        Player.getOnlinePlayer(args[2])
+                                                //            .kickPlayer(
+                                                //                ChatColor.translateAlternateColorCodes(
+                                                //                    '&',
+                                                //                    Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_KICK
+                                                //                )
+                                                //            )
+                                                //    }
+                                                //}
+
+                                                MessageSender.sendGroup(
+                                                    Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_SUCCESS,
+                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                )
+                                            } else
+                                                MessageSender.sendGroup(
+                                                    Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_SQL,
+                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                )
+                                        } else
+                                            MessageSender.sendGroup(
+                                                Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_NOT_FOUND,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                            )
+                                    }
                                 } else
                                     MessageSender.sendGroup(
                                         Configuration.I18N.QQ.COMMAND.INVALID_OPTION,

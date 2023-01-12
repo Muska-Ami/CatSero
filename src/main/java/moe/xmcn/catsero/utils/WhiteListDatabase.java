@@ -16,7 +16,7 @@ public interface WhiteListDatabase {
     /**
      * 初始化数据库
      */
-    public static void initDatabase() {
+    static void initDatabase() {
         Connection c;
         Statement sm;
         try {
@@ -37,7 +37,12 @@ public interface WhiteListDatabase {
         }
     }
 
-    private static Connection createDatabaseConnection() throws SQLException {
+    /**
+     * 创建一个连接
+     * @return 连接
+     * @throws SQLException SQL错误
+     */
+    static Connection createDatabaseConnection() throws SQLException {
 
         HikariConfig hc = new HikariConfig();
 
@@ -83,7 +88,6 @@ public interface WhiteListDatabase {
 
     /**
      * 获取白名单列表
-     *
      * @return 所有在白名单的玩家名
      */
     static List<String> getNameList() {
@@ -109,6 +113,12 @@ public interface WhiteListDatabase {
         return list;
     }
 
+    /**
+     * 新增绑定
+     * @param name 名称
+     * @param code QQ号
+     * @return 是否成功
+     */
     static boolean insertList(String name, long code) {
         Connection c;
         Statement sm;
@@ -131,6 +141,12 @@ public interface WhiteListDatabase {
         }
     }
 
+    /**
+     * 更新绑定名称
+     * @param old_name 旧名称
+     * @param new_name 新名称
+     * @return 是否成功
+     */
     static boolean updateList(String old_name, String new_name) {
         Connection c;
         Statement sm;
@@ -142,6 +158,35 @@ public interface WhiteListDatabase {
             String cmd = "update RECORDS" +
                     " set NAME = \"" + new_name + "\"" +
                     " where NAME = \"" + old_name + "\"";
+            sm.executeUpdate(cmd);
+
+            sm.close();
+            c.commit();
+            c.close();
+            return true;
+        } catch (Exception e) {
+            Logger.logCatch(e);
+            return false;
+        }
+    }
+
+    /**
+     * 更新绑定QQ号
+     * @param old_code 旧QQ号
+     * @param new_code 新QQ号
+     * @return 是否成功
+     */
+    static boolean updateList(long old_code, long new_code) {
+        Connection c;
+        Statement sm;
+        try {
+            c = createDatabaseConnection();
+            assert c != null;
+            sm = c.createStatement();
+
+            String cmd = "update RECORDS" +
+                    " set CODE = \"" + new_code + "\"" +
+                    " where CODE = \"" + old_code + "\"";
             sm.executeUpdate(cmd);
 
             sm.close();
@@ -231,74 +276,74 @@ public interface WhiteListDatabase {
     }
 
 
-        /*
-        static boolean insertList(int code) {
-            Connection c;
-            Statement sm;
-            try {
-                c = createDatabaseConnection();
-                assert c != null;
-                sm = c.createStatement();
+    /*
+     static boolean insertList(int code) {
+         Connection c;
+         Statement sm;
+         try {
+             c = createDatabaseConnection();
+             assert c != null;
+             sm = c.createStatement();
 
-                String cmd = "insert into RECORDS" +
-                        " values (\"" + code + "\")";
-                sm.executeUpdate(cmd);
+             String cmd = "insert into RECORDS" +
+                     " values (\"" + code + "\")";
+             sm.executeUpdate(cmd);
 
-                sm.close();
-                c.commit();
-                c.close();
-                return true;
-            } catch (Exception e) {
-                Logger.logCatch(e);
-                return false;
-            }
-        }
+             sm.close();
+             c.commit();
+             c.close();
+             return true;
+         } catch (Exception e) {
+             Logger.logCatch(e);
+             return false;
+         }
+     }
 
-        static boolean updateList(String old_code, String new_code) {
-            Connection c;
-            Statement sm;
-            try {
-                c = createDatabaseConnection();
-                assert c != null;
-                sm = c.createStatement();
+     static boolean updateList(String old_code, String new_code) {
+         Connection c;
+         Statement sm;
+         try {
+             c = createDatabaseConnection();
+             assert c != null;
+             sm = c.createStatement();
 
-                String cmd = "update RECORDS" +
-                        " set NAME = \"" + new_code + "\"" +
-                        " where NAME = \"" + old_code + "\"";
-                sm.executeUpdate(cmd);
+             String cmd = "update RECORDS" +
+                     " set NAME = \"" + new_code + "\"" +
+                     " where NAME = \"" + old_code + "\"";
+             sm.executeUpdate(cmd);
 
-                sm.close();
-                c.commit();
-                c.close();
-                return true;
-            } catch (Exception e) {
-                Logger.logCatch(e);
-                return false;
-            }
-        }
+             sm.close();
+             c.commit();
+             c.close();
+             return true;
+         } catch (Exception e) {
+             Logger.logCatch(e);
+             return false;
+         }
+     }
 
-        static boolean removeList(String name) {
-            Connection c;
-            Statement sm;
-            try {
-                c = createDatabaseConnection();
-                assert c != null;
-                sm = c.createStatement();
+     static boolean removeList(String name) {
+         Connection c;
+         Statement sm;
+         try {
+             c = createDatabaseConnection();
+             assert c != null;
+             sm = c.createStatement();
 
-                String cmd = "delete from RECORDS" +
-                        " where NAME = \"" + name + "\"";
-                sm.executeUpdate(cmd);
+             String cmd = "delete from RECORDS" +
+                     " where NAME = \"" + name + "\"";
+             sm.executeUpdate(cmd);
 
-                sm.close();
-                c.commit();
-                c.close();
-                return true;
-            } catch (Exception e) {
-                Logger.logCatch(e);
-                return false;
-            }
-        }
+             sm.close();
+             c.commit();
+             c.close();
+             return true;
+         } catch (Exception e) {
+             Logger.logCatch(e);
+             return false;
+         }
+     }
 
-         */
+    */
 
 }

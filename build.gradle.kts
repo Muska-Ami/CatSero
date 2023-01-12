@@ -42,9 +42,19 @@ tasks.getByName<Test>("test") {
 
 tasks.compileJava {
     options.encoding = "UTF-8"
+    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+    targetCompatibility = JavaVersion.VERSION_1_8.toString()
 }
 tasks.compileTestJava {
     options.encoding = "UTF-8"
+    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+    targetCompatibility = JavaVersion.VERSION_1_8.toString()
+}
+tasks.compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+}
+tasks.compileTestKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
 }
 
 // 替换资源文件的Tokens`config.groovy`
