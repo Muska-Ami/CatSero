@@ -31,8 +31,8 @@ dependencies {
     implementation("com.zaxxer:HikariCP:4.0.3")
     implementation("me.zhenxin:qqbot-sdk:1.2.0")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
     testImplementation(kotlin("test"))
 }
 
