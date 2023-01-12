@@ -426,12 +426,14 @@ public interface Configuration {
             String sub_node = "qwhitelist" + ".";
 
             boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            boolean CHECK_IF_ON_GROUP = CFI.uses_config.getBoolean(sub_node + "check-if-on-group");
 
             interface SELF_APPLICATION {
                 String sub_node = "qwhitelist.self-application" + ".";
 
                 boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
-                String format = CFI.uses_config.getString(sub_node + "format");
+                String FORMAT = CFI.uses_config.getString(sub_node + "format");
+                boolean A_QQ_ONLY_AN_ACCOUNT = CFI.uses_config.getBoolean(sub_node + "a-qq-only-an-account");
             }
 
             interface MIRAI {
@@ -539,6 +541,7 @@ public interface Configuration {
                     String CHANGE_SUCCESS = qwhitelist.getString("change-success");
                     String CHANGE_ERROR_SQL = qwhitelist.getString("change-error-sql");
                     String CHANGE_ERROR_NOT_FOUND = qwhitelist.getString("change-error-not-found");
+                    String AQOAA_ERROR_REPEAT = qwhitelist.getString("aqoaa-error-repeat");
                 }
             }
         }

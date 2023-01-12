@@ -47,7 +47,8 @@
                 "remove-error-not-found": "移除失败，未查询到白名单",
                 "change-success": "更新成功",
                 "change-error-sql": "更新失败，数据库写入失败",
-                "change-error-not-found": "更新失败，未查询到白名单"
+                "change-error-not-found": "更新失败，未查询到白名单",
+                "aqoaa-error-repeat": "添加失败，您的QQ账户下已存在白名单！"
             }
         }
     }

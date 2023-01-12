@@ -313,6 +313,9 @@ qwhitelist:
     bot: hello-bot
     # GroupID
     group: hello-group
+  # 检查是否在群内
+  # 若存在白名单但不在群内则视为无
+  check-if-on-group: true
   # 自助申请白名单
   self-application:
     # 功能开关
@@ -322,6 +325,8 @@ qwhitelist:
     # 内置占位符:
     # - %name%  玩家名（只能设置一个）
     format: "!申请白名单 %name%"
+    # 限制每个QQ只能拥有一个白名单
+    a-qq-only-an-account: true
 ```
 
 </details>
@@ -449,14 +454,15 @@ demo-use:
 
 _要触发命令前必须使用前缀`!`或`/`_
 
-| 命令                                                          | 说明          |
-|-------------------------------------------------------------|-------------|
-| !catsero tps around                                         | 获取TPS(概数)   |
-| !catsero tps accurate                                       | 获取TPS(精确)   |
-| !catsero list                                               | 列出服务器上的所有玩家 |
-| !catsero whitelist add \<Player>                            | 添加白名单       |
-| !catsero whitelist change \<PlayerOldName> \<PlayerNewName> | 更新白名单       |
-| !catsero whitelist remove \<Player>                         | 移除白名单       |
+| 命令                                                               | 说明          |
+|------------------------------------------------------------------|-------------|
+| !catsero tps around                                              | 获取TPS(概数)   |
+| !catsero tps accurate                                            | 获取TPS(精确)   |
+| !catsero list                                                    | 列出服务器上的所有玩家 |
+| !catsero whitelist add \<Player>                                 | 添加白名单       |
+| !catsero whitelist change name \<PlayerOldName> \<PlayerNewName> | 更新白名单       |
+| !catsero whitelist change qq \<QQ> \<QQ>                         | 更新白名单       |
+| !catsero whitelist remove \<Player>                              | 移除白名单       |
 
 <!--
 | !catsero pm ban \<player> \(reason) | 封禁一个玩家              |

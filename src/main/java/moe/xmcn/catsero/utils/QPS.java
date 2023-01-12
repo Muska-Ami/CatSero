@@ -32,6 +32,7 @@ public interface QPS {
 
     /**
      * 解析命令
+     *
      * @param message 接收消息原文
      * @param command 命令名称
      * @return 解析后的数组，如果解析失败则直接返回null
