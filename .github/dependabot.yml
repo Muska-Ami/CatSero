@@ -12,4 +12,4 @@ updates:
     ignore:
       - dependency-name: "HikariCP"
       - dependency-name: "spigot-api"
-    target-branch: "dev“
+    target-branch: "dev"
