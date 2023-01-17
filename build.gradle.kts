@@ -26,7 +26,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("me.clip:placeholderapi:2.11.2")
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.7.1")
-    implementation("com.alibaba:fastjson:2.0.22")
+    implementation("com.alibaba:fastjson:2.0.23")
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     implementation("com.zaxxer:HikariCP:4.0.3")
     implementation("me.zhenxin:qqbot-sdk:1.2.0")
