@@ -39,6 +39,7 @@ public interface WhiteListDatabase {
 
     /**
      * 创建一个连接
+     *
      * @return 连接
      * @throws SQLException SQL错误
      */
@@ -88,6 +89,7 @@ public interface WhiteListDatabase {
 
     /**
      * 获取白名单列表
+     *
      * @return 所有在白名单的玩家名
      */
     static List<String> getNameList() {
@@ -115,6 +117,7 @@ public interface WhiteListDatabase {
 
     /**
      * 新增绑定
+     *
      * @param name 名称
      * @param code QQ号
      * @return 是否成功
@@ -143,6 +146,7 @@ public interface WhiteListDatabase {
 
     /**
      * 更新绑定名称
+     *
      * @param old_name 旧名称
      * @param new_name 新名称
      * @return 是否成功
@@ -172,6 +176,7 @@ public interface WhiteListDatabase {
 
     /**
      * 更新绑定QQ号
+     *
      * @param old_code 旧QQ号
      * @param new_code 新QQ号
      * @return 是否成功
@@ -273,6 +278,32 @@ public interface WhiteListDatabase {
             Logger.logCatch(e);
         }
         return 0;
+    }
+
+    static String getName(long code) {
+        Connection c;
+        Statement sm;
+        List<String> list = new ArrayList<>();
+        try {
+            c = createDatabaseConnection();
+            assert c != null;
+            sm = c.createStatement();
+
+            ResultSet rs = sm.executeQuery("select * from RECORDS where CODE = " + code + ";");
+            while (rs.next()) {
+                list.add(rs.getString("name"));
+            }
+
+            sm.close();
+            c.commit();
+            c.close();
+
+            if (list.size() == 1)
+                return list.get(0);
+        } catch (Exception e) {
+            Logger.logCatch(e);
+        }
+        return null;
     }
 
 

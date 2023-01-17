@@ -1,4 +1,4 @@
-.gradle
+.gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -43,3 +43,4 @@ bin/
 
 ### Test Server ###
 server-test/
+/.gradle/

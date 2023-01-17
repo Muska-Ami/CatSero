@@ -8,7 +8,11 @@ import org.bukkit.ChatColor
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 
-class WhiteListEditor : Listener {
+class WhiteListEditor(
+    private val enable: Boolean = Configuration.USES_CONFIG.QWHITELIST.ENABLE,
+    private val bot: String = Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+    private val group: String = Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+) : Listener {
 
     @EventHandler
     fun onGroupMessage(e: MiraiGroupMessageEvent) {
@@ -17,8 +21,8 @@ class WhiteListEditor : Listener {
             if (args != null) {
                 if (
                     Configuration.USES_CONFIG.QWHITELIST.ENABLE
-                    && e.botID == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
-                    && e.groupID == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
+                    && e.botID == Configuration.Interface.getBotCode(bot)
+                    && e.groupID == Configuration.Interface.getGroupCode(group)
                 ) {
                     if (Configuration.Interface.isQQOp(e.senderID)) {
                         when (args[0]) {
@@ -36,27 +40,23 @@ class WhiteListEditor : Listener {
 
                                             MessageSender.sendGroup(
                                                 Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                bot,
+                                                group
                                             )
                                         } else
                                             MessageSender.sendGroup(
                                                 Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_SQL,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                bot,
+                                                group
                                             )
                                     } else
                                         MessageSender.sendGroup(
                                             Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_REPEAT,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                            bot,
+                                            group
                                         )
                                 } else
-                                    MessageSender.sendGroup(
-                                        Configuration.I18N.QQ.COMMAND.INVALID_OPTION,
-                                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                                    )
+                                    MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group)
                             }
 
                             // 移除
@@ -91,27 +91,23 @@ class WhiteListEditor : Listener {
 
                                             MessageSender.sendGroup(
                                                 Configuration.I18N.QQ.USE.QWHITELIST.REMOVE_SUCCESS,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                bot,
+                                                group
                                             )
                                         } else
                                             MessageSender.sendGroup(
                                                 Configuration.I18N.QQ.USE.QWHITELIST.REMOVE_ERROR_SQL,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                bot,
+                                                group
                                             )
                                     } else
                                         MessageSender.sendGroup(
                                             Configuration.I18N.QQ.USE.QWHITELIST.REMOVE_ERROR_NOT_FOUND,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                            bot,
+                                            group
                                         )
                                 } else
-                                    MessageSender.sendGroup(
-                                        Configuration.I18N.QQ.COMMAND.INVALID_OPTION,
-                                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                                    )
+                                    MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group)
                             }
 
                             // 更新
@@ -148,84 +144,72 @@ class WhiteListEditor : Listener {
 
                                                 MessageSender.sendGroup(
                                                     Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_SUCCESS,
-                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                    bot,
+                                                    group
                                                 )
                                             } else
                                                 MessageSender.sendGroup(
                                                     Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_SQL,
-                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                    bot,
+                                                    group
                                                 )
                                         } else
                                             MessageSender.sendGroup(
                                                 Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_NOT_FOUND,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                bot,
+                                                group
                                             )
                                     } else if (args[1].equals("qq", true)) {
                                         if (WhiteListDatabase.getCodeList().contains(args[2].toLong())) {
                                             if (WhiteListDatabase.updateList(args[2].toLong(), args[3].toLong())) {
                                                 // 如果玩家在线，将玩家踢出
-                                                //if (
-                                                //    Player.getUUIDByName(args[2]) != null
-                                                //    && Player.getPlayer(args[2]).isOnline
-                                                //) {
-                                                //    Bukkit.getScheduler().runTask(
-                                                //        Configuration.plugin
-                                                //    ) {
-                                                //        Player.getOnlinePlayer(args[2])
-                                                //            .kickPlayer(
-                                                //                ChatColor.translateAlternateColorCodes(
-                                                //                    '&',
-                                                //                    Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_KICK
-                                                //                )
-                                                //            )
-                                                //    }
-                                                //}
+                                                if (
+                                                    Player.getUUIDByCode(args[2].toLong()) != null
+                                                    && Player.getPlayer(Player.getUUIDByCode(args[2].toLong())).isOnline
+                                                ) {
+                                                    Bukkit.getScheduler().runTask(
+                                                        Configuration.plugin
+                                                    ) {
+                                                        Player.getOnlinePlayer(Player.getUUIDByCode(args[2].toLong()))
+                                                            .kickPlayer(
+                                                                ChatColor.translateAlternateColorCodes(
+                                                                    '&',
+                                                                    Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_KICK
+                                                                )
+                                                            )
+                                                    }
+                                                }
 
                                                 MessageSender.sendGroup(
                                                     Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_SUCCESS,
-                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                    bot,
+                                                    group
                                                 )
                                             } else
                                                 MessageSender.sendGroup(
                                                     Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_SQL,
-                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                    bot,
+                                                    group
                                                 )
                                         } else
                                             MessageSender.sendGroup(
                                                 Configuration.I18N.QQ.USE.QWHITELIST.CHANGE_ERROR_NOT_FOUND,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+                                                bot,
+                                                group
                                             )
                                     }
                                 } else
-                                    MessageSender.sendGroup(
-                                        Configuration.I18N.QQ.COMMAND.INVALID_OPTION,
-                                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                                    )
+                                    MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group)
 
                             }
 
                             // 其他
                             else -> {
-                                MessageSender.sendGroup(
-                                    Configuration.I18N.QQ.COMMAND.INVALID_OPTION,
-                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                                    Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                                )
+                                MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group)
                             }
                         }
                     } else
-                        MessageSender.sendGroup(
-                            Configuration.I18N.QQ.COMMAND.NO_PERMISSION,
-                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                            Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                        )
+                        MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.NO_PERMISSION, bot, group)
                 }
             }
         } catch (ex: Exception) {

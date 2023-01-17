@@ -48,6 +48,22 @@ public interface Player {
     }
 
     /**
+     * 由QQ号获取玩家UUID
+     *
+     * @param code QQ号
+     * @return 玩家UUID
+     */
+    static UUID getUUIDByCode(long code) {
+        OfflinePlayer player = Lists.newArrayList(Bukkit.getOfflinePlayers()).parallelStream().filter(
+                i -> Objects.equals(i.getName(), WhiteListDatabase.getName(code))
+        ).findFirst().orElse(null);
+        if (player != null)
+            return player.getUniqueId();
+        else
+            return null;
+    }
+
+    /**
      * 得到一个玩家对象
      *
      * @param name 玩家名

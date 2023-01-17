@@ -35,10 +35,20 @@ import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 
 public class OnPlayerAdvancementDone implements Listener {
 
+    private final boolean enable;
+    private final String bot;
+    private final String group;
+
+    public OnPlayerAdvancementDone() {
+        this.enable = Configuration.USES_CONFIG.SEND_ADVANCEMENT.ENABLE;
+        this.bot = Configuration.USES_CONFIG.SEND_ADVANCEMENT.MIRAI.BOT;
+        this.group = Configuration.USES_CONFIG.SEND_ADVANCEMENT.MIRAI.GROUP;
+    }
+
     @EventHandler
     public void onPlayerAchievement(PlayerAdvancementDoneEvent e) {
         try {
-            if (Configuration.USES_CONFIG.SEND_ADVANCEMENT.ENABLE) {
+            if (enable) {
                 if (Configuration.USES_CONFIG.SEND_ADVANCEMENT.NEED_PERMISSION) {
                     if (e.getPlayer().hasPermission("catsero.send-advancement"))
                         run(e);
@@ -62,7 +72,7 @@ public class OnPlayerAdvancementDone implements Listener {
                     .replace("%name%", adv_name)
                     .replace("%description%", adv_description);
             format = PAPI.toPAPI(player, format);
-            MessageSender.sendGroup(format, Configuration.USES_CONFIG.SEND_ADVANCEMENT.MIRAI.BOT, Configuration.USES_CONFIG.SEND_ADVANCEMENT.MIRAI.GROUP);
+            MessageSender.sendGroup(format, bot, group);
         }
     }
 

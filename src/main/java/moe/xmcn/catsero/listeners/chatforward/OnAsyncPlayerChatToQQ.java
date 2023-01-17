@@ -7,13 +7,23 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class OnAsyncPlayerChatToQQ implements Listener {
 
+    private final boolean enable;
+    private final String bot;
+    private final String group;
     private String message;
+
+    public OnAsyncPlayerChatToQQ() {
+        this.enable = Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE;
+        this.bot = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT;
+        this.group = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP;
+    }
 
     private static String cleanStyleCodes(String s) {
         List<String> s0 = Arrays.asList(
@@ -46,14 +56,18 @@ public class OnAsyncPlayerChatToQQ implements Listener {
 
     @EventHandler
     public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
-        try {
-            if (Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE) {
-                message = e.getMessage();
+        new BukkitRunnable() {
 
-                // Filter
-                if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
-                    Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
-                    run(e, message);
+            @Override
+            public void run() {
+                try {
+                    if (enable) {
+                        message = e.getMessage();
+
+                        // Filter
+                        if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
+                            Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
+                            run1(e, message);
                 /*
                 Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.VIA.TO_QQ.forEach(it -> {
                     if (message.contains(it)) filter = true;
@@ -64,15 +78,18 @@ public class OnAsyncPlayerChatToQQ implements Listener {
                     filter = false;
 
                  */
-                } else
-                    run(e, message);
+                        } else
+                            run1(e, message);
+                    }
+                } catch (
+                        Exception ex) {
+                    Logger.logCatch(ex);
+                }
             }
-        } catch (Exception ex) {
-            Logger.logCatch(ex);
-        }
+        }.runTaskAsynchronously(Configuration.plugin);
     }
 
-    private void run(AsyncPlayerChatEvent e, String message) {
+    private void run1(AsyncPlayerChatEvent e, String message) {
         String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_QQ;
 
         // 检查消息是否存在Mirai码
@@ -96,9 +113,9 @@ public class OnAsyncPlayerChatToQQ implements Listener {
 
             if (Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.ENABLE) {
                 if (message.startsWith(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_QQ))
-                    MessageSender.sendGroup(format, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP);
+                    MessageSender.sendGroup(format.replaceFirst(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_QQ, ""), bot, group);
             } else
-                MessageSender.sendGroup(format, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT, Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP);
+                MessageSender.sendGroup(format, bot, group);
         } else
             e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.CHAT_FORWARD.CASE_MIRAICODE));
     }

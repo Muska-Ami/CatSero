@@ -38,7 +38,16 @@ import java.util.List;
 
 public class OnGroupMessageToMC implements Listener {
 
+    private final boolean enable;
+    private final String bot;
+    private final String group;
     private String message;
+
+    public OnGroupMessageToMC() {
+        this.enable = Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE;
+        this.bot = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT;
+        this.group = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP;
+    }
 
     private static String cleanStyleCodes(String s) {
         List<String> s0 = Arrays.asList(
@@ -73,9 +82,9 @@ public class OnGroupMessageToMC implements Listener {
     public void onGroupMessage(MiraiGroupMessageEvent e) {
         try {
             if (
-                    Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE
-                            && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT)
-                            && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP)
+                    enable
+                            && e.getBotID() == Configuration.Interface.getBotCode(bot)
+                            && e.getGroupID() == Configuration.Interface.getGroupCode(group)
             ) {
                 message = e.getMessage();
 
@@ -140,7 +149,7 @@ public class OnGroupMessageToMC implements Listener {
         }
         if (Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.ENABLE) {
             if (message.startsWith(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_MC))
-                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
+                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format.replaceFirst(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_MC, "")));
         } else
             Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
     }
