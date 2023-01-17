@@ -31,6 +31,7 @@ import moe.xmcn.catsero.listeners.chatforward.OnTrChatToQQ;
 import moe.xmcn.catsero.listeners.deadthforward.OnPlayerDeath;
 import moe.xmcn.catsero.listeners.getonlinelist.OnGroupMessageRequestList;
 import moe.xmcn.catsero.listeners.gettps.OnGroupMessageRequestTPS;
+import moe.xmcn.catsero.listeners.groupmemberleave.OnMemberLeave;
 import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerJoin;
 import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerQuit;
 import moe.xmcn.catsero.listeners.newgroupmemberwelcome.OnMemberJoin;
@@ -38,25 +39,46 @@ import moe.xmcn.catsero.listeners.qwhitelist.RefuseNoWhiteList;
 import moe.xmcn.catsero.listeners.qwhitelist.SelfApplication;
 import moe.xmcn.catsero.listeners.qwhitelist.WhiteListEditor;
 import moe.xmcn.catsero.utils.Envrionment;
+import org.bukkit.plugin.PluginManager;
 
 public interface ListenerRegister {
 
+    PluginManager pm = Configuration.plugin.getServer().getPluginManager();
+
     static void register() {
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerJoin(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerQuit(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerDeath(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnGroupMessageRequestTPS(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnPlayerAdvancementDone(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnMemberJoin(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnGroupMessageRequestList(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new OnGroupMessageToMC(), Configuration.plugin);
+        // 玩家加入/退出转发
+        pm.registerEvents(new OnPlayerJoin(), Configuration.plugin);
+        pm.registerEvents(new OnPlayerQuit(), Configuration.plugin);
+
+        // 玩家死亡转发
+        pm.registerEvents(new OnPlayerDeath(), Configuration.plugin);
+
+        // TPS获取
+        pm.registerEvents(new OnGroupMessageRequestTPS(), Configuration.plugin);
+
+        // 进度转发
+        pm.registerEvents(new OnPlayerAdvancementDone(), Configuration.plugin);
+
+        // 新群员
+        pm.registerEvents(new OnMemberJoin(), Configuration.plugin);
+
+        // 玩家列表
+        pm.registerEvents(new OnGroupMessageRequestList(), Configuration.plugin);
+
+        // 聊天转发
+        pm.registerEvents(new OnGroupMessageToMC(), Configuration.plugin);
         if (Envrionment.Depends.TrChat)
-            Configuration.plugin.getServer().getPluginManager().registerEvents(new OnTrChatToQQ(), Configuration.plugin);
+            pm.registerEvents(new OnTrChatToQQ(), Configuration.plugin);
         else
-            Configuration.plugin.getServer().getPluginManager().registerEvents(new OnAsyncPlayerChatToQQ(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new RefuseNoWhiteList(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new WhiteListEditor(), Configuration.plugin);
-        Configuration.plugin.getServer().getPluginManager().registerEvents(new SelfApplication(), Configuration.plugin);
+            pm.registerEvents(new OnAsyncPlayerChatToQQ(), Configuration.plugin);
+
+        // QQ白名单
+        pm.registerEvents(new RefuseNoWhiteList(), Configuration.plugin);
+        pm.registerEvents(new WhiteListEditor(), Configuration.plugin);
+        pm.registerEvents(new SelfApplication(), Configuration.plugin);
+
+        // 群员离群
+        pm.registerEvents(new OnMemberLeave(), Configuration.plugin);
     }
 
 }

@@ -32,20 +32,30 @@ import org.bukkit.event.Listener;
 
 public class OnMemberJoin implements Listener {
 
+    private final boolean enable;
+    private final String bot;
+    private final String group;
+
+    public OnMemberJoin() {
+        this.enable = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.ENABLE;
+        this.bot = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.BOT;
+        this.group = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.GROUP;
+    }
+
     @EventHandler
     public void onMemberJoin(MiraiMemberJoinEvent e) {
         try {
             if (
-                    Configuration.USES_CONFIG.NEW_GROUP_MEMBER.ENABLE
-                            && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.BOT)
-                            && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.GROUP)
+                    enable
+                            && e.getBotID() == Configuration.Interface.getBotCode(bot)
+                            && e.getGroupID() == Configuration.Interface.getGroupCode(group)
             ) {
                 // 格式
                 String format = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.FORMAT;
                 format = format.replace("%at%", "[mirai:at:" + e.getMember().getId() + "]")
                         .replace("%code%", String.valueOf(e.getMember().getId()))
                         .replace("%name%", e.getMember().getNick());
-                MessageSender.sendGroup(format, Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.BOT, Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.GROUP);
+                MessageSender.sendGroup(format, bot, group);
             }
         } catch (Exception ex) {
             Logger.logCatch(ex);

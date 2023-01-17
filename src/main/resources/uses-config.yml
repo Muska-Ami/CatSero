@@ -217,3 +217,21 @@ qwhitelist:
     format: "!申请白名单 %name%"
     # 限制每个QQ只能拥有一个白名单
     a-qq-only-an-account: true
+
+# 离群提示
+group-member-leave:
+  # 功能开关
+  # true | false
+  enable: false
+  # Bot & Group设置
+  var:
+    # BotID
+    bot: hello-bot
+    # GroupID
+    group: hello-group
+  # 格式
+  # 内置占位符:
+  # - %name%  名称
+  # - %code%  QQ号
+  format: "%name%（%code%）离开了本群"
+

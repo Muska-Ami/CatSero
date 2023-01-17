@@ -33,10 +33,20 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class OnPlayerJoin implements Listener {
 
+    private final boolean enable;
+    private final String bot;
+    private final String group;
+
+    public OnPlayerJoin() {
+        this.enable = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.ENABLE;
+        this.bot = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.BOT;
+        this.group = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.GROUP;
+    }
+
     @EventHandler
     public void onGamePlayerJoinEvent(PlayerJoinEvent pje) {
         try {
-            if (Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.ENABLE) {
+            if (enable) {
                 if (Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.NEED_PERMISSION) {
                     //权限模式
                     if (pje.getPlayer().hasPermission("catsero.send-player-join-quit.join"))
@@ -54,7 +64,7 @@ public class OnPlayerJoin implements Listener {
         String join_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.JOIN;
         join_message = join_message.replace("%player%", player_name);
         join_message = PAPI.toPAPI(pje.getPlayer(), join_message);
-        MessageSender.sendGroup(join_message, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.GROUP);
+        MessageSender.sendGroup(join_message, bot, group);
     }
 
 }

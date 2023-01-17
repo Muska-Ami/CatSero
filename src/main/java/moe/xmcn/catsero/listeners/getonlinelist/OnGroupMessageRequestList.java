@@ -38,7 +38,17 @@ import java.util.List;
 
 public class OnGroupMessageRequestList implements Listener {
 
+    private final boolean enable;
+    private final String bot;
+    private final String group;
     private String player_list = null;
+
+    public OnGroupMessageRequestList() {
+        this.enable = Configuration.USES_CONFIG.GET_ONLINE_LIST.ENABLE;
+        this.bot = Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT;
+        this.group = Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP;
+    }
+
 
     @EventHandler
     public void onGroupMessage(MiraiGroupMessageEvent e) {
@@ -48,9 +58,9 @@ public class OnGroupMessageRequestList implements Listener {
             if (args != null) {
                 // 条件
                 if (
-                        Configuration.USES_CONFIG.GET_ONLINE_LIST.ENABLE
-                                && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
-                                && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
+                        enable
+                                && e.getBotID() == Configuration.Interface.getBotCode(bot)
+                                && e.getGroupID() == Configuration.Interface.getGroupCode(group)
                 ) {
                     List<Player> list = new ArrayList<>(Bukkit.getOnlinePlayers());
 
@@ -60,7 +70,7 @@ public class OnGroupMessageRequestList implements Listener {
                     format = Configuration.USES_CONFIG.GET_ONLINE_LIST.FORMAT_0;
                     format = format.replace("%count%", String.valueOf(list.toArray().length))
                             .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()));
-                    MessageSender.sendGroup(format, Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT, Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP);
+                    MessageSender.sendGroup(format, bot, group);
 
                     // 1
                     if (list.toArray().length != 0) {
@@ -71,7 +81,7 @@ public class OnGroupMessageRequestList implements Listener {
                         format = format.replace("%count%", String.valueOf(list.toArray().length))
                                 .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()))
                                 .replace("%list%", player_list);
-                        MessageSender.sendGroup(format, Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT, Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP);
+                        MessageSender.sendGroup(format, bot, group);
 
                         player_list = null;
                     }

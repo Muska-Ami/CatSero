@@ -30,6 +30,7 @@
 - 获取在线玩家
 - 欢迎新群员
 - 白名单
+- 退群提示
 
 ## 配置文件
 
@@ -444,11 +445,15 @@ demo-use:
 
 ### Minecraft
 
-| 命令                                  | 说明           |
-|-------------------------------------|--------------|
-| /catsero version                    | 插件版本以及信息     |
-| /catsero reload                     | 重载config.yml |
-| /cms \<BotID> \<GroupID> \<message> | 发送群消息        |
+| 命令                                                               | 说明           |
+|------------------------------------------------------------------|--------------|
+| /catsero version                                                 | 插件版本以及信息     |
+| /catsero reload                                                  | 重载config.yml |
+| /catsero whitelist add \<Player>                                 | 添加白名单        |
+| /catsero whitelist change name \<PlayerOldName> \<PlayerNewName> | 更新白名单        |
+| /catsero whitelist change qq \<QQ> \<QQ>                         | 更新白名单        |
+| /catsero whitelist remove \<Player>                              | 移除白名单        |
+| /cms \<BotID> \<GroupID> \<message>                              | 发送群消息        |
 
 ### QQ
 

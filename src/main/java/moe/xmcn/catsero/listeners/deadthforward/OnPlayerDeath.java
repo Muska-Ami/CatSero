@@ -34,10 +34,20 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class OnPlayerDeath implements Listener {
 
+    private final boolean enable;
+    private final String bot;
+    private final String group;
+
+    public OnPlayerDeath() {
+        this.enable = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.ENABLE;
+        this.bot = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.BOT;
+        this.group = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.GROUP;
+    }
+
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
         try {
-            if (Configuration.USES_CONFIG.SEND_PLAYER_DEATH.ENABLE) {
+            if (enable) {
                 // 检查权限
                 if (Configuration.USES_CONFIG.SEND_PLAYER_DEATH.NEED_PERMISSION) {
                     if (e.getEntity().hasPermission("catsero.send-death"))
@@ -59,7 +69,7 @@ public class OnPlayerDeath implements Listener {
         message = message.replace("%player%", player.getName())
                 .replace("%message%", death_message);
         message = PAPI.toPAPI(player, message);
-        MessageSender.sendGroup(message, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.BOT, Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.GROUP);
+        MessageSender.sendGroup(message, bot, group);
     }
 
 }

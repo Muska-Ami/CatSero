@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "moe.xmcn.catsero"
-version = "2.2"
+version = "2.3"
 
 repositories {
     mavenCentral()
@@ -34,6 +34,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
     testImplementation(kotlin("test"))
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 tasks.getByName<Test>("test") {

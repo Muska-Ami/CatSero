@@ -9,7 +9,11 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent
 
-class RefuseNoWhiteList : Listener {
+class RefuseNoWhiteList(
+    private val enable: Boolean = Configuration.USES_CONFIG.QWHITELIST.ENABLE,
+    private val bot: String = Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+    private val group: String = Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+) : Listener {
 
     @EventHandler
     fun onPlayerPreLogin(e: AsyncPlayerPreLoginEvent) {
@@ -17,16 +21,27 @@ class RefuseNoWhiteList : Listener {
 
         try {
             if (
-                Configuration.USES_CONFIG.QWHITELIST.ENABLE
+                enable
                 && !WhiteListDatabase.getNameList().contains(e.name)
-            ) {
+            )
+                allow = false
+            try {
                 if (
                     Configuration.USES_CONFIG.QWHITELIST.CHECK_IF_ON_GROUP
-                    && MiraiBot.getBot(Configuration.Interface.getBotCode(Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT))
-                        .getGroup(Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP))
-                        .getMember(WhiteListDatabase.getCode(e.name)) != null
+                    && MiraiBot.getBot(Configuration.Interface.getBotCode(bot))
+                        .getGroup(Configuration.Interface.getGroupCode(group))
+                        .getMember(WhiteListDatabase.getCode(e.name)) == null
                 )
                     allow = false
+            } catch (exc: Exception) {
+                e.disallow(
+                    AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST,
+                    ChatColor.translateAlternateColorCodes(
+                        '&',
+                        Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHECK_IF_IN_GROUP_ERROR
+                    )
+                )
+                Logger.logCatch(exc)
             }
             if (!allow) {
                 e.disallow(

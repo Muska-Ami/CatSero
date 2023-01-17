@@ -38,7 +38,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -323,15 +322,18 @@ public interface Configuration {
                         // 读取url列表并遍历
                         IMPORT.REMOTE.forEach(
                                 url -> {
-                                    // 发Http请求
-                                    String data = new HttpClient().getRequest(url);
-                                    JSONArray ja = JSON.parseObject(data).getJSONArray("words");
+                                    // Http GET
+                                    JSONObject jo = JSON.parseObject(
+                                            new HttpClient().getRequest(url)
+                                    );
+                                    if (jo != null) {
+                                        JSONArray ja = jo.getJSONArray("words");
+                                        int words_length = ja.toArray().length;
 
-                                    // 遍历并添加屏蔽词
-                                    int words_length = ja.toArray().length;
-
-                                    for (int i = 0; i < words_length; i++) {
-                                        list.add(ja.get(i).toString());
+                                        // 加入到List中
+                                        for (int i = 0; i < words_length; i++) {
+                                            list.add(ja.get(i).toString());
+                                        }
                                     }
                                 }
                         );
@@ -339,9 +341,13 @@ public interface Configuration {
                                 path -> {
                                     try {
                                         //读取文件
-                                        String data = Files.readString(Path.of(path));
+                                        List<String> lines = Files.readAllLines(Paths.get(path));
+                                        StringBuilder data = new StringBuilder();
+                                        lines.forEach(
+                                                data::append
+                                        );
 
-                                        JSONArray ja = JSON.parseObject(data).getJSONArray("words");
+                                        JSONArray ja = JSON.parseObject(data.toString()).getJSONArray("words");
 
                                         // 遍历并添加屏蔽词
                                         int words_length = ja.toArray().length;
@@ -360,13 +366,16 @@ public interface Configuration {
                         List<String> list = new ArrayList<>(VIA.TO_QQ);
                         IMPORT.REMOTE.forEach(
                                 url -> {
-                                    JSONArray ja = JSON.parseObject(
+                                    JSONObject jo = JSON.parseObject(
                                             new HttpClient().getRequest(url)
-                                    ).getJSONArray("words");
-                                    int words_length = ja.toArray().length;
+                                    );
+                                    if (jo != null) {
+                                        JSONArray ja = jo.getJSONArray("words");
+                                        int words_length = ja.toArray().length;
 
-                                    for (int i = 0; i < words_length; i++) {
-                                        list.add(ja.get(i).toString());
+                                        for (int i = 0; i < words_length; i++) {
+                                            list.add(ja.get(i).toString());
+                                        }
                                     }
                                 }
                         );
@@ -374,9 +383,13 @@ public interface Configuration {
                                 path -> {
                                     try {
                                         //读取文件
-                                        String data = Files.readString(Path.of(path));
+                                        List<String> lines = Files.readAllLines(Paths.get(path));
+                                        StringBuilder data = new StringBuilder();
+                                        lines.forEach(
+                                                data::append
+                                        );
 
-                                        JSONArray ja = JSON.parseObject(data).getJSONArray("words");
+                                        JSONArray ja = JSON.parseObject(data.toString()).getJSONArray("words");
 
                                         // 遍历并添加屏蔽词
                                         int words_length = ja.toArray().length;
@@ -443,6 +456,20 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+
+        interface GROUP_MEMBER_LEAVE {
+            String sub_node = "group-member-leave" + ".";
+
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+            String FORMAT = CFI.uses_config.getString(sub_node + "format");
+
+            interface MIRAI {
+                String sub_node = "group-member-leave.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
     }
 
     interface EXTRA_CONFIG {
@@ -494,8 +521,18 @@ public interface Configuration {
                     JSONObject qwhitelist = use.getJSONObject("qwhitelist");
 
                     String NO_WHITELIST = qwhitelist.getString("no-whitelist");
+                    String CHECK_IF_IN_GROUP_ERROR = qwhitelist.getString("check-if-in-group-orror");
                     String REMOVE_KICK = qwhitelist.getString("remove-kick");
                     String CHANGE_KICK = qwhitelist.getString("change-kick");
+                    String ADD_SUCCESS = qwhitelist.getString("add-success");
+                    String ADD_ERROR_SQL = qwhitelist.getString("add-error-sql");
+                    String ADD_ERROR_REPEAT = qwhitelist.getString("add-error-repeat");
+                    String REMOVE_SUCCESS = qwhitelist.getString("remove-success");
+                    String REMOVE_ERROR_SQL = qwhitelist.getString("remove-error-sql");
+                    String REMOVE_ERROR_NOT_FOUND = qwhitelist.getString("remove-error-not-found");
+                    String CHANGE_SUCCESS = qwhitelist.getString("change-success");
+                    String CHANGE_ERROR_SQL = qwhitelist.getString("change-error-sql");
+                    String CHANGE_ERROR_NOT_FOUND = qwhitelist.getString("change-error-not-found");
                 }
             }
 

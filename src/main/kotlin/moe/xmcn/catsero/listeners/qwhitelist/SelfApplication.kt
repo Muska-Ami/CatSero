@@ -8,16 +8,20 @@ import moe.xmcn.catsero.utils.WhiteListDatabase
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 
-class SelfApplication : Listener {
+class SelfApplication(
+    private val enable: Boolean = Configuration.USES_CONFIG.QWHITELIST.ENABLE,
+    private val bot: String = Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
+    private val group: String = Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
+) : Listener {
 
     @EventHandler
     fun onGroupMessage(e: MiraiGroupMessageEvent) {
         try {
             if (
-                Configuration.USES_CONFIG.QWHITELIST.ENABLE
+                enable
                 && Configuration.USES_CONFIG.QWHITELIST.SELF_APPLICATION.ENABLE
-                && e.botID == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
-                && e.groupID == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
+                && e.botID == Configuration.Interface.getBotCode(bot)
+                && e.groupID == Configuration.Interface.getGroupCode(group)
             ) {
                 val sf = Configuration.USES_CONFIG.QWHITELIST.SELF_APPLICATION.FORMAT.split("%name%")
 
@@ -54,11 +58,7 @@ class SelfApplication : Listener {
                 反正我又不修（腐竹的问题不能怪我XD
                 才怪
                  */
-                    MessageSender.sendGroup(
-                        Configuration.I18N.QQ.COMMAND.CONFIG_ERROR,
-                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                    )
+                    MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.CONFIG_ERROR, bot, group)
             }
         } catch (ex: Exception) {
             Logger.logCatch(ex)
@@ -75,35 +75,19 @@ class SelfApplication : Listener {
                 if (!WhiteListDatabase.getCodeList().contains(code))
                     run2(name, code)
                 else
-                    MessageSender.sendGroup(
-                        Configuration.I18N.QQ.USE.QWHITELIST.AQOAA_ERROR_REPEAT,
-                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                        Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-                    )
+                    MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.AQOAA_ERROR_REPEAT, bot, group)
             else
                 run2(name, code)
         } else
-            MessageSender.sendGroup(
-                Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_REPEAT,
-                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-            )
+            MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_REPEAT, bot, group)
     }
 
     private fun run2(name: String, code: Long) {
 
         if (WhiteListDatabase.insertList(name, code))
-            MessageSender.sendGroup(
-                Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS,
-                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-            )
+            MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS, bot, group)
         else
-            MessageSender.sendGroup(
-                Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_SQL,
-                Configuration.USES_CONFIG.QWHITELIST.MIRAI.BOT,
-                Configuration.USES_CONFIG.QWHITELIST.MIRAI.GROUP
-            )
+            MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_SQL, bot, group)
 
     }
 

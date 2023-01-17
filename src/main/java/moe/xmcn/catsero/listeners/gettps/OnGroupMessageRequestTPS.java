@@ -36,6 +36,16 @@ import java.math.RoundingMode;
 
 public class OnGroupMessageRequestTPS implements Listener {
 
+    private final boolean enable;
+    private final String bot;
+    private final String group;
+
+    public OnGroupMessageRequestTPS() {
+        this.enable = Configuration.USES_CONFIG.GET_TPS.ENABLE;
+        this.bot = Configuration.USES_CONFIG.GET_TPS.MIRAI.BOT;
+        this.group = Configuration.USES_CONFIG.GET_TPS.MIRAI.GROUP;
+    }
+
     @EventHandler
     public void onGroupMessageEvent(MiraiGroupMessageEvent e) {
         String[] args = QPS.parse(e.getMessage(), "tps");
@@ -43,9 +53,9 @@ public class OnGroupMessageRequestTPS implements Listener {
         if (args != null) {
             // 条件
             if (
-                    Configuration.USES_CONFIG.GET_TPS.ENABLE
-                            && e.getBotID() == Configuration.Interface.getBotCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT)
-                            && e.getGroupID() == Configuration.Interface.getGroupCode(Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP)
+                    enable
+                            && e.getBotID() == Configuration.Interface.getBotCode(bot)
+                            && e.getGroupID() == Configuration.Interface.getGroupCode(group)
 
             ) {
                 if (args.length == 1) {
@@ -56,17 +66,17 @@ public class OnGroupMessageRequestTPS implements Listener {
                     switch (args[0]) {
                         case "accurate":
                             // 精确
-                            MessageSender.sendGroup("TPS: " + tps, Configuration.USES_CONFIG.GET_TPS.MIRAI.BOT, Configuration.USES_CONFIG.GET_TPS.MIRAI.GROUP);
+                            MessageSender.sendGroup("TPS: " + tps, bot, group);
                             break;
                         case "around":
                             // 大概
-                            MessageSender.sendGroup("TPS: " + around_tps, Configuration.USES_CONFIG.GET_TPS.MIRAI.BOT, Configuration.USES_CONFIG.GET_TPS.MIRAI.GROUP);
+                            MessageSender.sendGroup("TPS: " + around_tps, bot, group);
                             break;
                         default:
-                            MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, Configuration.USES_CONFIG.GET_TPS.MIRAI.BOT, Configuration.USES_CONFIG.GET_TPS.MIRAI.GROUP);
+                            MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
                     }
                 } else
-                    MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, Configuration.USES_CONFIG.GET_TPS.MIRAI.BOT, Configuration.USES_CONFIG.GET_TPS.MIRAI.GROUP);
+                    MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
             }
         }
     }
