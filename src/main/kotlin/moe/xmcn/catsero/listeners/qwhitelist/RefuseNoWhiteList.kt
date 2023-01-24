@@ -20,19 +20,18 @@ class RefuseNoWhiteList(
         var allow = true
 
         try {
-            if (
-                enable
-                && !WhiteListDatabase.getNameList().contains(e.name)
-            )
-                allow = false
             try {
-                if (
-                    Configuration.USES_CONFIG.QWHITELIST.CHECK_IF_ON_GROUP
-                    && MiraiBot.getBot(Configuration.Interface.getBotCode(bot))
-                        .getGroup(Configuration.Interface.getGroupCode(group))
-                        .getMember(WhiteListDatabase.getCode(e.name)) == null
-                )
-                    allow = false
+                if (enable) {
+                    if (!WhiteListDatabase.getNameList().contains(e.name))
+                        allow = false
+                    if (
+                        Configuration.USES_CONFIG.QWHITELIST.CHECK_IF_ON_GROUP
+                        && MiraiBot.getBot(Configuration.Interface.getBotCode(bot))
+                            .getGroup(Configuration.Interface.getGroupCode(group))
+                            .getMember(WhiteListDatabase.getCode(e.name)) == null
+                    )
+                        allow = false
+                }
             } catch (exc: Exception) {
                 e.disallow(
                     AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST,
