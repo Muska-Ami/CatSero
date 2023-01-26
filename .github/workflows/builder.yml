@@ -1,4 +1,4 @@
-name: Java CI with Maven - Build
+name: Java CI with Gradle - Build
 
 on:
   push:
