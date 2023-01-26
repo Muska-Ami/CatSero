@@ -23,7 +23,7 @@ dependencies {
 
     // 远程
     implementation("org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT")
-    implementation("org.bstats:bstats-bukkit:3.0.0")
+    implementation("org.bstats:bstats-bukkit:3.0.1-20220531.173326-1")
     implementation("me.clip:placeholderapi:2.11.2")
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.7.1")
     implementation("com.alibaba:fastjson:2.0.23")
