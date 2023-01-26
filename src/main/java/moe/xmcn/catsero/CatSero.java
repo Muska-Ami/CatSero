@@ -60,6 +60,7 @@ public class CatSero extends JavaPlugin {
 
         Logger.logLoader("Checking server information...");
         Envrionment.check();
+        // 把信息输出一遍
         List<String> env = Arrays.asList(
                 "===== CatSero Runtime Checker =====",
                 "Server Version: " + Envrionment.server_version,
@@ -98,7 +99,7 @@ public class CatSero extends JavaPlugin {
 
             if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
                 Logger.logLoader("Start checking update...");
-                getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
+                getServer().getScheduler().runTaskTimerAsynchronously(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
                 getServer().getPluginManager().registerEvents(new Updater(), this);
             }
         } else {
@@ -110,6 +111,7 @@ public class CatSero extends JavaPlugin {
     @Override
     public void onDisable() {
         Logger.logLoader("Stopping CatSero.");
+        Logger.logINFO("If you love CatSero, don't forget to give it a Star on GitHub!")
     }
 
 }
