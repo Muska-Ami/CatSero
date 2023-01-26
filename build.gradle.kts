@@ -28,7 +28,7 @@ dependencies {
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.7.1")
     implementation("com.alibaba:fastjson:2.0.23")
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
-    implementation("com.zaxxer:HikariCP:4.0.3")
+    implementation("com.zaxxer:HikariCP:5.0.2-20220520.163640-1")
     implementation("me.zhenxin:qqbot-sdk:1.2.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
