@@ -32,7 +32,7 @@ dependencies {
     implementation("me.zhenxin:qqbot-sdk:1.2.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0-20230103.074348-76")
     testImplementation(kotlin("test"))
 }
 java {
