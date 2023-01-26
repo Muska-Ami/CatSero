@@ -111,7 +111,7 @@ public class CatSero extends JavaPlugin {
     @Override
     public void onDisable() {
         Logger.logLoader("Stopping CatSero.");
-        Logger.logINFO("If you love CatSero, don't forget to give it a Star on GitHub!")
+        Logger.logINFO("If you love CatSero, don't forget to give it a Star on GitHub!");
     }
 
 }
