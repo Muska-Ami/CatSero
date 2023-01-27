@@ -3,7 +3,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id("java")
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.8.255-20230104.204420-1445"
 }
 
 group = "moe.xmcn.catsero"
