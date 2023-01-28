@@ -144,16 +144,17 @@ public interface QPS {
             return null;
         }
 
-		/*
-		 更高级的命令解析
-		 制作中ing...
-		 我声明绝对没有咕咕咕
-		 */
-		private String sCheckP(String message, String command) {
-			if (Configuration.CFI.command_alias_config.getBoolean("enable")) {
+        /*
+         更高级的命令解析
+         制作中ing...
+         我声明绝对没有咕咕咕
+         */
+        private String sCheckP(String message, String command) {
+            if (Configuration.CFI.command_alias_config.getBoolean("enable")) {
 
-			}
-		}
+            }
+            return null;
+        }
     }
 
     @Deprecated
