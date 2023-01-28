@@ -23,6 +23,8 @@
  */
 package moe.xmcn.catsero;
 
+import org.bukkit.Bukkit;
+
 import moe.xmcn.catsero.executors.ExecutorRegister;
 import moe.xmcn.catsero.listeners.ListenerRegister;
 import moe.xmcn.catsero.utils.*;
@@ -91,7 +93,7 @@ public class CatSero extends JavaPlugin {
 				"犯我中华者，虽远必诛！"
 			);
 			Logger.logWARN(cnmnpp);
-			getServer().dispatchCommand(getServer.getConsoleSender(), "stop");
+			getServer().dispatchCommand(Bukkit.getConsoleSender(), "stop");
         } else {
 		
         if (Envrionment.Depends.MiraiMC) {
