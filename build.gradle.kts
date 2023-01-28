@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "moe.xmcn.catsero"
-version = "2.3.1"
+version = "2.3"
 
 repositories {
     mavenCentral()
@@ -23,7 +23,7 @@ dependencies {
 
     // 远程
     implementation("org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT")
-    implementation("org.bstats:bstats-bukkit:3.0.1-20220531.173326-1")
+    implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("me.clip:placeholderapi:2.11.2")
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.7.1")
     implementation("com.alibaba:fastjson:2.0.23")
@@ -31,8 +31,8 @@ dependencies {
     implementation("com.zaxxer:HikariCP:4.0.3")
     implementation("me.zhenxin:qqbot-sdk:1.2.0")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0-20230103.074348-76")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0-20230103.074348-76")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
     testImplementation(kotlin("test"))
 }
 java {
