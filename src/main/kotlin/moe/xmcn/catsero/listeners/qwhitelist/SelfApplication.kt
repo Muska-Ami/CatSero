@@ -7,6 +7,7 @@ import moe.xmcn.catsero.utils.MessageSender
 import moe.xmcn.catsero.utils.WhiteListDatabase
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
+import java.util.regex.Pattern
 
 class SelfApplication(
     private val enable: Boolean = Configuration.USES_CONFIG.QWHITELIST.ENABLE,
@@ -66,20 +67,24 @@ class SelfApplication(
     }
 
     private fun run(name: String, code: Long) {
-        if (
-            !WhiteListDatabase.getNameList().contains(name)
-        ) {
-            // 1Q1号
-            if (Configuration.USES_CONFIG.QWHITELIST.SELF_APPLICATION.A_QQ_ONLY_AN_ACCOUNT
-            )
-                if (!WhiteListDatabase.getCodeList().contains(code))
-                    run2(name, code)
+        val regex = Configuration.USES_CONFIG.QWHITELIST.REGEX
+        val match = Pattern.matches(regex, name)
+        if (match)
+            if (
+                !WhiteListDatabase.getNameList().contains(name)
+            ) {
+                // 1Q1号
+                if (Configuration.USES_CONFIG.QWHITELIST.A_QQ_ONLY_AN_ACCOUNT)
+                    if (!WhiteListDatabase.getCodeList().contains(code))
+                        run2(name, code)
+                    else
+                        MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.AQOAA_ERROR_REPEAT, bot, group)
                 else
-                    MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.AQOAA_ERROR_REPEAT, bot, group)
-            else
-                run2(name, code)
-        } else
-            MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_REPEAT, bot, group)
+                    run2(name, code)
+            } else
+                MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_REPEAT, bot, group)
+        else
+            MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_NAME_NOT_ALLOWED, bot, group)
     }
 
     private fun run2(name: String, code: Long) {

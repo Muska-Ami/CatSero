@@ -215,8 +215,10 @@ qwhitelist:
     # 内置占位符:
     # - %name%  玩家名（只能设置一个）
     format: "!申请白名单 %name%"
-    # 限制每个QQ只能拥有一个白名单
-    a-qq-only-an-account: true
+  # 限制每个QQ只能拥有一个白名单
+  a-qq-only-an-account: true
+  # 账户名称正则表达式
+  regex: "^[A-Za-z0-9_]+$"
 
 # 离群提示
 group-member-leave:

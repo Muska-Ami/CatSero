@@ -440,13 +440,14 @@ public interface Configuration {
 
             boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
             boolean CHECK_IF_ON_GROUP = CFI.uses_config.getBoolean(sub_node + "check-if-on-group");
+            boolean A_QQ_ONLY_AN_ACCOUNT = CFI.uses_config.getBoolean(sub_node + "a-qq-only-an-account");
+            String REGEX = CFI.uses_config.getString(sub_node + "regex");
 
             interface SELF_APPLICATION {
                 String sub_node = "qwhitelist.self-application" + ".";
 
                 boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
                 String FORMAT = CFI.uses_config.getString(sub_node + "format");
-                boolean A_QQ_ONLY_AN_ACCOUNT = CFI.uses_config.getBoolean(sub_node + "a-qq-only-an-account");
             }
 
             interface MIRAI {
@@ -527,6 +528,7 @@ public interface Configuration {
                     String ADD_SUCCESS = qwhitelist.getString("add-success");
                     String ADD_ERROR_SQL = qwhitelist.getString("add-error-sql");
                     String ADD_ERROR_REPEAT = qwhitelist.getString("add-error-repeat");
+                    String ADD_ERROR_NAME_NOT_ALLOWED = qwhitelist.getString("add-error-name-not-allowed");
                     String REMOVE_SUCCESS = qwhitelist.getString("remove-success");
                     String REMOVE_ERROR_SQL = qwhitelist.getString("remove-error-sql");
                     String REMOVE_ERROR_NOT_FOUND = qwhitelist.getString("remove-error-not-found");
@@ -572,6 +574,7 @@ public interface Configuration {
                     String ADD_SUCCESS = qwhitelist.getString("add-success");
                     String ADD_ERROR_SQL = qwhitelist.getString("add-error-sql");
                     String ADD_ERROR_REPEAT = qwhitelist.getString("add-error-repeat");
+                    String ADD_ERROR_NAME_NOT_ALLOWED = qwhitelist.getString("add-error-name-not-allowed");
                     String REMOVE_SUCCESS = qwhitelist.getString("remove-success");
                     String REMOVE_ERROR_SQL = qwhitelist.getString("remove-error-sql");
                     String REMOVE_ERROR_NOT_FOUND = qwhitelist.getString("remove-error-not-found");

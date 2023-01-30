@@ -7,6 +7,7 @@ import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
+import java.util.regex.Pattern
 
 class WhiteListEditor(
     private val enable: Boolean = Configuration.USES_CONFIG.QWHITELIST.ENABLE,
@@ -29,32 +30,37 @@ class WhiteListEditor(
                             // 添加
                             "add" -> {
                                 if (args.size == 3) {
-                                    if (!WhiteListDatabase.getNameList().contains(args[1])) {
-                                        /*
+                                    val regex = Configuration.USES_CONFIG.QWHITELIST.REGEX
+                                    val match = Pattern.matches(regex, args[1])
+                                    if (match)
+                                        if (!WhiteListDatabase.getNameList().contains(args[1])) {
+                                            /*
                                         list.getStringList("list").add(args[2])
                                         list.save(configuration.whitelist_file)
                                         list.load(configuration.whitelist_file)
 
                                          */
-                                        if (WhiteListDatabase.insertList(args[1], args[2].toLong())) {
+                                            if (WhiteListDatabase.insertList(args[1], args[2].toLong())) {
 
-                                            MessageSender.sendGroup(
-                                                Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS,
-                                                bot,
-                                                group
-                                            )
+                                                MessageSender.sendGroup(
+                                                    Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS,
+                                                    bot,
+                                                    group
+                                                )
+                                            } else
+                                                MessageSender.sendGroup(
+                                                    Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_SQL,
+                                                    bot,
+                                                    group
+                                                )
                                         } else
                                             MessageSender.sendGroup(
-                                                Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_SQL,
+                                                Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_REPEAT,
                                                 bot,
                                                 group
                                             )
-                                    } else
-                                        MessageSender.sendGroup(
-                                            Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_REPEAT,
-                                            bot,
-                                            group
-                                        )
+                                    else
+                                        MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_NAME_NOT_ALLOWED, bot, group)
                                 } else
                                     MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group)
                             }
