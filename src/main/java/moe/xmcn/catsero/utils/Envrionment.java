@@ -35,6 +35,7 @@ public interface Envrionment {
         if (Bukkit.getPluginManager().getPlugin("MiraiMC") != null) Depends.MiraiMC = true;
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) Depends.PlaceholderAPI = true;
         if (Bukkit.getPluginManager().getPlugin("TrChat") != null) Depends.TrChat = true;
+        if (Bukkit.getPluginManager().getPlugin("floodgate") != null) Depends.Floodgate = true;
     }
 
     static String getVersion() {
@@ -45,5 +46,6 @@ public interface Envrionment {
         public static boolean MiraiMC = false;
         public static boolean PlaceholderAPI = false;
         public static boolean TrChat = false;
+        public static boolean Floodgate = false;
     }
 }

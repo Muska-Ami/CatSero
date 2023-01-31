@@ -32,6 +32,11 @@
 - 白名单
 - 退群提示
 
+## 使用文档
+
+参见：[https://docs.huahuo-cn.tk/CatSero](https://docs.huahuo-cn.tk/CatSero)
+
+<!--
 ## 配置文件
 
 #### config.yml
@@ -468,7 +473,7 @@ _要触发命令前必须使用前缀`!`或`/`_
 | !catsero whitelist change name \<PlayerOldName> \<PlayerNewName> | 更新白名单       |
 | !catsero whitelist change qq \<QQ> \<QQ>                         | 更新白名单       |
 | !catsero whitelist remove \<Player>                              | 移除白名单       |
-
+-->
 <!--
 | !catsero pm ban \<player> \(reason) | 封禁一个玩家              |
 | !catsero pm unban \<player>         | 解除封禁一名玩家            |
@@ -484,6 +489,7 @@ _要触发命令前必须使用前缀`!`或`/`_
 
 <a href="https://bstats.org/plugin/bukkit/CatSero/14767">![https://bstats.org/plugin/bukkit/CatSero/14767](https://bstats.org/signatures/bukkit/CatSero.svg)</a>
 
+<!--
 ## 权限
 
 | 权限                                 | 说明              |
@@ -495,3 +501,4 @@ _要触发命令前必须使用前缀`!`或`/`_
 | catsero.send-player-join-quit.join | 玩家加入游戏转发权限，默认OP |
 | catsero.send-player-join-quit.quit | 玩家退出游戏转发权限，默认OP |
 | catsero.send-death                 | 玩家死亡转发权限，默认OP   |
+-->
