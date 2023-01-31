@@ -31,6 +31,8 @@ import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -582,6 +584,7 @@ public interface Configuration {
                     String CHANGE_ERROR_SQL = qwhitelist.getString("change-error-sql");
                     String CHANGE_ERROR_NOT_FOUND = qwhitelist.getString("change-error-not-found");
                     String AQOAA_ERROR_REPEAT = qwhitelist.getString("aqoaa-error-repeat");
+                    String REPLACE_SPACE_SUCCESS = qwhitelist.getString("replace-space-success");
                 }
             }
         }
@@ -638,6 +641,11 @@ public interface Configuration {
             });
             return isOp.get();
         }
+
+        interface FLOODGATE {
+            // 鬼知道 Floodgate API 没有这个接口啊喂
+            boolean REPLACE_SPACES = CFI.floodgate_config.getBoolean("replace-spaces");
+        }
     }
 
     class CFI {
@@ -656,6 +664,8 @@ public interface Configuration {
         static final FileConfiguration ext_trchat_config = YamlConfiguration.loadConfiguration(ext_trchat_file);
         static final File command_alias_file = new File(plugin.getDataFolder(), "extra-configs/command-alias.yml");
         public static final FileConfiguration command_alias_config = YamlConfiguration.loadConfiguration(command_alias_file);
+        static final File floodgate_file = new File(plugin.getDataFolder().getParent() + "/floodgate", "config.yml");
+        public static final FileConfiguration floodgate_config = YamlConfiguration.loadConfiguration(floodgate_file);
     }
 
 }

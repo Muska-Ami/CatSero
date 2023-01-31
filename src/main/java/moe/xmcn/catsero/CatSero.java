@@ -99,6 +99,7 @@ public class CatSero extends JavaPlugin {
                 "Soft-depends:",
                 "- PlaceholderAPI => " + Envrionment.Depends.PlaceholderAPI,
                 "- TrChat => " + Envrionment.Depends.TrChat,
+                "- floodgate => " + Envrionment.Depends.Floodgate,
                 "==================================="
         );
         Logger.logLoader(env);

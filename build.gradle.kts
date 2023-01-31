@@ -10,11 +10,10 @@ group = "moe.xmcn.catsero"
 version = "2.3.2"
 
 repositories {
-    mavenCentral()
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots")
-    maven("https://repo.extendedclip.com/content/repositories/placeholderapi")
     maven("https://crystal.app.lss233.com/repositories/minecraft")
     maven("https://jitpack.io")
+    maven("https://repo.opencollab.dev/maven-snapshots/")
+    mavenCentral()
 }
 
 dependencies {
@@ -29,7 +28,7 @@ dependencies {
     implementation("com.alibaba:fastjson:2.0.23")
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     implementation("com.zaxxer:HikariCP:4.0.3")
-    implementation("me.zhenxin:qqbot-sdk:1.2.0")
+    implementation("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
