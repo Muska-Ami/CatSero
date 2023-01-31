@@ -28,7 +28,7 @@ dependencies {
     implementation("com.alibaba:fastjson:2.0.23")
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     implementation("com.zaxxer:HikariCP:4.0.3")
-    implementation("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")
+    implementation("org.geysermc.floodgate:api:2.2.1-SNAPSHOT")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
