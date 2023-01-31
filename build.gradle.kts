@@ -21,7 +21,7 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     // 远程
-    implementation("org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT")
+    implementation("org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT")
     implementation("org.bstats:bstats-bukkit:3.0.0")
     implementation("me.clip:placeholderapi:2.11.2")
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.7.1")
