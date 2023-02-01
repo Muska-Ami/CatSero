@@ -26,12 +26,40 @@ package moe.xmcn.catsero;
 import moe.xmcn.catsero.executors.ExecutorRegister;
 import moe.xmcn.catsero.listeners.ListenerRegister;
 import moe.xmcn.catsero.utils.*;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
 public class CatSero extends JavaPlugin {
+
+    public static boolean findProcess(String processName) {
+        BufferedReader bufferedReader = null;
+        try {
+            Process proc = Runtime.getRuntime().exec("tasklist /FI \"IMAGENAME eq " + processName + "\"");
+            bufferedReader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.contains(processName)) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (Exception ignored) {
+                }
+            }
+        }
+    }
 
     @Override
     public void onLoad() {
@@ -60,6 +88,7 @@ public class CatSero extends JavaPlugin {
 
         Logger.logLoader("Checking server information...");
         Envrionment.check();
+        // 把信息输出一遍
         List<String> env = Arrays.asList(
                 "===== CatSero Runtime Checker =====",
                 "Server Version: " + Envrionment.server_version,
@@ -70,6 +99,7 @@ public class CatSero extends JavaPlugin {
                 "Soft-depends:",
                 "- PlaceholderAPI => " + Envrionment.Depends.PlaceholderAPI,
                 "- TrChat => " + Envrionment.Depends.TrChat,
+                "- floodgate => " + Envrionment.Depends.Floodgate,
                 "==================================="
         );
         Logger.logLoader(env);
@@ -77,6 +107,8 @@ public class CatSero extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        // 反对 Notepad++
         if (Envrionment.Depends.MiraiMC) {
             Logger.logLoader("Registering Executors...");
             ExecutorRegister.register();
@@ -94,11 +126,14 @@ public class CatSero extends JavaPlugin {
             Logger.logLoader("Start TPSCalculator.");
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSCalculator(), 100L, 1L);
 
+            Logger.logLoader("Start check Notepad++.");
+            getServer().getScheduler().scheduleSyncRepeatingTask(this, new NotNPP(), 20L, 1L);
+
             Logger.logLoader("CatSero loaded.");
 
             if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
                 Logger.logLoader("Start checking update...");
-                getServer().getScheduler().scheduleSyncRepeatingTask(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
+                getServer().getScheduler().runTaskTimerAsynchronously(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
                 getServer().getPluginManager().registerEvents(new Updater(), this);
             }
         } else {
@@ -110,6 +145,8 @@ public class CatSero extends JavaPlugin {
     @Override
     public void onDisable() {
         Logger.logLoader("Stopping CatSero.");
+        Logger.logINFO("If you love CatSero, don't forget to give it a Star on GitHub!");
     }
+
 
 }

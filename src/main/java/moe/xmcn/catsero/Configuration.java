@@ -31,6 +31,8 @@ import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -440,13 +442,14 @@ public interface Configuration {
 
             boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
             boolean CHECK_IF_ON_GROUP = CFI.uses_config.getBoolean(sub_node + "check-if-on-group");
+            boolean A_QQ_ONLY_AN_ACCOUNT = CFI.uses_config.getBoolean(sub_node + "a-qq-only-an-account");
+            String REGEX = CFI.uses_config.getString(sub_node + "regex");
 
             interface SELF_APPLICATION {
                 String sub_node = "qwhitelist.self-application" + ".";
 
                 boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
                 String FORMAT = CFI.uses_config.getString(sub_node + "format");
-                boolean A_QQ_ONLY_AN_ACCOUNT = CFI.uses_config.getBoolean(sub_node + "a-qq-only-an-account");
             }
 
             interface MIRAI {
@@ -527,6 +530,7 @@ public interface Configuration {
                     String ADD_SUCCESS = qwhitelist.getString("add-success");
                     String ADD_ERROR_SQL = qwhitelist.getString("add-error-sql");
                     String ADD_ERROR_REPEAT = qwhitelist.getString("add-error-repeat");
+                    String ADD_ERROR_NAME_NOT_ALLOWED = qwhitelist.getString("add-error-name-not-allowed");
                     String REMOVE_SUCCESS = qwhitelist.getString("remove-success");
                     String REMOVE_ERROR_SQL = qwhitelist.getString("remove-error-sql");
                     String REMOVE_ERROR_NOT_FOUND = qwhitelist.getString("remove-error-not-found");
@@ -572,6 +576,7 @@ public interface Configuration {
                     String ADD_SUCCESS = qwhitelist.getString("add-success");
                     String ADD_ERROR_SQL = qwhitelist.getString("add-error-sql");
                     String ADD_ERROR_REPEAT = qwhitelist.getString("add-error-repeat");
+                    String ADD_ERROR_NAME_NOT_ALLOWED = qwhitelist.getString("add-error-name-not-allowed");
                     String REMOVE_SUCCESS = qwhitelist.getString("remove-success");
                     String REMOVE_ERROR_SQL = qwhitelist.getString("remove-error-sql");
                     String REMOVE_ERROR_NOT_FOUND = qwhitelist.getString("remove-error-not-found");
@@ -579,6 +584,7 @@ public interface Configuration {
                     String CHANGE_ERROR_SQL = qwhitelist.getString("change-error-sql");
                     String CHANGE_ERROR_NOT_FOUND = qwhitelist.getString("change-error-not-found");
                     String AQOAA_ERROR_REPEAT = qwhitelist.getString("aqoaa-error-repeat");
+                    String REPLACE_SPACE_SUCCESS = qwhitelist.getString("replace-space-success");
                 }
             }
         }
@@ -635,6 +641,11 @@ public interface Configuration {
             });
             return isOp.get();
         }
+
+        interface FLOODGATE {
+            // 鬼知道 Floodgate API 没有这个接口啊喂
+            boolean REPLACE_SPACES = CFI.floodgate_config.getBoolean("replace-spaces");
+        }
     }
 
     class CFI {
@@ -653,6 +664,8 @@ public interface Configuration {
         static final FileConfiguration ext_trchat_config = YamlConfiguration.loadConfiguration(ext_trchat_file);
         static final File command_alias_file = new File(plugin.getDataFolder(), "extra-configs/command-alias.yml");
         public static final FileConfiguration command_alias_config = YamlConfiguration.loadConfiguration(command_alias_file);
+        static final File floodgate_file = new File(plugin.getDataFolder().getParent() + "/floodgate", "config.yml");
+        public static final FileConfiguration floodgate_config = YamlConfiguration.loadConfiguration(floodgate_file);
     }
 
 }

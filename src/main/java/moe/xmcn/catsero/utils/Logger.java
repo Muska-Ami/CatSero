@@ -49,6 +49,13 @@ public interface Logger {
         }
     }
 
+    static void logWARN(List<String> msgs) {
+        for (int i = 1; i < msgs.toArray().length + 1; i++) {
+            logWARN(msgs.toArray()[i - 1].toString());
+        }
+    }
+
+
     static void logCatch(Exception e) {
         String error_type = e.getClass().getName();
         String error_message = e.getMessage();

@@ -37,6 +37,7 @@ import org.bukkit.command.TabExecutor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class OnCommand implements TabExecutor {
     @Override
@@ -57,6 +58,7 @@ public class OnCommand implements TabExecutor {
                                         "&bSoft-depends:",
                                         "- &bPlaceholderAPI &a=> &e" + Envrionment.Depends.PlaceholderAPI,
                                         "- &bTrChat &a=> &e" + Envrionment.Depends.TrChat,
+                                        "- &bfloodgate &a=> &e" + Envrionment.Depends.Floodgate,
                                         "&b==================================="
                                 );
                                 for (int i = 1; i <= env.toArray().length; i++) {
@@ -74,13 +76,18 @@ public class OnCommand implements TabExecutor {
                             if (args.length == 4) {
                                 // 添加
                                 if (args[1].equalsIgnoreCase("add")) {
-                                    if (!WhiteListDatabase.getNameList().contains(args[2])) {
-                                        if (WhiteListDatabase.insertList(args[2], Long.parseLong(args[3]))) {
-                                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.ADD_SUCCESS));
+                                    String regex = Configuration.USES_CONFIG.QWHITELIST.REGEX;
+                                    boolean match = Pattern.matches(regex, args[2]);
+                                    if (match)
+                                        if (!WhiteListDatabase.getNameList().contains(args[2])) {
+                                            if (WhiteListDatabase.insertList(args[2], Long.parseLong(args[3]))) {
+                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.ADD_SUCCESS));
+                                            } else
+                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.ADD_ERROR_SQL));
                                         } else
-                                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.ADD_ERROR_SQL));
-                                    } else
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.ADD_ERROR_REPEAT));
+                                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.ADD_ERROR_REPEAT));
+                                    else
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.ADD_ERROR_NAME_NOT_ALLOWED));
                                 }
                             } else if (args.length == 3) {
                                 // 移除
@@ -101,8 +108,8 @@ public class OnCommand implements TabExecutor {
                                                                         )
                                                                 )
                                                 );
+                                            } else
                                                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.REMOVE_SUCCESS));
-                                            }
                                         } else
                                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.REMOVE_ERROR_SQL));
                                     } else

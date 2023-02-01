@@ -26,35 +26,6 @@ public class OnTrChatToQQ implements Listener {
         this.group = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP;
     }
 
-    private static String cleanStyleCodes(String s) {
-        List<String> s0 = Arrays.asList(
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "a",
-                "b",
-                "c",
-                "d",
-                "e",
-                "f",
-                "k",
-                "l",
-                "o",
-                "r"
-        );
-        for (int i = 0; i < s0.toArray().length; i++) {
-            s = s.replace("&" + s0.toArray()[i], "");
-            s = s.replace("§" + s0.toArray()[i], "");
-        }
-        return s;
-    }
-
     @EventHandler
     public void onTrChat(TrChatEvent e) {
         new BukkitRunnable() {
@@ -103,7 +74,7 @@ public class OnTrChatToQQ implements Listener {
         ) {
             // 清理样式代码
             if (Configuration.USES_CONFIG.CHAT_FORWARD.CLEAN_STYLECODE.TO_QQ)
-                message = cleanStyleCodes(message);
+                message = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', message));
 
             format = format.replace("%message%", message)
                     .replace("%name%", e.getPlayer().getName())
