@@ -4,25 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="聊天转发不会发送卡片消息">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="为 #91 做准备而修改">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/extra-configs/sql.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/OnCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/OnCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Envrionment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Envrionment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/SelfApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/SelfApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/MessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/MessageSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +89,19 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="47c5e45e-f21f-4164-b7b1-536d0059b44a" />
+        <option name="url" value="https://github.com/XiaMoHuaHuo-CN/CatSero.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -125,7 +126,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -180,7 +181,7 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--warning-mode all" />
+        <option name="scriptParameters" value="--warning-mode all --full-stacktrace" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -218,8 +219,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Gradle.CatSero [clean]" />
       <item itemvalue="Gradle.CatSero [build]" />
+      <item itemvalue="Gradle.CatSero [clean]" />
       <item itemvalue="应用程序.CommandLineTest" />
       <item itemvalue="应用程序.FileReaderTest" />
       <item itemvalue="应用程序.TestGetFileProtocol" />
@@ -227,10 +228,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.CatSero [build]" />
-        <item itemvalue="应用程序.CommandLineTest" />
         <item itemvalue="Gradle.CatSero [clean]" />
-        <item itemvalue="应用程序.FileReaderTest" />
-        <item itemvalue="应用程序.TestGetFileProtocol" />
       </list>
     </recent_temporary>
   </component>
@@ -249,55 +247,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668927643545</updated>
-    </task>
-    <task id="LOCAL-00012" summary="部分完工x5">
-      <created>1671387100927</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1671387100927</updated>
-    </task>
-    <task id="LOCAL-00013" summary="I18n 改为JSON而不是YAML">
-      <created>1671425788440</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1671425788440</updated>
-    </task>
-    <task id="LOCAL-00014" summary="/cms命令">
-      <created>1671427645985</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1671427645985</updated>
-    </task>
-    <task id="LOCAL-00015" summary="漏掉的颜色">
-      <created>1671427732526</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1671427732526</updated>
-    </task>
-    <task id="LOCAL-00016" summary="兼容旧版不支持增强switch">
-      <created>1671427882419</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1671427882419</updated>
-    </task>
-    <task id="LOCAL-00017" summary="break;">
-      <created>1671428358807</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1671428358807</updated>
-    </task>
-    <task id="LOCAL-00018" summary="完成一个功能：JoinQuitForward">
-      <created>1671430825929</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1671430825929</updated>
     </task>
     <task id="LOCAL-00019" summary="合并分支">
       <created>1671431102102</created>
@@ -593,7 +542,56 @@
       <option name="project" value="LOCAL" />
       <updated>1675060726401</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="更新，但不完全更新">
+      <created>1675138651184</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1675138651184</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Commit">
+      <created>1675444481154</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1675444481154</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Commit">
+      <created>1675444519522</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1675444519522</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Commit">
+      <created>1675444568563</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1675444568563</updated>
+    </task>
+    <task id="LOCAL-00065" summary="优化互通服自助申白体验 #90">
+      <created>1675446922404</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1675446922404</updated>
+    </task>
+    <task id="LOCAL-00066" summary="添加floodgate未安装提示 #90">
+      <created>1675447353689</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1675447353689</updated>
+    </task>
+    <task id="LOCAL-00067" summary="为 #91 做准备而修改">
+      <created>1675447895849</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1675447895849</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -614,11 +612,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="新增屏蔽词系统从外部导入屏蔽词功能&#10;灵感来源：TrChat" />
-    <MESSAGE value="新增聊天转发消息头 #60" />
-    <MESSAGE value="写 了 个 寂 寞 #57" />
-    <MESSAGE value="完成 #57" />
-    <MESSAGE value="修复聊天转发吞字符问题" />
     <MESSAGE value="I18n 白名单&#10;修复I18n读取错误&#10;新增自助白名单申请" />
     <MESSAGE value="I18n修复，白名单自助申请&#10;修复I18n读取错误&#10;新增自助白名单申请" />
     <MESSAGE value="修复Codacy报告的一些Issue" />
@@ -639,7 +632,12 @@
     <MESSAGE value="Notepad++ 爪巴" />
     <MESSAGE value="现在打开 Notepad++ 会自动停止服务器，添加白名单名称正则" />
     <MESSAGE value="聊天转发不会发送卡片消息" />
-    <option name="LAST_COMMIT_MESSAGE" value="聊天转发不会发送卡片消息" />
+    <MESSAGE value="更新，但不完全更新" />
+    <MESSAGE value="Commit" />
+    <MESSAGE value="优化互通服自助申白体验 #90" />
+    <MESSAGE value="添加floodgate未安装提示 #90" />
+    <MESSAGE value="为 #91 做准备而修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="为 #91 做准备而修改" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

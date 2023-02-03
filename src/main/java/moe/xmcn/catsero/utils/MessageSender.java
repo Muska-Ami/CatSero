@@ -24,12 +24,22 @@
 package moe.xmcn.catsero.utils;
 
 import me.dreamvoid.miraimc.api.MiraiBot;
+import me.dreamvoid.miraimc.httpapi.MiraiHttpAPI;
 import moe.xmcn.catsero.Configuration;
+
+import java.io.IOException;
 
 public class MessageSender {
 
-    public static void sendGroup(String message, String bot, String group) {
-        MiraiBot.getBot(Configuration.Interface.getBotCode(bot)).getGroup(Configuration.Interface.getGroupCode(group)).sendMessageMirai(message);
+    public static void sendGroup(String message, String bot, String group) throws IOException {
+        if (Configuration.PLUGIN.HTTP_API)
+            MiraiHttpAPI.INSTANCE.sendGroupMessage(
+                    MiraiHttpAPI.Bots.get(Configuration.Interface.getBotCode(bot)),
+                    Configuration.Interface.getGroupCode(group),
+                    message
+            );
+        else
+            MiraiBot.getBot(Configuration.Interface.getBotCode(bot)).getGroup(Configuration.Interface.getGroupCode(group)).sendMessageMirai(message);
     }
 
 }

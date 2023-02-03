@@ -32,10 +32,17 @@ public interface Envrionment {
     String plugin_version = getVersion();
 
     static void check() {
-        if (Bukkit.getPluginManager().getPlugin("MiraiMC") != null) Depends.MiraiMC = true;
-        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) Depends.PlaceholderAPI = true;
-        if (Bukkit.getPluginManager().getPlugin("TrChat") != null) Depends.TrChat = true;
-        if (Bukkit.getPluginManager().getPlugin("floodgate") != null) Depends.Floodgate = true;
+        if (Bukkit.getPluginManager().getPlugin("MiraiMC") != null)
+            Depends.MiraiMC = true;
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null)
+            Depends.PlaceholderAPI = true;
+        if (Bukkit.getPluginManager().getPlugin("TrChat") != null)
+            Depends.TrChat = true;
+        if (Bukkit.getPluginManager().getPlugin("floodgate") != null)
+            Depends.Floodgate = true;
+
+        if (Bukkit.getPluginManager().getPlugin("Geyser-Spigot") != null)
+            Logger.logINFO("检测到您已安装Geyser-Spigot，但未安装floodgate，互通服优化将自动禁用");
     }
 
     static String getVersion() {

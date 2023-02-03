@@ -60,11 +60,16 @@ public class OnPlayerQuit implements Listener {
     }
 
     public void run(PlayerQuitEvent pqe) {
-        String player_name = pqe.getPlayer().getName();
-        String quit_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.QUIT;
-        quit_message = quit_message.replace("%player%", player_name);
-        quit_message = PAPI.toPAPI(pqe.getPlayer(), quit_message);
-        MessageSender.sendGroup(quit_message, bot, group);
+        try {
+            String player_name = pqe.getPlayer().getName();
+            String quit_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.QUIT;
+            quit_message = quit_message.replace("%player%", player_name);
+            quit_message = PAPI.toPAPI(pqe.getPlayer(), quit_message);
+            MessageSender.sendGroup(quit_message, bot, group);
+
+        } catch (Exception ex) {
+            Logger.logCatch(ex);
+        }
     }
 
 }

@@ -3,15 +3,14 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id("java")
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.8.10"
 }
 
 group = "moe.xmcn.catsero"
 version = "2.3.2"
 
 repositories {
-    maven("https://crystal.app.lss233.com/repositories/minecraft")
-    maven("https://jitpack.io")
+    maven("https://maven.fastmirror.net/repositories/minecraft")
     maven("https://repo.opencollab.dev/maven-snapshots/")
     mavenCentral()
 }

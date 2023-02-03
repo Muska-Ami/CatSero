@@ -25,6 +25,7 @@ package moe.xmcn.catsero.listeners.gettps;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
 import moe.xmcn.catsero.utils.QPS;
 import moe.xmcn.catsero.utils.TPSCalculator;
@@ -48,36 +49,41 @@ public class OnGroupMessageRequestTPS implements Listener {
 
     @EventHandler
     public void onGroupMessageEvent(MiraiGroupMessageEvent e) {
-        String[] args = QPS.parse(e.getMessage(), "tps");
+        try {
+            String[] args = QPS.parse(e.getMessage(), "tps");
 
-        if (args != null) {
-            // 条件
-            if (
-                    enable
-                            && e.getBotID() == Configuration.Interface.getBotCode(bot)
-                            && e.getGroupID() == Configuration.Interface.getGroupCode(group)
+            if (args != null) {
+                // 条件
+                if (
+                        enable
+                                && e.getBotID() == Configuration.Interface.getBotCode(bot)
+                                && e.getGroupID() == Configuration.Interface.getGroupCode(group)
 
-            ) {
-                if (args.length == 1) {
-                    // 处理TPS
-                    double tps = TPSCalculator.getTPS();
-                    BigDecimal around_tps = BigDecimal.valueOf(tps).setScale(1, RoundingMode.HALF_UP);
+                ) {
+                    if (args.length == 1) {
+                        // 处理TPS
+                        double tps = TPSCalculator.getTPS();
+                        BigDecimal around_tps = BigDecimal.valueOf(tps).setScale(1, RoundingMode.HALF_UP);
 
-                    switch (args[0]) {
-                        case "accurate":
-                            // 精确
-                            MessageSender.sendGroup("TPS: " + tps, bot, group);
-                            break;
-                        case "around":
-                            // 大概
-                            MessageSender.sendGroup("TPS: " + around_tps, bot, group);
-                            break;
-                        default:
-                            MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
-                    }
-                } else
-                    MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
+                        switch (args[0]) {
+                            case "accurate":
+                                // 精确
+                                MessageSender.sendGroup("TPS: " + tps, bot, group);
+                                break;
+                            case "around":
+                                // 大概
+                                MessageSender.sendGroup("TPS: " + around_tps, bot, group);
+                                break;
+                            default:
+                                MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
+                        }
+                    } else
+                        MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
+                }
             }
+
+        } catch (Exception ex) {
+            Logger.logCatch(ex);
         }
     }
 

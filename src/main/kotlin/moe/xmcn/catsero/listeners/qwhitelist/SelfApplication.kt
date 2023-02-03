@@ -31,6 +31,7 @@ class SelfApplication(
                 val sf = Configuration.USES_CONFIG.QWHITELIST.SELF_APPLICATION.FORMAT.split("%name%")
 
                 val code = e.senderID
+                //println(code)
 
                 if (sf.size == 1) {
                     // 情况1: 占位符后无字符(串)
@@ -54,6 +55,7 @@ class SelfApplication(
                             .replaceLast(sf[1], "")
 
                         //println(playerName)
+                        //println(code)
                         run(playerName, code)
                     }
                 } else
@@ -71,53 +73,61 @@ class SelfApplication(
     }
 
     private fun run(nam: String, code: Long) {
-        var name = nam
-        if (Envrionment.Depends.Floodgate) {
-            // 互通服优化
-            // 鬼知道我为什么要导入 Floodgate API 然后又去读一遍 Floodgate 的配置
-            val floodgateApi = FloodgateApi.getInstance()
-            prefix = floodgateApi.playerPrefix
-        }
-            if (
-                prefix != null
-                && name.startsWith(prefix!!)
+        try {
+            var name = nam
+            if (Envrionment.Depends.Floodgate) {
+                // 互通服优化
+                // 鬼知道我为什么要导入 Floodgate API 然后又去读一遍 Floodgate 的配置
+                val floodgateApi = FloodgateApi.getInstance()
+                prefix = floodgateApi.playerPrefix
+
+                if (
+                    prefix != null
+                    && prefix?.let { it1 -> name.startsWith(it1) } == true
+                    && Configuration.Interface.FLOODGATE.REPLACE_SPACES
                 ) {
-                if (Configuration.Interface.FLOODGATE.REPLACE_SPACES) {
-                    MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.REPLACE_SPACE_SUCCESS, bot, group)
                     name = name.replace(" ", "_")
+                    MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.REPLACE_SPACE_SUCCESS.replace("%name%", name), bot, group)
                 }
             }
 
-        val regex = Configuration.USES_CONFIG.QWHITELIST.REGEX
-        val match = if (Envrionment.Depends.Floodgate)
-            Pattern.matches(regex, name.replaceFirst(prefix!!, ""))
-        else
-            Pattern.matches(regex, name)
-        if (match)
-            if (
-                !WhiteListDatabase.getNameList().contains(name)
-            ) {
-                // 1Q1号
-                if (Configuration.USES_CONFIG.QWHITELIST.A_QQ_ONLY_AN_ACCOUNT)
-                    if (!WhiteListDatabase.getCodeList().contains(code))
-                        run2(name, code)
+            val regex = Configuration.USES_CONFIG.QWHITELIST.REGEX
+            val match = if (Envrionment.Depends.Floodgate)
+                Pattern.matches(regex, prefix?.let { name.replaceFirst(it, "") })
+            else
+                Pattern.matches(regex, name)
+            if (match)
+                if (
+                    !WhiteListDatabase.getNameList().contains(name)
+                ) {
+                    // 1Q1号
+                    if (Configuration.USES_CONFIG.QWHITELIST.A_QQ_ONLY_AN_ACCOUNT)
+                        if (!WhiteListDatabase.getCodeList().contains(code))
+                            run2(name, code)
+                        else
+                            MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.AQOAA_ERROR_REPEAT, bot, group)
                     else
-                        MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.AQOAA_ERROR_REPEAT, bot, group)
-                else
-                    run2(name, code)
-            } else
-                MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_REPEAT, bot, group)
-        else
-            MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_NAME_NOT_ALLOWED, bot, group)
+                        run2(name, code)
+                } else
+                    MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_REPEAT, bot, group)
+            else
+                MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_NAME_NOT_ALLOWED, bot, group)
+
+        } catch (ex: Exception) {
+            Logger.logCatch(ex)
+        }
     }
 
     private fun run2(name: String, code: Long) {
+        try {
+            if (WhiteListDatabase.insertList(name, code))
+                MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS, bot, group)
+            else
+                MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_SQL, bot, group)
 
-        if (WhiteListDatabase.insertList(name, code))
-            MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_SUCCESS, bot, group)
-        else
-            MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_SQL, bot, group)
-
+        } catch (ex: Exception) {
+            Logger.logCatch(ex)
+        }
     }
 
     /*

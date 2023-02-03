@@ -33,7 +33,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OnGroupMessageRequestList implements Listener {
@@ -62,7 +61,7 @@ public class OnGroupMessageRequestList implements Listener {
                                 && e.getBotID() == Configuration.Interface.getBotCode(bot)
                                 && e.getGroupID() == Configuration.Interface.getGroupCode(group)
                 ) {
-                    List<Player> list = new ArrayList<>(Bukkit.getOnlinePlayers());
+                    List<Player> list = moe.xmcn.catsero.utils.Player.getOnlinePlayers();
 
                     String format;
 

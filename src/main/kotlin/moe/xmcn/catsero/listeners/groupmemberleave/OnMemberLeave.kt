@@ -2,6 +2,7 @@ package moe.xmcn.catsero.listeners.groupmemberleave
 
 import me.dreamvoid.miraimc.bukkit.event.group.member.MiraiMemberLeaveEvent
 import moe.xmcn.catsero.Configuration
+import moe.xmcn.catsero.utils.Logger
 import moe.xmcn.catsero.utils.MessageSender
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -14,18 +15,23 @@ class OnMemberLeave(
 
     @EventHandler
     fun onGroupMemberLeave(e: MiraiMemberLeaveEvent) {
-        if (
-            enable
-            && e.botID == Configuration.Interface.getBotCode(bot)
-            && e.groupID == Configuration.Interface.getGroupCode(group)
-        ) {
-            val name = e.memberNick
-            val code = e.targetID
+        try {
+            if (
+                enable
+                && e.botID == Configuration.Interface.getBotCode(bot)
+                && e.groupID == Configuration.Interface.getGroupCode(group)
+            ) {
+                val name = e.memberNick
+                val code = e.targetID
 
-            var format = Configuration.USES_CONFIG.GROUP_MEMBER_LEAVE.FORMAT
-            format = format.replace("%name%", name)
-                .replace("%code%", code.toString())
-            MessageSender.sendGroup(format, bot, group)
+                var format = Configuration.USES_CONFIG.GROUP_MEMBER_LEAVE.FORMAT
+                format = format.replace("%name%", name)
+                    .replace("%code%", code.toString())
+                MessageSender.sendGroup(format, bot, group)
+            }
+
+        } catch (ex: Exception) {
+            Logger.logCatch(ex)
         }
     }
 

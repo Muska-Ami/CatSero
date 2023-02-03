@@ -60,11 +60,16 @@ public class OnPlayerJoin implements Listener {
     }
 
     public void run(PlayerJoinEvent pje) {
-        String player_name = pje.getPlayer().getName();
-        String join_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.JOIN;
-        join_message = join_message.replace("%player%", player_name);
-        join_message = PAPI.toPAPI(pje.getPlayer(), join_message);
-        MessageSender.sendGroup(join_message, bot, group);
+        try {
+            String player_name = pje.getPlayer().getName();
+            String join_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.JOIN;
+            join_message = join_message.replace("%player%", player_name);
+            join_message = PAPI.toPAPI(pje.getPlayer(), join_message);
+            MessageSender.sendGroup(join_message, bot, group);
+
+        } catch (Exception ex) {
+            Logger.logCatch(ex);
+        }
     }
 
 }
