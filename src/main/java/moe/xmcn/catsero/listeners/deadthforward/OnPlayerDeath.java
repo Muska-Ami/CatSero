@@ -61,15 +61,20 @@ public class OnPlayerDeath implements Listener {
     }
 
     public void run(PlayerDeathEvent e) {
-        Player player = e.getEntity();
-        String death_message = e.getDeathMessage();
+        try {
+            Player player = e.getEntity();
+            String death_message = e.getDeathMessage();
 
-        String message = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.FORMAT;
+            String message = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.FORMAT;
 
-        message = message.replace("%player%", player.getName())
-                .replace("%message%", death_message);
-        message = PAPI.toPAPI(player, message);
-        MessageSender.sendGroup(message, bot, group);
+            message = message.replace("%player%", player.getName())
+                    .replace("%message%", death_message);
+            message = PAPI.toPAPI(player, message);
+            MessageSender.sendGroup(message, bot, group);
+
+        } catch (Exception ex) {
+            Logger.logCatch(ex);
+        }
     }
 
 }

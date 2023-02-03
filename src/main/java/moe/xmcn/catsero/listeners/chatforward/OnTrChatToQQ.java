@@ -65,34 +65,39 @@ public class OnTrChatToQQ implements Listener {
     }
 
     private void run1(ChatSession e, String message) {
-        String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_QQ;
+        try {
+            String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_QQ;
 
-        // 检查消息是否含有Mirai码
-        if (
-                !Configuration.USES_CONFIG.CHAT_FORWARD.ALLOW_MIRAICODE
-                        && !message.contains("[mirai:")
-        ) {
-            // 清理样式代码
-            if (Configuration.USES_CONFIG.CHAT_FORWARD.CLEAN_STYLECODE.TO_QQ)
-                message = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', message));
+            // 检查消息是否含有Mirai码
+            if (
+                    !Configuration.USES_CONFIG.CHAT_FORWARD.ALLOW_MIRAICODE
+                            && !message.contains("[mirai:")
+            ) {
+                // 清理样式代码
+                if (Configuration.USES_CONFIG.CHAT_FORWARD.CLEAN_STYLECODE.TO_QQ)
+                    message = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', message));
 
-            format = format.replace("%message%", message)
-                    .replace("%name%", e.getPlayer().getName())
-                    .replace("%display_name%", e.getPlayer().getDisplayName());
+                format = format.replace("%message%", message)
+                        .replace("%name%", e.getPlayer().getName())
+                        .replace("%display_name%", e.getPlayer().getDisplayName());
 
-            // 权限
-            if (e.getPlayer().isOp())
-                format = format.replace("%sender_permission%", Configuration.I18N.MINECRAFT.CALL.ADMIN);
-            else
-                format = format.replace("%sender_permission%", Configuration.I18N.MINECRAFT.CALL.PLAYER);
+                // 权限
+                if (e.getPlayer().isOp())
+                    format = format.replace("%sender_permission%", Configuration.I18N.MINECRAFT.CALL.ADMIN);
+                else
+                    format = format.replace("%sender_permission%", Configuration.I18N.MINECRAFT.CALL.PLAYER);
 
-            if (Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.ENABLE) {
-                if (message.startsWith(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_QQ))
-                    MessageSender.sendGroup(format.replaceFirst(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_QQ, ""), bot, group);
+                if (Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.ENABLE) {
+                    if (message.startsWith(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_QQ))
+                        MessageSender.sendGroup(format.replaceFirst(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_QQ, ""), bot, group);
+                } else
+                    MessageSender.sendGroup(format, bot, group);
             } else
-                MessageSender.sendGroup(format, bot, group);
-        } else
-            e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.CHAT_FORWARD.CASE_MIRAICODE));
+                e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.CHAT_FORWARD.CASE_MIRAICODE));
+
+        } catch (Exception ex) {
+            Logger.logCatch(ex);
+        }
     }
 
 }

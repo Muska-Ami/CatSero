@@ -61,18 +61,23 @@ public class OnPlayerAdvancementDone implements Listener {
     }
 
     public void run(PlayerAdvancementDoneEvent e) {
-        AdvancementInfo ai = new AdvancementInfo(e.getAdvancement());
-        String adv_name = ai.getTitle();
-        String adv_description = ai.getDescription();
-        Player player = e.getPlayer();
+        try {
+            AdvancementInfo ai = new AdvancementInfo(e.getAdvancement());
+            String adv_name = ai.getTitle();
+            String adv_description = ai.getDescription();
+            Player player = e.getPlayer();
 
-        String format = Configuration.USES_CONFIG.SEND_ADVANCEMENT.FORMAT;
-        if (adv_name != null) {
-            format = format.replace("%player%", player.getName())
-                    .replace("%name%", adv_name)
-                    .replace("%description%", adv_description);
-            format = PAPI.toPAPI(player, format);
-            MessageSender.sendGroup(format, bot, group);
+            String format = Configuration.USES_CONFIG.SEND_ADVANCEMENT.FORMAT;
+            if (adv_name != null) {
+                format = format.replace("%player%", player.getName())
+                        .replace("%name%", adv_name)
+                        .replace("%description%", adv_description);
+                format = PAPI.toPAPI(player, format);
+                MessageSender.sendGroup(format, bot, group);
+            }
+
+        } catch (Exception ex){
+            Logger.logCatch(ex);
         }
     }
 
