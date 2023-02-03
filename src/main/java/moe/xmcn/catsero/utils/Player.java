@@ -27,6 +27,8 @@ import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -87,5 +89,9 @@ public interface Player {
 
     static org.bukkit.entity.Player getOnlinePlayer(UUID uuid) {
         return Bukkit.getPlayer(uuid);
+    }
+
+    static List<org.bukkit.entity.Player> getOnlinePlayers() {
+        return new ArrayList<>(Bukkit.getOnlinePlayers());
     }
 }
