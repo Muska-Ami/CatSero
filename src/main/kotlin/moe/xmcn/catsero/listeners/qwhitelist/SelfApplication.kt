@@ -90,7 +90,7 @@ class SelfApplication(
 
         val regex = Configuration.USES_CONFIG.QWHITELIST.REGEX
         val match = if (Envrionment.Depends.Floodgate)
-            Pattern.matches(regex, name.replaceFirst(prefix!!, ""))
+            Pattern.matches(regex, prefix?.let { name.replaceFirst(it, "") })
         else
             Pattern.matches(regex, name)
         if (match)
