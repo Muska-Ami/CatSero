@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="添加floodgate未安装提示 #90">
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="为 #91 做准备而修改">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/extra-configs/sql.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/getonlinelist/OnGroupMessageRequestList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/getonlinelist/OnGroupMessageRequestList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/MessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/MessageSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,11 +89,11 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -111,21 +114,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-1.8",
-    "last_directory_selection": "F:/CatSero/src/main/kotlin/moe/xmcn/catsero/listeners",
-    "last_opened_file_path": "F:/CatSero/server-test/plugins",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "settings.sync"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-1.8&quot;,
+    &quot;last_directory_selection&quot;: &quot;F:/CatSero/src/main/kotlin/moe/xmcn/catsero/listeners&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/CatSero/server-test/plugins&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\CatSero\server-test\plugins" />
@@ -244,13 +247,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668927643545</updated>
-    </task>
-    <task id="LOCAL-00018" summary="完成一个功能：JoinQuitForward">
-      <created>1671430825929</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1671430825929</updated>
     </task>
     <task id="LOCAL-00019" summary="合并分支">
       <created>1671431102102</created>
@@ -588,7 +584,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675447353689</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="为 #91 做准备而修改">
+      <created>1675447895849</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1675447895849</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -609,7 +612,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="修复聊天转发吞字符问题" />
     <MESSAGE value="I18n 白名单&#10;修复I18n读取错误&#10;新增自助白名单申请" />
     <MESSAGE value="I18n修复，白名单自助申请&#10;修复I18n读取错误&#10;新增自助白名单申请" />
     <MESSAGE value="修复Codacy报告的一些Issue" />
@@ -634,7 +636,8 @@
     <MESSAGE value="Commit" />
     <MESSAGE value="优化互通服自助申白体验 #90" />
     <MESSAGE value="添加floodgate未安装提示 #90" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加floodgate未安装提示 #90" />
+    <MESSAGE value="为 #91 做准备而修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="为 #91 做准备而修改" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

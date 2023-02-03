@@ -96,6 +96,9 @@ public interface Configuration {
         if (!new File(plugin.getDataFolder(), "extra-configs/trchat.yml").exists()) {
             plugin.saveResource("extra-configs/trchat.yml", false);
         }
+        if (!new File(plugin.getDataFolder(), "extra-configs/sql.yml").exists()) {
+            plugin.saveResource("extra-configs/sql.yml", false);
+        }
         if (!new File(plugin.getDataFolder(), "extra-configs/command-alias.yml").exists()) {
             plugin.saveResource("extra-configs/command-alias.yml", false);
         }
@@ -145,28 +148,7 @@ public interface Configuration {
 
         String LOCALE = CFI.plugin_config.getString("locale");
         boolean BSTATS = CFI.plugin_config.getBoolean("bstats");
-
-        interface JDBC {
-            String sub_node = "jdbc" + ".";
-
-            String SQLITE_CLASS_NAME = CFI.plugin_config.getString(sub_node + "sqlite-class-name");
-            String MYSQL_CLASS_NAME = CFI.plugin_config.getString(sub_node + "mysql-class-name");
-            String TYPE = CFI.plugin_config.getString(sub_node + "type");
-
-            interface MYSQL {
-                String sub_node = "jdbc.mysql-config" + ".";
-
-                String HOST = CFI.plugin_config.getString(sub_node + "host");
-                int PORT = CFI.plugin_config.getInt(sub_node + "port");
-                String USERNAME = CFI.plugin_config.getString(sub_node + "username");
-                String PASSWORD = CFI.plugin_config.getString(sub_node + "password");
-                String TIMEZONE = CFI.plugin_config.getString(sub_node + "timezone");
-                boolean UNICODE = CFI.plugin_config.getBoolean(sub_node + "unicode");
-                String ENCODING = CFI.plugin_config.getString(sub_node + "encoding");
-                boolean SSL = CFI.plugin_config.getBoolean(sub_node + "ssl");
-                String DATABASE = CFI.plugin_config.getString(sub_node + "database");
-            }
-        }
+        boolean HTTP_API = CFI.plugin_config.getBoolean("http-api");
 
         interface CHECK_UPDATE {
             /* 定义节点 为了区分
@@ -483,6 +465,30 @@ public interface Configuration {
                 List<String> CHANNEL = CFI.ext_trchat_config.getStringList(sub_node + "channel");
             }
         }
+
+        interface SQL {
+            String TYPE = CFI.ext_sql_config.getString("type");
+
+            interface JDBC {
+                String sub_node = "jdbc" + ".";
+
+                String SQLITE_CLASS_NAME = CFI.ext_sql_config.getString(sub_node + "sqlite-class-name");
+                String MYSQL_CLASS_NAME = CFI.ext_sql_config.getString(sub_node + "mysql-class-name");
+            }
+            interface MYSQL {
+                String sub_node = "mysql-config" + ".";
+
+                String HOST = CFI.ext_sql_config.getString(sub_node + "host");
+                int PORT = CFI.ext_sql_config.getInt(sub_node + "port");
+                String USERNAME = CFI.ext_sql_config.getString(sub_node + "username");
+                String PASSWORD = CFI.ext_sql_config.getString(sub_node + "password");
+                String TIMEZONE = CFI.ext_sql_config.getString(sub_node + "timezone");
+                boolean UNICODE = CFI.ext_sql_config.getBoolean(sub_node + "unicode");
+                String ENCODING = CFI.ext_sql_config.getString(sub_node + "encoding");
+                boolean SSL = CFI.ext_sql_config.getBoolean(sub_node + "ssl");
+                String DATABASE = CFI.ext_sql_config.getString(sub_node + "database");
+            }
+        }
     }
 
     interface I18N {
@@ -662,6 +668,8 @@ public interface Configuration {
         static final FileConfiguration qqop_config = YamlConfiguration.loadConfiguration(mirai_qqop_file);
         static final File ext_trchat_file = new File(plugin.getDataFolder(), "extra-configs/trchat.yml");
         static final FileConfiguration ext_trchat_config = YamlConfiguration.loadConfiguration(ext_trchat_file);
+        static final File ext_sql_file = new File(plugin.getDataFolder(), "extra-configs/sql.yml");
+        static final FileConfiguration ext_sql_config = YamlConfiguration.loadConfiguration(ext_sql_file);
         static final File command_alias_file = new File(plugin.getDataFolder(), "extra-configs/command-alias.yml");
         public static final FileConfiguration command_alias_config = YamlConfiguration.loadConfiguration(command_alias_file);
         static final File floodgate_file = new File(plugin.getDataFolder().getParent() + "/floodgate", "config.yml");

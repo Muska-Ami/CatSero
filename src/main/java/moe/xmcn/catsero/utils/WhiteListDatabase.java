@@ -47,10 +47,10 @@ public interface WhiteListDatabase {
 
         HikariConfig hc = new HikariConfig();
 
-        if (Configuration.PLUGIN.JDBC.TYPE.equals("sqlite")) {
+        if (Configuration.EXTRA_CONFIG.SQL.TYPE.equals("sqlite")) {
             // SQLite
             hc.setPoolName("SQLiteConnectionPool");
-            hc.setDriverClassName(Configuration.PLUGIN.JDBC.SQLITE_CLASS_NAME);
+            hc.setDriverClassName(Configuration.EXTRA_CONFIG.SQL.JDBC.SQLITE_CLASS_NAME);
             hc.setJdbcUrl(
                     "jdbc:sqlite:" +
                             Configuration.plugin.getDataFolder() +
@@ -59,27 +59,27 @@ public interface WhiteListDatabase {
             hc.setAutoCommit(false);
             HikariDataSource ds = new HikariDataSource(hc);
             return ds.getConnection();
-        } else if (Configuration.PLUGIN.JDBC.TYPE.equals("mysql")) {
+        } else if (Configuration.EXTRA_CONFIG.SQL.TYPE.equals("mysql")) {
             // MySQL
-            hc.setDriverClassName(Configuration.PLUGIN.JDBC.MYSQL_CLASS_NAME);
+            hc.setDriverClassName(Configuration.EXTRA_CONFIG.SQL.JDBC.MYSQL_CLASS_NAME);
             hc.setJdbcUrl(
                     "jdbc:mysql://" +
-                            Configuration.PLUGIN.JDBC.MYSQL.HOST +
+                            Configuration.EXTRA_CONFIG.SQL.MYSQL.HOST +
                             ":" +
-                            Configuration.PLUGIN.JDBC.MYSQL.PORT +
+                            Configuration.EXTRA_CONFIG.SQL.MYSQL.PORT +
                             "/" +
-                            Configuration.PLUGIN.JDBC.MYSQL.DATABASE +
+                            Configuration.EXTRA_CONFIG.SQL.MYSQL.DATABASE +
                             "?serverTimezone=" +
-                            Configuration.PLUGIN.JDBC.MYSQL.TIMEZONE +
+                            Configuration.EXTRA_CONFIG.SQL.MYSQL.TIMEZONE +
                             "&useUnicode=" +
-                            Configuration.PLUGIN.JDBC.MYSQL.UNICODE +
+                            Configuration.EXTRA_CONFIG.SQL.MYSQL.UNICODE +
                             "&characterEncoding=" +
-                            Configuration.PLUGIN.JDBC.MYSQL.ENCODING +
+                            Configuration.EXTRA_CONFIG.SQL.MYSQL.ENCODING +
                             "&useSSL=" +
-                            Configuration.PLUGIN.JDBC.MYSQL.SSL
+                            Configuration.EXTRA_CONFIG.SQL.MYSQL.SSL
             );
-            hc.setUsername(Configuration.PLUGIN.JDBC.MYSQL.USERNAME);
-            hc.setPassword(Configuration.PLUGIN.JDBC.MYSQL.PASSWORD);
+            hc.setUsername(Configuration.EXTRA_CONFIG.SQL.MYSQL.USERNAME);
+            hc.setPassword(Configuration.EXTRA_CONFIG.SQL.MYSQL.PASSWORD);
             hc.setAutoCommit(false);
             HikariDataSource ds = new HikariDataSource(hc);
             return ds.getConnection();
