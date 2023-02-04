@@ -25,20 +25,21 @@ public class OnTrChatToQQ implements Listener {
 
     @EventHandler
     public void onTrChat(TrChatEvent e) {
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                try {
-                    if (enable) {
-                        message = e.getMessage();
-                        String channel = e.getChannel().getId();
+        if (!e.isCancelled()) {
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    try {
+                        if (enable) {
+                            message = e.getMessage();
+                            String channel = e.getChannel().getId();
 
-                        // 先检查聊天频道
-                        if (Configuration.EXTRA_CONFIG.TRCHAT.CHAT_FORWARD.CHANNEL.contains(channel)) {
-                            // Filter
-                            if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
-                                Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
-                                run1(e.getSession(), message);
+                            // 先检查聊天频道
+                            if (Configuration.EXTRA_CONFIG.TRCHAT.CHAT_FORWARD.CHANNEL.contains(channel)) {
+                                // Filter
+                                if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
+                                    Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
+                                    run1(e.getSession(), message);
                 /*
                 if (
                         !filter
@@ -49,16 +50,16 @@ public class OnTrChatToQQ implements Listener {
                     filter = false;
 
                  */
-                            } else
-                                run1(e.getSession(), message);
+                                } else
+                                    run1(e.getSession(), message);
+                            }
                         }
+                    } catch (Exception ex) {
+                        Logger.logCatch(ex);
                     }
-                } catch (Exception ex) {
-                    Logger.logCatch(ex);
                 }
-            }
-        }.runTaskAsynchronously(Configuration.plugin);
-
+            }.runTaskAsynchronously(Configuration.plugin);
+        }
     }
 
     private void run1(ChatSession e, String message) {

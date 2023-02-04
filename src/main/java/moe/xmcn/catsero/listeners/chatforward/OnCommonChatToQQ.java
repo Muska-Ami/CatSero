@@ -24,18 +24,19 @@ public class OnCommonChatToQQ implements Listener {
 
     @EventHandler
     public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
-        new BukkitRunnable() {
+        if (!e.isCancelled()) {
+            new BukkitRunnable() {
 
-            @Override
-            public void run() {
-                try {
-                    if (enable) {
-                        message = e.getMessage();
+                @Override
+                public void run() {
+                    try {
+                        if (enable) {
+                            message = e.getMessage();
 
-                        // Filter
-                        if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
-                            Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
-                            run1(e, message);
+                            // Filter
+                            if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
+                                Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
+                                run1(e, message);
                 /*
                 Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.VIA.TO_QQ.forEach(it -> {
                     if (message.contains(it)) filter = true;
@@ -46,15 +47,16 @@ public class OnCommonChatToQQ implements Listener {
                     filter = false;
 
                  */
-                        } else
-                            run1(e, message);
+                            } else
+                                run1(e, message);
+                        }
+                    } catch (
+                            Exception ex) {
+                        Logger.logCatch(ex);
                     }
-                } catch (
-                        Exception ex) {
-                    Logger.logCatch(ex);
                 }
-            }
-        }.runTaskAsynchronously(Configuration.plugin);
+            }.runTaskAsynchronously(Configuration.plugin);
+        }
     }
 
     private void run1(AsyncPlayerChatEvent e, String message) {
