@@ -10,9 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class OnTrChatToQQ implements Listener {
 
     private final boolean enable;
@@ -68,7 +65,7 @@ public class OnTrChatToQQ implements Listener {
         try {
             String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_QQ;
 
-            // 检查消息是否含有Mirai码
+            // 检查消息是否含有mirai码
             if (
                     !Configuration.USES_CONFIG.CHAT_FORWARD.ALLOW_MIRAICODE
                             && !message.contains("[mirai:")

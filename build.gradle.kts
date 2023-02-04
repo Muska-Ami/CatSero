@@ -6,14 +6,14 @@ plugins {
     kotlin("jvm") version "1.8.10"
 }
 
+group = "moe.xmcn.catsero"
+version = "2.3.2"
+
 repositories {
     maven("https://maven.fastmirror.net/repositories/minecraft")
     maven("https://repo.opencollab.dev/maven-snapshots/")
     mavenCentral()
 }
-
-group = "moe.xmcn.catsero"
-version = "2.3.2"
 
 dependencies {
     // 本地
@@ -59,8 +59,7 @@ tasks.compileTestKotlin {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
 }
 
-// 替换资源文件的Tokens`config.groovy`/
-/*
+// 替换资源文件的Tokens`config.groovy`
 fun loadEnv(): Any {
     val configFile = file("config.groovy")
     val env = "prod"
@@ -70,7 +69,6 @@ fun loadEnv(): Any {
     logger.lifecycle("Tokens: $tokens")
     return tokens;
 }
-*/
 
 fun delFiles(dir: String) {
     val configs = fileTree(dir)
@@ -82,8 +80,7 @@ fun delFiles(dir: String) {
 tasks.processResources {
     delFiles("$buildDir/resources")
     filteringCharset = "UTF-8"
-    // 替换版本号
-    filter(ReplaceTokens::class, "version" to version)
+    filter(ReplaceTokens::class, "tokens" to loadEnv())
     filter(
         FixCrLfFilter::class,
         "eol" to FixCrLfFilter.CrLf.newInstance("lf"),

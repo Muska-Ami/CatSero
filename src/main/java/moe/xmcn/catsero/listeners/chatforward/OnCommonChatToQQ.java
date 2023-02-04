@@ -9,17 +9,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class OnAsyncPlayerChatToQQ implements Listener {
+public class OnCommonChatToQQ implements Listener {
 
     private final boolean enable;
     private final String bot;
     private final String group;
     private String message;
 
-    public OnAsyncPlayerChatToQQ() {
+    public OnCommonChatToQQ() {
         this.enable = Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE;
         this.bot = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT;
         this.group = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP;
@@ -64,7 +61,7 @@ public class OnAsyncPlayerChatToQQ implements Listener {
         try {
             String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_QQ;
 
-            // 检查消息是否存在Mirai码
+            // 检查消息是否存在mirai码
             if (
                     !Configuration.USES_CONFIG.CHAT_FORWARD.ALLOW_MIRAICODE
                             && !message.contains("[mirai:")
