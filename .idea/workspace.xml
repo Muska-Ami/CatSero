@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="为 #91 做准备而修改">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/extra-configs/sql.yml" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="修改配置文件结构 支持HTTP API">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qcmd/OnRequestExecuteCommand.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/MessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/MessageSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/extra-configs/sql.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/extra-configs/sql.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/extra-configs/trchat.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/extra-configs/trchat.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uses-config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/uses-config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +65,8 @@
       <list>
         <option value="AnnotationType" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Kotlin Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -247,13 +249,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668927643545</updated>
-    </task>
-    <task id="LOCAL-00019" summary="合并分支">
-      <created>1671431102102</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1671431102102</updated>
     </task>
     <task id="LOCAL-00020" summary="合并分支">
       <created>1671431127880</created>
@@ -591,7 +586,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675447895849</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="修改配置文件结构 支持HTTP API">
+      <created>1675449531953</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1675449531954</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -612,7 +614,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="I18n 白名单&#10;修复I18n读取错误&#10;新增自助白名单申请" />
     <MESSAGE value="I18n修复，白名单自助申请&#10;修复I18n读取错误&#10;新增自助白名单申请" />
     <MESSAGE value="修复Codacy报告的一些Issue" />
     <MESSAGE value="[ci skip]" />
@@ -637,7 +638,8 @@
     <MESSAGE value="优化互通服自助申白体验 #90" />
     <MESSAGE value="添加floodgate未安装提示 #90" />
     <MESSAGE value="为 #91 做准备而修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="为 #91 做准备而修改" />
+    <MESSAGE value="修改配置文件结构 支持HTTP API" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改配置文件结构 支持HTTP API" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
