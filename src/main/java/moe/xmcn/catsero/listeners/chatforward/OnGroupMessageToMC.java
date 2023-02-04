@@ -33,9 +33,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class OnGroupMessageToMC implements Listener {
 
     private final boolean enable;

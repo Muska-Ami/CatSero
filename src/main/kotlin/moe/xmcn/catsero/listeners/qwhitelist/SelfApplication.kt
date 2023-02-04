@@ -87,7 +87,12 @@ class SelfApplication(
                     && Configuration.Interface.FLOODGATE.REPLACE_SPACES
                 ) {
                     name = name.replace(" ", "_")
-                    MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.REPLACE_SPACE_SUCCESS.replace("%name%", name), bot, group)
+                    MessageSender.sendGroup(
+                        Configuration.I18N.QQ.USE.QWHITELIST.REPLACE_SPACE_SUCCESS.replace(
+                            "%name%",
+                            name
+                        ), bot, group
+                    )
                 }
             }
 

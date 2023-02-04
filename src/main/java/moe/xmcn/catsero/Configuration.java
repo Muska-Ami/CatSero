@@ -31,8 +31,6 @@ import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -475,6 +473,7 @@ public interface Configuration {
                 String SQLITE_CLASS_NAME = CFI.ext_sql_config.getString(sub_node + "sqlite-class-name");
                 String MYSQL_CLASS_NAME = CFI.ext_sql_config.getString(sub_node + "mysql-class-name");
             }
+
             interface MYSQL {
                 String sub_node = "mysql-config" + ".";
 

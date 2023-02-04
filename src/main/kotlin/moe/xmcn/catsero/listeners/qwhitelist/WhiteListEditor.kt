@@ -60,7 +60,11 @@ class WhiteListEditor(
                                                 group
                                             )
                                     else
-                                        MessageSender.sendGroup(Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_NAME_NOT_ALLOWED, bot, group)
+                                        MessageSender.sendGroup(
+                                            Configuration.I18N.QQ.USE.QWHITELIST.ADD_ERROR_NAME_NOT_ALLOWED,
+                                            bot,
+                                            group
+                                        )
                                 } else
                                     MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group)
                             }
