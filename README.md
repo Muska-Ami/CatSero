@@ -36,8 +36,10 @@
 
 参见：[https://docs.huahuo-cn.tk/CatSero](https://docs.huahuo-cn.tk/CatSero)
 
-![Alt](https://repobeats.axiom.co/api/embed/67312323a923afc753db550976094b3ad4de7c8d.svg "Repobeats analytics image")
+## 仓库统计
 
-# bStats
+<img src="https://repobeats.axiom.co/api/embed/67312323a923afc753db550976094b3ad4de7c8d.svg" width="100%" >
+
+## bStats
 
 <a href="https://bstats.org/plugin/bukkit/CatSero/14767">![https://bstats.org/plugin/bukkit/CatSero/14767](https://bstats.org/signatures/bukkit/CatSero.svg)</a>
