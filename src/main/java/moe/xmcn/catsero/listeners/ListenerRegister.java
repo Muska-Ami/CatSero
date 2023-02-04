@@ -35,6 +35,7 @@ import moe.xmcn.catsero.listeners.groupmemberleave.OnMemberLeave;
 import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerJoin;
 import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerQuit;
 import moe.xmcn.catsero.listeners.newgroupmemberwelcome.OnMemberJoin;
+import moe.xmcn.catsero.listeners.qcmd.OnRequestExecuteCommand;
 import moe.xmcn.catsero.listeners.qwhitelist.RefuseNoWhiteList;
 import moe.xmcn.catsero.listeners.qwhitelist.SelfApplication;
 import moe.xmcn.catsero.listeners.qwhitelist.WhiteListEditor;
@@ -79,6 +80,9 @@ public interface ListenerRegister {
 
         // 群员离群
         pm.registerEvents(new OnMemberLeave(), Configuration.plugin);
+
+        // 命令执行
+        pm.registerEvents(new OnRequestExecuteCommand(), Configuration.plugin);
     }
 
 }

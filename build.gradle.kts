@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "moe.xmcn.catsero"
-version = "2.3.2"
+version = "2.3.3-beta"
 
 repositories {
     maven("https://maven.fastmirror.net/repositories/minecraft")

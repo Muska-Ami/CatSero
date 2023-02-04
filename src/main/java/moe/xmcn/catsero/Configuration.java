@@ -453,6 +453,19 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+
+        interface QCMD {
+            String sub_node = "qcmd" + ".";
+
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+
+            interface MIRAI {
+                String sub_node = "qcmd.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
     }
 
     interface EXTRA_CONFIG {
@@ -590,6 +603,12 @@ public interface Configuration {
                     String CHANGE_ERROR_NOT_FOUND = qwhitelist.getString("change-error-not-found");
                     String AQOAA_ERROR_REPEAT = qwhitelist.getString("aqoaa-error-repeat");
                     String REPLACE_SPACE_SUCCESS = qwhitelist.getString("replace-space-success");
+                }
+
+                interface QCMD {
+                    JSONObject qwhitelist = use.getJSONObject("qcmd");
+
+                    String SUCCESS = qwhitelist.getString("success");
                 }
             }
         }

@@ -42,4 +42,15 @@ public class MessageSender {
             MiraiBot.getBot(Configuration.Interface.getBotCode(bot)).getGroup(Configuration.Interface.getGroupCode(group)).sendMessageMirai(message);
     }
 
+    public static void sendFriend(String message, String bot, long friend) throws IOException {
+        if (Configuration.PLUGIN.HTTP_API)
+            MiraiHttpAPI.INSTANCE.sendFriendMessage(
+                    MiraiHttpAPI.Bots.get(Configuration.Interface.getBotCode(bot)),
+                    friend,
+                    message
+            );
+        else
+            MiraiBot.getBot(Configuration.Interface.getBotCode(bot)).getFriend(friend).sendMessageMirai(message);
+    }
+
 }

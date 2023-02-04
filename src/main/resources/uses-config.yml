@@ -236,3 +236,15 @@ group-member-leave:
   # - %name%  名称
   # - %code%  QQ号
   format: "%name%（%code%）离开了本群"
+
+# QQ命令执行
+qcmd:
+  # 功能开关
+  # true | false
+  enable: false
+  # Bot & Group设置
+  var:
+    # BotID
+    bot: hello-bot
+    # GroupID
+    group: hello-group
