@@ -93,11 +93,11 @@ tasks.processResources {
 }
 
 tasks.create<Jar>("fatJar") {
-    setDuplicatesStrategy(DuplicatesStrategy.FAIL)
+    duplicatesStrategy = DuplicatesStrategy.FAIL
     val sourceMain = java.sourceSets["main"]
     from(sourceMain.output)
 
-    configurations.runtimeClasspath.filter {
+    configurations.runtimeClasspath.get().filter {
         it.name.startsWith("fastjson") or
                 it.name.startsWith("AdvancementInfo") or
                 it.name.startsWith("HikariCP")

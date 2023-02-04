@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="判断聊天事件是否被取消" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[ci skip]A demo to setCancelled Chat">
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -240,13 +244,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668927643545</updated>
-    </task>
-    <task id="LOCAL-00024" summary="成就转发">
-      <created>1671441760834</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1671441760834</updated>
     </task>
     <task id="LOCAL-00025" summary="修正：因Minecraft进度与配方解锁提示不做区分而导致的空指针">
       <created>1671442310350</created>
@@ -584,7 +581,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675500931817</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="[ci skip]A demo to setCancelled Chat">
+      <created>1675501455260</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1675501455260</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -605,7 +609,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="数据库连接改用HikariCP，支持MySQL数据库，修复玩家在服务器内无UUID时删除/更新白名单出现null的问题" />
     <MESSAGE value="支持命令别名" />
     <MESSAGE value="[ci skip]Release: 2.1" />
     <MESSAGE value="#68" />
@@ -630,7 +633,8 @@
     <MESSAGE value="[ci skip]修改构建脚本和新建一个没写的类" />
     <MESSAGE value="[ci skip]Non update" />
     <MESSAGE value="判断聊天事件是否被取消" />
-    <option name="LAST_COMMIT_MESSAGE" value="判断聊天事件是否被取消" />
+    <MESSAGE value="[ci skip]A demo to setCancelled Chat" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ci skip]A demo to setCancelled Chat" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
