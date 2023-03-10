@@ -26,6 +26,7 @@ package moe.xmcn.catsero;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import moe.xmcn.catsero.events.bridge.ParseTool;
 import moe.xmcn.catsero.utils.HttpClient;
 import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -40,6 +41,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -71,6 +73,15 @@ public interface Configuration {
             Logger.logCatch(e);
         }
         return null;
+    }
+
+    static void registerQQCommand() {
+        ParseTool.registerCommand(Arrays.asList(
+                "list",
+                "tps",
+                "cmd",
+                "whitelist"
+        ));
     }
 
     static void saveFiles() {

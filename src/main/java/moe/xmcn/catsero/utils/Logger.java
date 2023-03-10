@@ -27,6 +27,7 @@ import moe.xmcn.catsero.Configuration;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Level;
 
 public interface Logger {
@@ -59,7 +60,8 @@ public interface Logger {
     static void logCatch(Exception e) {
         String error_type = e.getClass().getName();
         String error_message = e.getMessage();
-        String error_info = Arrays.toString(e.getStackTrace());
+        StringBuilder error_info = new StringBuilder();
+        Arrays.stream(e.getStackTrace()).forEach(it -> error_info.append("     - ").append(it).append("\n"));
         List<String> msgs = Arrays.asList(
                 "捕获到一个错误",
                 "错误类型: " + error_type,

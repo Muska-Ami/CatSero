@@ -23,11 +23,10 @@
  */
 package moe.xmcn.catsero.listeners.gettps;
 
-import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.events.OnQQGroupCommandEvent;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
-import moe.xmcn.catsero.utils.QPS;
 import moe.xmcn.catsero.utils.TPSCalculator;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -48,16 +47,14 @@ public class OnGroupMessageRequestTPS implements Listener {
     }
 
     @EventHandler
-    public void onGroupMessageEvent(MiraiGroupMessageEvent e) {
+    public void onGroupMessageEvent(OnQQGroupCommandEvent e) {
         try {
-            String[] args = QPS.parse(e.getMessage(), "tps");
-
-            if (args != null) {
+            String[] args = e.getArguments$CatSero().toArray(new String[0]);
                 // 条件
                 if (
                         enable
-                                && e.getBotID() == Configuration.Interface.getBotCode(bot)
-                                && e.getGroupID() == Configuration.Interface.getGroupCode(group)
+                                && e.getBot$CatSero() == Configuration.Interface.getBotCode(bot)
+                                && e.getGroup$CatSero() == Configuration.Interface.getGroupCode(group)
 
                 ) {
                     if (args.length == 1) {
@@ -80,7 +77,6 @@ public class OnGroupMessageRequestTPS implements Listener {
                     } else
                         MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
                 }
-            }
 
         } catch (Exception ex) {
             Logger.logCatch(ex);

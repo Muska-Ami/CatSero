@@ -35,31 +35,48 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public class QQCommandSender implements ConsoleCommandSender {
+public class CommandSender implements ConsoleCommandSender {
+    private final CommandSender instance;
+    private static String bot;
+    private static long friend;
 
-    private static final List<String> output = new ArrayList<>();
-    private final QQCommandSender instance;
-
-    public QQCommandSender() {
+    public CommandSender() {
         this.instance = this;
-    }
-
-    public static List<String> getCmdOutput() {
-        return output;
     }
 
     public Optional<org.bukkit.command.ConsoleCommandSender> get() {
         return Optional.of(Bukkit.getServer().getConsoleSender());
     }
 
+    /**
+     * 设置Bot
+     * @param bot bot
+     */
+    public static void setBot(String bot) {
+        CommandSender.bot = bot;
+    }
+
+    /**
+     * 设置friend
+     * @param friend friend
+     */
+    public static void setFriend(long friend) {
+        CommandSender.friend = friend;
+    }
+
     @Override
     public void sendMessage(String message) {
-        output.add(ChatColor.stripColor(message));
+        try {
+            MessageSender.sendFriend(ChatColor.stripColor(message), bot, friend);
+        } catch (IOException e) {
+            Logger.logCatch(e);
+        }
     }
 
     @Override
@@ -76,7 +93,7 @@ public class QQCommandSender implements ConsoleCommandSender {
 
     @Override
     public String getName() {
-        return "CATSERO_CMD";
+        return "CONSOLE";
     }
 
     @Override

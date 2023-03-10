@@ -23,13 +23,12 @@
  */
 package moe.xmcn.catsero.listeners.qcmd
 
-import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiFriendMessageEvent
-import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent
 import moe.xmcn.catsero.Configuration
+import moe.xmcn.catsero.events.OnQQFriendCommandEvent
+import moe.xmcn.catsero.events.OnQQGroupCommandEvent
+import moe.xmcn.catsero.utils.CommandSender
 import moe.xmcn.catsero.utils.Logger
 import moe.xmcn.catsero.utils.MessageSender
-import moe.xmcn.catsero.utils.QPS
-import moe.xmcn.catsero.utils.QQCommandSender
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -43,50 +42,52 @@ class OnRequestExecuteCommand(
     private var output: List<String> = ArrayList()
 
     @EventHandler
-    fun group(e: MiraiGroupMessageEvent) {
+    fun group(e: OnQQGroupCommandEvent) {
         if (
-            e.botID == Configuration.Interface.getBotCode(bot)
-            && e.groupID == Configuration.Interface.getGroupCode(group)
+            e.command == "cmd"
+            && e.bot == Configuration.Interface.getBotCode(bot)
+            && e.group == Configuration.Interface.getGroupCode(group)
         ) {
-            val sender = e.senderID
-            val message = e.message
-            run(sender, message, false)
+            val sender = e.sender
+            val args = e.arguments
+            run(sender, args, false)
         }
     }
 
     @EventHandler
-    fun friend(e: MiraiFriendMessageEvent) {
-        val sender = e.senderID
-        val message = e.message
-        run(sender, message, true)
+    fun friend(e: OnQQFriendCommandEvent) {
+        if (
+            e.command == "cmd"
+            && e.bot == Configuration.Interface.getBotCode(bot)
+            ) {
+            val sender = e.sender
+            val args = e.arguments
+            run(sender, args, true)
+        }
     }
 
-    private fun run(sender: Long, message: String, isFriend: Boolean) {
+    private fun run(sender: Long, args: List<String>, isFriend: Boolean) {
         try {
             if (enable) {
-                val args = QPS.parse(message, "cmd")
-                if (args != null) {
                     if (Configuration.Interface.isQQOp(sender)) {
                         // 读取命令原文
                         val command = iterateArray(args)
-                        val result = executeCommand(command)
 
-                        // 每一个返回值做一条消息发送，防止触发QQ消息长度限制
-                        if (isFriend)
-                            for (item in result) {
-                                MessageSender.sendFriend(item, bot, sender)
-                            }
-                        else
+                        // 如果不是私聊则发一条提示
+                        if (!isFriend)
                             MessageSender.sendGroup(Configuration.I18N.QQ.USE.QCMD.SUCCESS, bot, group)
-                        for (item in result) {
-                            MessageSender.sendFriend(item, bot, sender)
-                        }
+
+                        // 设置信息
+                        CommandSender.setBot(bot)
+                        CommandSender.setFriend(sender)
+
+                        // 执行
+                        executeCommand(command)
                     } else if (isFriend)
                         MessageSender.sendFriend(Configuration.I18N.QQ.COMMAND.NO_PERMISSION, bot, sender)
                     else
                         MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.NO_PERMISSION, bot, group)
                 }
-            }
         } catch (ex: Exception) {
             Logger.logCatch(ex)
         }
@@ -96,20 +97,18 @@ class OnRequestExecuteCommand(
      * 执行命令
      * @param command 命令内容
      */
-    private fun executeCommand(command: String): List<String> {
-        val cs = QQCommandSender()
+    private fun executeCommand(command: String) {
+        val cs = CommandSender()
         Bukkit.getScheduler().runTask(Configuration.plugin) {
             Bukkit.dispatchCommand(cs, command)
-            output = QQCommandSender.getCmdOutput()
         }
-        return output
     }
 
     /**
      * 获得完整命令
      * @param items 解析后的命令数组
      */
-    private fun iterateArray(items: Array<String?>): String {
+    private fun iterateArray(items: List<String>): String {
         val ifd = StringBuilder()
         for (element in items) {
             ifd.append(element)

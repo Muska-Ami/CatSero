@@ -25,6 +25,8 @@ package moe.xmcn.catsero.listeners.qwhitelist
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent
 import moe.xmcn.catsero.Configuration
+import moe.xmcn.catsero.events.OnQQGroupCommandEvent
+import moe.xmcn.catsero.events.bridge.ParseTool
 import moe.xmcn.catsero.utils.*
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
@@ -39,16 +41,16 @@ class WhiteListEditor(
 ) : Listener {
 
     @EventHandler
-    fun onGroupMessage(e: MiraiGroupMessageEvent) {
+    fun onGroupMessage(e: OnQQGroupCommandEvent) {
         try {
-            val args = QPS.parse(e.message, "whitelist")
-            if (args != null) {
+            val args = e.arguments
                 if (
                     enable
-                    && e.botID == Configuration.Interface.getBotCode(bot)
-                    && e.groupID == Configuration.Interface.getGroupCode(group)
+                    && e.command == "whitelist"
+                    && e.bot == Configuration.Interface.getBotCode(bot)
+                    && e.group == Configuration.Interface.getGroupCode(group)
                 ) {
-                    if (Configuration.Interface.isQQOp(e.senderID)) {
+                    if (Configuration.Interface.isQQOp(e.sender)) {
                         when (args[0]) {
                             // 添加
                             "add" -> {
@@ -244,7 +246,6 @@ class WhiteListEditor(
                     } else
                         MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.NO_PERMISSION, bot, group)
                 }
-            }
         } catch (ex: Exception) {
             Logger.logCatch(ex)
         }
