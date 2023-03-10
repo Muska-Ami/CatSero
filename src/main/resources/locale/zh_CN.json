@@ -62,6 +62,9 @@
                 "change-error-not-found": "更新失败，未查询到白名单",
                 "aqoaa-error-repeat": "添加失败，您的QQ账户下已存在白名单！",
                 "replace-space-success": "检测到基岩版玩家前缀，已为您自动替换空格，当前游戏ID：%name%"
+            },
+            "qcmd": {
+                "success": "命令已运行，返回消息已通过私聊方式发送"
             }
         }
     }

@@ -23,10 +23,10 @@
  */
 package moe.xmcn.catsero;
 
+import moe.xmcn.catsero.events.bridge.EventCaller;
 import moe.xmcn.catsero.executors.ExecutorRegister;
 import moe.xmcn.catsero.listeners.ListenerRegister;
 import moe.xmcn.catsero.utils.*;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.BufferedReader;
@@ -118,6 +118,11 @@ public class CatSero extends JavaPlugin {
             ListenerRegister.register();
             Logger.logLoader("Registered.");
 
+            Logger.logLoader("Registering QQCommands...");
+            getServer().getPluginManager().registerEvents(new EventCaller(), this);
+            Configuration.registerQQCommand();
+            Logger.logLoader("Registered.");
+
             if (Configuration.PLUGIN.BSTATS) {
                 Logger.logINFO("Start bStats.");
                 new bStatsMetrics(this, 14767);
@@ -127,7 +132,7 @@ public class CatSero extends JavaPlugin {
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSCalculator(), 100L, 1L);
 
             Logger.logLoader("Start check Notepad++.");
-            getServer().getScheduler().scheduleSyncRepeatingTask(this, new NotNPP(), 20L, 1L);
+            getServer().getScheduler().scheduleSyncRepeatingTask(this, new NotNPP(), 200L, 50L);
 
             Logger.logLoader("CatSero loaded.");
 

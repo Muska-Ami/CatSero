@@ -1,9 +1,8 @@
-name: Java CI with Maven - Build
+name: b-main Gradle - Build
 
 on:
   push:
-    branches: [ dev, main ]
-  workflow_dispatch:
+    branches: [ main ]
 
 jobs:
   build:

@@ -26,13 +26,12 @@ package moe.xmcn.catsero;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import moe.xmcn.catsero.events.bridge.ParseTool;
 import moe.xmcn.catsero.utils.HttpClient;
 import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -42,6 +41,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -73,6 +73,15 @@ public interface Configuration {
             Logger.logCatch(e);
         }
         return null;
+    }
+
+    static void registerQQCommand() {
+        ParseTool.registerCommand(Arrays.asList(
+                "list",
+                "tps",
+                "cmd",
+                "whitelist"
+        ));
     }
 
     static void saveFiles() {
@@ -149,6 +158,7 @@ public interface Configuration {
         String LOCALE = CFI.plugin_config.getString("locale");
         boolean BSTATS = CFI.plugin_config.getBoolean("bstats");
         boolean HTTP_API = CFI.plugin_config.getBoolean("http-api");
+        boolean DEBUG_LOG = CFI.plugin_config.getBoolean("debug-log");
 
         interface CHECK_UPDATE {
             /* 定义节点 为了区分
@@ -161,13 +171,6 @@ public interface Configuration {
             int INTERVAL = CFI.plugin_config.getInt(sub_node + "interval");
             String API_URL = CFI.plugin_config.getString(sub_node + "api-url");
             String MODE = CFI.plugin_config.getString(sub_node + "mode");
-        }
-
-        interface COMMAND_PREFIX {
-            String sub_node = "command-prefix" + ".";
-
-            boolean ENABLE = CFI.plugin_config.getBoolean(sub_node + "enable");
-            String PREFIX = CFI.plugin_config.getString(sub_node + "prefix");
         }
     }
 
@@ -455,6 +458,19 @@ public interface Configuration {
                 String GROUP = CFI.uses_config.getString(sub_node + "group");
             }
         }
+
+        interface QCMD {
+            String sub_node = "qcmd" + ".";
+
+            boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+
+            interface MIRAI {
+                String sub_node = "qcmd.var" + ".";
+
+                String BOT = CFI.uses_config.getString(sub_node + "bot");
+                String GROUP = CFI.uses_config.getString(sub_node + "group");
+            }
+        }
     }
 
     interface EXTRA_CONFIG {
@@ -475,6 +491,7 @@ public interface Configuration {
                 String SQLITE_CLASS_NAME = CFI.ext_sql_config.getString(sub_node + "sqlite-class-name");
                 String MYSQL_CLASS_NAME = CFI.ext_sql_config.getString(sub_node + "mysql-class-name");
             }
+
             interface MYSQL {
                 String sub_node = "mysql-config" + ".";
 
@@ -591,6 +608,12 @@ public interface Configuration {
                     String CHANGE_ERROR_NOT_FOUND = qwhitelist.getString("change-error-not-found");
                     String AQOAA_ERROR_REPEAT = qwhitelist.getString("aqoaa-error-repeat");
                     String REPLACE_SPACE_SUCCESS = qwhitelist.getString("replace-space-success");
+                }
+
+                interface QCMD {
+                    JSONObject qwhitelist = use.getJSONObject("qcmd");
+
+                    String SUCCESS = qwhitelist.getString("success");
                 }
             }
         }

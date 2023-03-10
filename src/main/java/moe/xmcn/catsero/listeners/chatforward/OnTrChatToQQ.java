@@ -1,3 +1,26 @@
+/*
+ * CatSero v2
+ * 此文件为 Minecraft服务器 插件 CatSero 的一部分
+ * 请在符合开源许可证的情况下修改/发布
+ * This file is part of the Minecraft Server plugin CatSero
+ * Please modify/publish subject to open source license
+ *
+ * Copyright 2022 XiaMoHuaHuo_CN.
+ *
+ * GitHub: https://github.com/XiaMoHuaHuo-CN/CatSero
+ * License: GNU Affero General Public License v3.0
+ * https://github.com/XiaMoHuaHuo-CN/CatSero/blob/main/LICENSE
+ *
+ * Permissions of this strongest copyleft license are
+ * conditioned on making available complete source code
+ * of licensed works and modifications, which include
+ * larger works using a licensed work, under the same
+ * license. Copyright and license notices must be preserved.
+ * Contributors provide an express grant of patent rights.
+ * When a modified version is used to provide a service over
+ * a network, the complete source code of the modified
+ * version must be made available.
+ */
 package moe.xmcn.catsero.listeners.chatforward;
 
 import me.arasple.mc.trchat.api.event.TrChatEvent;
@@ -9,9 +32,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class OnTrChatToQQ implements Listener {
 
@@ -28,20 +48,21 @@ public class OnTrChatToQQ implements Listener {
 
     @EventHandler
     public void onTrChat(TrChatEvent e) {
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                try {
-                    if (enable) {
-                        message = e.getMessage();
-                        String channel = e.getChannel().getId();
+        if (!e.isCancelled()) {
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    try {
+                        if (enable) {
+                            message = e.getMessage();
+                            String channel = e.getChannel().getId();
 
-                        // 先检查聊天频道
-                        if (Configuration.EXTRA_CONFIG.TRCHAT.CHAT_FORWARD.CHANNEL.contains(channel)) {
-                            // Filter
-                            if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
-                                Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
-                                run1(e.getSession(), message);
+                            // 先检查聊天频道
+                            if (Configuration.EXTRA_CONFIG.TRCHAT.CHAT_FORWARD.CHANNEL.contains(channel)) {
+                                // Filter
+                                if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
+                                    Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
+                                    run1(e.getSession(), message);
                 /*
                 if (
                         !filter
@@ -52,23 +73,23 @@ public class OnTrChatToQQ implements Listener {
                     filter = false;
 
                  */
-                            } else
-                                run1(e.getSession(), message);
+                                } else
+                                    run1(e.getSession(), message);
+                            }
                         }
+                    } catch (Exception ex) {
+                        Logger.logCatch(ex);
                     }
-                } catch (Exception ex) {
-                    Logger.logCatch(ex);
                 }
-            }
-        }.runTaskAsynchronously(Configuration.plugin);
-
+            }.runTaskAsynchronously(Configuration.plugin);
+        }
     }
 
     private void run1(ChatSession e, String message) {
         try {
             String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_QQ;
 
-            // 检查消息是否含有Mirai码
+            // 检查消息是否含有mirai码
             if (
                     !Configuration.USES_CONFIG.CHAT_FORWARD.ALLOW_MIRAICODE
                             && !message.contains("[mirai:")

@@ -49,6 +49,18 @@ public interface Logger {
         }
     }
 
+    static void logDebug(String msg) {
+        if (Configuration.PLUGIN.DEBUG_LOG)
+            logINFO("[Debug] " + msg);
+    }
+
+    static void logDebug(List<String> msgs) {
+        if (Configuration.PLUGIN.DEBUG_LOG)
+            for (int i = 1; i < msgs.toArray().length + 1; i++) {
+                logINFO("[Debug] " + msgs.toArray()[i - 1]);
+            }
+    }
+
     static void logWARN(List<String> msgs) {
         for (int i = 1; i < msgs.toArray().length + 1; i++) {
             logWARN(msgs.toArray()[i - 1].toString());
@@ -59,7 +71,8 @@ public interface Logger {
     static void logCatch(Exception e) {
         String error_type = e.getClass().getName();
         String error_message = e.getMessage();
-        String error_info = Arrays.toString(e.getStackTrace());
+        StringBuilder error_info = new StringBuilder();
+        Arrays.stream(e.getStackTrace()).forEach(it -> error_info.append("     - ").append(it).append("\n"));
         List<String> msgs = Arrays.asList(
                 "捕获到一个错误",
                 "错误类型: " + error_type,

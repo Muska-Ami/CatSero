@@ -25,7 +25,7 @@ package moe.xmcn.catsero.listeners;
 
 import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.listeners.advancementforward.OnPlayerAdvancementDone;
-import moe.xmcn.catsero.listeners.chatforward.OnAsyncPlayerChatToQQ;
+import moe.xmcn.catsero.listeners.chatforward.OnCommonChatToQQ;
 import moe.xmcn.catsero.listeners.chatforward.OnGroupMessageToMC;
 import moe.xmcn.catsero.listeners.chatforward.OnTrChatToQQ;
 import moe.xmcn.catsero.listeners.deadthforward.OnPlayerDeath;
@@ -35,6 +35,7 @@ import moe.xmcn.catsero.listeners.groupmemberleave.OnMemberLeave;
 import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerJoin;
 import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerQuit;
 import moe.xmcn.catsero.listeners.newgroupmemberwelcome.OnMemberJoin;
+import moe.xmcn.catsero.listeners.qcmd.OnRequestExecuteCommand;
 import moe.xmcn.catsero.listeners.qwhitelist.RefuseNoWhiteList;
 import moe.xmcn.catsero.listeners.qwhitelist.SelfApplication;
 import moe.xmcn.catsero.listeners.qwhitelist.WhiteListEditor;
@@ -70,7 +71,7 @@ public interface ListenerRegister {
         if (Envrionment.Depends.TrChat)
             pm.registerEvents(new OnTrChatToQQ(), Configuration.plugin);
         else
-            pm.registerEvents(new OnAsyncPlayerChatToQQ(), Configuration.plugin);
+            pm.registerEvents(new OnCommonChatToQQ(), Configuration.plugin);
 
         // QQ白名单
         pm.registerEvents(new RefuseNoWhiteList(), Configuration.plugin);
@@ -79,6 +80,9 @@ public interface ListenerRegister {
 
         // 群员离群
         pm.registerEvents(new OnMemberLeave(), Configuration.plugin);
+
+        // 命令执行
+        pm.registerEvents(new OnRequestExecuteCommand(), Configuration.plugin);
     }
 
 }

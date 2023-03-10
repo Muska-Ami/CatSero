@@ -23,11 +23,10 @@
  */
 package moe.xmcn.catsero.listeners.getonlinelist;
 
-import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.events.OnQQGroupCommandEvent;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
-import moe.xmcn.catsero.utils.QPS;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -50,40 +49,38 @@ public class OnGroupMessageRequestList implements Listener {
 
 
     @EventHandler
-    public void onGroupMessage(MiraiGroupMessageEvent e) {
+    public void onGroupMessage(OnQQGroupCommandEvent e) {
         try {
-            String[] args = QPS.parse(e.getMessage(), "list");
+            // 条件
+            if (
+                    enable
+                            && e.getCommand$CatSero().equalsIgnoreCase("list")
+                            && e.getBot$CatSero() == Configuration.Interface.getBotCode(bot)
+                            && e.getGroup$CatSero() == Configuration.Interface.getGroupCode(group)
+            ) {
+                Logger.logDebug("GET_ONLINE_LIST");
+                List<Player> list = moe.xmcn.catsero.utils.Player.getOnlinePlayers();
 
-            if (args != null) {
-                // 条件
-                if (
-                        enable
-                                && e.getBotID() == Configuration.Interface.getBotCode(bot)
-                                && e.getGroupID() == Configuration.Interface.getGroupCode(group)
-                ) {
-                    List<Player> list = moe.xmcn.catsero.utils.Player.getOnlinePlayers();
+                String format;
 
-                    String format;
+                // 0
+                format = Configuration.USES_CONFIG.GET_ONLINE_LIST.FORMAT_0;
+                format = format.replace("%count%", String.valueOf(list.toArray().length))
+                        .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()));
+                MessageSender.sendGroup(format, bot, group);
 
-                    // 0
-                    format = Configuration.USES_CONFIG.GET_ONLINE_LIST.FORMAT_0;
+                // 1
+                if (list.toArray().length != 0) {
+                    list.forEach(it -> player_list += it.getName() + ", ");
+                    player_list = player_list.substring(4, player_list.length() - 2);
+
+                    format = Configuration.USES_CONFIG.GET_ONLINE_LIST.FORMAT_1;
                     format = format.replace("%count%", String.valueOf(list.toArray().length))
-                            .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()));
+                            .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()))
+                            .replace("%list%", player_list);
                     MessageSender.sendGroup(format, bot, group);
 
-                    // 1
-                    if (list.toArray().length != 0) {
-                        list.forEach(it -> player_list += it.getName() + ", ");
-                        player_list = player_list.substring(4, player_list.length() - 2);
-
-                        format = Configuration.USES_CONFIG.GET_ONLINE_LIST.FORMAT_1;
-                        format = format.replace("%count%", String.valueOf(list.toArray().length))
-                                .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()))
-                                .replace("%list%", player_list);
-                        MessageSender.sendGroup(format, bot, group);
-
-                        player_list = null;
-                    }
+                    player_list = null;
                 }
             }
         } catch (Exception ex) {

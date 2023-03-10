@@ -76,7 +76,7 @@ public class OnPlayerAdvancementDone implements Listener {
                 MessageSender.sendGroup(format, bot, group);
             }
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             Logger.logCatch(ex);
         }
     }
