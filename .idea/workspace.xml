@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[fix] 修复卡服务问题，更改命令解析器，改为可扩展的事件" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="更新版本号和依赖">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -244,13 +247,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668927643545</updated>
-    </task>
-    <task id="LOCAL-00030" summary="提取重复代码">
-      <created>1671445505463</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1671445505463</updated>
     </task>
     <task id="LOCAL-00031" summary="完成：欢迎新群员 获取在线玩家">
       <created>1671454302514</created>
@@ -588,7 +584,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678458887468</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="更新版本号和依赖">
+      <created>1678459551424</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1678459551424</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -609,7 +612,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="[ci skip]2.2补充版" />
     <MESSAGE value="[ci skip]README" />
     <MESSAGE value="[ci skip]R" />
     <MESSAGE value="[ci skip]更新圈钱链接（bushi" />
@@ -634,7 +636,8 @@
     <MESSAGE value="简单的命令执行工具 #94" />
     <MESSAGE value="[fix] 修复一堆问题，优化结构" />
     <MESSAGE value="[fix] 修复卡服务问题，更改命令解析器，改为可扩展的事件" />
-    <option name="LAST_COMMIT_MESSAGE" value="[fix] 修复卡服务问题，更改命令解析器，改为可扩展的事件" />
+    <MESSAGE value="更新版本号和依赖" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新版本号和依赖" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
