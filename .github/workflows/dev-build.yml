@@ -1,9 +1,8 @@
-name: [Dev] Gradle - Build
+name: b-dev Gradle - Build
 
 on:
   push:
     branches: [ dev ]
-  workflow_dispatch:
 
 jobs:
   build:

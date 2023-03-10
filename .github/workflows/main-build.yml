@@ -1,9 +1,8 @@
-name: [Main] Gradle - Build
+name: b-main Gradle - Build
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   build:
