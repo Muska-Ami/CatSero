@@ -1,7 +1,7 @@
 environments {
     prod {
         plugin {
-            version = "2.3.3-beta"
+            version = "2.3.3"
         }
     }
 }

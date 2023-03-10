@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "moe.xmcn.catsero"
-version = "2.3.3-beta"
+version = "2.3.3"
 
 repositories {
     maven("https://maven.fastmirror.net/repositories/minecraft")
@@ -21,13 +21,13 @@ dependencies {
 
     // 远程
     implementation("org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT")
-    implementation("org.bstats:bstats-bukkit:3.0.0")
+    implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("me.clip:placeholderapi:2.11.2")
-    implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.7.1")
+    implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.8-pre1")
     implementation("com.alibaba:fastjson:2.0.23")
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     implementation("com.zaxxer:HikariCP:4.0.3")
-    implementation("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")
+    implementation("org.geysermc.floodgate:api:2.2.2-SNAPSHOT")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")

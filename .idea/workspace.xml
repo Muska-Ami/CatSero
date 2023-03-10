@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[fix] 修复一堆问题，优化结构">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/EventCaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/EventCaller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/ParseTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/ParseTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/getonlinelist/OnGroupMessageRequestList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/getonlinelist/OnGroupMessageRequestList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/gettps/OnGroupMessageRequestTPS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/gettps/OnGroupMessageRequestTPS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/CommandSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/CommandSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/events/OnQQFriendCommandEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/events/OnQQFriendCommandEvent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/events/OnQQGroupCommandEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/events/OnQQGroupCommandEvent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qcmd/OnRequestExecuteCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qcmd/OnRequestExecuteCommand.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/WhiteListEditor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/WhiteListEditor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/extra-configs/command-alias.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/extra-configs/command-alias.yml" afterDir="false" />
-    </list>
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[fix] 修复卡服务问题，更改命令解析器，改为可扩展的事件" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -262,13 +244,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668927643545</updated>
-    </task>
-    <task id="LOCAL-00029" summary="[ci skip]">
-      <created>1671442784704</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1671442784704</updated>
     </task>
     <task id="LOCAL-00030" summary="提取重复代码">
       <created>1671445505463</created>
@@ -606,7 +581,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678452731853</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="[fix] 修复卡服务问题，更改命令解析器，改为可扩展的事件">
+      <created>1678458887467</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1678458887468</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -627,7 +609,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="[ci skip]更新依赖，更新Dependabot工作分支" />
     <MESSAGE value="[ci skip]2.2补充版" />
     <MESSAGE value="[ci skip]README" />
     <MESSAGE value="[ci skip]R" />
@@ -652,7 +633,8 @@
     <MESSAGE value="simple command execute tool" />
     <MESSAGE value="简单的命令执行工具 #94" />
     <MESSAGE value="[fix] 修复一堆问题，优化结构" />
-    <option name="LAST_COMMIT_MESSAGE" value="[fix] 修复一堆问题，优化结构" />
+    <MESSAGE value="[fix] 修复卡服务问题，更改命令解析器，改为可扩展的事件" />
+    <option name="LAST_COMMIT_MESSAGE" value="[fix] 修复卡服务问题，更改命令解析器，改为可扩展的事件" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
