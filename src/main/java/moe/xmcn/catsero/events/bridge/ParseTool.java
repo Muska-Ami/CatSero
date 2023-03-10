@@ -38,7 +38,7 @@ public class ParseTool {
     private String label;
     private String[] arguments;
     private boolean custom;
-
+    private String temp;
     private String ess = null;
 
     /**
@@ -69,11 +69,12 @@ public class ParseTool {
             } else if (villax != null) {
                 this.arguments = villax;
                 this.custom = false;
-                this.label = Configuration.PLUGIN.COMMAND_PREFIX.PREFIX;
+                this.label = Configuration.CFI.command_alias_config.getString("command-prefix.prefix");
                 return true;
             } else if (custom != null) {
                 this.arguments = custom;
                 this.custom = true;
+                this.label = temp;
                 return true;
             } else return false;
         } else return false;
@@ -88,7 +89,10 @@ public class ParseTool {
                 this.command = msplt[1];
                 Logger.logDebug("命令标头：" + this.command);
             }
-        } else if (message.startsWith(Configuration.PLUGIN.COMMAND_PREFIX.PREFIX + " " + command)) {
+        } else if (
+                Configuration.CFI.command_alias_config.getBoolean("command-prefix.enable")
+                && message.startsWith(Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + " " + command)
+        ) {
             if (msplt.length > 1) {
                 this.command = msplt[1];
                 Logger.logDebug("命令标头：" + this.command);
@@ -96,7 +100,8 @@ public class ParseTool {
         } else {
             commands.forEach(cmd -> {
                 if (Configuration.CFI.command_alias_config.getStringList(cmd).contains(msplt[0])) {
-                    this.command = msplt[0];
+                    this.command = cmd;
+                    this.temp = msplt[0];
                     Logger.logDebug("命令标头：" + this.command);
                 }
             });
@@ -120,18 +125,21 @@ public class ParseTool {
     }
 
     private String[] parseVillaX(@NotNull String message, @NotNull String command) {
-        if (message.startsWith("!" + Configuration.PLUGIN.COMMAND_PREFIX.PREFIX + " " + command)) {
-            // CH -> !
-            return message.replaceFirst(
-                    "!" + Configuration.PLUGIN.COMMAND_PREFIX.PREFIX + command + " ",
-                    ""
-            ).split(" ");
-        } else if (message.startsWith("/" + Configuration.PLUGIN.COMMAND_PREFIX.PREFIX + " " + command)) {
-            // CH -> /
-            return message.replaceFirst(
-                    "/" + Configuration.PLUGIN.COMMAND_PREFIX.PREFIX + command + " ",
-                    ""
-            ).split(" ");
+        if (Configuration.CFI.command_alias_config.getBoolean("command-prefix.enable")) {
+            if (message.startsWith("!" + Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + " " + command)) {
+                // CH -> !
+                return message.replaceFirst(
+                        "!" + Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + command + " ",
+                        ""
+                ).split(" ");
+            } else if (message.startsWith("/" + Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + " " + command)) {
+                // CH -> /
+                return message.replaceFirst(
+                        "/" + Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + command + " ",
+                        ""
+                ).split(" ");
+            }
+            return null;
         }
         return null;
     }
@@ -142,24 +150,29 @@ public class ParseTool {
             aliasList.forEach(alias -> {
                 if (message.startsWith("!" + alias)) {
                     // CH -> !
-                    ess = message.replaceFirst(
+                    this.ess = message.replaceFirst(
                             "!" + alias + " ",
                             ""
                     );
                 } else if (message.startsWith("/" + alias)) {
                     // CH -> /
-                    ess = message.replaceFirst(
+                    this.ess = message.replaceFirst(
                             "/" + alias + " ",
                             ""
                     );
                 }
             });
-            return ess.split(" ");
+            if (ess != null)
+                return this.ess.split(" ");
+            else return null;
         }
         return null;
     }
 
     public String getCommand() {
+        // 虽然我设置的是动态的，但好像还得手动销毁？（
+        String command = this.command;
+        this.command = null;
         return command;
     }
 

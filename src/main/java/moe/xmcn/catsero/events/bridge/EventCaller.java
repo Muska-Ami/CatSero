@@ -42,16 +42,24 @@ public class EventCaller implements Listener {
 
     @EventHandler
     public void onGroupMessageEvent(MiraiGroupMessageEvent e) {
-        if (pt.parse(e.getMessage()))
-            callGroupCommandEvent(pt.getCommand(), Arrays.asList(pt.getArguments()), pt.getLabel(), e.getSenderID(), e.getGroupID(), e.getBotID(), pt.isCustom());
-        Logger.logDebug("获得一个群消息");
+        try {
+            if (pt.parse(e.getMessage()))
+                callGroupCommandEvent(pt.getCommand(), Arrays.asList(pt.getArguments()), pt.getLabel(), e.getSenderID(), e.getGroupID(), e.getBotID(), pt.isCustom());
+            Logger.logDebug("获得一个群消息");
+        } catch (Exception ex) {
+            Logger.logCatch(ex);
+        }
     }
 
     @EventHandler
     public void onGroupMessageEvent(MiraiFriendMessageEvent e) {
-        if (pt.parse(e.getMessage()))
-            callFriendCommandEvent(pt.getCommand(), Arrays.asList(pt.getArguments()), pt.getLabel(), e.getSenderID(), e.getFriend().getID(), e.getBotID(), pt.isCustom());
-        Logger.logDebug("获得一个私聊消息");
+        try {
+            if (pt.parse(e.getMessage()))
+                callFriendCommandEvent(pt.getCommand(), Arrays.asList(pt.getArguments()), pt.getLabel(), e.getSenderID(), e.getFriend().getID(), e.getBotID(), pt.isCustom());
+            Logger.logDebug("获得一个私聊消息");
+        } catch (Exception ex) {
+            Logger.logCatch(ex);
+        }
     }
 
     void callGroupCommandEvent(String command, List<String> arguments, String label, long sender, long group, long bot, boolean custom) {

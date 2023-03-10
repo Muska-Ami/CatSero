@@ -172,13 +172,6 @@ public interface Configuration {
             String API_URL = CFI.plugin_config.getString(sub_node + "api-url");
             String MODE = CFI.plugin_config.getString(sub_node + "mode");
         }
-
-        interface COMMAND_PREFIX {
-            String sub_node = "command-prefix" + ".";
-
-            boolean ENABLE = CFI.plugin_config.getBoolean(sub_node + "enable");
-            String PREFIX = CFI.plugin_config.getString(sub_node + "prefix");
-        }
     }
 
     interface USES_CONFIG {
