@@ -24,6 +24,7 @@
 package moe.xmcn.catsero.events.bridge;
 
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.utils.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class ParseTool {
         思路：先检查默认的命令，如不成功则继续检查别名
         直接将命令去除，返回参数
          */
+        Logger.logDebug("尝试解析命令体");
         parseCommand(message);
 
         if (this.command != null) {
@@ -82,17 +84,23 @@ public class ParseTool {
         String[] msplt = message.split(" ");
 
         if (message.startsWith("catsero ")) {
-            if (msplt.length > 1)
-                this.command = msplt[1];
-        } else if (message.startsWith(Configuration.PLUGIN.COMMAND_PREFIX.PREFIX + " " + command))
             if (msplt.length > 1) {
                 this.command = msplt[1];
-            } else {
-                commands.forEach(cmd -> {
-                    if (Configuration.CFI.command_alias_config.getStringList(cmd).contains(msplt[0]))
-                        this.command = msplt[0];
-                });
+                Logger.logDebug("命令标头：" + this.command);
             }
+        } else if (message.startsWith(Configuration.PLUGIN.COMMAND_PREFIX.PREFIX + " " + command)) {
+            if (msplt.length > 1) {
+                this.command = msplt[1];
+                Logger.logDebug("命令标头：" + this.command);
+            }
+        } else {
+            commands.forEach(cmd -> {
+                if (Configuration.CFI.command_alias_config.getStringList(cmd).contains(msplt[0])) {
+                    this.command = msplt[0];
+                    Logger.logDebug("命令标头：" + this.command);
+                }
+            });
+        }
     }
 
     private String[] parseVilla(@NotNull String message, @NotNull String command) {
@@ -170,6 +178,7 @@ public class ParseTool {
     public static void registerCommand(@NotNull String command) {
         commands.add(command);
     }
+
     public static void registerCommand(@NotNull List<String> command) {
         commands.addAll(command);
     }

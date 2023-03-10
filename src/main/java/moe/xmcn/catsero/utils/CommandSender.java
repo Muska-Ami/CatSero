@@ -23,6 +23,7 @@
  */
 package moe.xmcn.catsero.utils;
 
+import moe.xmcn.catsero.Configuration;
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -35,9 +36,6 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -56,6 +54,7 @@ public class CommandSender implements ConsoleCommandSender {
 
     /**
      * 设置Bot
+     *
      * @param bot bot
      */
     public static void setBot(String bot) {
@@ -64,6 +63,7 @@ public class CommandSender implements ConsoleCommandSender {
 
     /**
      * 设置friend
+     *
      * @param friend friend
      */
     public static void setFriend(long friend) {
@@ -74,7 +74,7 @@ public class CommandSender implements ConsoleCommandSender {
     public void sendMessage(String message) {
         try {
             MessageSender.sendFriend(ChatColor.stripColor(message), bot, friend);
-        } catch (IOException e) {
+        } catch (Exception e) {
             Logger.logCatch(e);
         }
     }

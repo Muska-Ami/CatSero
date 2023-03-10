@@ -158,6 +158,7 @@ public interface Configuration {
         String LOCALE = CFI.plugin_config.getString("locale");
         boolean BSTATS = CFI.plugin_config.getBoolean("bstats");
         boolean HTTP_API = CFI.plugin_config.getBoolean("http-api");
+        boolean DEBUG_LOG = CFI.plugin_config.getBoolean("debug-log");
 
         interface CHECK_UPDATE {
             /* 定义节点 为了区分

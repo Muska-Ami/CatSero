@@ -41,6 +41,7 @@ class OnQQFriendCommandEvent(
 
     companion object {
         private val handlers = HandlerList()
+
         @JvmStatic
         val handlerList: HandlerList
             get() = handlers

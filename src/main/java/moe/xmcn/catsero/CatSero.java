@@ -23,6 +23,7 @@
  */
 package moe.xmcn.catsero;
 
+import moe.xmcn.catsero.events.bridge.EventCaller;
 import moe.xmcn.catsero.executors.ExecutorRegister;
 import moe.xmcn.catsero.listeners.ListenerRegister;
 import moe.xmcn.catsero.utils.*;
@@ -118,6 +119,7 @@ public class CatSero extends JavaPlugin {
             Logger.logLoader("Registered.");
 
             Logger.logLoader("Registering QQCommands...");
+            getServer().getPluginManager().registerEvents(new EventCaller(), this);
             Configuration.registerQQCommand();
             Logger.logLoader("Registered.");
 

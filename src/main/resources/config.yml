@@ -10,6 +10,9 @@ bstats: true
 # HTTP API
 http-api: false
 
+# Debug日志
+debug-log: false
+
 # 检查更新
 check-update:
   # 功能开关

@@ -58,6 +58,7 @@ public class OnGroupMessageRequestList implements Listener {
                             && e.getBot$CatSero() == Configuration.Interface.getBotCode(bot)
                             && e.getGroup$CatSero() == Configuration.Interface.getGroupCode(group)
             ) {
+                Logger.logDebug("GET_ONLINE_LIST");
                 List<Player> list = moe.xmcn.catsero.utils.Player.getOnlinePlayers();
 
                 String format;

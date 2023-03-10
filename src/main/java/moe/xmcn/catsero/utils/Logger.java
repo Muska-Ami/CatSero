@@ -27,7 +27,6 @@ import moe.xmcn.catsero.Configuration;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Level;
 
 public interface Logger {
@@ -48,6 +47,18 @@ public interface Logger {
         for (int i = 1; i < msgs.toArray().length + 1; i++) {
             logINFO("[Loader] " + msgs.toArray()[i - 1]);
         }
+    }
+
+    static void logDebug(String msg) {
+        if (Configuration.PLUGIN.DEBUG_LOG)
+            logINFO("[Debug] " + msg);
+    }
+
+    static void logDebug(List<String> msgs) {
+        if (Configuration.PLUGIN.DEBUG_LOG)
+            for (int i = 1; i < msgs.toArray().length + 1; i++) {
+                logINFO("[Debug] " + msgs.toArray()[i - 1]);
+            }
     }
 
     static void logWARN(List<String> msgs) {

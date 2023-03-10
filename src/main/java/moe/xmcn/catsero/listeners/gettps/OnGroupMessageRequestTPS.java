@@ -50,33 +50,34 @@ public class OnGroupMessageRequestTPS implements Listener {
     public void onGroupMessageEvent(OnQQGroupCommandEvent e) {
         try {
             String[] args = e.getArguments$CatSero().toArray(new String[0]);
-                // 条件
-                if (
-                        enable
-                                && e.getBot$CatSero() == Configuration.Interface.getBotCode(bot)
-                                && e.getGroup$CatSero() == Configuration.Interface.getGroupCode(group)
+            // 条件
+            if (
+                    enable
+                            && e.getCommand$CatSero().equalsIgnoreCase("tps")
+                            && e.getBot$CatSero() == Configuration.Interface.getBotCode(bot)
+                            && e.getGroup$CatSero() == Configuration.Interface.getGroupCode(group)
+            ) {
+                Logger.logDebug("GET_TPS");
+                if (args.length == 1) {
+                    // 处理TPS
+                    double tps = TPSCalculator.getTPS();
+                    BigDecimal around_tps = BigDecimal.valueOf(tps).setScale(1, RoundingMode.HALF_UP);
 
-                ) {
-                    if (args.length == 1) {
-                        // 处理TPS
-                        double tps = TPSCalculator.getTPS();
-                        BigDecimal around_tps = BigDecimal.valueOf(tps).setScale(1, RoundingMode.HALF_UP);
-
-                        switch (args[0]) {
-                            case "accurate":
-                                // 精确
-                                MessageSender.sendGroup("TPS: " + tps, bot, group);
-                                break;
-                            case "around":
-                                // 大概
-                                MessageSender.sendGroup("TPS: " + around_tps, bot, group);
-                                break;
-                            default:
-                                MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
-                        }
-                    } else
-                        MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
-                }
+                    switch (args[0]) {
+                        case "accurate":
+                            // 精确
+                            MessageSender.sendGroup("TPS: " + tps, bot, group);
+                            break;
+                        case "around":
+                            // 大概
+                            MessageSender.sendGroup("TPS: " + around_tps, bot, group);
+                            break;
+                        default:
+                            MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
+                    }
+                } else
+                    MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
+            }
 
         } catch (Exception ex) {
             Logger.logCatch(ex);

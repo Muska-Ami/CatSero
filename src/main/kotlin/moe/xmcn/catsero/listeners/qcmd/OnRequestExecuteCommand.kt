@@ -32,14 +32,14 @@ import moe.xmcn.catsero.utils.MessageSender
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
+import java.text.SimpleDateFormat
+import java.util.*
 
 class OnRequestExecuteCommand(
     private val enable: Boolean = Configuration.USES_CONFIG.QCMD.ENABLE,
     private val bot: String = Configuration.USES_CONFIG.QCMD.MIRAI.BOT,
     private val group: String = Configuration.USES_CONFIG.QCMD.MIRAI.GROUP
 ) : Listener {
-
-    private var output: List<String> = ArrayList()
 
     @EventHandler
     fun group(e: OnQQGroupCommandEvent) {
@@ -57,9 +57,9 @@ class OnRequestExecuteCommand(
     @EventHandler
     fun friend(e: OnQQFriendCommandEvent) {
         if (
-            e.command == "cmd"
+            e.command.equals("cmd", true)
             && e.bot == Configuration.Interface.getBotCode(bot)
-            ) {
+        ) {
             val sender = e.sender
             val args = e.arguments
             run(sender, args, true)
@@ -69,25 +69,27 @@ class OnRequestExecuteCommand(
     private fun run(sender: Long, args: List<String>, isFriend: Boolean) {
         try {
             if (enable) {
-                    if (Configuration.Interface.isQQOp(sender)) {
-                        // 读取命令原文
-                        val command = iterateArray(args)
+                Logger.logDebug("QCMD Friend: $isFriend")
+                if (Configuration.Interface.isQQOp(sender)) {
+                    // 读取命令原文
+                    val command = iterateArray(args)
 
-                        // 如果不是私聊则发一条提示
-                        if (!isFriend)
-                            MessageSender.sendGroup(Configuration.I18N.QQ.USE.QCMD.SUCCESS, bot, group)
+                    // 如果不是私聊则发一条提示
+                    if (!isFriend)
+                        MessageSender.sendGroup(Configuration.I18N.QQ.USE.QCMD.SUCCESS, bot, group)
 
-                        // 设置信息
-                        CommandSender.setBot(bot)
-                        CommandSender.setFriend(sender)
+                    // 设置信息
+                    CommandSender.setBot(bot)
+                    CommandSender.setFriend(sender)
 
-                        // 执行
-                        executeCommand(command)
-                    } else if (isFriend)
-                        MessageSender.sendFriend(Configuration.I18N.QQ.COMMAND.NO_PERMISSION, bot, sender)
-                    else
-                        MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.NO_PERMISSION, bot, group)
-                }
+                    // 执行
+                    MessageSender.sendFriend("--- " + SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Date()) + " ---", bot, sender)
+                    executeCommand(command)
+                } else if (isFriend)
+                    MessageSender.sendFriend(Configuration.I18N.QQ.COMMAND.NO_PERMISSION, bot, sender)
+                else
+                    MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.NO_PERMISSION, bot, group)
+            }
         } catch (ex: Exception) {
             Logger.logCatch(ex)
         }

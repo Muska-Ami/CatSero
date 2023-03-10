@@ -25,8 +25,10 @@ package moe.xmcn.catsero.events.bridge;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiFriendMessageEvent;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
+import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.events.OnQQFriendCommandEvent;
 import moe.xmcn.catsero.events.OnQQGroupCommandEvent;
+import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -42,22 +44,31 @@ public class EventCaller implements Listener {
     public void onGroupMessageEvent(MiraiGroupMessageEvent e) {
         if (pt.parse(e.getMessage()))
             callGroupCommandEvent(pt.getCommand(), Arrays.asList(pt.getArguments()), pt.getLabel(), e.getSenderID(), e.getGroupID(), e.getBotID(), pt.isCustom());
+        Logger.logDebug("获得一个群消息");
     }
 
     @EventHandler
     public void onGroupMessageEvent(MiraiFriendMessageEvent e) {
         if (pt.parse(e.getMessage()))
             callFriendCommandEvent(pt.getCommand(), Arrays.asList(pt.getArguments()), pt.getLabel(), e.getSenderID(), e.getFriend().getID(), e.getBotID(), pt.isCustom());
+        Logger.logDebug("获得一个私聊消息");
     }
 
     void callGroupCommandEvent(String command, List<String> arguments, String label, long sender, long group, long bot, boolean custom) {
-        Bukkit.getPluginManager().callEvent(new OnQQGroupCommandEvent(
-            command, arguments, label, sender, group, bot, custom
-        ));
+        Bukkit.getScheduler().runTask(
+                Configuration.plugin,
+                () -> Configuration.plugin.getServer().getPluginManager().callEvent(new OnQQGroupCommandEvent(
+                        command, arguments, label, sender, group, bot, custom
+                ))
+        );
     }
+
     void callFriendCommandEvent(String command, List<String> arguments, String label, long sender, long friend, long bot, boolean custom) {
-        Bukkit.getPluginManager().callEvent(new OnQQFriendCommandEvent(
-                command, arguments, label, sender, friend, bot, custom
-        ));
+        Bukkit.getScheduler().runTask(
+                Configuration.plugin,
+                () -> Configuration.plugin.getServer().getPluginManager().callEvent(new OnQQFriendCommandEvent(
+                        command, arguments, label, sender, friend, bot, custom
+                ))
+        );
     }
 }
