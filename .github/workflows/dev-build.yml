@@ -3,6 +3,8 @@ name: b-dev Gradle - Build
 on:
   push:
     branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
 
 jobs:
   build:
