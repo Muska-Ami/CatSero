@@ -35,6 +35,7 @@ import moe.xmcn.catsero.utils.timers.bStatsMetrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,11 +73,26 @@ public class CatSero extends JavaPlugin {
 
     @Override
     public void onLoad() {
+
+        INSTANCE = this;
+
         Logger.logLoader("Start loading CatSero...");
+
+        Logger.logLoader("Checking server information...");
+        Envrionment.check();
 
         Logger.logLoader("Saving files...");
         Configuration.saveFiles();
         Logger.logLoader("Saved all files.");
+
+        Logger.logLoader("Loading configurations...");
+        try {
+            Configuration.loadConfiguration();
+        } catch (IOException e) {
+            Logger.logCatch(e);
+            getServer().getPluginManager().disablePlugin(this);
+        }
+        Logger.logLoader("Loaded.");
 
         /*
         if (
@@ -100,8 +116,6 @@ public class CatSero extends JavaPlugin {
             Logger.logLoader("Init success.");
         }
 
-        Logger.logLoader("Checking server information...");
-        Envrionment.check();
         // 把信息输出一遍
         List<String> env = Arrays.asList(
                 "===== CatSero Runtime Checker =====",
@@ -121,8 +135,6 @@ public class CatSero extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
-        INSTANCE = this;
 
         if (Envrionment.Depends.MiraiMC) {
             Logger.logLoader("Registering Executors...");

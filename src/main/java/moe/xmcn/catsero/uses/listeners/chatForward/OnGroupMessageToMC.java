@@ -125,7 +125,7 @@ public class OnGroupMessageToMC implements Listener {
                 }
                 if (
                         Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
-                            "clean-stylecode", "use-bind"
+                                "clean-stylecode", "use-bind"
                         ))))
                                 && MiraiMC.getBind(e.getSenderID()) != null
                 )

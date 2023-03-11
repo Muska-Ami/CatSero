@@ -25,6 +25,8 @@ package moe.xmcn.catsero.utils;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import moe.xmcn.catsero.CatSero;
+import moe.xmcn.catsero.Configuration;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -69,10 +71,10 @@ public interface WhiteListDatabase {
 
         HikariConfig hc = new HikariConfig();
 
-        if (Configuration.EXTRA_CONFIG.SQL.TYPE.equals("sqlite")) {
+        if (Configuration.SQL.TYPE.equals("sqlite")) {
             // SQLite
             hc.setPoolName("SQLiteConnectionPool");
-            hc.setDriverClassName(Configuration.EXTRA_CONFIG.SQL.JDBC.SQLITE_CLASS_NAME);
+            hc.setDriverClassName(Configuration.SQL.JDBC.SQLITE_CLASS_NAME);
             hc.setJdbcUrl(
                     "jdbc:sqlite:" +
                             CatSero.INSTANCE.getDataFolder() +
@@ -81,27 +83,27 @@ public interface WhiteListDatabase {
             hc.setAutoCommit(false);
             HikariDataSource ds = new HikariDataSource(hc);
             return ds.getConnection();
-        } else if (Configuration.EXTRA_CONFIG.SQL.TYPE.equals("mysql")) {
+        } else if (Configuration.SQL.TYPE.equals("mysql")) {
             // MySQL
-            hc.setDriverClassName(Configuration.EXTRA_CONFIG.SQL.JDBC.MYSQL_CLASS_NAME);
+            hc.setDriverClassName(Configuration.SQL.JDBC.MYSQL_CLASS_NAME);
             hc.setJdbcUrl(
                     "jdbc:mysql://" +
-                            Configuration.EXTRA_CONFIG.SQL.MYSQL.HOST +
+                            Configuration.SQL.MYSQL.HOST +
                             ":" +
-                            Configuration.EXTRA_CONFIG.SQL.MYSQL.PORT +
+                            Configuration.SQL.MYSQL.PORT +
                             "/" +
-                            Configuration.EXTRA_CONFIG.SQL.MYSQL.DATABASE +
+                            Configuration.SQL.MYSQL.DATABASE +
                             "?serverTimezone=" +
-                            Configuration.EXTRA_CONFIG.SQL.MYSQL.TIMEZONE +
+                            Configuration.SQL.MYSQL.TIMEZONE +
                             "&useUnicode=" +
-                            Configuration.EXTRA_CONFIG.SQL.MYSQL.UNICODE +
+                            Configuration.SQL.MYSQL.UNICODE +
                             "&characterEncoding=" +
-                            Configuration.EXTRA_CONFIG.SQL.MYSQL.ENCODING +
+                            Configuration.SQL.MYSQL.ENCODING +
                             "&useSSL=" +
-                            Configuration.EXTRA_CONFIG.SQL.MYSQL.SSL
+                            Configuration.SQL.MYSQL.SSL
             );
-            hc.setUsername(Configuration.EXTRA_CONFIG.SQL.MYSQL.USERNAME);
-            hc.setPassword(Configuration.EXTRA_CONFIG.SQL.MYSQL.PASSWORD);
+            hc.setUsername(Configuration.SQL.MYSQL.USERNAME);
+            hc.setPassword(Configuration.SQL.MYSQL.PASSWORD);
             hc.setAutoCommit(false);
             HikariDataSource ds = new HikariDataSource(hc);
             return ds.getConnection();

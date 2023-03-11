@@ -36,9 +36,14 @@ import org.bukkit.event.player.AsyncPlayerPreLoginEvent
 class RefuseNoWhiteList(
     private val ThisID: String = Configuration.USESID.QWHITELIST,
     private val enable: Boolean = Configuration.getUses().getBoolean(
-        Configuration.buildYaID(ThisID, ArrayList<String>(listOf(
-        "enable"
-    )))),
+        Configuration.buildYaID(
+            ThisID, ArrayList<String>(
+                listOf(
+                    "enable"
+                )
+            )
+        )
+    ),
     private val bot: String = Configuration.getUseMiraiBot(ThisID),
     private val groups: List<String> = Configuration.getUseMiraiGroup(ThisID)
 ) : Listener {
@@ -60,9 +65,15 @@ class RefuseNoWhiteList(
                         allow = false
                     try {
                         if (
-                            Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, ArrayList<String>(listOf(
-                                "check-if-on-group"
-                            ))))
+                            Configuration.getUses().getBoolean(
+                                Configuration.buildYaID(
+                                    ThisID, ArrayList<String>(
+                                        listOf(
+                                            "check-if-on-group"
+                                        )
+                                    )
+                                )
+                            )
                             && MiraiBot.getBot(Configuration().getBotCode(bot))
                                 .getGroup(Configuration().getGroupCode(group))
                                 .getMember(WhiteListDatabase.getCode(e.name)) == null
@@ -73,9 +84,14 @@ class RefuseNoWhiteList(
                             AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST,
                             ChatColor.translateAlternateColorCodes(
                                 '&',
-                                i18n.getI18n(ArrayList(listOf(
-                                    "minecraft", "use", "qwhitelist", "check-if-in-group-error"
-                                ))))
+                                i18n.getI18n(
+                                    ArrayList(
+                                        listOf(
+                                            "minecraft", "use", "qwhitelist", "check-if-in-group-error"
+                                        )
+                                    )
+                                )
+                            )
                         )
                         Logger.logCatch(exc)
                     }
@@ -84,9 +100,13 @@ class RefuseNoWhiteList(
                             AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST,
                             ChatColor.translateAlternateColorCodes(
                                 '&',
-                                i18n.getI18n(ArrayList(listOf(
-                                    "minecraft", "use", "qwhitelist", "no-whitelist"
-                                )))
+                                i18n.getI18n(
+                                    ArrayList(
+                                        listOf(
+                                            "minecraft", "use", "qwhitelist", "no-whitelist"
+                                        )
+                                    )
+                                )
                             )
                         )
                     }

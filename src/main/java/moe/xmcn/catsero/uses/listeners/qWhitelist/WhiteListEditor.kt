@@ -39,9 +39,15 @@ import java.util.regex.Pattern
 
 class WhiteListEditor(
     private val ThisID: String = Configuration.USESID.QWHITELIST,
-    private val enable: Boolean = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, ArrayList<String>(listOf(
-        "enable"
-    )))),
+    private val enable: Boolean = Configuration.getUses().getBoolean(
+        Configuration.buildYaID(
+            ThisID, ArrayList<String>(
+                listOf(
+                    "enable"
+                )
+            )
+        )
+    ),
     private val bot: String = Configuration.getUseMiraiBot(ThisID),
     private val groups: List<String> = Configuration.getUseMiraiGroup(ThisID)
 ) : Listener {
@@ -66,9 +72,15 @@ class WhiteListEditor(
                                 // 添加
                                 "add" -> {
                                     if (args.size == 3) {
-                                        val regex = Configuration.getUses().getString(Configuration.buildYaID(ThisID, ArrayList<String>(listOf(
-                                            "regex"
-                                        ))))
+                                        val regex = Configuration.getUses().getString(
+                                            Configuration.buildYaID(
+                                                ThisID, ArrayList<String>(
+                                                    listOf(
+                                                        "regex"
+                                                    )
+                                                )
+                                            )
+                                        )
                                         val match = Pattern.matches(regex, args[1])
                                         if (match)
                                             if (!WhiteListDatabase.getNameList().contains(args[1])) {
@@ -81,41 +93,61 @@ class WhiteListEditor(
                                                 if (WhiteListDatabase.insertList(args[1], args[2].toLong())) {
 
                                                     MessageSender.sendGroup(
-                                                        i18n.getI18n(ArrayList(listOf(
+                                                        i18n.getI18n(
+                                                            ArrayList(
+                                                                listOf(
                                                                     "qq", "use", "qwhitelist", "add-success"
-                                                        ))),
+                                                                )
+                                                            )
+                                                        ),
                                                         bot,
                                                         group
                                                     )
                                                 } else
                                                     MessageSender.sendGroup(
-                                                        i18n.getI18n(ArrayList(listOf(
-                                                            "qq", "use", "qwhitelist", "add-error-sql"
-                                                        ))),
+                                                        i18n.getI18n(
+                                                            ArrayList(
+                                                                listOf(
+                                                                    "qq", "use", "qwhitelist", "add-error-sql"
+                                                                )
+                                                            )
+                                                        ),
                                                         bot,
                                                         group
                                                     )
                                             } else
                                                 MessageSender.sendGroup(
-                                                    i18n.getI18n(ArrayList(listOf(
-                                                        "qq", "use", "qwhitelist", "add-error-repeat"
-                                                    ))),
+                                                    i18n.getI18n(
+                                                        ArrayList(
+                                                            listOf(
+                                                                "qq", "use", "qwhitelist", "add-error-repeat"
+                                                            )
+                                                        )
+                                                    ),
                                                     bot,
                                                     group
                                                 )
                                         else
                                             MessageSender.sendGroup(
-                                                i18n.getI18n(ArrayList(listOf(
-                                                    "qq", "use", "qwhitelist", "add-error-name-not-allowed"
-                                                ))),
+                                                i18n.getI18n(
+                                                    ArrayList(
+                                                        listOf(
+                                                            "qq", "use", "qwhitelist", "add-error-name-not-allowed"
+                                                        )
+                                                    )
+                                                ),
                                                 bot,
                                                 group
                                             )
                                     } else
                                         MessageSender.sendGroup(
-                                            i18n.getI18n(ArrayList(listOf(
-                                                "qq", "command", "invalid-option"
-                                            ))),
+                                            i18n.getI18n(
+                                                ArrayList(
+                                                    listOf(
+                                                        "qq", "command", "invalid-option"
+                                                    )
+                                                )
+                                            ),
                                             bot,
                                             group
                                         )
@@ -145,42 +177,62 @@ class WhiteListEditor(
                                                             .kickPlayer(
                                                                 ChatColor.translateAlternateColorCodes(
                                                                     '&',
-                                                                    i18n.getI18n(ArrayList(listOf(
-                                                                        "qq", "use", "qwhitelist", "remove-kick"
-                                                                    )))
+                                                                    i18n.getI18n(
+                                                                        ArrayList(
+                                                                            listOf(
+                                                                                "qq", "use", "qwhitelist", "remove-kick"
+                                                                            )
+                                                                        )
+                                                                    )
                                                                 )
                                                             )
                                                     }
                                                 }
 
                                                 MessageSender.sendGroup(
-                                                    i18n.getI18n(ArrayList(listOf(
-                                                        "qq", "use", "qwhitelist", "remove-success"
-                                                    ))),
+                                                    i18n.getI18n(
+                                                        ArrayList(
+                                                            listOf(
+                                                                "qq", "use", "qwhitelist", "remove-success"
+                                                            )
+                                                        )
+                                                    ),
                                                     bot,
                                                     group
                                                 )
                                             } else
                                                 MessageSender.sendGroup(
-                                                    i18n.getI18n(ArrayList(listOf(
-                                                        "qq", "use", "qwhitelist", "remove-error-sql"
-                                                    ))),
+                                                    i18n.getI18n(
+                                                        ArrayList(
+                                                            listOf(
+                                                                "qq", "use", "qwhitelist", "remove-error-sql"
+                                                            )
+                                                        )
+                                                    ),
                                                     bot,
                                                     group
                                                 )
                                         } else
                                             MessageSender.sendGroup(
-                                                i18n.getI18n(ArrayList(listOf(
-                                                    "qq", "use", "qwhitelist", "remove-error-not-found"
-                                                ))),
+                                                i18n.getI18n(
+                                                    ArrayList(
+                                                        listOf(
+                                                            "qq", "use", "qwhitelist", "remove-error-not-found"
+                                                        )
+                                                    )
+                                                ),
                                                 bot,
                                                 group
                                             )
                                     } else
                                         MessageSender.sendGroup(
-                                            i18n.getI18n(ArrayList(listOf(
-                                                "qq", "command", "invalid-option"
-                                            ))),
+                                            i18n.getI18n(
+                                                ArrayList(
+                                                    listOf(
+                                                        "qq", "command", "invalid-option"
+                                                    )
+                                                )
+                                            ),
                                             bot,
                                             group
                                         )
@@ -212,34 +264,53 @@ class WhiteListEditor(
                                                                 .kickPlayer(
                                                                     ChatColor.translateAlternateColorCodes(
                                                                         '&',
-                                                                        i18n.getI18n(ArrayList(listOf(
-                                                                            "qq", "use", "qwhitelist", "change-kick"
-                                                                        )))
+                                                                        i18n.getI18n(
+                                                                            ArrayList(
+                                                                                listOf(
+                                                                                    "qq",
+                                                                                    "use",
+                                                                                    "qwhitelist",
+                                                                                    "change-kick"
+                                                                                )
+                                                                            )
+                                                                        )
                                                                     )
                                                                 )
                                                         }
                                                     }
 
                                                     MessageSender.sendGroup(
-                                                        i18n.getI18n(ArrayList(listOf(
-                                                            "qq", "use", "qwhitelist", "change-success"
-                                                        ))),
+                                                        i18n.getI18n(
+                                                            ArrayList(
+                                                                listOf(
+                                                                    "qq", "use", "qwhitelist", "change-success"
+                                                                )
+                                                            )
+                                                        ),
                                                         bot,
                                                         group
                                                     )
                                                 } else
                                                     MessageSender.sendGroup(
-                                                        i18n.getI18n(ArrayList(listOf(
-                                                            "qq", "use", "qwhitelist", "change-error-sql"
-                                                        ))),
+                                                        i18n.getI18n(
+                                                            ArrayList(
+                                                                listOf(
+                                                                    "qq", "use", "qwhitelist", "change-error-sql"
+                                                                )
+                                                            )
+                                                        ),
                                                         bot,
                                                         group
                                                     )
                                             } else
                                                 MessageSender.sendGroup(
-                                                    i18n.getI18n(ArrayList(listOf(
-                                                        "qq", "use", "qwhitelist", "change-error-not-found"
-                                                    ))),
+                                                    i18n.getI18n(
+                                                        ArrayList(
+                                                            listOf(
+                                                                "qq", "use", "qwhitelist", "change-error-not-found"
+                                                            )
+                                                        )
+                                                    ),
                                                     bot,
                                                     group
                                                 )
@@ -258,43 +329,66 @@ class WhiteListEditor(
                                                                 .kickPlayer(
                                                                     ChatColor.translateAlternateColorCodes(
                                                                         '&',
-                                                                        i18n.getI18n(ArrayList(listOf(
-                                                                            "minecraft", "use", "qwhitelist", "change-kick"
-                                                                        )))
+                                                                        i18n.getI18n(
+                                                                            ArrayList(
+                                                                                listOf(
+                                                                                    "minecraft",
+                                                                                    "use",
+                                                                                    "qwhitelist",
+                                                                                    "change-kick"
+                                                                                )
+                                                                            )
+                                                                        )
                                                                     )
                                                                 )
                                                         }
                                                     }
 
                                                     MessageSender.sendGroup(
-                                                        i18n.getI18n(ArrayList(listOf(
-                                                            "qq", "use", "qwhitelist", "change-success"
-                                                        ))),
+                                                        i18n.getI18n(
+                                                            ArrayList(
+                                                                listOf(
+                                                                    "qq", "use", "qwhitelist", "change-success"
+                                                                )
+                                                            )
+                                                        ),
                                                         bot,
                                                         group
                                                     )
                                                 } else
                                                     MessageSender.sendGroup(
-                                                        i18n.getI18n(ArrayList(listOf(
-                                                            "qq", "use", "qwhitelist", "change-error-sql"
-                                                        ))),
+                                                        i18n.getI18n(
+                                                            ArrayList(
+                                                                listOf(
+                                                                    "qq", "use", "qwhitelist", "change-error-sql"
+                                                                )
+                                                            )
+                                                        ),
                                                         bot,
                                                         group
                                                     )
                                             } else
                                                 MessageSender.sendGroup(
-                                                    i18n.getI18n(ArrayList(listOf(
-                                                        "qq", "use", "qwhitelist", "change-error-not-found"
-                                                    ))),
+                                                    i18n.getI18n(
+                                                        ArrayList(
+                                                            listOf(
+                                                                "qq", "use", "qwhitelist", "change-error-not-found"
+                                                            )
+                                                        )
+                                                    ),
                                                     bot,
                                                     group
                                                 )
                                         }
                                     } else
                                         MessageSender.sendGroup(
-                                            i18n.getI18n(ArrayList(listOf(
-                                                "qq", "command", "invalid-option"
-                                            ))),
+                                            i18n.getI18n(
+                                                ArrayList(
+                                                    listOf(
+                                                        "qq", "command", "invalid-option"
+                                                    )
+                                                )
+                                            ),
                                             bot,
                                             group
                                         )
@@ -303,15 +397,27 @@ class WhiteListEditor(
 
                                 // 其他
                                 else -> {
-                                    MessageSender.sendGroup(i18n.getI18n(ArrayList(listOf(
-                                        "qq", "command", "invalid-option"
-                                    ))), bot, group)
+                                    MessageSender.sendGroup(
+                                        i18n.getI18n(
+                                            ArrayList(
+                                                listOf(
+                                                    "qq", "command", "invalid-option"
+                                                )
+                                            )
+                                        ), bot, group
+                                    )
                                 }
                             }
                         } else
-                            MessageSender.sendGroup(i18n.getI18n(ArrayList(listOf(
-                                "qq", "command", "no-permission"
-                            ))), bot, group)
+                            MessageSender.sendGroup(
+                                i18n.getI18n(
+                                    ArrayList(
+                                        listOf(
+                                            "qq", "command", "no-permission"
+                                        )
+                                    )
+                                ), bot, group
+                            )
                     }
                 }
             }

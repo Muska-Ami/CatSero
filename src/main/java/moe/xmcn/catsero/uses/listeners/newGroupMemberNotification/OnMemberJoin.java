@@ -52,25 +52,25 @@ public class OnMemberJoin implements Listener {
 
     @EventHandler
     public void onMemberJoin(MiraiMemberJoinEvent e) {
-            if (
-                    enable
-                            && new Configuration().checkBot(e.getBotID(), bot)
-                            && new Configuration().checkGroup(e.getGroupID(), groups)
-            ) {
-                long group = e.getGroupID();
-                    // 格式
-                    String format = Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
-                            "format"
-                    ))));
-                    format = format.replace("%at%", "[mirai:at:" + e.getMember().getId() + "]")
-                            .replace("%code%", String.valueOf(e.getMember().getId()))
-                            .replace("%name%", e.getMember().getNick());
-                    try {
-                        MessageSender.sendGroup(format, bot, group);
-                    } catch (IOException ex) {
-                        Logger.logCatch(ex);
-                    }
+        if (
+                enable
+                        && new Configuration().checkBot(e.getBotID(), bot)
+                        && new Configuration().checkGroup(e.getGroupID(), groups)
+        ) {
+            long group = e.getGroupID();
+            // 格式
+            String format = Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                    "format"
+            ))));
+            format = format.replace("%at%", "[mirai:at:" + e.getMember().getId() + "]")
+                    .replace("%code%", String.valueOf(e.getMember().getId()))
+                    .replace("%name%", e.getMember().getNick());
+            try {
+                MessageSender.sendGroup(format, bot, group);
+            } catch (IOException ex) {
+                Logger.logCatch(ex);
             }
+        }
     }
 
 }

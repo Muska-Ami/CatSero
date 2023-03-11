@@ -31,10 +31,6 @@ import java.io.IOException;
 
 public class MessageSender {
 
-    private boolean httpApi() {
-        return Configuration.getPlugin().getBoolean("http-api");
-    }
-
     public static void sendGroup(String message, String bot, String group) throws IOException {
         if (new MessageSender().httpApi())
             MiraiHttpAPI.INSTANCE.sendGroupMessage(
@@ -45,6 +41,7 @@ public class MessageSender {
         else
             MiraiBot.getBot(new Configuration().getBotCode(bot)).getGroup(new Configuration().getGroupCode(group)).sendMessageMirai(message);
     }
+
     public static void sendGroup(String message, String bot, long group) throws IOException {
         if (new MessageSender().httpApi())
             MiraiHttpAPI.INSTANCE.sendGroupMessage(
@@ -65,6 +62,10 @@ public class MessageSender {
             );
         else
             MiraiBot.getBot(new Configuration().getBotCode(bot)).getFriend(friend).sendMessageMirai(message);
+    }
+
+    private boolean httpApi() {
+        return Configuration.getPlugin().getBoolean("http-api");
     }
 
 }

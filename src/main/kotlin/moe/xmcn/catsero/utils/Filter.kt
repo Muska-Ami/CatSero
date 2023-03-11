@@ -20,19 +20,43 @@ class Filter : Runnable {
             get() = fullQQWords
 
         fun updateList() {
-            val remoteUrls = Configuration.getUses().getStringList(Configuration.buildYaID(iID, ArrayList<String>(listOf(
-                "filter", "list", "import", "remote"
-            ))))
-            val localFiles = Configuration.getUses().getStringList(Configuration.buildYaID(iID, ArrayList<String>(listOf(
-                "filter", "list", "import", "local"
-            ))))
+            val remoteUrls = Configuration.getUses().getStringList(
+                Configuration.buildYaID(
+                    iID, ArrayList<String>(
+                        listOf(
+                            "filter", "list", "import", "remote"
+                        )
+                    )
+                )
+            )
+            val localFiles = Configuration.getUses().getStringList(
+                Configuration.buildYaID(
+                    iID, ArrayList<String>(
+                        listOf(
+                            "filter", "list", "import", "local"
+                        )
+                    )
+                )
+            )
             val publicWords = ArrayList<String>()
-            val mcWords = Configuration.getUses().getStringList(Configuration.buildYaID(iID, ArrayList<String>(listOf(
-                "filter", "list", "via", "to-mc"
-            ))))
-            val qqWords = Configuration.getUses().getStringList(Configuration.buildYaID(iID, ArrayList<String>(listOf(
-                "filter", "list", "via", "to-qq"
-            ))))
+            val mcWords = Configuration.getUses().getStringList(
+                Configuration.buildYaID(
+                    iID, ArrayList<String>(
+                        listOf(
+                            "filter", "list", "via", "to-mc"
+                        )
+                    )
+                )
+            )
+            val qqWords = Configuration.getUses().getStringList(
+                Configuration.buildYaID(
+                    iID, ArrayList<String>(
+                        listOf(
+                            "filter", "list", "via", "to-qq"
+                        )
+                    )
+                )
+            )
 
             val hc = HttpClient()
 
@@ -111,22 +135,37 @@ class Filter : Runnable {
     companion object {
         @JvmStatic
         val iID = Configuration.USESID.CHAT_FORWARD
+
         @JvmStatic
         private var lastImportLength: Int = 0
+
         @JvmStatic
         fun startUpdate() {
             // 聊天转发
-            if (Configuration.getUses().getBoolean(Configuration.buildYaID(iID, ArrayList<String>(listOf(
-                    "filter", "auto-update", "enable"
-                ))))) {
+            if (Configuration.getUses().getBoolean(
+                    Configuration.buildYaID(
+                        iID, ArrayList<String>(
+                            listOf(
+                                "filter", "auto-update", "enable"
+                            )
+                        )
+                    )
+                )
+            ) {
                 Logger.logLoader("Start filter auto-update.")
                 CatSero.INSTANCE.server.scheduler.runTaskTimerAsynchronously(
                     CatSero.INSTANCE,
                     Filter(),
                     0L,
-                    Configuration.getUses().getLong(Configuration.buildYaID(iID, ArrayList<String>(listOf(
-                        "filter", "auto-update", "enable", "interval"
-                    )))) * 20L
+                    Configuration.getUses().getLong(
+                        Configuration.buildYaID(
+                            iID, ArrayList<String>(
+                                listOf(
+                                    "filter", "auto-update", "enable", "interval"
+                                )
+                            )
+                        )
+                    ) * 20L
                 )
             } else {
                 Logger.logLoader("Update filter words.")

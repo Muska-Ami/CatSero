@@ -36,14 +36,18 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class OnRequestExecuteCommand(
     private val ThisID: String = Configuration.USESID.QCMD,
-    private val enable: Boolean = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, ArrayList<String>(
-        listOf(
-            "enable"
-        )))),
+    private val enable: Boolean = Configuration.getUses().getBoolean(
+        Configuration.buildYaID(
+            ThisID, ArrayList<String>(
+                listOf(
+                    "enable"
+                )
+            )
+        )
+    ),
     private val bot: String = Configuration.getUseMiraiBot(ThisID),
     private val groups: List<String> = Configuration.getUseMiraiGroup(ThisID)
 ) : Listener {
@@ -82,34 +86,52 @@ class OnRequestExecuteCommand(
             if (enable) {
                 Logger.logDebug("QCMD Friend: $isFriend")
                 if (Configuration().isQQOp(sender)) {
-                            // 读取命令原文
-                            val command = iterateArray(args)
+                    // 读取命令原文
+                    val command = iterateArray(args)
 
-                            // 如果不是私聊则发一条提示
-                            if (!isFriend)
-                                MessageSender.sendGroup(i18n.getI18n(ArrayList(listOf(
-                                    "qq", "use", "qcmd", "success"
-                                ))), bot, group!!)
+                    // 如果不是私聊则发一条提示
+                    if (!isFriend)
+                        MessageSender.sendGroup(
+                            i18n.getI18n(
+                                ArrayList(
+                                    listOf(
+                                        "qq", "use", "qcmd", "success"
+                                    )
+                                )
+                            ), bot, group!!
+                        )
 
-                            // 设置信息
-                            CommandSender.setBot(bot)
-                            CommandSender.setFriend(sender)
+                    // 设置信息
+                    CommandSender.setBot(bot)
+                    CommandSender.setFriend(sender)
 
-                            // 执行
-                            MessageSender.sendFriend(
-                                "--- " + SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Date()) + " ---",
-                                bot,
-                                sender
+                    // 执行
+                    MessageSender.sendFriend(
+                        "--- " + SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Date()) + " ---",
+                        bot,
+                        sender
+                    )
+                    executeCommand(command)
+                } else if (isFriend)
+                    MessageSender.sendFriend(
+                        i18n.getI18n(
+                            ArrayList(
+                                listOf(
+                                    "qq", "command", "no-permission"
+                                )
                             )
-                            executeCommand(command)
-                        } else if (isFriend)
-                            MessageSender.sendFriend(i18n.getI18n(ArrayList(listOf(
-                                "qq", "command", "no-permission"
-                            ))), bot, sender)
-                        else
-                            MessageSender.sendGroup(i18n.getI18n(ArrayList(listOf(
-                                "qq", "command", "no-permission"
-                            ))), bot, group!!)
+                        ), bot, sender
+                    )
+                else
+                    MessageSender.sendGroup(
+                        i18n.getI18n(
+                            ArrayList(
+                                listOf(
+                                    "qq", "command", "no-permission"
+                                )
+                            )
+                        ), bot, group!!
+                    )
             }
         } catch (ex: Exception) {
             Logger.logCatch(ex)

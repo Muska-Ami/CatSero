@@ -134,6 +134,7 @@ public class OnCommonChatToQQ implements Listener {
                                 "minecraft", "call", "player"
                         ))));
 
+                    // Header
                     if (Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
                             "header", "enable"
                     ))))) {

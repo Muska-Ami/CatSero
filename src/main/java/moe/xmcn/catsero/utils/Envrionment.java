@@ -50,9 +50,9 @@ public interface Envrionment {
     }
 
     class Depends {
-        public static boolean MiraiMC        = false;
+        public static boolean MiraiMC = false;
         public static boolean PlaceholderAPI = false;
-        public static boolean TrChat         = false;
-        public static boolean Floodgate      = false;
+        public static boolean TrChat = false;
+        public static boolean Floodgate = false;
     }
 }

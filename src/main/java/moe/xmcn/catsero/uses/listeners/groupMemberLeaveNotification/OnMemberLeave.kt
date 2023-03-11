@@ -32,9 +32,15 @@ import org.bukkit.event.Listener
 
 class OnMemberLeave(
     private val ThisID: String = Configuration.USESID.GROUP_MEMBER_LEAVE_NOTIFICATION,
-    private val enable: Boolean = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, ArrayList(listOf(
-        "enable"
-    )))),
+    private val enable: Boolean = Configuration.getUses().getBoolean(
+        Configuration.buildYaID(
+            ThisID, ArrayList(
+                listOf(
+                    "enable"
+                )
+            )
+        )
+    ),
     private val bot: String = Configuration.getUseMiraiBot(ThisID),
     private val groups: List<String> = Configuration.getUseMiraiGroup(ThisID)
 ) : Listener {
@@ -43,33 +49,33 @@ class OnMemberLeave(
 
     @EventHandler
     fun onGroupMemberLeave(e: MiraiMemberLeaveEvent) {
-            if (
-                enable
-                && Configuration().checkBot(e.botID, bot)
-                && Configuration().checkGroup(e.groupID, groups)
-            ) {
-                group = e.groupID
-                try {
-                    val name = e.memberNick
-                    val code = e.targetID
+        if (
+            enable
+            && Configuration().checkBot(e.botID, bot)
+            && Configuration().checkGroup(e.groupID, groups)
+        ) {
+            group = e.groupID
+            try {
+                val name = e.memberNick
+                val code = e.targetID
 
-                    var format = Configuration.getUses().getString(
-                        Configuration.buildYaID(
-                            ThisID, ArrayList(
-                                listOf(
-                                    "format"
-                                )
+                var format = Configuration.getUses().getString(
+                    Configuration.buildYaID(
+                        ThisID, ArrayList(
+                            listOf(
+                                "format"
                             )
                         )
                     )
-                    format = format.replace("%name%", name)
-                        .replace("%code%", code.toString())
-                    MessageSender.sendGroup(format, bot, group!!)
+                )
+                format = format.replace("%name%", name)
+                    .replace("%code%", code.toString())
+                MessageSender.sendGroup(format, bot, group!!)
 
-                } catch (ex: Exception) {
-                    Logger.logCatch(ex)
-                }
+            } catch (ex: Exception) {
+                Logger.logCatch(ex)
             }
+        }
     }
 
 }

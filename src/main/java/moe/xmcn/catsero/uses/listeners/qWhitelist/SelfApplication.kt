@@ -38,13 +38,23 @@ import java.util.regex.Pattern
 class SelfApplication(
     private val ThisID: String = Configuration.USESID.QWHITELIST,
     private val enable: Boolean = Configuration.getUses().getBoolean(
-        Configuration.buildYaID(ThisID, ArrayList<String>(listOf(
-            "self-application", "enable"
-        )))),
+        Configuration.buildYaID(
+            ThisID, ArrayList<String>(
+                listOf(
+                    "self-application", "enable"
+                )
+            )
+        )
+    ),
     private val parentEnable: Boolean = Configuration.getUses().getBoolean(
-        Configuration.buildYaID(ThisID, ArrayList<String>(listOf(
-            "enable"
-        )))),
+        Configuration.buildYaID(
+            ThisID, ArrayList<String>(
+                listOf(
+                    "enable"
+                )
+            )
+        )
+    ),
     private val bot: String = Configuration.getUseMiraiBot(ThisID),
     private val groups: List<String> = Configuration.getUseMiraiGroup(ThisID)
 ) : Listener {
@@ -110,9 +120,13 @@ class SelfApplication(
                 才怪
                  */
                             MessageSender.sendGroup(
-                                i18n.getI18n(ArrayList(listOf(
-                                    "qq", "command", "config-error"
-                                ))),
+                                i18n.getI18n(
+                                    ArrayList(
+                                        listOf(
+                                            "qq", "command", "config-error"
+                                        )
+                                    )
+                                ),
                                 bot, group
                             )
                     }
@@ -141,9 +155,13 @@ class SelfApplication(
                         ) {
                             name = name.replace(" ", "_")
                             MessageSender.sendGroup(
-                                i18n.getI18n(ArrayList(listOf(
-                                    "qq", "use", "whitelist", "replace-space-success"
-                                ))).replace(
+                                i18n.getI18n(
+                                    ArrayList(
+                                        listOf(
+                                            "qq", "use", "whitelist", "replace-space-success"
+                                        )
+                                    )
+                                ).replace(
                                     "%name%",
                                     name
                                 ), bot, group
@@ -151,9 +169,15 @@ class SelfApplication(
                         }
                     }
 
-                    val regex = Configuration.getUses().getString(Configuration.buildYaID(ThisID, ArrayList<String>(listOf(
-                        "regex"
-                    ))))
+                    val regex = Configuration.getUses().getString(
+                        Configuration.buildYaID(
+                            ThisID, ArrayList<String>(
+                                listOf(
+                                    "regex"
+                                )
+                            )
+                        )
+                    )
                     val match = if (Envrionment.Depends.Floodgate)
                         Pattern.matches(regex, prefix?.let { name.replaceFirst(it, "") })
                     else
@@ -163,30 +187,51 @@ class SelfApplication(
                             !WhiteListDatabase.getNameList().contains(name)
                         ) {
                             // 1Q1号
-                            if (Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, ArrayList<String>(listOf(
-                                    "a-qq-only-an-account"
-                                )))))
+                            if (Configuration.getUses().getBoolean(
+                                    Configuration.buildYaID(
+                                        ThisID, ArrayList<String>(
+                                            listOf(
+                                                "a-qq-only-an-account"
+                                            )
+                                        )
+                                    )
+                                )
+                            )
                                 if (!WhiteListDatabase.getCodeList().contains(code))
                                     run2(name, code)
                                 else
                                     MessageSender.sendGroup(
-                                        i18n.getI18n(ArrayList(listOf(
-                                            "qq", "use", "whitelist", "aqoaa-error-repeat"
-                                        ))),
+                                        i18n.getI18n(
+                                            ArrayList(
+                                                listOf(
+                                                    "qq", "use", "whitelist", "aqoaa-error-repeat"
+                                                )
+                                            )
+                                        ),
                                         bot,
                                         group
                                     )
                             else
                                 run2(name, code)
                         } else
-                            MessageSender.sendGroup(i18n.getI18n(ArrayList(listOf(
-                                "qq", "use", "whitelist", "add-error-repeat"
-                            ))), bot, group)
+                            MessageSender.sendGroup(
+                                i18n.getI18n(
+                                    ArrayList(
+                                        listOf(
+                                            "qq", "use", "whitelist", "add-error-repeat"
+                                        )
+                                    )
+                                ), bot, group
+                            )
                     else
                         MessageSender.sendGroup(
-                            i18n.getI18n(ArrayList(listOf(
-                                "qq", "use", "whitelist", "add-error-name-not-allowed"
-                            ))),
+                            i18n.getI18n(
+                                ArrayList(
+                                    listOf(
+                                        "qq", "use", "whitelist", "add-error-name-not-allowed"
+                                    )
+                                )
+                            ),
                             bot,
                             group
                         )
@@ -202,13 +247,25 @@ class SelfApplication(
             groups.forEach { group ->
                 run {
                     if (WhiteListDatabase.insertList(name, code))
-                        MessageSender.sendGroup(i18n.getI18n(ArrayList(listOf(
-                            "qq", "use", "whitelist", "add-success"
-                        ))), bot, group)
+                        MessageSender.sendGroup(
+                            i18n.getI18n(
+                                ArrayList(
+                                    listOf(
+                                        "qq", "use", "whitelist", "add-success"
+                                    )
+                                )
+                            ), bot, group
+                        )
                     else
-                        MessageSender.sendGroup(i18n.getI18n(ArrayList(listOf(
-                            "qq", "use", "whitelist", "add-error-sql"
-                        ))), bot, group)
+                        MessageSender.sendGroup(
+                            i18n.getI18n(
+                                ArrayList(
+                                    listOf(
+                                        "qq", "use", "whitelist", "add-error-sql"
+                                    )
+                                )
+                            ), bot, group
+                        )
 
                 }
             }

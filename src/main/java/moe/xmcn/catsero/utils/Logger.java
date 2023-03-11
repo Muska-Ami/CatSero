@@ -92,7 +92,7 @@ public interface Logger {
                 "捕获到一个错误",
                 "错误类型: " + error_type,
                 "捕获消息: " + error_message,
-                "详细信息: " + error_info,
+                "详细信息:\n" + error_info,
                 "如您认为这不是配置错误、网络原因导致的问题，请前往此处报告：",
                 "https://github.com/XiaMoHuaHuo-CN/CatSero/issues"
         );

@@ -34,15 +34,6 @@ public class Configuration {
                     "ext://command-alias.yml"// ext_commandalias
             )
     );
-    static void registerQQCommand() {
-        ParseTool.registerCommand(Arrays.asList(
-                "list",
-                "tps",
-                "cmd",
-                "whitelist"
-        ));
-    }
-
     private static FileConfiguration plugin;
     private static FileConfiguration uses;
     private static FileConfiguration ext_trchat;
@@ -52,24 +43,44 @@ public class Configuration {
     private static FileConfiguration mirai_group;
     private static FileConfiguration mirai_qqop;
 
-    public static FileConfiguration getPlugin() { return plugin; }
+    static void registerQQCommand() {
+        ParseTool.registerCommand(Arrays.asList(
+                "list",
+                "tps",
+                "cmd",
+                "whitelist"
+        ));
+    }
 
-    public static FileConfiguration getUses() { return uses; }
+    public static FileConfiguration getPlugin() {
+        return plugin;
+    }
 
-    public static FileConfiguration getExt_trchat() { return ext_trchat; }
+    public static FileConfiguration getUses() {
+        return uses;
+    }
 
-    public static FileConfiguration getExt_sql() { return ext_sql; }
+    public static FileConfiguration getExt_trchat() {
+        return ext_trchat;
+    }
+
+    public static FileConfiguration getExt_sql() {
+        return ext_sql;
+    }
 
     //public static FileConfiguration getMirai_bot() { return mirai_bot; }
 
     //public static FileConfiguration getMirai_group() { return mirai_group; }
 
-    public static FileConfiguration getExt_commandalias() { return ext_commandalias; }
+    public static FileConfiguration getExt_commandalias() {
+        return ext_commandalias;
+    }
 
     /**
      * 生成Yaml节点ID
+     *
      * @param useid 功能ID
-     * @param arr 子节点ID
+     * @param arr   子节点ID
      * @return Yaml节点ID
      */
     public static String buildYaID(String useid, @NotNull ArrayList<String> arr) {
@@ -83,14 +94,22 @@ public class Configuration {
 
     /**
      * 获取功能指定的Bot
+     *
      * @param use 功能ID
      * @return BotID
      */
     public static String getUseMiraiBot(String use) {
-        return uses.getString(buildYaID(use, new ArrayList<>(Arrays.asList(
+        /*return uses.getString(buildYaID(use, new ArrayList<>(Arrays.asList(
                 "var", "bot"
         ))));
+         */
+        String it = uses.getString(buildYaID(use, new ArrayList<>(Arrays.asList(
+                "var", "bot"
+        ))));
+        Logger.logDebug(it);
+        return it;
     }
+
     /**
      * 获取功能指定的Group列表
      *
@@ -101,6 +120,146 @@ public class Configuration {
         return uses.getStringList(buildYaID(use, new ArrayList<>(Arrays.asList(
                 "var", "groups"
         ))));
+    }
+
+    public static void saveFiles() {
+        Logger.logLoader("Saving plugin configuration files...");
+        for (int i = configuration.size() - 1; i >= 0; i--) {
+            if (!new File(formatPath(configuration.get(i), true)).exists()) {
+                //Logger.logWARN(cleanPath(configuration.get(i)));
+                INSTANCE.saveResource(cleanPath(configuration.get(i)), false);
+                Logger.logLoader("Save: " + cleanPath(configuration.get(i)));
+            }
+        }
+        Logger.logLoader("Saved.");
+
+        Logger.logLoader("Saving default i18n locale file...");
+        if (!new File(INSTANCE.getDataFolder() + "/locale/zh_CN.json").exists()) {
+            INSTANCE.saveResource("locale/zh_CN.json", false);
+            Logger.logLoader("Save: locale/zh_CN.json");
+        }
+        Logger.logLoader("Saved.");
+    }
+
+    /**
+     * 格式化文件路径
+     *
+     * @param code 缩略路径
+     * @param apdf 是否添加插件目录位置
+     * @return 格式化后的标准路径
+     */
+    private static String formatPath(String code, boolean apdf) {
+        if (apdf) return code.replaceFirst("def://", INSTANCE.getDataFolder() + "/")
+                .replaceFirst("ext://", INSTANCE.getDataFolder() + "/extra-configs/")
+                .replaceFirst("mirai://", INSTANCE.getDataFolder() + "/mirai-configs/");
+        else return code.replaceFirst("def://", "/")
+                .replaceFirst("ext://", "/extra-configs/")
+                .replaceFirst("mirai://", "/mirai-configs/");
+
+    }
+
+    /**
+     * 清理文件路径
+     *
+     * @param code 缩略路径
+     * @return 名称
+     */
+    private static String cleanPath(String code) {
+        return code.replaceFirst("def://", "")
+                .replaceFirst("ext://", "extra-configs/")
+                .replaceFirst("mirai://", "mirai-configs/");
+    }
+
+    /**
+     * 验证是否为QQOp
+     *
+     * @param code QQ号
+     * @return true/false
+     */
+    public boolean isQQOp(long code) {
+        AtomicBoolean res = new AtomicBoolean(false);
+        mirai_qqop.getLongList("list").forEach(it -> {
+            if (code == it) res.set(true);
+        });
+        return res.get();
+    }
+
+    /**
+     * 获取Bot QQ号
+     *
+     * @param id BotID
+     * @return BotCode/0
+     */
+    public long getBotCode(@NotNull String id) {
+        return mirai_bot.getLong(id);
+    }
+
+    /**
+     * 对比Bot是否是指定Bot
+     *
+     * @param code QQ号
+     * @param id   BotID
+     * @return true/false
+     */
+    public boolean checkBot(long code, @NotNull String id) {
+        return getBotCode(id) == code;
+    }
+
+    /**
+     * 获取群号
+     *
+     * @param id GroupID
+     * @return GroupCode/0
+     */
+    public long getGroupCode(@NotNull String id) {
+        return mirai_group.getLong(id);
+    }
+
+    /**
+     * 对比Group是否是指定Group
+     *
+     * @param code QQ号
+     * @param ids  GroupID
+     * @return true/false
+     */
+    public boolean checkGroup(long code, @NotNull List<String> ids) {
+        AtomicBoolean is = new AtomicBoolean(false);
+        ids.forEach(id ->
+                is.set(getGroupCode(id) == code)
+        );
+        return is.get();
+    }
+
+    /**
+     * 加载配置文件
+     */
+    static void loadConfiguration() throws IOException {
+        plugin = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(0), true)));
+        uses = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(1), true)));
+        ext_trchat = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(2), true)));
+        ext_sql = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(3), true)));
+        mirai_bot = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(4), true)));
+        mirai_group = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(5), true)));
+        mirai_qqop = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(6), true)));
+        ext_commandalias = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(7), true)));
+
+        plugin.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(0))))));
+        uses.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(1))))));
+        ext_trchat.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(2))))));
+        ext_sql.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(3))))));
+        mirai_bot.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(4))))));
+        mirai_group.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(5))))));
+        mirai_qqop.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(6))))));
+        ext_commandalias.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(7))))));
+
+        plugin.save(new File(formatPath(configuration.get(0), true)));
+        uses.save(new File(formatPath(configuration.get(1), true)));
+        ext_trchat.save(new File(formatPath(configuration.get(2), true)));
+        ext_sql.save(new File(formatPath(configuration.get(3), true)));
+        mirai_bot.save(new File(formatPath(configuration.get(4), true)));
+        mirai_group.save(new File(formatPath(configuration.get(5), true)));
+        mirai_qqop.save(new File(formatPath(configuration.get(6), true)));
+        ext_commandalias.save(new File(formatPath(configuration.get(7), true)));
     }
 
     public interface USESID {
@@ -117,123 +276,31 @@ public class Configuration {
         String PRINT_TITLE = "print-title";
     }
 
-    /**
-     * 验证是否为QQOp
-     * @param code QQ号
-     * @return true/false
-     */
-    public boolean isQQOp(long code) {
-        AtomicBoolean res = new AtomicBoolean(false);
-        mirai_qqop.getLongList("list").forEach(it -> {
-            if (code == it) res.set(true);
-        });
-        return res.get();
-    }
+    // 数据库相关
+    // 由于涉及到数据库，不允许重载此内容
+    public interface SQL {
+        String TYPE = ext_sql.getString("type");
 
-    /**
-     * 获取Bot QQ号
-     * @param id BotID
-     * @return BotCode/0
-     */
-    public long getBotCode(@NotNull String id) { return mirai_bot.getLong(id); }
+        interface JDBC {
+            String sub_node = "jdbc" + ".";
 
-    /**
-     * 对比Bot是否是指定Bot
-     * @param code QQ号
-     * @param id BotID
-     * @return true/false
-     */
-    public boolean checkBot(long code, @NotNull String id) { return getBotCode(id) == code; }
-
-    /**
-     * 获取群号
-     * @param id GroupID
-     * @return GroupCode/0
-     */
-    public long getGroupCode(@NotNull String id) { return mirai_group.getLong(id); }
-
-    /**
-     * 对比Group是否是指定Group
-     * @param code QQ号
-     * @param ids GroupID
-     * @return true/false
-     */
-    public boolean checkGroup(long code, @NotNull List<String> ids) {
-        AtomicBoolean is = new AtomicBoolean(false);
-        ids.forEach(id ->
-                is.set(getGroupCode(id) == code)
-        );
-        return is.get();
-    }
-
-    /**
-     * 加载配置文件
-     */
-    void loadConfiguration() throws IOException {
-        plugin           = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(0), true)));
-        uses             = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(1), true)));
-        ext_trchat       = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(2), true)));
-        ext_sql          = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(3), true)));
-        mirai_bot        = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(4), true)));
-        mirai_group      = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(5), true)));
-        mirai_qqop       = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(6), true)));
-        ext_commandalias = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(7), true)));
-
-        plugin           . setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(formatPath(configuration.get(0), false)))));
-        uses             . setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(formatPath(configuration.get(1), false)))));
-        ext_trchat       . setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(formatPath(configuration.get(2), false)))));
-        ext_sql          . setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(formatPath(configuration.get(3), false)))));
-        mirai_bot        . setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(formatPath(configuration.get(4), false)))));
-        mirai_group      . setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(formatPath(configuration.get(5), false)))));
-        mirai_qqop       . setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(formatPath(configuration.get(6), false)))));
-        ext_commandalias . setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(formatPath(configuration.get(7), false)))));
-
-        plugin.save(new File(formatPath(configuration.get(0), true)));
-        uses.save(new File(formatPath(configuration.get(1), true)));
-        ext_trchat.save(new File(formatPath(configuration.get(2), true)));
-        ext_sql.save(new File(formatPath(configuration.get(3), true)));
-        mirai_bot.save(new File(formatPath(configuration.get(4), true)));
-        mirai_group.save(new File(formatPath(configuration.get(5), true)));
-        mirai_qqop.save(new File(formatPath(configuration.get(6), true)));
-        ext_commandalias.save(new File(formatPath(configuration.get(7), true)));
-    }
-
-    public static void saveFiles() {
-        Logger.logLoader("Saving plugin files...");
-        for (int i = configuration.size()-1; i >= 0; i--) {
-            if (!new File(formatPath(configuration.get(i), true)).exists()) {
-                INSTANCE.saveResource(cleanPath(configuration.get(i)), false);
-                Logger.logLoader("Save: " + cleanPath(configuration.get(i)));
-            }
+            String SQLITE_CLASS_NAME = ext_sql.getString(sub_node + "sqlite-class-name");
+            String MYSQL_CLASS_NAME = ext_sql.getString(sub_node + "mysql-class-name");
         }
-        Logger.logLoader("Saved.");
-    }
 
-    /**
-     * 格式化文件路径
-     * @param code 缩略路径
-     * @param apdf 是否添加插件目录位置
-     * @return 格式化后的标准路径
-     */
-    private static String formatPath(String code, boolean apdf) {
-        if (apdf) return code.replaceFirst("def://", INSTANCE.getDataFolder() + "/")
-                    .replaceFirst("ext://", INSTANCE.getDataFolder() + "/extra-configs/")
-                    .replaceFirst("mirai://", INSTANCE.getDataFolder() + "/mirai-configs/");
-        else return code.replaceFirst("def://", "/")
-                .replaceFirst("ext://", "/extra-configs/")
-                .replaceFirst("mirai://", "/mirai-configs/");
+        interface MYSQL {
+            String sub_node = "mysql-config" + ".";
 
-    }
-
-    /**
-     * 清理文件路径
-     * @param code 缩略路径
-     * @return 名称
-     */
-    private static String cleanPath(String code) {
-        return code.replaceFirst("def://", "")
-                .replaceFirst("ext://", "")
-                .replaceFirst("mirai://", "");
+            String HOST = ext_sql.getString(sub_node + "host");
+            int PORT = ext_sql.getInt(sub_node + "port");
+            String USERNAME = ext_sql.getString(sub_node + "username");
+            String PASSWORD = ext_sql.getString(sub_node + "password");
+            String TIMEZONE = ext_sql.getString(sub_node + "timezone");
+            boolean UNICODE = ext_sql.getBoolean(sub_node + "unicode");
+            String ENCODING = ext_sql.getString(sub_node + "encoding");
+            boolean SSL = ext_sql.getBoolean(sub_node + "ssl");
+            String DATABASE = ext_sql.getString(sub_node + "database");
+        }
     }
 
     public interface OTHER {

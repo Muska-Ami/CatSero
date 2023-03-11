@@ -24,6 +24,8 @@
 package moe.xmcn.catsero.executors.catsero;
 
 import moe.xmcn.catsero.CatSero;
+import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.I18n;
 import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.Player;
@@ -36,10 +38,14 @@ import org.bukkit.command.TabExecutor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class OnCommand implements TabExecutor {
+
+    private final I18n i18n = new I18n();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         try {
@@ -49,6 +55,9 @@ public class OnCommand implements TabExecutor {
                         if (args.length == 1) {
                             if (sender.hasPermission("catsero.admin")) {
                                 List<String> env = Arrays.asList(
+                                        "&eCatSero &bby &eXiaMoHuaHuo_CN, version: " + Envrionment.plugin_version,
+                                        "&eGitHub: &1https://github.com/XiaMoHuaHuo-CN/CatSero",
+                                        "&eAuthor's blog: &1https://huahuo-cn.tk",
                                         "&b===== &dCatSero Runtime Checker &b=====",
                                         "&bServer Version: " + Envrionment.server_version,
                                         "&bBukkit Version: " + Envrionment.bukkit_version,
@@ -65,9 +74,13 @@ public class OnCommand implements TabExecutor {
                                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', (String) env.toArray()[i - 1]));
                                 }
                             } else
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.NO_PERMISSION));
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                        "minecraft", "command", "no-permission"
+                                )))));
                         } else {
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                    "minecraft", "command", "invalid-option"
+                            )))));
                         }
                         break;
                     case "whitelist":
@@ -76,18 +89,28 @@ public class OnCommand implements TabExecutor {
                             if (args.length == 4) {
                                 // 添加
                                 if (args[1].equalsIgnoreCase("add")) {
-                                    String regex = Configuration.USES_CONFIG.QWHITELIST.REGEX;
+                                    String regex = Configuration.getUses().getString(Configuration.buildYaID(Configuration.USESID.QWHITELIST, new ArrayList<>(Collections.singletonList(
+                                            "regex"
+                                    ))));
                                     boolean match = Pattern.matches(regex, args[2]);
                                     if (match)
                                         if (!WhiteListDatabase.getNameList().contains(args[2])) {
                                             if (WhiteListDatabase.insertList(args[2], Long.parseLong(args[3]))) {
-                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.ADD_SUCCESS));
+                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                        "minecraft", "use", "qwhitelist", "add-success"
+                                                )))));
                                             } else
-                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.ADD_ERROR_SQL));
+                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                        "minecraft", "use", "qwhitelist", "add-error-sql"
+                                                )))));
                                         } else
-                                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.ADD_ERROR_REPEAT));
+                                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                    "minecraft", "use", "qwhitelist", "add-error-repeat"
+                                            )))));
                                     else
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.ADD_ERROR_NAME_NOT_ALLOWED));
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                "minecraft", "use", "qwhitelist", "add-error-name-not-allowed"
+                                        )))));
                                 }
                             } else if (args.length == 3) {
                                 // 移除
@@ -104,16 +127,24 @@ public class OnCommand implements TabExecutor {
                                                                 .kickPlayer(
                                                                         ChatColor.translateAlternateColorCodes(
                                                                                 '&',
-                                                                                Configuration.I18N.MINECRAFT.USE.QWHITELIST.REMOVE_KICK
+                                                                                i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                                                        "minecraft", "use", "qwhitelist", "remove-kick"
+                                                                                )))
                                                                         )
                                                                 )
                                                 );
                                             } else
-                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.REMOVE_SUCCESS));
+                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                        "minecraft", "use", "qwhitelist", "remove-success"
+                                                )))));
                                         } else
-                                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.REMOVE_ERROR_SQL));
+                                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                    "minecraft", "use", "qwhitelist", "remove-error-sql"
+                                            )))));
                                     } else
-                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.REMOVE_ERROR_NOT_FOUND));
+                                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                "minecraft", "use", "qwhitelist", "remove-error-not-found"
+                                        )))));
                                 }
                             } else if (args.length == 5) {
                                 // 更新
@@ -132,16 +163,24 @@ public class OnCommand implements TabExecutor {
                                                                     .kickPlayer(
                                                                             ChatColor.translateAlternateColorCodes(
                                                                                     '&',
-                                                                                    Configuration.I18N.MINECRAFT.USE.QWHITELIST.REMOVE_KICK
+                                                                                    i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                                                            "minecraft", "use", "qwhitelist", "remove-kick"
+                                                                                    )))
                                                                             )
                                                                     )
                                                     );
                                                 }
-                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_SUCCESS));
+                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                        "minecraft", "use", "qwhitelist", "change-success"
+                                                )))));
                                             } else
-                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_ERROR_SQL));
+                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                        "minecraft", "use", "qwhitelist", "change-error-sql"
+                                                )))));
                                         } else
-                                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_ERROR_NOT_FOUND));
+                                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                    "minecraft", "use", "qwhitelist", "change-error-not-found"
+                                            )))));
                                     } else if (args[2].equalsIgnoreCase("qq")) {
                                         if (WhiteListDatabase.getNameList().contains(args[3])) {
                                             if (WhiteListDatabase.updateList(Long.parseLong(args[3]), Long.parseLong(args[4]))) {
@@ -157,36 +196,56 @@ public class OnCommand implements TabExecutor {
                                                                     .kickPlayer(
                                                                             ChatColor.translateAlternateColorCodes(
                                                                                     '&',
-                                                                                    Configuration.I18N.MINECRAFT.USE.QWHITELIST.REMOVE_KICK
+                                                                                    i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                                                            "minecraft", "use", "qwhitelist", "remove-kick"
+                                                                                    )))
                                                                             )
                                                                     )
                                                     );
                                                 }
-                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_SUCCESS));
+                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                        "minecraft", "use", "qwhitelist", "change-success"
+                                                )))));
                                             } else
-                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_ERROR_SQL));
+                                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                        "minecraft", "use", "qwhitelist", "change-error-sql"
+                                                )))));
                                         } else
-                                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.USE.QWHITELIST.CHANGE_ERROR_NOT_FOUND));
+                                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                                    "minecraft", "use", "qwhitelist", "change-error-not-found"
+                                            )))));
                                     }
                                 }
                             } else
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                        "minecraft", "command", "invalid-option"
+                                )))));
                         } else
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.NO_PERMISSION));
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                    "minecraft", "command", "no-permission"
+                            )))));
                         break;
                     case "reload":
                         if (args.length == 1) {
                             if (sender.hasPermission("catsero.admin")) {
                                 CatSero.INSTANCE.reloadConfig();
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.RELOAD.SUCCESS));
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                        "minecraft", "command", "reload", "success"
+                                )))));
                             } else
-                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.NO_PERMISSION));
+                                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                        "minecraft", "command", "no-permission"
+                                )))));
                         } else {
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                    "minecraft", "command", "invalid-option"
+                            )))));
                         }
                         break;
                     default:
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                "minecraft", "command", "invalid-option"
+                        )))));
                 }
             } else
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&eCatSero &bby &eXiaMoHuaHuo_CN, version: " + Envrionment.plugin_version));

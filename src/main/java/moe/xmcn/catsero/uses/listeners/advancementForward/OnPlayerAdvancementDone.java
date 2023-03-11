@@ -24,7 +24,7 @@
 package moe.xmcn.catsero.uses.listeners.advancementForward;
 
 import me.croabeast.advancementinfo.AdvancementInfo;
-import moe.xmcn.catsero.utils.Configuration;
+import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
 import moe.xmcn.catsero.utils.PAPI;
@@ -33,23 +33,32 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class OnPlayerAdvancementDone implements Listener {
 
+    private final String ThisID = Configuration.USESID.SEND_ADVANCEMENT;
     private final boolean enable;
     private final String bot;
-    private final String group;
+    private final List<String> groups;
 
     public OnPlayerAdvancementDone() {
-        this.enable = Configuration.USES_CONFIG.SEND_ADVANCEMENT.ENABLE;
-        this.bot = Configuration.USES_CONFIG.SEND_ADVANCEMENT.MIRAI.BOT;
-        this.group = Configuration.USES_CONFIG.SEND_ADVANCEMENT.MIRAI.GROUP;
+        this.enable = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                "enable"
+        ))));
+        this.bot = Configuration.getUseMiraiBot(ThisID);
+        this.groups = Configuration.getUseMiraiGroup(ThisID);
     }
 
     @EventHandler
     public void onPlayerAchievement(PlayerAdvancementDoneEvent e) {
         try {
             if (enable) {
-                if (Configuration.USES_CONFIG.SEND_ADVANCEMENT.NEED_PERMISSION) {
+                if (Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(
+                        Collections.singletonList("need-permission")
+                )))) {
                     if (e.getPlayer().hasPermission("catsero.send-advancement"))
                         run(e);
                 } else
@@ -61,24 +70,28 @@ public class OnPlayerAdvancementDone implements Listener {
     }
 
     public void run(PlayerAdvancementDoneEvent e) {
-        try {
-            AdvancementInfo ai = new AdvancementInfo(e.getAdvancement());
-            String adv_name = ai.getTitle();
-            String adv_description = ai.getDescription();
-            Player player = e.getPlayer();
+        groups.forEach(group -> {
+            try {
+                AdvancementInfo ai = new AdvancementInfo(e.getAdvancement());
+                String adv_name = ai.getTitle();
+                String adv_description = ai.getDescription();
+                Player player = e.getPlayer();
 
-            String format = Configuration.USES_CONFIG.SEND_ADVANCEMENT.FORMAT;
-            if (adv_name != null) {
-                format = format.replace("%player%", player.getName())
-                        .replace("%name%", adv_name)
-                        .replace("%description%", adv_description);
-                format = PAPI.toPAPI(player, format);
-                MessageSender.sendGroup(format, bot, group);
+                String format = Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(
+                        Collections.singletonList("format")
+                )));
+                if (adv_name != null) {
+                    format = format.replace("%player%", player.getName())
+                            .replace("%name%", adv_name)
+                            .replace("%description%", adv_description);
+                    format = PAPI.toPAPI(player, format);
+                    MessageSender.sendGroup(format, bot, group);
+                }
+
+            } catch (Exception ex) {
+                Logger.logCatch(ex);
             }
-
-        } catch (Exception ex) {
-            Logger.logCatch(ex);
-        }
+        });
     }
 
 }

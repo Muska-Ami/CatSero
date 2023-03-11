@@ -23,7 +23,7 @@
  */
 package moe.xmcn.catsero.executors;
 
-import moe.xmcn.catsero.utils.Configuration;
+import moe.xmcn.catsero.CatSero;
 import moe.xmcn.catsero.executors.catsero.OnCommand;
 
 public interface Register {
