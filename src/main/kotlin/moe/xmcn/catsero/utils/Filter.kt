@@ -94,6 +94,7 @@ class Filter : Runnable {
                         res = hc.getRequest(url)
                     } catch (e: Exception) {
                         Logger.logTask("无法请求远程源屏蔽词: " + e.message + " | 源: " + url)
+                        return
                     }
 
                     if (res != null) {
@@ -101,6 +102,7 @@ class Filter : Runnable {
                             jsonData = JSON.parseObject(res).getJSONArray("words")
                         } catch (e: Exception) {
                             Logger.logTask("无法解析远程源屏蔽词数据: " + e.message + " | 源: " + url)
+                            return
                         }
 
                         if (jsonData != null) {
@@ -161,7 +163,7 @@ class Filter : Runnable {
                         Configuration.buildYaID(
                             iID, ArrayList<String>(
                                 listOf(
-                                    "filter", "auto-update", "enable", "interval"
+                                    "filter", "auto-update", "interval"
                                 )
                             )
                         )

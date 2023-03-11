@@ -85,11 +85,14 @@ public class Configuration {
      */
     public static String buildYaID(String useid, @NotNull ArrayList<String> arr) {
         StringBuilder opt = new StringBuilder();
+        StringBuilder finalOpt = opt;
         arr.forEach(it -> {
-            opt.append(it).append(".");
+            finalOpt.append(it).append(".");
         });
-        Logger.logDebug("构建一个节点：" + useid + ", " + opt);
-        return useid + "." + opt;
+        opt = new StringBuilder(opt.substring(0, opt.length() - 1));
+        String output = (useid + "." + opt);
+        Logger.logDebug("构建一个节点: " + useid + " - " + opt + ", 结果: " + output);
+        return output;
     }
 
     /**
@@ -103,10 +106,10 @@ public class Configuration {
                 "var", "bot"
         ))));
          */
-        String it = uses.getString(buildYaID(use, new ArrayList<>(Arrays.asList(
+        String it = getUses().getString(buildYaID(use, new ArrayList<>(Arrays.asList(
                 "var", "bot"
         ))));
-        Logger.logDebug(it);
+        Logger.logDebug("获取一个BotID: " + it);
         return it;
     }
 
@@ -127,7 +130,7 @@ public class Configuration {
         for (int i = configuration.size() - 1; i >= 0; i--) {
             if (!new File(formatPath(configuration.get(i), true)).exists()) {
                 //Logger.logWARN(cleanPath(configuration.get(i)));
-                INSTANCE.saveResource(cleanPath(configuration.get(i)), false);
+                INSTANCE.saveResource(formatPath(configuration.get(i), false), false);
                 Logger.logLoader("Save: " + cleanPath(configuration.get(i)));
             }
         }
@@ -149,9 +152,9 @@ public class Configuration {
      * @return 格式化后的标准路径
      */
     private static String formatPath(String code, boolean apdf) {
-        if (apdf) return code.replaceFirst("def://", INSTANCE.getDataFolder() + "/")
-                .replaceFirst("ext://", INSTANCE.getDataFolder() + "/extra-configs/")
-                .replaceFirst("mirai://", INSTANCE.getDataFolder() + "/mirai-configs/");
+        if (apdf) return code.replaceFirst("def://", INSTANCE.getDataFolder().getPath().replace("\\", "/") + "/")
+                .replaceFirst("ext://", INSTANCE.getDataFolder().getPath().replace("\\", "/") + "/extra-configs/")
+                .replaceFirst("mirai://", INSTANCE.getDataFolder().getPath().replace("\\", "/") + "/mirai-configs/");
         else return code.replaceFirst("def://", "/")
                 .replaceFirst("ext://", "/extra-configs/")
                 .replaceFirst("mirai://", "/mirai-configs/");

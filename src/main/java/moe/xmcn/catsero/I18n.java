@@ -47,8 +47,10 @@ public class I18n {
             for (int i = 0; i < arr.size(); i++) {
                 if (i != arr.size() - 1) {
                     lastObject = i18nJSON.getJSONObject(arr.get(i));
+                    Logger.logDebug(lastObject.toString());
                 } else {
                     result = lastObject.getString(arr.get(i));
+                    Logger.logDebug(result);
                 }
             }
         } catch (Exception e) {

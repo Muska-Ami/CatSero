@@ -46,7 +46,7 @@ public class OnCommonChatToQQ implements Listener {
     private final String ThisID = Configuration.USESID.CHAT_FORWARD;
     private final boolean enable;
     private final String bot;
-    private final String group;
+    private final List<String> groups;
     private String message;
     private String mst;
 
