@@ -21,9 +21,11 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.qCmd
+package moe.xmcn.catsero.uses.listeners.qCmd
 
+import moe.xmcn.catsero.CatSero
 import moe.xmcn.catsero.Configuration
+import moe.xmcn.catsero.I18n
 import moe.xmcn.catsero.events.OnQQFriendCommandEvent
 import moe.xmcn.catsero.events.OnQQGroupCommandEvent
 import moe.xmcn.catsero.utils.CommandSender
@@ -34,31 +36,40 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class OnRequestExecuteCommand(
-    private val enable: Boolean = Configuration.USES_CONFIG.QCMD.ENABLE,
-    private val bot: String = Configuration.USES_CONFIG.QCMD.MIRAI.BOT,
-    private val group: String = Configuration.USES_CONFIG.QCMD.MIRAI.GROUP
+    private val ThisID: String = Configuration.USESID.QCMD,
+    private val enable: Boolean = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, ArrayList<String>(
+        listOf(
+            "enable"
+        )))),
+    private val bot: String = Configuration.getUseMiraiBot(ThisID),
+    private val groups: List<String> = Configuration.getUseMiraiGroup(ThisID)
 ) : Listener {
 
+    private val i18n = I18n()
+    private var group: Long? = null
+
     @EventHandler
-    fun group(e: OnQQGroupCommandEvent) {
+    fun groupCommand(e: OnQQGroupCommandEvent) {
         if (
             e.command == "cmd"
-            && e.bot == Configuration.Interface.getBotCode(bot)
-            && e.group == Configuration.Interface.getGroupCode(group)
+            && Configuration().checkBot(e.bot, bot)
+            && Configuration().checkGroup(e.group, groups)
         ) {
             val sender = e.sender
             val args = e.arguments
+            group = e.group
             run(sender, args, false)
         }
     }
 
     @EventHandler
-    fun friend(e: OnQQFriendCommandEvent) {
+    fun friendCommand(e: OnQQFriendCommandEvent) {
         if (
             e.command.equals("cmd", true)
-            && e.bot == Configuration.Interface.getBotCode(bot)
+            && Configuration().checkBot(e.bot, bot)
         ) {
             val sender = e.sender
             val args = e.arguments
@@ -70,29 +81,35 @@ class OnRequestExecuteCommand(
         try {
             if (enable) {
                 Logger.logDebug("QCMD Friend: $isFriend")
-                if (Configuration.Interface.isQQOp(sender)) {
-                    // 读取命令原文
-                    val command = iterateArray(args)
+                if (Configuration().isQQOp(sender)) {
+                            // 读取命令原文
+                            val command = iterateArray(args)
 
-                    // 如果不是私聊则发一条提示
-                    if (!isFriend)
-                        MessageSender.sendGroup(Configuration.I18N.QQ.USE.QCMD.SUCCESS, bot, group)
+                            // 如果不是私聊则发一条提示
+                            if (!isFriend)
+                                MessageSender.sendGroup(i18n.getI18n(ArrayList(listOf(
+                                    "qq", "use", "qcmd", "success"
+                                ))), bot, group!!)
 
-                    // 设置信息
-                    CommandSender.setBot(bot)
-                    CommandSender.setFriend(sender)
+                            // 设置信息
+                            CommandSender.setBot(bot)
+                            CommandSender.setFriend(sender)
 
-                    // 执行
-                    MessageSender.sendFriend(
-                        "--- " + SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Date()) + " ---",
-                        bot,
-                        sender
-                    )
-                    executeCommand(command)
-                } else if (isFriend)
-                    MessageSender.sendFriend(Configuration.I18N.QQ.COMMAND.NO_PERMISSION, bot, sender)
-                else
-                    MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.NO_PERMISSION, bot, group)
+                            // 执行
+                            MessageSender.sendFriend(
+                                "--- " + SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Date()) + " ---",
+                                bot,
+                                sender
+                            )
+                            executeCommand(command)
+                        } else if (isFriend)
+                            MessageSender.sendFriend(i18n.getI18n(ArrayList(listOf(
+                                "qq", "command", "no-permission"
+                            ))), bot, sender)
+                        else
+                            MessageSender.sendGroup(i18n.getI18n(ArrayList(listOf(
+                                "qq", "command", "no-permission"
+                            ))), bot, group!!)
             }
         } catch (ex: Exception) {
             Logger.logCatch(ex)
@@ -105,7 +122,7 @@ class OnRequestExecuteCommand(
      */
     private fun executeCommand(command: String) {
         val cs = CommandSender()
-        Bukkit.getScheduler().runTask(Configuration.plugin) {
+        Bukkit.getScheduler().runTask(CatSero.INSTANCE) {
             Bukkit.dispatchCommand(cs, command)
         }
     }

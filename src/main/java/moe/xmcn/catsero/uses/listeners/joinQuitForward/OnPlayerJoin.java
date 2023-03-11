@@ -21,7 +21,7 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.joinQuitForward;
+package moe.xmcn.catsero.uses.listeners.joinQuitForward;
 
 import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.utils.Logger;
@@ -31,23 +31,33 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class OnPlayerJoin implements Listener {
 
+    private final String ThisID = Configuration.USESID.SEND_PLAYER_JOIN_QUIT;
     private final boolean enable;
     private final String bot;
-    private final String group;
+    private final List<String> groups;
 
     public OnPlayerJoin() {
-        this.enable = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.ENABLE;
-        this.bot = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.BOT;
-        this.group = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.GROUP;
+        this.enable = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                "enable"
+        ))));
+        this.bot = Configuration.getUseMiraiBot(ThisID);
+        this.groups = Configuration.getUseMiraiGroup(ThisID);
     }
 
     @EventHandler
     public void onGamePlayerJoinEvent(PlayerJoinEvent pje) {
         try {
             if (enable) {
-                if (Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.NEED_PERMISSION) {
+                if (Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                        "need-permission"
+                ))))) {
                     //权限模式
                     if (pje.getPlayer().hasPermission("catsero.send-player-join-quit.join"))
                         run(pje);
@@ -60,16 +70,20 @@ public class OnPlayerJoin implements Listener {
     }
 
     public void run(PlayerJoinEvent pje) {
-        try {
-            String player_name = pje.getPlayer().getName();
-            String join_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.JOIN;
-            join_message = join_message.replace("%player%", player_name);
-            join_message = PAPI.toPAPI(pje.getPlayer(), join_message);
-            MessageSender.sendGroup(join_message, bot, group);
+        groups.forEach(group -> {
+            try {
+                String player_name = pje.getPlayer().getName();
+                String join_message = Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
+                        "format", "join"
+                ))));
+                join_message = join_message.replace("%player%", player_name);
+                join_message = PAPI.toPAPI(pje.getPlayer(), join_message);
+                MessageSender.sendGroup(join_message, bot, group);
 
-        } catch (Exception ex) {
-            Logger.logCatch(ex);
-        }
+            } catch (Exception ex) {
+                Logger.logCatch(ex);
+            }
+        });
     }
 
 }

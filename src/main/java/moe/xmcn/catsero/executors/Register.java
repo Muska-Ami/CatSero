@@ -23,13 +23,13 @@
  */
 package moe.xmcn.catsero.executors;
 
-import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.utils.Configuration;
 import moe.xmcn.catsero.executors.catsero.OnCommand;
 
-public interface ExecutorRegister {
+public interface Register {
 
     static void register() {
-        Configuration.plugin.getServer().getPluginCommand("cms").setExecutor(new moe.xmcn.catsero.executors.cms.OnCommand());
-        Configuration.plugin.getServer().getPluginCommand("catsero").setExecutor(new OnCommand());
+        CatSero.INSTANCE.getServer().getPluginCommand("cms").setExecutor(new moe.xmcn.catsero.executors.cms.OnCommand());
+        CatSero.INSTANCE.getServer().getPluginCommand("catsero").setExecutor(new OnCommand());
     }
 }

@@ -24,8 +24,7 @@
 package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.events.bridge.EventCaller;
-import moe.xmcn.catsero.executors.ExecutorRegister;
-import moe.xmcn.catsero.listeners.ListenerRegister;
+import moe.xmcn.catsero.executors.Register;
 import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Filter;
 import moe.xmcn.catsero.utils.Logger;
@@ -37,10 +36,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class CatSero extends JavaPlugin {
+
+    public static CatSero INSTANCE;
 
     public static boolean findProcess(String processName) {
         BufferedReader bufferedReader = null;
@@ -86,7 +89,12 @@ public class CatSero extends JavaPlugin {
         }
 
          */
-        if (Configuration.USES_CONFIG.QWHITELIST.ENABLE) {
+        if (Configuration.getPlugin().getBoolean(Configuration.buildYaID(
+                Configuration.USESID.QWHITELIST,
+                new ArrayList<>(Collections.singletonList(
+                        "enable"
+                ))
+        ))) {
             Logger.logLoader("Init whitelist database...");
             WhiteListDatabase.initDatabase();
             Logger.logLoader("Init success.");
@@ -114,14 +122,15 @@ public class CatSero extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        // 反对 Notepad++
+        INSTANCE = this;
+
         if (Envrionment.Depends.MiraiMC) {
             Logger.logLoader("Registering Executors...");
-            ExecutorRegister.register();
+            Register.register();
             Logger.logLoader("Registered.");
 
             Logger.logLoader("Registering Listeners...");
-            ListenerRegister.register();
+            moe.xmcn.catsero.uses.Register.register();
             Logger.logLoader("Registered.");
 
             Logger.logLoader("Registering QQCommands...");
@@ -129,7 +138,7 @@ public class CatSero extends JavaPlugin {
             Configuration.registerQQCommand();
             Logger.logLoader("Registered.");
 
-            if (Configuration.PLUGIN.BSTATS) {
+            if (Configuration.getPlugin().getBoolean("bstats")) {
                 Logger.logINFO("Start bStats.");
                 new bStatsMetrics(this, 14767);
             }
@@ -142,12 +151,12 @@ public class CatSero extends JavaPlugin {
 
             Logger.logLoader("CatSero loaded.");
 
-            if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
+            if (Configuration.getPlugin().getBoolean("check-update.enable")) {
                 Logger.logLoader("Start checking update.");
-                getServer().getScheduler().runTaskTimerAsynchronously(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 20L);
+                getServer().getScheduler().runTaskTimerAsynchronously(this, new Updater(), 0L, Configuration.getPlugin().getLong("check-update.interval") * 20L);
                 getServer().getPluginManager().registerEvents(new Updater(), this);
             }
-            Logger.logLoader("Start filter auto-update.");
+
             Filter.startUpdate();
 
         } else {
@@ -158,7 +167,7 @@ public class CatSero extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Logger.logLoader("Stopping CatSero.");
+        Logger.logLoader("Disabling CatSero.");
         Logger.logINFO("If you love CatSero, don't forget to give it a Star on GitHub!");
     }
 

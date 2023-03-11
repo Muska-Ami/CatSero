@@ -31,26 +31,40 @@ import java.io.IOException;
 
 public class MessageSender {
 
+    private boolean httpApi() {
+        return Configuration.getPlugin().getBoolean("http-api");
+    }
+
     public static void sendGroup(String message, String bot, String group) throws IOException {
-        if (Configuration.PLUGIN.HTTP_API)
+        if (new MessageSender().httpApi())
             MiraiHttpAPI.INSTANCE.sendGroupMessage(
-                    MiraiHttpAPI.Bots.get(Configuration.Interface.getBotCode(bot)),
-                    Configuration.Interface.getGroupCode(group),
+                    MiraiHttpAPI.Bots.get(new Configuration().getBotCode(bot)),
+                    new Configuration().getGroupCode(group),
                     message
             );
         else
-            MiraiBot.getBot(Configuration.Interface.getBotCode(bot)).getGroup(Configuration.Interface.getGroupCode(group)).sendMessageMirai(message);
+            MiraiBot.getBot(new Configuration().getBotCode(bot)).getGroup(new Configuration().getGroupCode(group)).sendMessageMirai(message);
+    }
+    public static void sendGroup(String message, String bot, long group) throws IOException {
+        if (new MessageSender().httpApi())
+            MiraiHttpAPI.INSTANCE.sendGroupMessage(
+                    MiraiHttpAPI.Bots.get(new Configuration().getBotCode(bot)),
+                    group,
+                    message
+            );
+        else
+            MiraiBot.getBot(new Configuration().getBotCode(bot)).getGroup(group).sendMessageMirai(message);
     }
 
     public static void sendFriend(String message, String bot, long friend) throws IOException {
-        if (Configuration.PLUGIN.HTTP_API)
+        if (new MessageSender().httpApi())
             MiraiHttpAPI.INSTANCE.sendFriendMessage(
-                    MiraiHttpAPI.Bots.get(Configuration.Interface.getBotCode(bot)),
+                    MiraiHttpAPI.Bots.get(new Configuration().getBotCode(bot)),
                     friend,
                     message
             );
         else
-            MiraiBot.getBot(Configuration.Interface.getBotCode(bot)).getFriend(friend).sendMessageMirai(message);
+            MiraiBot.getBot(new Configuration().getBotCode(bot)).getFriend(friend).sendMessageMirai(message);
     }
 
 }

@@ -21,9 +21,10 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.getTPS;
+package moe.xmcn.catsero.uses.listeners.getTPS;
 
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.I18n;
 import moe.xmcn.catsero.events.OnQQGroupCommandEvent;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
@@ -33,17 +34,26 @@ import org.bukkit.event.Listener;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class OnGroupMessageRequestTPS implements Listener {
 
+    private final I18n i18n = new I18n();
+
+    private final String ThisID = Configuration.USESID.GET_TPS;
     private final boolean enable;
     private final String bot;
-    private final String group;
+    private final List<String> groups;
 
     public OnGroupMessageRequestTPS() {
-        this.enable = Configuration.USES_CONFIG.GET_TPS.ENABLE;
-        this.bot = Configuration.USES_CONFIG.GET_TPS.MIRAI.BOT;
-        this.group = Configuration.USES_CONFIG.GET_TPS.MIRAI.GROUP;
+        this.enable = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                "enable"
+        ))));
+        this.bot = Configuration.getUseMiraiBot(ThisID);
+        this.groups = Configuration.getUseMiraiGroup(ThisID);
     }
 
     @EventHandler
@@ -54,9 +64,10 @@ public class OnGroupMessageRequestTPS implements Listener {
             if (
                     enable
                             && e.getCommand$CatSero().equalsIgnoreCase("tps")
-                            && e.getBot$CatSero() == Configuration.Interface.getBotCode(bot)
-                            && e.getGroup$CatSero() == Configuration.Interface.getGroupCode(group)
+                            && new Configuration().checkBot(e.getBot$CatSero(), bot)
+                            && new Configuration().checkGroup(e.getGroup$CatSero(), groups)
             ) {
+                long group = e.getGroup$CatSero();
                 Logger.logDebug("GET_TPS");
                 if (args.length == 1) {
                     // 处理TPS
@@ -73,10 +84,14 @@ public class OnGroupMessageRequestTPS implements Listener {
                             MessageSender.sendGroup("TPS: " + around_tps, bot, group);
                             break;
                         default:
-                            MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
+                            MessageSender.sendGroup(i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                    "qq", "command", "invalid-option"
+                            ))), bot, group);
                     }
                 } else
-                    MessageSender.sendGroup(Configuration.I18N.QQ.COMMAND.INVALID_OPTION, bot, group);
+                    MessageSender.sendGroup(i18n.getI18n(new ArrayList<>(Arrays.asList(
+                            "qq", "command", "invalid-option"
+                    ))), bot, group);
             }
 
         } catch (Exception ex) {

@@ -23,6 +23,7 @@
  */
 package moe.xmcn.catsero.utils;
 
+import moe.xmcn.catsero.CatSero;
 import moe.xmcn.catsero.Configuration;
 
 import java.util.Arrays;
@@ -31,12 +32,16 @@ import java.util.logging.Level;
 
 public interface Logger {
 
+    static boolean enableDebug() {
+        return Configuration.getPlugin().getBoolean("debug-log");
+    }
+
     static void logINFO(String log) {
-        Configuration.plugin.getLogger().log(Level.INFO, log);
+        CatSero.INSTANCE.getLogger().log(Level.INFO, log);
     }
 
     static void logWARN(String warn) {
-        Configuration.plugin.getLogger().log(Level.WARNING, warn);
+        CatSero.INSTANCE.getLogger().log(Level.WARNING, warn);
     }
 
     static void logLoader(String msg) {
@@ -60,12 +65,12 @@ public interface Logger {
     }
 
     static void logDebug(String msg) {
-        if (Configuration.PLUGIN.DEBUG_LOG)
+        if (enableDebug())
             logINFO("[Debug] " + msg);
     }
 
     static void logDebug(List<String> msgs) {
-        if (Configuration.PLUGIN.DEBUG_LOG)
+        if (enableDebug())
             for (int i = 1; i < msgs.toArray().length + 1; i++) {
                 logINFO("[Debug] " + msgs.toArray()[i - 1]);
             }

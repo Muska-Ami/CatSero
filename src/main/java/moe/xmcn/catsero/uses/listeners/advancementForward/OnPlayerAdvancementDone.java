@@ -21,10 +21,10 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.advancementForward;
+package moe.xmcn.catsero.uses.listeners.advancementForward;
 
 import me.croabeast.advancementinfo.AdvancementInfo;
-import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.utils.Configuration;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
 import moe.xmcn.catsero.utils.PAPI;

@@ -2,6 +2,7 @@ package moe.xmcn.catsero.utils
 
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONArray
+import moe.xmcn.catsero.CatSero
 import moe.xmcn.catsero.Configuration
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -19,11 +20,19 @@ class Filter : Runnable {
             get() = fullQQWords
 
         fun updateList() {
-            val remoteUrls = Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.IMPORT.REMOTE
-            val localFiles = Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.IMPORT.LOCAL
+            val remoteUrls = Configuration.getUses().getStringList(Configuration.buildYaID(iID, ArrayList<String>(listOf(
+                "filter", "list", "import", "remote"
+            ))))
+            val localFiles = Configuration.getUses().getStringList(Configuration.buildYaID(iID, ArrayList<String>(listOf(
+                "filter", "list", "import", "local"
+            ))))
             val publicWords = ArrayList<String>()
-            val mcWords = Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.VIA.TO_MC
-            val qqWords = Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.VIA.TO_QQ
+            val mcWords = Configuration.getUses().getStringList(Configuration.buildYaID(iID, ArrayList<String>(listOf(
+                "filter", "list", "via", "to-mc"
+            ))))
+            val qqWords = Configuration.getUses().getStringList(Configuration.buildYaID(iID, ArrayList<String>(listOf(
+                "filter", "list", "via", "to-qq"
+            ))))
 
             val hc = HttpClient()
 
@@ -90,6 +99,7 @@ class Filter : Runnable {
             if (lastImportLength != publicWords.size) {
                 Logger.logTask("成功更新了 " + (publicWords.size - lastImportLength) + " 个屏蔽词，当前屏蔽词数量: " + publicWords.size)
                 Logger.logDebug("屏蔽词列表: $publicWords")
+                lastImportLength = publicWords.size
             }
         }
     }
@@ -100,18 +110,28 @@ class Filter : Runnable {
 
     companion object {
         @JvmStatic
-        private val lastImportLength: Int = 0
+        val iID = Configuration.USESID.CHAT_FORWARD
+        @JvmStatic
+        private var lastImportLength: Int = 0
         @JvmStatic
         fun startUpdate() {
             // 聊天转发
-            if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.AUTO_UPDATE.ENABLE)
-                Configuration.plugin.server.scheduler.runTaskTimerAsynchronously(
-                    Configuration.plugin,
+            if (Configuration.getUses().getBoolean(Configuration.buildYaID(iID, ArrayList<String>(listOf(
+                    "filter", "auto-update", "enable"
+                ))))) {
+                Logger.logLoader("Start filter auto-update.")
+                CatSero.INSTANCE.server.scheduler.runTaskTimerAsynchronously(
+                    CatSero.INSTANCE,
                     Filter(),
                     0L,
-                    Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.AUTO_UPDATE.INTERVAL * 20L
+                    Configuration.getUses().getLong(Configuration.buildYaID(iID, ArrayList<String>(listOf(
+                        "filter", "auto-update", "enable", "interval"
+                    )))) * 20L
                 )
-            else CHAT_FORWARD().updateList()
+            } else {
+                Logger.logLoader("Update filter words.")
+                CHAT_FORWARD().updateList()
+            }
         }
     }
 

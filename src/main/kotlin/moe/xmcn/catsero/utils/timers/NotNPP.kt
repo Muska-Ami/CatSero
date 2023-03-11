@@ -24,7 +24,6 @@
 package moe.xmcn.catsero.utils.timers
 
 import moe.xmcn.catsero.CatSero
-import moe.xmcn.catsero.Configuration
 import moe.xmcn.catsero.utils.Logger
 import org.bukkit.Bukkit
 import java.util.*
@@ -42,7 +41,7 @@ class NotNPP : Runnable {
                 "- Notepad--：https://gitee.com/cxasm/notepad--"
             )
             Logger.logWARN(fucknpp)
-            Configuration.plugin.server.dispatchCommand(Bukkit.getConsoleSender(), "stop")
+            CatSero.INSTANCE.server.dispatchCommand(Bukkit.getConsoleSender(), "stop")
         }
     }
 

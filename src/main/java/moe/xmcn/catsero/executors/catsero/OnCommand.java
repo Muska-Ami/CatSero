@@ -23,7 +23,7 @@
  */
 package moe.xmcn.catsero.executors.catsero;
 
-import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.CatSero;
 import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.Player;
@@ -99,7 +99,7 @@ public class OnCommand implements TabExecutor {
                                                             && Player.getPlayer(args[2]).isOnline()
                                             ) {
                                                 Bukkit.getScheduler().runTask(
-                                                        Configuration.plugin,
+                                                        CatSero.INSTANCE,
                                                         () -> Player.getOnlinePlayer(args[2])
                                                                 .kickPlayer(
                                                                         ChatColor.translateAlternateColorCodes(
@@ -127,7 +127,7 @@ public class OnCommand implements TabExecutor {
                                                                 && Player.getPlayer(args[3]).isOnline()
                                                 ) {
                                                     Bukkit.getScheduler().runTask(
-                                                            Configuration.plugin,
+                                                            CatSero.INSTANCE,
                                                             () -> Player.getOnlinePlayer(args[3])
                                                                     .kickPlayer(
                                                                             ChatColor.translateAlternateColorCodes(
@@ -152,7 +152,7 @@ public class OnCommand implements TabExecutor {
                                                                 && Player.getPlayer(Player.getUUIDByCode(Long.parseLong(args[3]))).isOnline()
                                                 ) {
                                                     Bukkit.getScheduler().runTask(
-                                                            Configuration.plugin,
+                                                            CatSero.INSTANCE,
                                                             () -> Player.getOnlinePlayer(Player.getUUIDByCode(Long.parseLong(args[3])))
                                                                     .kickPlayer(
                                                                             ChatColor.translateAlternateColorCodes(
@@ -177,7 +177,7 @@ public class OnCommand implements TabExecutor {
                     case "reload":
                         if (args.length == 1) {
                             if (sender.hasPermission("catsero.admin")) {
-                                Configuration.plugin.reloadConfig();
+                                CatSero.INSTANCE.reloadConfig();
                                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.RELOAD.SUCCESS));
                             } else
                                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.NO_PERMISSION));

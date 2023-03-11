@@ -21,7 +21,7 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.newGroupMemberNotification;
+package moe.xmcn.catsero.uses.listeners.newGroupMemberNotification;
 
 import me.dreamvoid.miraimc.bukkit.event.group.member.MiraiMemberJoinEvent;
 import moe.xmcn.catsero.Configuration;
@@ -30,36 +30,47 @@ import moe.xmcn.catsero.utils.MessageSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class OnMemberJoin implements Listener {
 
+    private final String ThisID = Configuration.USESID.NEW_GROUP_MEMBER_NOTIFICATION;
     private final boolean enable;
     private final String bot;
-    private final String group;
+    private final List<String> groups;
 
     public OnMemberJoin() {
-        this.enable = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.ENABLE;
-        this.bot = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.BOT;
-        this.group = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.GROUP;
+        this.enable = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                "enable"
+        ))));
+        this.bot = Configuration.getUseMiraiBot(ThisID);
+        this.groups = Configuration.getUseMiraiGroup(ThisID);
     }
 
     @EventHandler
     public void onMemberJoin(MiraiMemberJoinEvent e) {
-        try {
             if (
                     enable
-                            && e.getBotID() == Configuration.Interface.getBotCode(bot)
-                            && e.getGroupID() == Configuration.Interface.getGroupCode(group)
+                            && new Configuration().checkBot(e.getBotID(), bot)
+                            && new Configuration().checkGroup(e.getGroupID(), groups)
             ) {
-                // 格式
-                String format = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.FORMAT;
-                format = format.replace("%at%", "[mirai:at:" + e.getMember().getId() + "]")
-                        .replace("%code%", String.valueOf(e.getMember().getId()))
-                        .replace("%name%", e.getMember().getNick());
-                MessageSender.sendGroup(format, bot, group);
+                long group = e.getGroupID();
+                    // 格式
+                    String format = Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                            "format"
+                    ))));
+                    format = format.replace("%at%", "[mirai:at:" + e.getMember().getId() + "]")
+                            .replace("%code%", String.valueOf(e.getMember().getId()))
+                            .replace("%name%", e.getMember().getNick());
+                    try {
+                        MessageSender.sendGroup(format, bot, group);
+                    } catch (IOException ex) {
+                        Logger.logCatch(ex);
+                    }
             }
-        } catch (Exception ex) {
-            Logger.logCatch(ex);
-        }
     }
 
 }

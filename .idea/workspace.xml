@@ -7,50 +7,57 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="fix ci">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/Filter.kt" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[ci skip] 没整完 但是我就是要推送（">
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/I18n.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/Register.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/qWhitelist/RefuseNoWhiteList.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/qWhitelist/SelfApplication.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/qWhitelist/WhiteListEditor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/timers/infoPrint/PrintTitle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/config.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Updater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Updater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/EventCaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/EventCaller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/ParseTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/ParseTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/ListenerRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/ListenerRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/advancementforward/OnPlayerAdvancementDone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/advancementForward/OnPlayerAdvancementDone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatforward/OnCommonChatToQQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatForward/OnCommonChatToQQ.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatforward/OnGroupMessageToMC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatForward/OnGroupMessageToMC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatforward/OnTrChatToQQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatForward/OnTrChatToQQ.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/deadthforward/OnPlayerDeath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/deathForward/OnPlayerDeath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/getonlinelist/OnGroupMessageRequestList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/getOnlineList/OnGroupMessageRequestList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/gettps/OnGroupMessageRequestTPS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/getTPS/OnGroupMessageRequestTPS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/joinquitforward/OnPlayerJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/joinQuitForward/OnPlayerJoin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/joinquitforward/OnPlayerQuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/joinQuitForward/OnPlayerQuit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/newgroupmemberwelcome/OnMemberJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/newGroupMemberNotification/OnMemberJoin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/CommandSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/CommandSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/HttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/HttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/ExecutorRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/OnCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/OnCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/OnCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/OnCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/ListenerRegister.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/advancementForward/OnPlayerAdvancementDone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/advancementForward/OnPlayerAdvancementDone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatForward/OnCommonChatToQQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/chatForward/OnCommonChatToQQ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatForward/OnGroupMessageToMC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/chatForward/OnGroupMessageToMC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatForward/OnTrChatToQQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/chatForward/OnTrChatToQQ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/deathForward/OnPlayerDeath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/deathForward/OnPlayerDeath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/getOnlineList/OnGroupMessageRequestList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/getOnlineList/OnGroupMessageRequestList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/getTPS/OnGroupMessageRequestTPS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/getTPS/OnGroupMessageRequestTPS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/joinQuitForward/OnPlayerJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/joinQuitForward/OnPlayerJoin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/joinQuitForward/OnPlayerQuit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/joinQuitForward/OnPlayerQuit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/newGroupMemberNotification/OnMemberJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/newGroupMemberNotification/OnMemberJoin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Envrionment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Envrionment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/TPSCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/timers/TPSCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/bStatsMetrics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/timers/bStatsMetrics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/groupmemberleave/OnMemberLeave.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/groupMemberLeaveNotification/OnMemberLeave.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qcmd/OnRequestExecuteCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qCmd/OnRequestExecuteCommand.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/RefuseNoWhiteList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qWhitelist/RefuseNoWhiteList.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/SelfApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qWhitelist/SelfApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qwhitelist/WhiteListEditor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qWhitelist/WhiteListEditor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/NotNPP.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/timers/NotNPP.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/MessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/MessageSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/groupMemberLeaveNotification/OnMemberLeave.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/groupMemberLeaveNotification/OnMemberLeave.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qCmd/OnRequestExecuteCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/qCmd/OnRequestExecuteCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qWhitelist/RefuseNoWhiteList.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qWhitelist/SelfApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/listeners/qWhitelist/WhiteListEditor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/Filter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/Filter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/timers/NotNPP.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/timers/NotNPP.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/uses-config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/uses-config.yml" afterDir="false" />
+    </list>
+    <list id="45bed207-ad23-4ef8-a669-cd337a1995e2" name="Administrator 进行的变更" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatForward/OnCommonChatToQQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/chatForward/OnCommonChatToQQ.java" afterDir="false" />
+    </list>
+    <list id="d951a6b9-f1d5-40b7-ac0b-f887fc594dbe" name="XiaMoHuaHuo_CN 进行的变更" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/listeners/chatForward/OnCommonChatToQQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/chatForward/OnCommonChatToQQ.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,8 +110,8 @@
       <list>
         <option value="AnnotationType" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Kotlin Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -142,11 +149,34 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/chatForward/OnCommonChatToQQ.java">
+      <ranges>
+        <range start1="23" end1="24" start2="23" end2="24" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="25" end1="25" start2="25" end2="26" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="26" end1="26" start2="27" end2="28" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="34" end1="34" start2="36" end2="41" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="37" end1="37" start2="44" end2="46" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="39" end1="40" start2="48" end2="49" changelist="d951a6b9-f1d5-40b7-ac0b-f887fc594dbe" />
+        <range start1="41" end1="41" start2="50" end2="51" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="43" end1="46" start2="53" end2="58" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="60" end1="62" start2="72" end2="78" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="81" end1="82" start2="97" end2="98" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="86" end1="88" start2="102" end2="108" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="89" end1="97" start2="109" end2="121" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="98" end1="101" start2="122" end2="125" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="102" end1="107" start2="126" end2="135" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="108" end1="115" start2="136" end2="151" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="116" end1="119" start2="152" end2="156" changelist="8258646c-1a2f-4913-bc04-e0dd65b8fe75" />
+        <range start1="120" end1="121" start2="157" end2="157" changelist="45bed207-ad23-4ef8-a669-cd337a1995e2" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2HnjFcJO4Kc55uQ8nO1lqZImsDk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -160,13 +190,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "jdk.selected.JAVA_MODULE": "corretto-1.8",
-    "last_directory_selection": "F:/CatSero/src/main/kotlin/moe/xmcn/catsero/utils",
+    "last_directory_selection": "F:/CatSero/src/main/java/moe/xmcn/catsero",
     "last_opened_file_path": "F:/CatSero/server-test/plugins",
     "project.structure.last.edited": "模块",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "settings.sync"
+    "settings.editor.selected.configurable": "CodeWithMe"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -187,10 +217,11 @@
       <recent name="moe.xmcn.catsero.utils.timers" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="moe.xmcn.catsero.uses" />
+      <recent name="moe.xmcn.catsero.timers" />
+      <recent name="moe.xmcn.catsero.utils" />
       <recent name="moe.xmcn.catsero.utils.timers" />
       <recent name="moe.xmcn.catsero.events.bridge" />
-      <recent name="moe.xmcn.catsero" />
-      <recent name="moe.xmcn.catsero.commands.catsero" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="moe.xmcn.catsero.events" />
@@ -202,7 +233,7 @@
       <module name="CatSero.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="moe.xmcn.catsero.*" />
+          <option name="PATTERN" value="moe.xmcn.catsero.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -295,13 +326,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668927643545</updated>
-    </task>
-    <task id="LOCAL-00034" summary="聊天转发已完成，未适配TrChat&#10;还没吃早餐就起来赶工了（">
-      <created>1671866789827</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1671866789827</updated>
     </task>
     <task id="LOCAL-00035" summary="聊天转发适配TrChat">
       <created>1671876039566</created>
@@ -639,7 +663,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678466065873</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="2.4 首次提交&#10;优化聊天转发屏蔽词请求方案">
+      <created>1678500732660</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1678500732662</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -660,8 +691,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="修复与优化：修复无白名单能加入，检索白名单QQ出现错误禁止玩家加入，修复聊天转发HTTP GET屏蔽词失败时添加屏蔽词失败导致错误，将聊天转发放入ThreadPool中解决干扰聊天的问题，新增退群提示" />
-    <MESSAGE value="修复与优化：修复无白名单能加入，检索白名单QQ出现错误禁止玩家加入，修复聊天转发HTTP GET屏蔽词失败时添加屏蔽词失败导致错误 #79 ，将聊天转发放入ThreadPool中解决干扰聊天的问题，新增退群提示" />
     <MESSAGE value="修复：修复未开启白名单时玩家加入报错" />
     <MESSAGE value="Notepad++ 爪巴" />
     <MESSAGE value="现在打开 Notepad++ 会自动停止服务器，添加白名单名称正则" />
@@ -685,7 +714,9 @@
     <MESSAGE value="build" />
     <MESSAGE value="finish all jobs" />
     <MESSAGE value="fix ci" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix ci" />
+    <MESSAGE value="2.4 首次提交&#10;优化聊天转发屏蔽词请求方案" />
+    <MESSAGE value="[ci skip] 没整完 但是我就是要推送（" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ci skip] 没整完 但是我就是要推送（" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

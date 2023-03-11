@@ -21,27 +21,35 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.deathForward;
+package moe.xmcn.catsero.uses.listeners.deathForward;
 
 import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
 import moe.xmcn.catsero.utils.PAPI;
+import org.bukkit.configuration.MemorySection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class OnPlayerDeath implements Listener {
 
+    private final String ThisID = Configuration.USESID.SEND_PLAYER_DEATH;
     private final boolean enable;
     private final String bot;
-    private final String group;
+    private final List<String> groups;
 
     public OnPlayerDeath() {
-        this.enable = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.ENABLE;
-        this.bot = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.BOT;
-        this.group = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.GROUP;
+        this.enable = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                "enable"
+        ))));
+        this.bot = Configuration.getUseMiraiBot(ThisID);
+        this.groups = Configuration.getUseMiraiGroup(ThisID);
     }
 
     @EventHandler
@@ -49,7 +57,9 @@ public class OnPlayerDeath implements Listener {
         try {
             if (enable) {
                 // 检查权限
-                if (Configuration.USES_CONFIG.SEND_PLAYER_DEATH.NEED_PERMISSION) {
+                if (Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                        "need-permission"
+                ))))) {
                     if (e.getEntity().hasPermission("catsero.send-death"))
                         run(e);
                 } else
@@ -61,20 +71,24 @@ public class OnPlayerDeath implements Listener {
     }
 
     public void run(PlayerDeathEvent e) {
-        try {
-            Player player = e.getEntity();
-            String death_message = e.getDeathMessage();
+        groups.forEach(group -> {
+            try {
+                Player player = e.getEntity();
+                String death_message = e.getDeathMessage();
 
-            String message = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.FORMAT;
+                String message = Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                        "format"
+                ))));
 
-            message = message.replace("%player%", player.getName())
-                    .replace("%message%", death_message);
-            message = PAPI.toPAPI(player, message);
-            MessageSender.sendGroup(message, bot, group);
+                message = message.replace("%player%", player.getName())
+                        .replace("%message%", death_message);
+                message = PAPI.toPAPI(player, message);
+                MessageSender.sendGroup(message, bot, group);
 
-        } catch (Exception ex) {
-            Logger.logCatch(ex);
-        }
+            } catch (Exception ex) {
+                Logger.logCatch(ex);
+            }
+        });
     }
 
 }

@@ -25,7 +25,6 @@ package moe.xmcn.catsero.utils;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import moe.xmcn.catsero.Configuration;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -76,7 +75,7 @@ public interface WhiteListDatabase {
             hc.setDriverClassName(Configuration.EXTRA_CONFIG.SQL.JDBC.SQLITE_CLASS_NAME);
             hc.setJdbcUrl(
                     "jdbc:sqlite:" +
-                            Configuration.plugin.getDataFolder() +
+                            CatSero.INSTANCE.getDataFolder() +
                             "/whitelist.db"
             );
             hc.setAutoCommit(false);

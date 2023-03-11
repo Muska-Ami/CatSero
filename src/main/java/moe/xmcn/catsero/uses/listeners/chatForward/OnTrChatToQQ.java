@@ -21,11 +21,12 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.chatForward;
+package moe.xmcn.catsero.uses.listeners.chatForward;
 
 import me.arasple.mc.trchat.api.event.TrChatEvent;
 import me.arasple.mc.trchat.module.display.ChatSession;
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.I18n;
 import moe.xmcn.catsero.utils.Filter;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
@@ -34,17 +35,25 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class OnTrChatToQQ implements Listener {
 
+    private final I18n i18n = new I18n();
+    private final String ThisID = Configuration.USESID.CHAT_FORWARD;
     private final boolean enable;
     private final String bot;
-    private final String group;
+    private final List<String> groups;
     private String message;
 
     public OnTrChatToQQ() {
-        this.enable = Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE;
-        this.bot = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT;
-        this.group = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP;
+        this.enable = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                "enable"
+        ))));
+        this.bot = Configuration.getUseMiraiBot(ThisID);
+        this.groups = Configuration.getUseMiraiGroup(ThisID);
     }
 
     @EventHandler
@@ -82,7 +91,7 @@ public class OnTrChatToQQ implements Listener {
                         Logger.logCatch(ex);
                     }
                 }
-            }.runTaskAsynchronously(Configuration.plugin);
+            }.runTaskAsynchronously(CatSero.INSTANCE);
         }
     }
 

@@ -21,7 +21,7 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.getOnlineList;
+package moe.xmcn.catsero.uses.listeners.getOnlineList;
 
 import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.events.OnQQGroupCommandEvent;
@@ -32,19 +32,25 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class OnGroupMessageRequestList implements Listener {
 
+    private final String ThisID = Configuration.USESID.GET_ONLINE_LIST;
     private final boolean enable;
     private final String bot;
-    private final String group;
+    private final List<String> groups;
     private String player_list = null;
 
     public OnGroupMessageRequestList() {
-        this.enable = Configuration.USES_CONFIG.GET_ONLINE_LIST.ENABLE;
-        this.bot = Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.BOT;
-        this.group = Configuration.USES_CONFIG.GET_ONLINE_LIST.MIRAI.GROUP;
+        this.enable = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                "enable"
+        ))));
+        this.bot = Configuration.getUseMiraiBot(ThisID);
+        this.groups = Configuration.getUseMiraiGroup(ThisID);
     }
 
 
@@ -55,16 +61,19 @@ public class OnGroupMessageRequestList implements Listener {
             if (
                     enable
                             && e.getCommand$CatSero().equalsIgnoreCase("list")
-                            && e.getBot$CatSero() == Configuration.Interface.getBotCode(bot)
-                            && e.getGroup$CatSero() == Configuration.Interface.getGroupCode(group)
+                            && new Configuration().checkBot(e.getBot$CatSero(), bot)
+                            && new Configuration().checkGroup(e.getGroup$CatSero(), groups)
             ) {
+                long group = e.getGroup$CatSero();
                 Logger.logDebug("GET_ONLINE_LIST");
                 List<Player> list = moe.xmcn.catsero.utils.Player.getOnlinePlayers();
 
                 String format;
 
                 // 0
-                format = Configuration.USES_CONFIG.GET_ONLINE_LIST.FORMAT_0;
+                format = Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
+                        "format", "0"
+                ))));
                 format = format.replace("%count%", String.valueOf(list.toArray().length))
                         .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()));
                 MessageSender.sendGroup(format, bot, group);
@@ -74,7 +83,9 @@ public class OnGroupMessageRequestList implements Listener {
                     list.forEach(it -> player_list += it.getName() + ", ");
                     player_list = player_list.substring(4, player_list.length() - 2);
 
-                    format = Configuration.USES_CONFIG.GET_ONLINE_LIST.FORMAT_1;
+                    format = Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
+                            "format", "1"
+                    ))));
                     format = format.replace("%count%", String.valueOf(list.toArray().length))
                             .replace("%max%", String.valueOf(Bukkit.getMaxPlayers()))
                             .replace("%list%", player_list);

@@ -48,7 +48,7 @@ public class Updater implements Runnable, Listener {
         HttpClient hc = new HttpClient();
         String data = null;
         try {
-            data = hc.getRequest(Configuration.PLUGIN.CHECK_UPDATE.API_URL);
+            data = hc.getRequest(Configuration.getPlugin().getString("check-update.api-url"));
         } catch (IOException ignored) {
         }
         JSONObject object = JSON.parseObject(data);
@@ -59,11 +59,11 @@ public class Updater implements Runnable, Listener {
                     object.getJSONObject("beta").getString("jar_zip"),
                     object.getJSONObject("beta").getString("full_zip")
             ).toArray(new String[0]);
-            if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest")) {
+            if (Configuration.getPlugin().getString("check-update.mode").equalsIgnoreCase("latest")) {
                 Logger.logINFO("CatSero latest version: " + latest_version);
                 if (!now_version.equals(latest_version))
                     Logger.logINFO("Your version is not latest, your version: " + now_version);
-            } else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta"))
+            } else if (Configuration.getPlugin().getString("check-update.mode").equalsIgnoreCase("beta"))
                 Logger.logINFO(
                         "CatSero actions build:" +
                                 " \nJar Artifact - " + beta_version[0] +
@@ -76,7 +76,7 @@ public class Updater implements Runnable, Listener {
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         if (player.isOp()) {
-            if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest") && latest_version != null && !now_version.equals(latest_version))
+            if (Configuration.getPlugin().getString("check-update.mode").equalsIgnoreCase("latest") && latest_version != null && !now_version.equals(latest_version))
                 player.sendMessage(
                         ChatColor.translateAlternateColorCodes(
                                 '&',
@@ -85,7 +85,7 @@ public class Updater implements Runnable, Listener {
                                         "&b, your version: &e" + now_version
                         )
                 );
-            else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta") && beta_version != null)
+            else if (Configuration.getPlugin().getString("check-update.mode").equalsIgnoreCase("beta") && beta_version != null)
                 player.sendMessage(
                         ChatColor.translateAlternateColorCodes(
                                 '&',

@@ -23,7 +23,7 @@
  */
 package moe.xmcn.catsero.events.bridge;
 
-import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.utils.Configuration;
 import moe.xmcn.catsero.utils.Logger;
 import org.jetbrains.annotations.NotNull;
 

@@ -23,7 +23,6 @@
  */
 package moe.xmcn.catsero.executors.cms;
 
-import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
 import org.bukkit.ChatColor;

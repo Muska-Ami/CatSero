@@ -21,11 +21,12 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.chatForward;
+package moe.xmcn.catsero.uses.listeners.chatForward;
 
 import me.dreamvoid.miraimc.api.MiraiMC;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.I18n;
 import moe.xmcn.catsero.utils.Filter;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.Player;
@@ -34,17 +35,26 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class OnGroupMessageToMC implements Listener {
 
+    private final I18n i18n = new I18n();
+    private final String ThisID = Configuration.USESID.CHAT_FORWARD;
     private final boolean enable;
     private final String bot;
-    private final String group;
+    private final List<String> groups;
     private String message;
 
     public OnGroupMessageToMC() {
-        this.enable = Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE;
-        this.bot = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT;
-        this.group = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP;
+        this.enable = Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Collections.singletonList(
+                "enable"
+        ))));
+        this.bot = Configuration.getUseMiraiBot(ThisID);
+        this.groups = Configuration.getUseMiraiGroup(ThisID);
     }
 
     @EventHandler
@@ -52,15 +62,19 @@ public class OnGroupMessageToMC implements Listener {
         try {
             if (
                     enable
-                            && e.getBotID() == Configuration.Interface.getBotCode(bot)
-                            && e.getGroupID() == Configuration.Interface.getGroupCode(group)
+                            && new Configuration().checkBot(e.getBotID(), bot)
+                            && new Configuration().checkGroup(e.getGroupID(), groups)
             ) {
                 message = e.getMessage();
 
                 // Filter
-                if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
+                if (Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
+                        "filter", "enable"
+                ))))) {
                     new Filter.CHAT_FORWARD().getMCWords().forEach(
-                            it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE)
+                            it -> message = message.replace(it, Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
+                                    "filter", "replace"
+                            )))))
                     );
                     run(e, message);
                 /*
@@ -91,10 +105,14 @@ public class OnGroupMessageToMC implements Listener {
                             && !message.equals("\"ver\"")
                             && !message.endsWith("\"}")
             ) {
-                String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_MC;
+                String format = Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
+                        "format", "to-mc"
+                ))));
 
                 // 清理样式代码
-                if (Configuration.USES_CONFIG.CHAT_FORWARD.CLEAN_STYLECODE.TO_MC)
+                if (Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
+                        "clean-stylecode", "to-mc"
+                )))))
                     message = ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', message));
 
                 format = format.replace("%message%", message);
@@ -106,7 +124,9 @@ public class OnGroupMessageToMC implements Listener {
                     name = e.getSenderName();
                 }
                 if (
-                        Configuration.USES_CONFIG.CHAT_FORWARD.USE_BIND
+                        Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
+                            "clean-stylecode", "use-bind"
+                        ))))
                                 && MiraiMC.getBind(e.getSenderID()) != null
                 )
                     name = Player.getPlayer(MiraiMC.getBind(e.getSenderID())).getName();
@@ -117,18 +137,30 @@ public class OnGroupMessageToMC implements Listener {
                 int sender_permission = e.getSenderPermission();
                 switch (sender_permission) {
                     case 0:
-                        format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.MEMBER);
+                        format = format.replace("%sender_permission%", i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                "minecraft", "call", "member"
+                        ))));
                         break;
                     case 1:
-                        format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.ADMIN);
+                        format = format.replace("%sender_permission%", i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                "minecraft", "call", "admin"
+                        ))));
                         break;
                     case 2:
-                        format = format.replace("%sender_permission%", Configuration.I18N.QQ.CALL.OWNER);
+                        format = format.replace("%sender_permission%", i18n.getI18n(new ArrayList<>(Arrays.asList(
+                                "minecraft", "call", "owner"
+                        ))));
                         break;
                 }
-                if (Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.ENABLE) {
-                    if (message.startsWith(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_MC))
-                        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format.replaceFirst(Configuration.USES_CONFIG.CHAT_FORWARD.HEADER.PREFIX.TO_MC, "")));
+                if (Configuration.getUses().getBoolean(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
+                        "header", "enable"
+                ))))) {
+                    if (message.startsWith(Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
+                            "header", "prefix", "to-mc"
+                    ))))))
+                        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format.replaceFirst(Configuration.getUses().getString(Configuration.buildYaID(ThisID, new ArrayList<>(Arrays.asList(
+                                "header", "prefix", "to-mc"
+                        )))), "")));
                 } else
                     Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', format));
             }
