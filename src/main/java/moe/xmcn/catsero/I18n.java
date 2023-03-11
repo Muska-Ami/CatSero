@@ -6,7 +6,6 @@ import moe.xmcn.catsero.utils.Logger;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -40,17 +39,17 @@ public class I18n {
 
     public String getI18n(ArrayList<String> arr) {
 
-        JSONObject lastObject = new JSONObject();
+        JSONObject lastObject = i18nJSON;
         String result = "undefined";
 
         try {
             for (int i = 0; i < arr.size(); i++) {
                 if (i != arr.size() - 1) {
-                    lastObject = i18nJSON.getJSONObject(arr.get(i));
-                    Logger.logDebug(lastObject.toString());
+                    lastObject = lastObject.getJSONObject(arr.get(i));
+                    Logger.logDebug("I18n JSON对象: " + lastObject.toString());
                 } else {
                     result = lastObject.getString(arr.get(i));
-                    Logger.logDebug(result);
+                    Logger.logDebug("I18n 返回结果: " + result);
                 }
             }
         } catch (Exception e) {

@@ -86,9 +86,7 @@ public class Configuration {
     public static String buildYaID(String useid, @NotNull ArrayList<String> arr) {
         StringBuilder opt = new StringBuilder();
         StringBuilder finalOpt = opt;
-        arr.forEach(it -> {
-            finalOpt.append(it).append(".");
-        });
+        arr.forEach(it -> finalOpt.append(it).append("."));
         opt = new StringBuilder(opt.substring(0, opt.length() - 1));
         String output = (useid + "." + opt);
         Logger.logDebug("构建一个节点: " + useid + " - " + opt + ", 结果: " + output);
@@ -174,6 +172,38 @@ public class Configuration {
     }
 
     /**
+     * 加载配置文件
+     */
+    static void loadConfiguration() throws IOException {
+        plugin = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(0), true)));
+        uses = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(1), true)));
+        ext_trchat = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(2), true)));
+        ext_sql = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(3), true)));
+        mirai_bot = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(4), true)));
+        mirai_group = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(5), true)));
+        mirai_qqop = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(6), true)));
+        ext_commandalias = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(7), true)));
+
+        plugin.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(0))))));
+        uses.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(1))))));
+        ext_trchat.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(2))))));
+        ext_sql.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(3))))));
+        mirai_bot.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(4))))));
+        mirai_group.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(5))))));
+        mirai_qqop.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(6))))));
+        ext_commandalias.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(7))))));
+
+        plugin.save(new File(formatPath(configuration.get(0), true)));
+        uses.save(new File(formatPath(configuration.get(1), true)));
+        ext_trchat.save(new File(formatPath(configuration.get(2), true)));
+        ext_sql.save(new File(formatPath(configuration.get(3), true)));
+        mirai_bot.save(new File(formatPath(configuration.get(4), true)));
+        mirai_group.save(new File(formatPath(configuration.get(5), true)));
+        mirai_qqop.save(new File(formatPath(configuration.get(6), true)));
+        ext_commandalias.save(new File(formatPath(configuration.get(7), true)));
+    }
+
+    /**
      * 验证是否为QQOp
      *
      * @param code QQ号
@@ -231,38 +261,6 @@ public class Configuration {
                 is.set(getGroupCode(id) == code)
         );
         return is.get();
-    }
-
-    /**
-     * 加载配置文件
-     */
-    static void loadConfiguration() throws IOException {
-        plugin = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(0), true)));
-        uses = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(1), true)));
-        ext_trchat = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(2), true)));
-        ext_sql = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(3), true)));
-        mirai_bot = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(4), true)));
-        mirai_group = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(5), true)));
-        mirai_qqop = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(6), true)));
-        ext_commandalias = YamlConfiguration.loadConfiguration(new File(formatPath(configuration.get(7), true)));
-
-        plugin.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(0))))));
-        uses.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(1))))));
-        ext_trchat.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(2))))));
-        ext_sql.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(3))))));
-        mirai_bot.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(4))))));
-        mirai_group.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(5))))));
-        mirai_qqop.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(6))))));
-        ext_commandalias.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(INSTANCE.getResource(cleanPath(configuration.get(7))))));
-
-        plugin.save(new File(formatPath(configuration.get(0), true)));
-        uses.save(new File(formatPath(configuration.get(1), true)));
-        ext_trchat.save(new File(formatPath(configuration.get(2), true)));
-        ext_sql.save(new File(formatPath(configuration.get(3), true)));
-        mirai_bot.save(new File(formatPath(configuration.get(4), true)));
-        mirai_group.save(new File(formatPath(configuration.get(5), true)));
-        mirai_qqop.save(new File(formatPath(configuration.get(6), true)));
-        ext_commandalias.save(new File(formatPath(configuration.get(7), true)));
     }
 
     public interface USESID {
