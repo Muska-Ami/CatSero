@@ -41,6 +41,14 @@ public class ParseTool {
     private String temp;
     private String ess = null;
 
+    public static void registerCommand(@NotNull String command) {
+        commands.add(command);
+    }
+
+    public static void registerCommand(@NotNull List<String> command) {
+        commands.addAll(command);
+    }
+
     /**
      * 解析命令
      *
@@ -91,7 +99,7 @@ public class ParseTool {
             }
         } else if (
                 Configuration.CFI.command_alias_config.getBoolean("command-prefix.enable")
-                && message.startsWith(Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + " " + command)
+                        && message.startsWith(Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + " " + command)
         ) {
             if (msplt.length > 1) {
                 this.command = msplt[1];
@@ -186,13 +194,5 @@ public class ParseTool {
 
     public boolean isCustom() {
         return custom;
-    }
-
-    public static void registerCommand(@NotNull String command) {
-        commands.add(command);
-    }
-
-    public static void registerCommand(@NotNull List<String> command) {
-        commands.addAll(command);
     }
 }

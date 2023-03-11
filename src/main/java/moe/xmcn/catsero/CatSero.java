@@ -26,7 +26,13 @@ package moe.xmcn.catsero;
 import moe.xmcn.catsero.events.bridge.EventCaller;
 import moe.xmcn.catsero.executors.ExecutorRegister;
 import moe.xmcn.catsero.listeners.ListenerRegister;
-import moe.xmcn.catsero.utils.*;
+import moe.xmcn.catsero.utils.Envrionment;
+import moe.xmcn.catsero.utils.Filter;
+import moe.xmcn.catsero.utils.Logger;
+import moe.xmcn.catsero.utils.WhiteListDatabase;
+import moe.xmcn.catsero.utils.timers.NotNPP;
+import moe.xmcn.catsero.utils.timers.TPSCalculator;
+import moe.xmcn.catsero.utils.timers.bStatsMetrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.BufferedReader;
@@ -132,15 +138,18 @@ public class CatSero extends JavaPlugin {
             getServer().getScheduler().scheduleSyncRepeatingTask(this, new TPSCalculator(), 100L, 1L);
 
             Logger.logLoader("Start check Notepad++.");
-            getServer().getScheduler().scheduleSyncRepeatingTask(this, new NotNPP(), 200L, 50L);
+            getServer().getScheduler().scheduleSyncRepeatingTask(this, new NotNPP(), 10L, 200L);
 
             Logger.logLoader("CatSero loaded.");
 
             if (Configuration.PLUGIN.CHECK_UPDATE.ENABLE) {
-                Logger.logLoader("Start checking update...");
-                getServer().getScheduler().runTaskTimerAsynchronously(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 1000L);
+                Logger.logLoader("Start checking update.");
+                getServer().getScheduler().runTaskTimerAsynchronously(this, new Updater(), 0L, Configuration.PLUGIN.CHECK_UPDATE.INTERVAL * 20L);
                 getServer().getPluginManager().registerEvents(new Updater(), this);
             }
+            Logger.logLoader("Start filter auto-update.");
+            Filter.startUpdate();
+
         } else {
             Logger.logWARN("[Loader] Warning, not install MiraiMC, CatSero will not run!");
             getServer().getPluginManager().disablePlugin(this);

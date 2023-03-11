@@ -24,10 +24,8 @@
 package moe.xmcn.catsero;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import moe.xmcn.catsero.events.bridge.ParseTool;
-import moe.xmcn.catsero.utils.HttpClient;
 import moe.xmcn.catsero.utils.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -40,7 +38,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -301,9 +298,16 @@ public interface Configuration {
                 boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
                 String REPLACE = CFI.uses_config.getString(sub_node + "replace");
 
+                interface AUTO_UPDATE {
+                    String sub_node = "chat-forward.filter.auto-update" + ".";
+
+                    boolean ENABLE = CFI.uses_config.getBoolean(sub_node + "enable");
+                    long INTERVAL = CFI.uses_config.getLong(sub_node + "interval");
+                }
+
                 interface LIST {
                     //String sub_node = "chat-forward.filter.list" + ".";
-
+                    /*
                     static List<String> ALL_TO_MC() {
                         List<String> list = new ArrayList<>(VIA.TO_MC);
                         // 读取url列表并遍历
@@ -390,6 +394,7 @@ public interface Configuration {
                         );
                         return list;
                     }
+                     */
 
                     interface IMPORT {
                         String sub_node = "chat-forward.filter.list.import" + ".";

@@ -24,13 +24,14 @@
 package moe.xmcn.catsero.utils;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
 public class HttpClient {
 
-    public String getRequest(String url) {
+    public String getRequest(String url) throws IOException {
         StringBuilder result = new StringBuilder();
         BufferedReader in = null;
         try {
@@ -49,8 +50,6 @@ public class HttpClient {
             while ((line = in.readLine()) != null) {
                 result.append(line);
             }
-        } catch (Exception e) {
-            Logger.logCatch(e);
         }
         //使用finally块来关闭输入流
         finally {
@@ -65,7 +64,7 @@ public class HttpClient {
         return result.toString();
     }
 
-    public String getRequest(String url, String param) {
+    public String getRequest(String url, String param) throws IOException {
         StringBuilder result = new StringBuilder();
         BufferedReader in = null;
         try {
@@ -85,8 +84,6 @@ public class HttpClient {
             while ((line = in.readLine()) != null) {
                 result.append(line);
             }
-        } catch (Exception e) {
-            Logger.logCatch(e);
         }
         //使用finally块来关闭输入流
         finally {

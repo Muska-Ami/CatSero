@@ -21,7 +21,7 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.qwhitelist
+package moe.xmcn.catsero.listeners.qWhitelist
 
 import moe.xmcn.catsero.Configuration
 import moe.xmcn.catsero.events.OnQQGroupCommandEvent

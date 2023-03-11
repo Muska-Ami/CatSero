@@ -21,7 +21,7 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.qcmd
+package moe.xmcn.catsero.listeners.qCmd
 
 import moe.xmcn.catsero.Configuration
 import moe.xmcn.catsero.events.OnQQFriendCommandEvent
@@ -83,7 +83,11 @@ class OnRequestExecuteCommand(
                     CommandSender.setFriend(sender)
 
                     // 执行
-                    MessageSender.sendFriend("--- " + SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Date()) + " ---", bot, sender)
+                    MessageSender.sendFriend(
+                        "--- " + SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Date()) + " ---",
+                        bot,
+                        sender
+                    )
                     executeCommand(command)
                 } else if (isFriend)
                     MessageSender.sendFriend(Configuration.I18N.QQ.COMMAND.NO_PERMISSION, bot, sender)

@@ -49,6 +49,16 @@ public interface Logger {
         }
     }
 
+    static void logTask(String msg) {
+        logINFO("[Task] " + msg);
+    }
+
+    static void logTask(List<String> msgs) {
+        for (int i = 1; i < msgs.toArray().length + 1; i++) {
+            logINFO("[Task] " + msgs.toArray()[i - 1]);
+        }
+    }
+
     static void logDebug(String msg) {
         if (Configuration.PLUGIN.DEBUG_LOG)
             logINFO("[Debug] " + msg);

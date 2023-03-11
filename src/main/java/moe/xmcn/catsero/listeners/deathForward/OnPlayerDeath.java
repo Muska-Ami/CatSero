@@ -21,51 +21,56 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.joinquitforward;
+package moe.xmcn.catsero.listeners.deathForward;
 
 import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
 import moe.xmcn.catsero.utils.PAPI;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class OnPlayerQuit implements Listener {
+public class OnPlayerDeath implements Listener {
 
     private final boolean enable;
     private final String bot;
     private final String group;
 
-    public OnPlayerQuit() {
-        this.enable = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.ENABLE;
-        this.bot = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.BOT;
-        this.group = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.GROUP;
+    public OnPlayerDeath() {
+        this.enable = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.ENABLE;
+        this.bot = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.BOT;
+        this.group = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.MIRAI.GROUP;
     }
 
     @EventHandler
-    public void onGamePlayerQuitEvent(PlayerQuitEvent pqe) {
+    public void onPlayerDeathEvent(PlayerDeathEvent e) {
         try {
             if (enable) {
-                if (Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.NEED_PERMISSION) {
-                    //权限模式
-                    if (pqe.getPlayer().hasPermission("catsero.send-player-join-quit.quit"))
-                        run(pqe);
+                // 检查权限
+                if (Configuration.USES_CONFIG.SEND_PLAYER_DEATH.NEED_PERMISSION) {
+                    if (e.getEntity().hasPermission("catsero.send-death"))
+                        run(e);
                 } else
-                    run(pqe);
+                    run(e);
             }
-        } catch (Exception e) {
-            Logger.logCatch(e);
+        } catch (Exception ex) {
+            Logger.logCatch(ex);
         }
     }
 
-    public void run(PlayerQuitEvent pqe) {
+    public void run(PlayerDeathEvent e) {
         try {
-            String player_name = pqe.getPlayer().getName();
-            String quit_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.QUIT;
-            quit_message = quit_message.replace("%player%", player_name);
-            quit_message = PAPI.toPAPI(pqe.getPlayer(), quit_message);
-            MessageSender.sendGroup(quit_message, bot, group);
+            Player player = e.getEntity();
+            String death_message = e.getDeathMessage();
+
+            String message = Configuration.USES_CONFIG.SEND_PLAYER_DEATH.FORMAT;
+
+            message = message.replace("%player%", player.getName())
+                    .replace("%message%", death_message);
+            message = PAPI.toPAPI(player, message);
+            MessageSender.sendGroup(message, bot, group);
 
         } catch (Exception ex) {
             Logger.logCatch(ex);

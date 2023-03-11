@@ -24,21 +24,21 @@
 package moe.xmcn.catsero.listeners;
 
 import moe.xmcn.catsero.Configuration;
-import moe.xmcn.catsero.listeners.advancementforward.OnPlayerAdvancementDone;
-import moe.xmcn.catsero.listeners.chatforward.OnCommonChatToQQ;
-import moe.xmcn.catsero.listeners.chatforward.OnGroupMessageToMC;
-import moe.xmcn.catsero.listeners.chatforward.OnTrChatToQQ;
-import moe.xmcn.catsero.listeners.deadthforward.OnPlayerDeath;
-import moe.xmcn.catsero.listeners.getonlinelist.OnGroupMessageRequestList;
-import moe.xmcn.catsero.listeners.gettps.OnGroupMessageRequestTPS;
-import moe.xmcn.catsero.listeners.groupmemberleave.OnMemberLeave;
-import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerJoin;
-import moe.xmcn.catsero.listeners.joinquitforward.OnPlayerQuit;
-import moe.xmcn.catsero.listeners.newgroupmemberwelcome.OnMemberJoin;
-import moe.xmcn.catsero.listeners.qcmd.OnRequestExecuteCommand;
-import moe.xmcn.catsero.listeners.qwhitelist.RefuseNoWhiteList;
-import moe.xmcn.catsero.listeners.qwhitelist.SelfApplication;
-import moe.xmcn.catsero.listeners.qwhitelist.WhiteListEditor;
+import moe.xmcn.catsero.listeners.advancementForward.OnPlayerAdvancementDone;
+import moe.xmcn.catsero.listeners.chatForward.OnCommonChatToQQ;
+import moe.xmcn.catsero.listeners.chatForward.OnGroupMessageToMC;
+import moe.xmcn.catsero.listeners.chatForward.OnTrChatToQQ;
+import moe.xmcn.catsero.listeners.deathForward.OnPlayerDeath;
+import moe.xmcn.catsero.listeners.getOnlineList.OnGroupMessageRequestList;
+import moe.xmcn.catsero.listeners.getTPS.OnGroupMessageRequestTPS;
+import moe.xmcn.catsero.listeners.groupMemberLeaveNotification.OnMemberLeave;
+import moe.xmcn.catsero.listeners.joinQuitForward.OnPlayerJoin;
+import moe.xmcn.catsero.listeners.joinQuitForward.OnPlayerQuit;
+import moe.xmcn.catsero.listeners.newGroupMemberNotification.OnMemberJoin;
+import moe.xmcn.catsero.listeners.qCmd.OnRequestExecuteCommand;
+import moe.xmcn.catsero.listeners.qWhitelist.RefuseNoWhiteList;
+import moe.xmcn.catsero.listeners.qWhitelist.SelfApplication;
+import moe.xmcn.catsero.listeners.qWhitelist.WhiteListEditor;
 import moe.xmcn.catsero.utils.Envrionment;
 import org.bukkit.plugin.PluginManager;
 

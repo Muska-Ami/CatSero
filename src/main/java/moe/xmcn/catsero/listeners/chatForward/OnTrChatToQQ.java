@@ -21,60 +21,64 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.chatforward;
+package moe.xmcn.catsero.listeners.chatForward;
 
+import me.arasple.mc.trchat.api.event.TrChatEvent;
+import me.arasple.mc.trchat.module.display.ChatSession;
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.utils.Filter;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class OnCommonChatToQQ implements Listener {
+public class OnTrChatToQQ implements Listener {
 
     private final boolean enable;
     private final String bot;
     private final String group;
     private String message;
 
-    public OnCommonChatToQQ() {
+    public OnTrChatToQQ() {
         this.enable = Configuration.USES_CONFIG.CHAT_FORWARD.ENABLE;
         this.bot = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.BOT;
         this.group = Configuration.USES_CONFIG.CHAT_FORWARD.MIRAI.GROUP;
     }
 
     @EventHandler
-    public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
+    public void onTrChat(TrChatEvent e) {
         if (!e.isCancelled()) {
             new BukkitRunnable() {
-
                 @Override
                 public void run() {
                     try {
                         if (enable) {
                             message = e.getMessage();
+                            String channel = e.getChannel().getId();
 
-                            // Filter
-                            if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
-                                Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_QQ().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
-                                run1(e, message);
+                            // 先检查聊天频道
+                            if (Configuration.EXTRA_CONFIG.TRCHAT.CHAT_FORWARD.CHANNEL.contains(channel)) {
+                                // Filter
+                                if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
+                                    new Filter.CHAT_FORWARD().getQQWords().forEach(it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE));
+                                    run1(e.getSession(), message);
                 /*
-                Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.VIA.TO_QQ.forEach(it -> {
-                    if (message.contains(it)) filter = true;
-                });
-                if (!filter)
-                    run(e, message);
+                if (
+                        !filter
+                        && Configuration.EXTRA_CONFIG.TRCHAT.CHAT_FORWARD.CHANNEL.contains(channel)
+                )
+                        run(e.getSession(), message);
                 else
                     filter = false;
 
                  */
-                            } else
-                                run1(e, message);
+                                } else
+                                    run1(e.getSession(), message);
+                            }
                         }
-                    } catch (
-                            Exception ex) {
+                    } catch (Exception ex) {
                         Logger.logCatch(ex);
                     }
                 }
@@ -82,11 +86,11 @@ public class OnCommonChatToQQ implements Listener {
         }
     }
 
-    private void run1(AsyncPlayerChatEvent e, String message) {
+    private void run1(ChatSession e, String message) {
         try {
             String format = Configuration.USES_CONFIG.CHAT_FORWARD.FORMAT.TO_QQ;
 
-            // 检查消息是否存在mirai码
+            // 检查消息是否含有mirai码
             if (
                     !Configuration.USES_CONFIG.CHAT_FORWARD.ALLOW_MIRAICODE
                             && !message.contains("[mirai:")

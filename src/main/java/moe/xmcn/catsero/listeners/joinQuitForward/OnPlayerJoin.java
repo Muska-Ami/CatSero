@@ -21,42 +21,52 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.newgroupmemberwelcome;
+package moe.xmcn.catsero.listeners.joinQuitForward;
 
-import me.dreamvoid.miraimc.bukkit.event.group.member.MiraiMemberJoinEvent;
 import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
+import moe.xmcn.catsero.utils.PAPI;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 
-public class OnMemberJoin implements Listener {
+public class OnPlayerJoin implements Listener {
 
     private final boolean enable;
     private final String bot;
     private final String group;
 
-    public OnMemberJoin() {
-        this.enable = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.ENABLE;
-        this.bot = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.BOT;
-        this.group = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.MIRAI.GROUP;
+    public OnPlayerJoin() {
+        this.enable = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.ENABLE;
+        this.bot = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.BOT;
+        this.group = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.MIRAI.GROUP;
     }
 
     @EventHandler
-    public void onMemberJoin(MiraiMemberJoinEvent e) {
+    public void onGamePlayerJoinEvent(PlayerJoinEvent pje) {
         try {
-            if (
-                    enable
-                            && e.getBotID() == Configuration.Interface.getBotCode(bot)
-                            && e.getGroupID() == Configuration.Interface.getGroupCode(group)
-            ) {
-                // 格式
-                String format = Configuration.USES_CONFIG.NEW_GROUP_MEMBER.FORMAT;
-                format = format.replace("%at%", "[mirai:at:" + e.getMember().getId() + "]")
-                        .replace("%code%", String.valueOf(e.getMember().getId()))
-                        .replace("%name%", e.getMember().getNick());
-                MessageSender.sendGroup(format, bot, group);
+            if (enable) {
+                if (Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.NEED_PERMISSION) {
+                    //权限模式
+                    if (pje.getPlayer().hasPermission("catsero.send-player-join-quit.join"))
+                        run(pje);
+                } else
+                    run(pje);
             }
+        } catch (Exception e) {
+            Logger.logCatch(e);
+        }
+    }
+
+    public void run(PlayerJoinEvent pje) {
+        try {
+            String player_name = pje.getPlayer().getName();
+            String join_message = Configuration.USES_CONFIG.SEND_PLAYER_JOIN_QUIT.FORMAT.JOIN;
+            join_message = join_message.replace("%player%", player_name);
+            join_message = PAPI.toPAPI(pje.getPlayer(), join_message);
+            MessageSender.sendGroup(join_message, bot, group);
+
         } catch (Exception ex) {
             Logger.logCatch(ex);
         }

@@ -21,33 +21,29 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.utils;
+package moe.xmcn.catsero.utils.timers
 
-public class TPSCalculator implements Runnable {
-    private static final long[] TICKS = new long[600];
-    private static int TICK_COUNT = 0;
+import moe.xmcn.catsero.CatSero
+import moe.xmcn.catsero.Configuration
+import moe.xmcn.catsero.utils.Logger
+import org.bukkit.Bukkit
+import java.util.*
 
-    public static double getTPS() {
-        return getTPS(100);
-    }
-
-    private static double getTPS(int ticks) {
-        if (TICK_COUNT < ticks) {
-            return 20.0D;
+class NotNPP : Runnable {
+    override fun run() {
+        if (
+            System.getProperty("os.name").lowercase(Locale.getDefault()).contains("windows")
+            && CatSero.findProcess("notepad++.exe")
+        ) {
+            val fucknpp: List<String> = mutableListOf(
+                "检测到Notepad++(Npp)，为保障您的信息安全，终止服务器！",
+                "如需编辑，请更换其他编辑器：",
+                "- Visual Studio Code：https://code.visualstudio.com/",
+                "- Notepad--：https://gitee.com/cxasm/notepad--"
+            )
+            Logger.logWARN(fucknpp)
+            Configuration.plugin.server.dispatchCommand(Bukkit.getConsoleSender(), "stop")
         }
-        int target = (TICK_COUNT - 1 - ticks) % TICKS.length;
-        long elapsed = System.currentTimeMillis() - TICKS[target];
-
-        return ticks / (elapsed / 1000.0D);
     }
 
-    private static long getElapsed(int tickID) {
-        long time = TICKS[(tickID % TICKS.length)];
-        return System.currentTimeMillis() - time;
-    }
-
-    public void run() {
-        TICKS[(TICK_COUNT % TICKS.length)] = System.currentTimeMillis();
-        TICK_COUNT += 1;
-    }
 }

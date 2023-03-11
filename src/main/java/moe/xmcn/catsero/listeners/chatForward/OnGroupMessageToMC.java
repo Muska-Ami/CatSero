@@ -21,11 +21,12 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.chatforward;
+package moe.xmcn.catsero.listeners.chatForward;
 
 import me.dreamvoid.miraimc.api.MiraiMC;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
 import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.utils.Filter;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.Player;
 import org.bukkit.Bukkit;
@@ -58,7 +59,7 @@ public class OnGroupMessageToMC implements Listener {
 
                 // Filter
                 if (Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.ENABLE) {
-                    Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.LIST.ALL_TO_MC().forEach(
+                    new Filter.CHAT_FORWARD().getMCWords().forEach(
                             it -> message = message.replace(it, Configuration.USES_CONFIG.CHAT_FORWARD.FILTER.REPLACE)
                     );
                     run(e, message);

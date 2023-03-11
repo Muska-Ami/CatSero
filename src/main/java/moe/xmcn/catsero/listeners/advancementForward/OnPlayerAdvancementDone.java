@@ -21,7 +21,7 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.advancementforward;
+package moe.xmcn.catsero.listeners.advancementForward;
 
 import me.croabeast.advancementinfo.AdvancementInfo;
 import moe.xmcn.catsero.Configuration;

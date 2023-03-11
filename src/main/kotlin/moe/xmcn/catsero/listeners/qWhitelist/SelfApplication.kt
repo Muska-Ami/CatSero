@@ -21,7 +21,7 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.qwhitelist
+package moe.xmcn.catsero.listeners.qWhitelist
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent
 import moe.xmcn.catsero.Configuration

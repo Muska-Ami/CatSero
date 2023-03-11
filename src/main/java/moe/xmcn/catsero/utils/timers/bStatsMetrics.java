@@ -38,7 +38,7 @@
  *
  * Violations will result in a ban of your plugin and account from bStats.
  */
-package moe.xmcn.catsero.utils;
+package moe.xmcn.catsero.utils.timers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -681,6 +681,7 @@ public class bStatsMetrics {
      * <p>While this class is neither feature-rich nor the most performant one, it's sufficient enough
      * for its use-case.
      */
+    @SuppressWarnings("UnnecessaryUnicodeEscape")
     public static class JsonObjectBuilder {
 
         private StringBuilder builder = new StringBuilder();

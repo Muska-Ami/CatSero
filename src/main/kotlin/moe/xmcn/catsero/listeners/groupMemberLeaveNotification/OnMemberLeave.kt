@@ -21,7 +21,7 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.groupmemberleave
+package moe.xmcn.catsero.listeners.groupMemberLeaveNotification
 
 import me.dreamvoid.miraimc.bukkit.event.group.member.MiraiMemberLeaveEvent
 import moe.xmcn.catsero.Configuration

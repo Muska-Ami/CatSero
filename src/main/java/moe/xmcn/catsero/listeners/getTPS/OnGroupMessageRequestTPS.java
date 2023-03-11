@@ -21,13 +21,13 @@
  * a network, the complete source code of the modified
  * version must be made available.
  */
-package moe.xmcn.catsero.listeners.gettps;
+package moe.xmcn.catsero.listeners.getTPS;
 
 import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.events.OnQQGroupCommandEvent;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
-import moe.xmcn.catsero.utils.TPSCalculator;
+import moe.xmcn.catsero.utils.timers.TPSCalculator;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 

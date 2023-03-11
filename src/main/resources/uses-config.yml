@@ -40,6 +40,14 @@ chat-forward:
     # 功能开关
     # true | false
     enable: false
+    # 自动更新列表
+    auto-update:
+      # 功能开关
+      # true | false
+      enable: true
+      # 更新间隔
+      # 单位: 秒
+      interval: 300
     # 列表
     list:
       # 原生的列表
