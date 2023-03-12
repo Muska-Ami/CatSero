@@ -2,8 +2,8 @@ package moe.xmcn.catsero.executors.catsero;
 
 import moe.xmcn.catsero.CatSero;
 import moe.xmcn.catsero.I18n;
-import org.bukkit.command.CommandSender;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 import java.util.Arrays;
