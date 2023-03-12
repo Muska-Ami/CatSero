@@ -27,6 +27,7 @@ public class OnServerDisable {
                     originGroup.setName(TitlePlaceholder.origins.getString(group));
                 } else
                     Logger.logWARN("QQ占位符功能Bot权限不足，无法修改群名称！");
+                originGroup.getMember(new Configuration().getBotCode(bot)).setNameCard(BotNamePlaceholder.originName);
             });
         }
     }

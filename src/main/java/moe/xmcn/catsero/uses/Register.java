@@ -40,6 +40,7 @@ import moe.xmcn.catsero.uses.listeners.qCmd.OnRequestExecuteCommand;
 import moe.xmcn.catsero.uses.listeners.qWhitelist.RefuseNoWhiteList;
 import moe.xmcn.catsero.uses.listeners.qWhitelist.SelfApplication;
 import moe.xmcn.catsero.uses.listeners.qWhitelist.WhiteListEditor;
+import moe.xmcn.catsero.uses.timers.infoPlaceholder.BotNamePlaceholder;
 import moe.xmcn.catsero.uses.timers.infoPlaceholder.TitlePlaceholder;
 import moe.xmcn.catsero.utils.Envrionment;
 import org.bukkit.Server;
@@ -48,6 +49,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public interface Register {
 
@@ -94,12 +96,45 @@ public interface Register {
         pm.registerEvents(new OnRequestExecuteCommand(), CatSero.INSTANCE);
 
         // QQ占位符
-        bs.scheduleSyncRepeatingTask(CatSero.INSTANCE, new TitlePlaceholder(), 0L, Configuration.getUses().getLong(Configuration.buildYaID(
+        if (Configuration.getUses().getBoolean(Configuration.buildYaID(
                 Configuration.USESID.INFO_PLACEHOLDER,
-                new ArrayList<>(Arrays.asList(
-                        "interval", "title"
-                ))
-        )) * 20L);
+                new ArrayList<>(Collections.singletonList("enable"))
+        ))) {
+
+            if (Configuration.getUses().getStringList(Configuration.buildYaID(
+                    Configuration.USESID.INFO_PLACEHOLDER,
+                    new ArrayList<>(Collections.singletonList("should-updates"))
+            )).contains("group"))
+                // 群名称
+                bs.scheduleSyncRepeatingTask(
+                        CatSero.INSTANCE,
+                        new TitlePlaceholder(),
+                        0L,
+                        Configuration.getUses().getLong(Configuration.buildYaID(
+                                Configuration.USESID.INFO_PLACEHOLDER,
+                                new ArrayList<>(Arrays.asList(
+                                        "interval", "title"
+                                ))
+                        )) * 20L);
+
+            if (Configuration.getUses().getStringList(Configuration.buildYaID(
+                    Configuration.USESID.INFO_PLACEHOLDER,
+                    new ArrayList<>(Collections.singletonList("should-updates"))
+            )).contains("bot"))
+                // Bot名称
+                bs.scheduleSyncRepeatingTask(
+                        CatSero.INSTANCE,
+                        new BotNamePlaceholder(),
+                        0L,
+                        Configuration.getUses().getLong(Configuration.buildYaID(
+                                Configuration.USESID.INFO_PLACEHOLDER,
+                                new ArrayList<>(Arrays.asList(
+                                        "interval", "bot-name"
+                                ))
+                        )) * 20L
+                );
+
+        }
 
     }
 
