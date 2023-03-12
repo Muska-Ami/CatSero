@@ -25,6 +25,7 @@ package moe.xmcn.catsero;
 
 import moe.xmcn.catsero.events.bridge.EventCaller;
 import moe.xmcn.catsero.executors.Register;
+import moe.xmcn.catsero.uses.timers.infoPlaceholder.OnServerDisable;
 import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Filter;
 import moe.xmcn.catsero.utils.Logger;
@@ -180,8 +181,10 @@ public class CatSero extends JavaPlugin {
     @Override
     public void onDisable() {
         Logger.logLoader("Disabling CatSero.");
+        if (Configuration.getUses().getBoolean(Configuration.buildYaID(
+                Configuration.USESID.INFO_PLACEHOLDER,
+                new ArrayList<>(Collections.singletonList("enable"))
+        ))) new OnServerDisable().run();
         Logger.logINFO("If you love CatSero, don't forget to give it a Star on GitHub!");
     }
-
-
 }

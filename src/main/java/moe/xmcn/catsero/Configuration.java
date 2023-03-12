@@ -277,7 +277,7 @@ public class Configuration {
         String QWHITELIST = "qwhitelist";
         String GROUP_MEMBER_LEAVE_NOTIFICATION = "group-member-leave-notification";
         String QCMD = "qcmd";
-        String PRINT_TITLE = "print-title";
+        String INFO_PLACEHOLDER = "info-placeholder";
     }
 
     // 数据库相关

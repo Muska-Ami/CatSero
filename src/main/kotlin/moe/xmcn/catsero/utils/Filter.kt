@@ -89,7 +89,7 @@ class Filter : Runnable {
             }
             remoteUrls.forEach { url ->
                 run {
-                    var res: String? = null
+                    var res: String?
                     try {
                         res = hc.getRequest(url)
                     } catch (e: Exception) {

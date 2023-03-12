@@ -24,6 +24,7 @@
 package moe.xmcn.catsero.uses;
 
 import moe.xmcn.catsero.CatSero;
+import moe.xmcn.catsero.Configuration;
 import moe.xmcn.catsero.uses.listeners.advancementForward.OnPlayerAdvancementDone;
 import moe.xmcn.catsero.uses.listeners.chatForward.OnCommonChatToQQ;
 import moe.xmcn.catsero.uses.listeners.chatForward.OnGroupMessageToMC;
@@ -39,12 +40,20 @@ import moe.xmcn.catsero.uses.listeners.qCmd.OnRequestExecuteCommand;
 import moe.xmcn.catsero.uses.listeners.qWhitelist.RefuseNoWhiteList;
 import moe.xmcn.catsero.uses.listeners.qWhitelist.SelfApplication;
 import moe.xmcn.catsero.uses.listeners.qWhitelist.WhiteListEditor;
+import moe.xmcn.catsero.uses.timers.infoPlaceholder.TitlePlaceholder;
 import moe.xmcn.catsero.utils.Envrionment;
+import org.bukkit.Server;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.scheduler.BukkitScheduler;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public interface Register {
 
-    PluginManager pm = CatSero.INSTANCE.getServer().getPluginManager();
+    Server server = CatSero.INSTANCE.getServer();
+    PluginManager pm = server.getPluginManager();
+    BukkitScheduler bs = server.getScheduler();
 
     static void register() {
         // 玩家加入/退出转发
@@ -83,6 +92,15 @@ public interface Register {
 
         // 命令执行
         pm.registerEvents(new OnRequestExecuteCommand(), CatSero.INSTANCE);
+
+        // QQ占位符
+        bs.scheduleSyncRepeatingTask(CatSero.INSTANCE, new TitlePlaceholder(), 0L, Configuration.getUses().getLong(Configuration.buildYaID(
+                Configuration.USESID.INFO_PLACEHOLDER,
+                new ArrayList<>(Arrays.asList(
+                        "interval", "title"
+                ))
+        )) * 20L);
+
     }
 
 }

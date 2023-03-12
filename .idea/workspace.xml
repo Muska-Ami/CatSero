@@ -10,11 +10,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="完全重构配置文件系统">
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/debug.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/reload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/version.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/whitelist.java" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="#91 支持动态修改群名称">
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/timers/infoPlaceholder/OnServerDisable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -23,9 +20,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/EventCaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/EventCaller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/OnCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/OnCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/reload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/reload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/timers/infoPrint/PrintTitle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/timers/infoPlaceholder/TitlePlaceholder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/Filter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/Filter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/uses-config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/uses-config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,13 +272,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668927643545</updated>
-    </task>
-    <task id="LOCAL-00039" summary="写 了 个 寂 寞 #57">
-      <created>1672803621725</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1672803621725</updated>
     </task>
     <task id="LOCAL-00040" summary="完成 #57">
       <created>1672815442482</created>
@@ -615,7 +609,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678556420446</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="修复几个错误，将MC命令提取为单独的类">
+      <created>1678587372934</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1678587372934</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -636,9 +637,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="Commit" />
-    <MESSAGE value="优化互通服自助申白体验 #90" />
-    <MESSAGE value="添加floodgate未安装提示 #90" />
     <MESSAGE value="为 #91 做准备而修改" />
     <MESSAGE value="修改配置文件结构 支持HTTP API" />
     <MESSAGE value="[ci skip]修改构建脚本和新建一个没写的类" />
@@ -661,7 +659,10 @@
     <MESSAGE value="[ci skip] 怎么就空指针了（恼" />
     <MESSAGE value="[ci skip] 修复空指针" />
     <MESSAGE value="完全重构配置文件系统" />
-    <option name="LAST_COMMIT_MESSAGE" value="完全重构配置文件系统" />
+    <MESSAGE value="修复几个错误" />
+    <MESSAGE value="修复几个错误，将MC命令提取为单独的类" />
+    <MESSAGE value="#91 支持动态修改群名称" />
+    <option name="LAST_COMMIT_MESSAGE" value="#91 支持动态修改群名称" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
