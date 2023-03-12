@@ -224,7 +224,7 @@ public class Configuration {
      * @return BotCode/0
      */
     public long getBotCode(@NotNull String id) {
-        return mirai_bot.getLong(id);
+        return mirai_bot.getLong("list." + id);
     }
 
     /**
@@ -235,7 +235,9 @@ public class Configuration {
      * @return true/false
      */
     public boolean checkBot(long code, @NotNull String id) {
-        return getBotCode(id) == code;
+        boolean it = getBotCode(id) == code;
+        Logger.logDebug("检查Bot, 事件BotCode: " + code + " | BotID: " + id + ", 结果: " + it);
+        return it;
     }
 
     /**
@@ -245,7 +247,7 @@ public class Configuration {
      * @return GroupCode/0
      */
     public long getGroupCode(@NotNull String id) {
-        return mirai_group.getLong(id);
+        return mirai_group.getLong("list." + id);
     }
 
     /**
@@ -260,6 +262,7 @@ public class Configuration {
         ids.forEach(id ->
                 is.set(getGroupCode(id) == code)
         );
+        Logger.logDebug("检查Group, 事件GroupCode: " + code + " | GroupIDs: " + ids + ", 结果: " + is.get());
         return is.get();
     }
 

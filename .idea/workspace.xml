@@ -10,17 +10,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[ci skip] 怎么就空指针了（恼">
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="完全重构配置文件系统">
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/debug.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/reload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/version.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/whitelist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/chatForward/OnCommonChatToQQ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/chatForward/OnCommonChatToQQ.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/Filter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/Filter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/EventCaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/EventCaller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/OnCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/OnCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,21 +129,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-1.8",
-    "last_directory_selection": "F:/CatSero/src/main/java/moe/xmcn/catsero",
-    "last_opened_file_path": "F:/CatSero/server-test/plugins",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "CodeWithMe"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-1.8&quot;,
+    &quot;last_directory_selection&quot;: &quot;F:/CatSero/src/main/java/moe/xmcn/catsero&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/CatSero/server-test/plugins&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeWithMe&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\CatSero\server-test\plugins" />
@@ -266,20 +271,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668927643545</updated>
-    </task>
-    <task id="LOCAL-00037" summary="新增屏蔽词系统从外部导入屏蔽词功能&#10;灵感来源：TrChat">
-      <created>1672760101313</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1672760101314</updated>
-    </task>
-    <task id="LOCAL-00038" summary="新增聊天转发消息头 #60">
-      <created>1672764649369</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1672764649369</updated>
     </task>
     <task id="LOCAL-00039" summary="写 了 个 寂 寞 #57">
       <created>1672803621725</created>
@@ -610,7 +601,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678553102471</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="[ci skip] 修复空指针">
+      <created>1678555863313</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1678555863314</updated>
+    </task>
+    <task id="LOCAL-00087" summary="完全重构配置文件系统">
+      <created>1678556420446</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1678556420446</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -631,8 +636,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="聊天转发不会发送卡片消息" />
-    <MESSAGE value="更新，但不完全更新" />
     <MESSAGE value="Commit" />
     <MESSAGE value="优化互通服自助申白体验 #90" />
     <MESSAGE value="添加floodgate未安装提示 #90" />
@@ -656,7 +659,9 @@
     <MESSAGE value="[ci skip] 又空指针咯~" />
     <MESSAGE value="[ci skip] 没整完 但是我就是要推送（" />
     <MESSAGE value="[ci skip] 怎么就空指针了（恼" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ci skip] 怎么就空指针了（恼" />
+    <MESSAGE value="[ci skip] 修复空指针" />
+    <MESSAGE value="完全重构配置文件系统" />
+    <option name="LAST_COMMIT_MESSAGE" value="完全重构配置文件系统" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
