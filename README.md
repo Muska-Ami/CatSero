@@ -1,4 +1,4 @@
-![Logo](https://repository-images.githubusercontent.com/460782323/eee698e3-0952-472d-96d2-d08c784c0cc2)
+![Logo](https://media-fs.huahuo-cn.tk/api/raw/?path=/CatSero/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%87.png)
 
 # CatSero `v2`
 
@@ -11,9 +11,9 @@
     - MCBBS发布页：[https://www.mcbbs.net/thread-1342417-1-1.html](https://www.mcbbs.net/thread-1342417-1-1.html)
     - KLPBBS发布页：[https://klpbbs.com/thread-43498-1-1.html](https://klpbbs.com/thread-43498-1-1.html)
 
-## Tip
+## 暂停开发
 
-本插件会覆盖JSON解析库 `com.alibaba.fastjson` `com.alibaba.fastjson2` 等FastJSON的相关类
+由于腾讯最近对QQ账户的风控加强，目前无法继续进行测试，故暂停开发。
 
 ### v1使用文档
 
