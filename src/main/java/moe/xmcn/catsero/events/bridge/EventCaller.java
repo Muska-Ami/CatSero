@@ -25,7 +25,7 @@ package moe.xmcn.catsero.events.bridge;
 
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiFriendMessageEvent;
 import me.dreamvoid.miraimc.bukkit.event.message.passive.MiraiGroupMessageEvent;
-import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.CatSero;
 import moe.xmcn.catsero.events.OnQQFriendCommandEvent;
 import moe.xmcn.catsero.events.OnQQGroupCommandEvent;
 import moe.xmcn.catsero.utils.Logger;
@@ -63,18 +63,20 @@ public class EventCaller implements Listener {
     }
 
     void callGroupCommandEvent(String command, List<String> arguments, String label, long sender, long group, long bot, boolean custom) {
+        Logger.logDebug("Call -> 群命令事件");
         Bukkit.getScheduler().runTask(
-                Configuration.plugin,
-                () -> Configuration.plugin.getServer().getPluginManager().callEvent(new OnQQGroupCommandEvent(
+                CatSero.INSTANCE,
+                () -> CatSero.INSTANCE.getServer().getPluginManager().callEvent(new OnQQGroupCommandEvent(
                         command, arguments, label, sender, group, bot, custom
                 ))
         );
     }
 
     void callFriendCommandEvent(String command, List<String> arguments, String label, long sender, long friend, long bot, boolean custom) {
+        Logger.logDebug("Call -> 私聊命令事件");
         Bukkit.getScheduler().runTask(
-                Configuration.plugin,
-                () -> Configuration.plugin.getServer().getPluginManager().callEvent(new OnQQFriendCommandEvent(
+                CatSero.INSTANCE,
+                () -> CatSero.INSTANCE.getServer().getPluginManager().callEvent(new OnQQFriendCommandEvent(
                         command, arguments, label, sender, friend, bot, custom
                 ))
         );

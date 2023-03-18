@@ -23,12 +23,12 @@
  */
 package moe.xmcn.catsero.utils;
 
-import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.CatSero;
 import org.bukkit.Bukkit;
 
 public interface Envrionment {
-    String server_version = Configuration.plugin.getServer().getVersion();
-    String bukkit_version = Configuration.plugin.getServer().getBukkitVersion();
+    String server_version = CatSero.INSTANCE.getServer().getVersion();
+    String bukkit_version = CatSero.INSTANCE.getServer().getBukkitVersion();
     String plugin_version = getVersion();
 
     static void check() {
@@ -38,15 +38,15 @@ public interface Envrionment {
             Depends.PlaceholderAPI = true;
         if (Bukkit.getPluginManager().getPlugin("TrChat") != null)
             Depends.TrChat = true;
-        if (Bukkit.getPluginManager().getPlugin("floodgate") != null)
+        if (Bukkit.getPluginManager().getPlugin("floodgate") != null) {
             Depends.Floodgate = true;
-
-        if (Bukkit.getPluginManager().getPlugin("Geyser-Spigot") != null)
+        } else if (Bukkit.getPluginManager().getPlugin("Geyser-Spigot") != null) {
             Logger.logINFO("检测到您已安装Geyser-Spigot，但未安装floodgate，互通服优化将自动禁用");
+        }
     }
 
     static String getVersion() {
-        return Configuration.plugin.getDescription().getVersion();
+        return CatSero.INSTANCE.getDescription().getVersion();
     }
 
     class Depends {

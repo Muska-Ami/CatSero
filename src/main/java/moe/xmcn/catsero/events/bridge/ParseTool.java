@@ -41,6 +41,14 @@ public class ParseTool {
     private String temp;
     private String ess = null;
 
+    public static void registerCommand(@NotNull String command) {
+        commands.add(command);
+    }
+
+    public static void registerCommand(@NotNull List<String> command) {
+        commands.addAll(command);
+    }
+
     /**
      * 解析命令
      *
@@ -69,7 +77,7 @@ public class ParseTool {
             } else if (villax != null) {
                 this.arguments = villax;
                 this.custom = false;
-                this.label = Configuration.CFI.command_alias_config.getString("command-prefix.prefix");
+                this.label = Configuration.getExt_commandalias().getString("command-prefix.prefix");
                 return true;
             } else if (custom != null) {
                 this.arguments = custom;
@@ -90,8 +98,8 @@ public class ParseTool {
                 Logger.logDebug("命令标头：" + this.command);
             }
         } else if (
-                Configuration.CFI.command_alias_config.getBoolean("command-prefix.enable")
-                && message.startsWith(Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + " " + command)
+                Configuration.getExt_commandalias().getBoolean("command-prefix.enable")
+                        && message.startsWith(Configuration.getExt_commandalias().getString("command-prefix.prefix") + " " + command)
         ) {
             if (msplt.length > 1) {
                 this.command = msplt[1];
@@ -99,7 +107,7 @@ public class ParseTool {
             }
         } else {
             commands.forEach(cmd -> {
-                if (Configuration.CFI.command_alias_config.getStringList(cmd).contains(msplt[0])) {
+                if (Configuration.getExt_commandalias().getStringList(cmd).contains(msplt[0])) {
                     this.command = cmd;
                     this.temp = msplt[0];
                     Logger.logDebug("命令标头：" + this.command);
@@ -125,17 +133,17 @@ public class ParseTool {
     }
 
     private String[] parseVillaX(@NotNull String message, @NotNull String command) {
-        if (Configuration.CFI.command_alias_config.getBoolean("command-prefix.enable")) {
-            if (message.startsWith("!" + Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + " " + command)) {
+        if (Configuration.getExt_commandalias().getBoolean("command-prefix.enable")) {
+            if (message.startsWith("!" + Configuration.getExt_commandalias().getString("command-prefix.prefix") + " " + command)) {
                 // CH -> !
                 return message.replaceFirst(
-                        "!" + Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + command + " ",
+                        "!" + Configuration.getExt_commandalias().getString("command-prefix.prefix") + command + " ",
                         ""
                 ).split(" ");
-            } else if (message.startsWith("/" + Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + " " + command)) {
+            } else if (message.startsWith("/" + Configuration.getExt_commandalias().getString("command-prefix.prefix") + " " + command)) {
                 // CH -> /
                 return message.replaceFirst(
-                        "/" + Configuration.CFI.command_alias_config.getString("command-prefix.prefix") + command + " ",
+                        "/" + Configuration.getExt_commandalias().getString("command-prefix.prefix") + command + " ",
                         ""
                 ).split(" ");
             }
@@ -145,8 +153,8 @@ public class ParseTool {
     }
 
     private String[] parseCustom(@NotNull String message, @NotNull String command) {
-        if (Configuration.CFI.command_alias_config.getBoolean("enable")) {
-            List<String> aliasList = Configuration.CFI.command_alias_config.getStringList(command);
+        if (Configuration.getExt_commandalias().getBoolean("enable")) {
+            List<String> aliasList = Configuration.getExt_commandalias().getStringList(command);
             aliasList.forEach(alias -> {
                 if (message.startsWith("!" + alias)) {
                     // CH -> !
@@ -186,13 +194,5 @@ public class ParseTool {
 
     public boolean isCustom() {
         return custom;
-    }
-
-    public static void registerCommand(@NotNull String command) {
-        commands.add(command);
-    }
-
-    public static void registerCommand(@NotNull List<String> command) {
-        commands.addAll(command);
     }
 }

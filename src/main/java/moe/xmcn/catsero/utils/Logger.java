@@ -23,6 +23,7 @@
  */
 package moe.xmcn.catsero.utils;
 
+import moe.xmcn.catsero.CatSero;
 import moe.xmcn.catsero.Configuration;
 
 import java.util.Arrays;
@@ -31,12 +32,16 @@ import java.util.logging.Level;
 
 public interface Logger {
 
+    static boolean enableDebug() {
+        return Configuration.getPlugin().getBoolean("debug-log");
+    }
+
     static void logINFO(String log) {
-        Configuration.plugin.getLogger().log(Level.INFO, log);
+        CatSero.INSTANCE.getLogger().log(Level.INFO, log);
     }
 
     static void logWARN(String warn) {
-        Configuration.plugin.getLogger().log(Level.WARNING, warn);
+        CatSero.INSTANCE.getLogger().log(Level.WARNING, warn);
     }
 
     static void logLoader(String msg) {
@@ -49,13 +54,23 @@ public interface Logger {
         }
     }
 
+    static void logTask(String msg) {
+        logINFO("[Task] " + msg);
+    }
+
+    static void logTask(List<String> msgs) {
+        for (int i = 1; i < msgs.toArray().length + 1; i++) {
+            logINFO("[Task] " + msgs.toArray()[i - 1]);
+        }
+    }
+
     static void logDebug(String msg) {
-        if (Configuration.PLUGIN.DEBUG_LOG)
+        if (enableDebug())
             logINFO("[Debug] " + msg);
     }
 
     static void logDebug(List<String> msgs) {
-        if (Configuration.PLUGIN.DEBUG_LOG)
+        if (enableDebug())
             for (int i = 1; i < msgs.toArray().length + 1; i++) {
                 logINFO("[Debug] " + msgs.toArray()[i - 1]);
             }
@@ -77,7 +92,7 @@ public interface Logger {
                 "捕获到一个错误",
                 "错误类型: " + error_type,
                 "捕获消息: " + error_message,
-                "详细信息: " + error_info,
+                "详细信息:\n" + error_info,
                 "如您认为这不是配置错误、网络原因导致的问题，请前往此处报告：",
                 "https://github.com/XiaMoHuaHuo-CN/CatSero/issues"
         );

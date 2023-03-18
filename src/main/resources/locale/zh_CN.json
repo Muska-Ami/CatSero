@@ -4,7 +4,7 @@
             "invalid-option": "&c不正确的参数格式",
             "no-permission": "&c你没有权限这么做",
             "reload": {
-                "success": "&aconfig.yml已重载"
+                "success": "&a配置文件已重载"
             },
             "cms": {
                 "sent": "&a消息已发送",

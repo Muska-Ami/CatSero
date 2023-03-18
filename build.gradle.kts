@@ -7,10 +7,10 @@ plugins {
 }
 
 group = "moe.xmcn.catsero"
-version = "2.3.3"
+version = "2.4-beta"
 
 repositories {
-    maven("https://maven.fastmirror.net/repositories/minecraft")
+    maven("https://lss233.littleservice.cn/repositories/minecraft")
     maven("https://repo.opencollab.dev/maven-snapshots/")
     mavenCentral()
 }
@@ -24,7 +24,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("me.clip:placeholderapi:2.11.2")
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.8-pre1")
-    implementation("com.alibaba:fastjson:2.0.23")
+    implementation("com.alibaba:fastjson:2.0.25")
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     implementation("com.zaxxer:HikariCP:4.0.3")
     implementation("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")

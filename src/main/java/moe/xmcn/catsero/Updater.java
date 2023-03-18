@@ -34,42 +34,49 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class Updater implements Runnable, Listener {
 
     private static final String now_version = Envrionment.plugin_version;
-    private static String latest_version;
+    private static String latest_version = Envrionment.plugin_version;
     private static String[] beta_version;
 
     @Override
     public void run() {
         HttpClient hc = new HttpClient();
-        String data = hc.getRequest(Configuration.PLUGIN.CHECK_UPDATE.API_URL);
+        String data = null;
+        try {
+            data = hc.getRequest(Configuration.getPlugin().getString("check-update.api-url"));
+        } catch (IOException ignored) {
+        }
         JSONObject object = JSON.parseObject(data);
 
-        latest_version = object.getJSONObject("latest").getString("tag");
-        beta_version = Arrays.asList(
-                object.getJSONObject("beta").getString("jar_zip"),
-                object.getJSONObject("beta").getString("full_zip")
-        ).toArray(new String[0]);
-        if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest")) {
-            Logger.logINFO("CatSero latest version: " + latest_version);
-            if (!now_version.equals(latest_version))
-                Logger.logINFO("Your version is not latest, your version: " + now_version);
-        } else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta"))
-            Logger.logINFO(
-                    "CatSero actions build:" +
-                            " \nJar Artifact - " + beta_version[0] +
-                            " \nFull Artifact - " + beta_version[1]
-            );
+        if (object != null) {
+            latest_version = object.getJSONObject("latest").getString("tag");
+            beta_version = Arrays.asList(
+                    object.getJSONObject("beta").getString("jar_zip"),
+                    object.getJSONObject("beta").getString("full_zip")
+            ).toArray(new String[0]);
+            if (Configuration.getPlugin().getString("check-update.mode").equalsIgnoreCase("latest")) {
+                Logger.logINFO("CatSero latest version: " + latest_version);
+                if (!now_version.equals(latest_version))
+                    Logger.logINFO("Your version is not latest, your version: " + now_version);
+            } else if (Configuration.getPlugin().getString("check-update.mode").equalsIgnoreCase("beta"))
+                Logger.logINFO(
+                        "CatSero actions build:" +
+                                " \nJar Artifact - " + beta_version[0] +
+                                " \nFull Artifact - " + beta_version[1]
+                );
+        }
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         if (player.isOp()) {
-            if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("latest") && latest_version != null && !now_version.equals(latest_version))
+            if (Configuration.getPlugin().getString("check-update.mode").equalsIgnoreCase("latest") && latest_version != null && !now_version.equals(latest_version))
                 player.sendMessage(
                         ChatColor.translateAlternateColorCodes(
                                 '&',
@@ -78,7 +85,7 @@ public class Updater implements Runnable, Listener {
                                         "&b, your version: &e" + now_version
                         )
                 );
-            else if (Configuration.PLUGIN.CHECK_UPDATE.MODE.equalsIgnoreCase("beta") && beta_version != null)
+            else if (Configuration.getPlugin().getString("check-update.mode").equalsIgnoreCase("beta") && beta_version != null)
                 player.sendMessage(
                         ChatColor.translateAlternateColorCodes(
                                 '&',

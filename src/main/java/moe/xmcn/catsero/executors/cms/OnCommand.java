@@ -23,7 +23,7 @@
  */
 package moe.xmcn.catsero.executors.cms;
 
-import moe.xmcn.catsero.Configuration;
+import moe.xmcn.catsero.I18n;
 import moe.xmcn.catsero.utils.Logger;
 import moe.xmcn.catsero.utils.MessageSender;
 import org.bukkit.ChatColor;
@@ -32,9 +32,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OnCommand implements TabExecutor {
+
+    private final I18n i18n = new I18n();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         try {
@@ -47,14 +51,22 @@ public class OnCommand implements TabExecutor {
                     }
                     message = new StringBuilder(message.substring(0, message.length() - 1));
                     MessageSender.sendGroup(message.toString(), args[0], args[1]);
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.CMS.SENT));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                            "minecraft", "command", "cms", "sent"
+                    )))));
                 } else {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.INVALID_OPTION));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                            "minecraft", "command", "invalid-option"
+                    )))));
                 }
             } else
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.NO_PERMISSION));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                        "minecraft", "command", "no-permission"
+                )))));
         } catch (Exception e) {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Configuration.I18N.MINECRAFT.COMMAND.CMS.ERROR));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
+                    "minecraft", "command", "cms", "error"
+            )))));
             Logger.logCatch(e);
         }
         return true;

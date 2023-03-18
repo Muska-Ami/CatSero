@@ -22,6 +22,7 @@ check-update:
   # 单位: 秒
   interval: 3600
   # 版本模式
+  # latest | dev
   mode: latest
   # 检查更新服务器API地址，一般情况请勿修改
   api-url: https://api.huahuo-cn.tk/mcplugins/CatSero/version

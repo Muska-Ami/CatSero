@@ -23,7 +23,6 @@
  */
 package moe.xmcn.catsero.utils;
 
-import moe.xmcn.catsero.Configuration;
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -40,16 +39,12 @@ import java.util.Optional;
 import java.util.Set;
 
 public class CommandSender implements ConsoleCommandSender {
-    private final CommandSender instance;
     private static String bot;
     private static long friend;
+    private final CommandSender instance;
 
     public CommandSender() {
         this.instance = this;
-    }
-
-    public Optional<org.bukkit.command.ConsoleCommandSender> get() {
-        return Optional.of(Bukkit.getServer().getConsoleSender());
     }
 
     /**
@@ -68,6 +63,10 @@ public class CommandSender implements ConsoleCommandSender {
      */
     public static void setFriend(long friend) {
         CommandSender.friend = friend;
+    }
+
+    public Optional<org.bukkit.command.ConsoleCommandSender> get() {
+        return Optional.of(Bukkit.getServer().getConsoleSender());
     }
 
     @Override
