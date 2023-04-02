@@ -34,7 +34,7 @@
 
 ## 使用文档
 
-参见：[https://docs.huahuo-cn.tk/CatSero](https://docs.huahuo-cn.tk/CatSero)
+参见：[https://docs.ovome.icu/CatSero](https://docs.ovome.icu/CatSero)
 
 ## 仓库统计
 
