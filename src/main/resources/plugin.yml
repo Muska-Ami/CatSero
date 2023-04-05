@@ -14,8 +14,35 @@ softdepend:
 commands:
   catsero:
     description: "CatSero 基础方法"
+    usage: "/catsero <version|reload|whitelist|cms>"
+    subcommands:
+      version:
+        description: "插件版本以及信息"
+      reload:
+        description: "重载config.yml"
+      whitelist:
+        description: "白名单管理"
+        usage: "/catsero whitelist <子指令>"
+        subcommands:
+          add:
+            description: "添加白名单"
+            usage: "/catsero whitelist add <Player>"
+          change:
+            description: "更新白名单"
+            usage: "/catsero whitelist change <子指令>"
+            subcommands:
+              name:
+                description: "更新白名单中某个玩家的名称"
+                usage: "/catsero whitelist change name <PlayerOldName> <PlayerNewName>"
+              qq:
+                description: "更新白名单中某个玩家的QQ号码"
+                usage: "/catsero whitelist change qq <Player> <QQ>"
+          remove:
+            description: "移除白名单"
+            usage: "/catsero whitelist remove <Player>"
   cms:
     description: "CatSero 发消息到QQ群"
+    usage: "/cms <BotID> <GroupID> <message>"
 permissions:
   catsero.*:
     description: "CatSero所有权限组"
