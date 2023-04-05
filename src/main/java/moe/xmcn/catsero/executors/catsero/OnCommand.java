@@ -56,6 +56,16 @@ public class OnCommand implements TabExecutor {
                     case "debug":
                         new debug().command(sender, args);
                         break;
+                    case "help":
+                        sender.sendMessage("用法: /catsero <command>");
+                        sender.sendMessage("命令:");
+                        sender.sendMessage("  version  插件版本以及信息");
+                        sender.sendMessage("  reload   重载config.yml");
+                        sender.sendMessage("  whitelist add <Player>    添加白名单");
+                        sender.sendMessage("  whitelist change name <PlayerOldName>   更新白名单");
+                        sender.sendMessage("  whitelist change qq <QQ> <QQ>    更新白名单");
+                        sender.sendMessage("  whitelist remove <Player> 移除白名单");
+                        break;
                     default:
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(
                                 "minecraft", "command", "invalid-option"
