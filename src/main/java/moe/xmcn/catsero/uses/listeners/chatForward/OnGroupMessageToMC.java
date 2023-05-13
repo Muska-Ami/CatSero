@@ -138,17 +138,17 @@ public class OnGroupMessageToMC implements Listener {
                 switch (sender_permission) {
                     case 0:
                         format = format.replace("%sender_permission%", i18n.getI18n(new ArrayList<>(Arrays.asList(
-                                "minecraft", "call", "member"
+                                "qq", "call", "member"
                         ))));
                         break;
                     case 1:
                         format = format.replace("%sender_permission%", i18n.getI18n(new ArrayList<>(Arrays.asList(
-                                "minecraft", "call", "admin"
+                                "qq", "call", "admin"
                         ))));
                         break;
                     case 2:
                         format = format.replace("%sender_permission%", i18n.getI18n(new ArrayList<>(Arrays.asList(
-                                "minecraft", "call", "owner"
+                                "qq", "call", "owner"
                         ))));
                         break;
                 }

@@ -23,9 +23,11 @@
  */
 package moe.xmcn.catsero.executors.catsero;
 
+import moe.xmcn.catsero.CatSero;
 import moe.xmcn.catsero.I18n;
 import moe.xmcn.catsero.utils.Envrionment;
 import moe.xmcn.catsero.utils.Logger;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -55,6 +57,9 @@ public class OnCommand implements TabExecutor {
                         break;
                     case "debug":
                         new debug().command(sender, args);
+                        break;
+                    case "help":
+                        Bukkit.getScheduler().runTask(CatSero.INSTANCE, () -> Bukkit.dispatchCommand(sender, "help CatSero"));
                         break;
                     default:
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', i18n.getI18n(new ArrayList<>(Arrays.asList(

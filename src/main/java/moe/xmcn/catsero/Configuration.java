@@ -128,7 +128,7 @@ public class Configuration {
         for (int i = configuration.size() - 1; i >= 0; i--) {
             if (!new File(formatPath(configuration.get(i), true)).exists()) {
                 //Logger.logWARN(cleanPath(configuration.get(i)));
-                INSTANCE.saveResource(formatPath(configuration.get(i), false), false);
+                INSTANCE.saveResource(cleanPath(configuration.get(i)/*, false*/), false);
                 Logger.logLoader("Save: " + cleanPath(configuration.get(i)));
             }
         }

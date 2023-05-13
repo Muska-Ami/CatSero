@@ -52,7 +52,7 @@ class WhiteListEditor(
     private val groups: List<String> = Configuration.getUseMiraiGroup(ThisID)
 ) : Listener {
 
-    private val i18n = I18n();
+    private val i18n = I18n()
 
     @EventHandler
     fun onGroupMessage(e: OnQQGroupCommandEvent) {

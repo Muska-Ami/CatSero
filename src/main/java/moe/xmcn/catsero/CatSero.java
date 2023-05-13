@@ -106,7 +106,7 @@ public class CatSero extends JavaPlugin {
         }
 
          */
-        if (Configuration.getPlugin().getBoolean(Configuration.buildYaID(
+        if (Configuration.getUses().getBoolean(Configuration.buildYaID(
                 Configuration.USESID.QWHITELIST,
                 new ArrayList<>(Collections.singletonList(
                         "enable"
