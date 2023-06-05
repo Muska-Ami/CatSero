@@ -23,7 +23,7 @@ dependencies {
     implementation("org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT")
     implementation("org.bstats:bstats-bukkit:3.0.2")
     implementation("me.clip:placeholderapi:2.11.2")
-    implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.8-pre1")
+    implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.8-pre2")
     implementation("com.alibaba:fastjson:2.0.31")
     implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     implementation("com.zaxxer:HikariCP:4.0.3")
