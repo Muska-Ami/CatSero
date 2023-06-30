@@ -1,3 +1,5 @@
+<img src="https://pan.ovome.icu/f/R5xtd/CatSero-v3.png" alt="" style="width: 100%" />
+
 # CatSero `v3`
 
 **Unfinished，请勿使用**
