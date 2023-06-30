@@ -10,7 +10,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[ci skip]README" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[ci skip]添加频道联系">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -606,7 +608,7 @@
       <option name="project" value="LOCAL" />
       <updated>1681018523198</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -628,7 +630,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="[fix] 修复卡服务问题，更改命令解析器，改为可扩展的事件" />
     <MESSAGE value="更新版本号和依赖" />
     <MESSAGE value="build" />
     <MESSAGE value="finish all jobs" />
@@ -653,7 +654,8 @@
     <MESSAGE value="Copy the pr #125" />
     <MESSAGE value="v3 #1 unfinished" />
     <MESSAGE value="[ci skip]README" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ci skip]README" />
+    <MESSAGE value="[ci skip]添加频道联系" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ci skip]添加频道联系" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
