@@ -7,10 +7,10 @@ plugins {
 }
 
 group = "moe.xmcn.catsero"
-version = "2.4"
+version = "3.0.0"
 
 repositories {
-    maven("https://lss233.littleservice.cn/repositories/minecraft")
+    maven("https://crystal.app.lss233.com/repositories/minecraft")
     maven("https://repo.opencollab.dev/maven-snapshots/")
     mavenCentral()
 }
@@ -21,13 +21,15 @@ dependencies {
 
     // 远程
     implementation("org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT")
+    implementation("org.tomlj:tomlj:1.1.0")
     implementation("org.bstats:bstats-bukkit:3.0.2")
-    implementation("me.clip:placeholderapi:2.11.2")
+    //implementation("me.clip:placeholderapi:2.11.2")
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.8-pre1")
     implementation("com.alibaba:fastjson:2.0.26")
-    implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
-    implementation("com.zaxxer:HikariCP:4.0.3")
-    implementation("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")
+    //implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
+    //implementation("com.zaxxer:HikariCP:4.0.3")
+    //implementation("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
@@ -98,9 +100,7 @@ tasks.create<Jar>("fatJar") {
     from(sourceMain.output)
 
     configurations.runtimeClasspath.get().filter {
-        it.name.startsWith("fastjson") or
-                it.name.startsWith("AdvancementInfo") or
-                it.name.startsWith("HikariCP")
+        it.name.startsWith("AdvancementInfo") || it.name.startsWith("HikariCP")
     }.forEach { jar ->
         from(zipTree(jar))
     }

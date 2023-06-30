@@ -1,0 +1,8 @@
+# CatSero v3 配置文件
+## 配置文件文档请参阅：
+## https://docs.ovome.icu/CatSero/config/
+
+# 插件本体配置
+[plugin]
+# 接受bStats统计
+allow-bstats = true
