@@ -8,6 +8,10 @@
 
 参见：[https://docs.ovome.icu/CatSero](https://docs.ovome.icu/CatSero)
 
+### QQ频道
+
+<https://pd.qq.com/s/deyioe3ga>
+
 ## 仓库统计
 
 <img src="https://repobeats.axiom.co/api/embed/67312323a923afc753db550976094b3ad4de7c8d.svg" width="100%"  alt="">
