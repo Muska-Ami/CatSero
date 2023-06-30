@@ -1,5 +1,5 @@
 name: CatSero
-main: moe.xmcn.catsero.CatSero
+main: moe.xmcn.catsero.v3.CatSero
 description: 基于MiraiMC的Minecraft功能插件
 version: @plugin.version@
 api-version: 1.13
@@ -10,7 +10,10 @@ softdepend:
   - MiraiMC
   - PlaceholderAPI
   - TrChat
-  - floodgate
+libraries:
+  - "org.jetbrains.kotlin:kotlin-stdlib:1.8.10"
+  - "com.alibaba:fastjson:2.0.26"
+  - "org.tomlj:tomlj:1.1.0"
 commands:
   catsero:
     description: "CatSero 基础方法"
@@ -18,38 +21,7 @@ commands:
     subcommands:
       version:
         description: "插件版本以及信息"
-      reload:
-        description: "重载config.yml"
-      debug:
-        description: "Debug"
-        usage: "/catsero debug <子命令>"
-        subcommands:
-          readconfig:
-            description: "读取配置文件节点信息"
-            usage: "/catsero debug readconfig <config.yml/uses-config.yml> <节点>"
-      whitelist:
-        description: "白名单管理"
-        usage: "/catsero whitelist <子指令>"
-        subcommands:
-          add:
-            description: "添加白名单"
-            usage: "/catsero whitelist add <Player>"
-          change:
-            description: "更新白名单"
-            usage: "/catsero whitelist change <子指令>"
-            subcommands:
-              name:
-                description: "更新白名单中某个玩家的名称"
-                usage: "/catsero whitelist change name <PlayerOldName> <PlayerNewName>"
-              qq:
-                description: "更新白名单中某个玩家的QQ号码"
-                usage: "/catsero whitelist change qq <Player> <QQ>"
-          remove:
-            description: "移除白名单"
-            usage: "/catsero whitelist remove <Player>"
-  cms:
-    description: "CatSero 发消息到QQ群"
-    usage: "/cms <BotID> <GroupID> <message>"
+
 permissions:
   catsero.*:
     description: "CatSero所有权限组"
@@ -57,23 +29,4 @@ permissions:
     children:
       catsero.admin:
         description: "CatSero OP权限组"
-        default: op
-      catsero.send-player-join-quit:
-        description: "玩家加入/退出游戏转发权限组"
-        default: false
-        children:
-          catsero.send-player-join-quit.join:
-            description: "玩家加入游戏转发权限"
-            default: op
-          catsero.send-player-join-quit.quit:
-            description: "玩家退出游戏转发权限"
-            default: op
-      catsero.send-death:
-        description: "玩家死亡转发权限"
-        default: op
-      catsero.send-advancement:
-        description: "玩家进度达成转发权限"
-        default: op
-      catsero.cms:
-        description: "cms命令权限"
         default: op
