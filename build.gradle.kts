@@ -25,7 +25,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.2")
     implementation("me.clip:placeholderapi:2.11.2")
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.8-pre1")
-    implementation("com.alibaba:fastjson:2.0.26")
+    implementation("com.alibaba:fastjson:2.0.34")
     //implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     //implementation("com.zaxxer:HikariCP:4.0.3")
     //implementation("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")
@@ -36,8 +36,8 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 tasks.getByName<Test>("test") {
@@ -46,19 +46,19 @@ tasks.getByName<Test>("test") {
 
 tasks.compileJava {
     options.encoding = "UTF-8"
-    sourceCompatibility = JavaVersion.VERSION_11.toString()
-    targetCompatibility = JavaVersion.VERSION_11.toString()
+    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+    targetCompatibility = JavaVersion.VERSION_1_8.toString()
 }
 tasks.compileTestJava {
     options.encoding = "UTF-8"
-    sourceCompatibility = JavaVersion.VERSION_11.toString()
-    targetCompatibility = JavaVersion.VERSION_11.toString()
+    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+    targetCompatibility = JavaVersion.VERSION_1_8.toString()
 }
 tasks.compileKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
 }
 tasks.compileTestKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
 }
 
 // 替换资源文件的Tokens`config.groovy`
