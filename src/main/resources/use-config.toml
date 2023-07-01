@@ -1,0 +1,7 @@
+# CatSero v3 功能配置文件
+## 配置文件文档请参阅：
+## https://docs.ovome.icu/CatSero/config/
+
+[chat-forward]
+enable = false
+

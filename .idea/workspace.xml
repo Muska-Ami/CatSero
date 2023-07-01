@@ -10,8 +10,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[ci skip]添加频道联系">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[ci skip]Logo">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/UpdateCheck.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnVanillaChat.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/util/PAPI.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/use-config.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/CatSero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/Configuration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/Configuration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lang/zh_CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/lang/zh_CN.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,8 +77,8 @@
       <list>
         <option value="AnnotationType" />
         <option value="Interface" />
-        <option value="Kotlin Class" />
         <option value="Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -117,23 +130,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "dev",
-    "jdk.selected.JAVA_MODULE": "corretto-1.8",
-    "last_directory_selection": "F:/CatSero/src/main/kotlin/moe/xmcn/catsero/v3",
-    "last_opened_file_path": "F:/CatSero/server-test/plugins",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "CodeWithMe"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-1.8&quot;,
+    &quot;last_directory_selection&quot;: &quot;F:/CatSero/src/main/kotlin/moe/xmcn/catsero/v3&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/CatSero/server-test/plugins&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeWithMe&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\CatSero\server-test\plugins" />
@@ -608,7 +621,7 @@
       <option name="project" value="LOCAL" />
       <updated>1681018523198</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -630,7 +643,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="更新版本号和依赖" />
     <MESSAGE value="build" />
     <MESSAGE value="finish all jobs" />
     <MESSAGE value="fix ci" />
@@ -655,7 +667,8 @@
     <MESSAGE value="v3 #1 unfinished" />
     <MESSAGE value="[ci skip]README" />
     <MESSAGE value="[ci skip]添加频道联系" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ci skip]添加频道联系" />
+    <MESSAGE value="[ci skip]Logo" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ci skip]Logo" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

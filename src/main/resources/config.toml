@@ -6,3 +6,11 @@
 [plugin]
 # 接受bStats统计
 allow-bstats = true
+
+# 插件更新设置
+[update]
+# 是否启用
+enable = true
+# 要从哪里拉取版本信息
+# 一般情况下无需修改
+update-server = "https://api.huahuo-cn.tk/mcplugins/CatSero/version"

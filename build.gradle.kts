@@ -23,7 +23,7 @@ dependencies {
     implementation("org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT")
     implementation("org.tomlj:tomlj:1.1.0")
     implementation("org.bstats:bstats-bukkit:3.0.2")
-    //implementation("me.clip:placeholderapi:2.11.2")
+    implementation("me.clip:placeholderapi:2.11.2")
     implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.8-pre1")
     implementation("com.alibaba:fastjson:2.0.26")
     //implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
@@ -36,8 +36,8 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 tasks.getByName<Test>("test") {
@@ -46,19 +46,19 @@ tasks.getByName<Test>("test") {
 
 tasks.compileJava {
     options.encoding = "UTF-8"
-    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-    targetCompatibility = JavaVersion.VERSION_1_8.toString()
+    sourceCompatibility = JavaVersion.VERSION_11.toString()
+    targetCompatibility = JavaVersion.VERSION_11.toString()
 }
 tasks.compileTestJava {
     options.encoding = "UTF-8"
-    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-    targetCompatibility = JavaVersion.VERSION_1_8.toString()
+    sourceCompatibility = JavaVersion.VERSION_11.toString()
+    targetCompatibility = JavaVersion.VERSION_11.toString()
 }
 tasks.compileKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
 }
 tasks.compileTestKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
 }
 
 // 替换资源文件的Tokens`config.groovy`
