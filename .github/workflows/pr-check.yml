@@ -1,4 +1,4 @@
-name: b-dev Gradle - Build
+name: b-dev Gradle - Pull Request Check
 
 on:
   pull_request:
