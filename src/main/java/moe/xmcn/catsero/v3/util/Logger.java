@@ -13,6 +13,7 @@ public interface Logger {
 
     /**
      * 输出INFO类型的日志
+     *
      * @param message 消息
      */
     static void info(String message) {
@@ -21,26 +22,29 @@ public interface Logger {
 
     /**
      * 输出INFO类型的日志
+     *
      * @param message 消息组
      */
     static void info(String[] message) {
         for (int i = 1; i <= message.length; i++) {
-            info(message[i-1]);
+            info(message[i - 1]);
         }
     }
 
     /**
      * 输出INFO类型的日志
+     *
      * @param message 消息组
      */
     static void info(List<String> message) {
         for (int i = 1; i <= message.toArray().length; i++) {
-            info(message.toArray()[i-1].toString());
+            info(message.toArray()[i - 1].toString());
         }
     }
 
     /**
      * 输出WARN类型的日志
+     *
      * @param message 消息组
      */
     static void warn(String message) {
@@ -49,26 +53,29 @@ public interface Logger {
 
     /**
      * 输出WARN类型的日志
+     *
      * @param message 消息组
      */
     static void warn(String[] message) {
         for (int i = 1; i <= message.length; i++) {
-            warn(message[i-1]);
+            warn(message[i - 1]);
         }
     }
 
     /**
      * 输出WARN类型的日志
+     *
      * @param message 消息组
      */
     static void warn(List<String> message) {
         for (int i = 1; i <= message.toArray().length; i++) {
-            warn(message.toArray()[i-1].toString());
+            warn(message.toArray()[i - 1].toString());
         }
     }
 
     /**
      * 输出ERROR类型的日志
+     *
      * @param message 消息组
      */
     static void error(String message) {
@@ -77,21 +84,23 @@ public interface Logger {
 
     /**
      * 输出ERROR类型的日志
+     *
      * @param message 消息组
      */
     static void error(String[] message) {
         for (int i = 1; i <= message.length; i++) {
-            error(message[i-1]);
+            error(message[i - 1]);
         }
     }
 
     /**
      * 输出ERROR类型的日志
+     *
      * @param message 消息组
      */
     static void error(List<String> message) {
         for (int i = 1; i <= message.toArray().length; i++) {
-            error(message.toArray()[i-1].toString());
+            error(message.toArray()[i - 1].toString());
         }
     }
 

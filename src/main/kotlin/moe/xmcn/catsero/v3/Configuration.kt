@@ -3,10 +3,8 @@ package moe.xmcn.catsero.v3
 import moe.xmcn.catsero.v3.util.Logger
 import moe.xmcn.catsero.v3.util.TomlUtil
 import org.bukkit.Bukkit
-import org.bukkit.ChatColor
 import org.tomlj.TomlParseResult
 import java.io.File
-import java.lang.StringBuilder
 
 interface Configuration {
 
@@ -63,7 +61,8 @@ interface Configuration {
                 "config.toml",
                 "mirai.toml",
                 "use-config.toml",
-                "lang/zh_CN.json"
+                "lang/zh_CN/message.json",
+                "lang/zh_CN/format.json"
             )
             file.forEach {
                 if (!File(CatSero.INSTANCE.dataFolder.toString() + "/$it").exists()) {

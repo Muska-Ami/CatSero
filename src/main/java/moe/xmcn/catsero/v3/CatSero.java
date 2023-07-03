@@ -4,11 +4,13 @@ import moe.xmcn.catsero.v3.core.CoreRegister;
 import moe.xmcn.catsero.v3.util.Logger;
 import moe.xmcn.catsero.v3.util.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.tomlj.TomlParseResult;
 
 import java.util.Objects;
 
 public class CatSero extends JavaPlugin {
 
+    private static final TomlParseResult config = Configuration.Companion.getPluginConfig();
     public static CatSero INSTANCE;
 
     @Override
@@ -28,7 +30,7 @@ public class CatSero extends JavaPlugin {
 
             try {
                 // bStats
-                if (Objects.requireNonNullElse(Configuration.Companion.getPluginConfig().getBoolean("plugin . allow-bstats"), false)) {
+                if (Objects.requireNonNullElse(config.getBoolean("plugin . allow-bstats"), false)) {
                     Logger.info("启动 bStats 统计");
                     new Metrics(this, 14767);
                 }
@@ -42,10 +44,12 @@ public class CatSero extends JavaPlugin {
             Logger.info("CatSero 加载完毕");
 
         } else {
-
-            Logger.error("未安装 MiraiMC ， CatSero 将自动禁用");
-            getPluginLoader().disablePlugin(this);
-
+            if (Objects.requireNonNullElse(config.getBoolean("plugin . birdge-mode"), false)) {
+                Logger.info("CatSero 桥接模式加载完毕");
+            } else {
+                Logger.error("未安装 MiraiMC ，且桥接模式处于禁用状态， CatSero 将自动禁用");
+                getPluginLoader().disablePlugin(this);
+            }
         }
 
     }

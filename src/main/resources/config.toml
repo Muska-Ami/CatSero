@@ -6,6 +6,9 @@
 [plugin]
 # 接受bStats统计
 allow-bstats = true
+# 语言模式
+# 自动读取 `lang/${lang}` 目录下的语言
+lang = "zh_CN"
 
 # 插件更新设置
 [update]
