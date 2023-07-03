@@ -1,8 +1,13 @@
+# CatSero v3 mirai配置文件
+## 配置文件文档请参阅：
+## https://docs.ovome.icu/CatSero/config/
+
 # 可用Bot列表
 [bot]
 geKo = 123456
 sama = 114514
 
+# 可用Group列表
 [group]
 hikari = 987654321
 homo = 123456789

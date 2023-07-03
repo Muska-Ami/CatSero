@@ -4,4 +4,4 @@
 
 [chat-forward]
 enable = false
-
+mirai = ["geKo", "hikari"]

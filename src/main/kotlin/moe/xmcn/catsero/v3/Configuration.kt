@@ -3,22 +3,25 @@ package moe.xmcn.catsero.v3
 import moe.xmcn.catsero.v3.util.Logger
 import moe.xmcn.catsero.v3.util.TomlUtil
 import org.bukkit.Bukkit
+import org.bukkit.ChatColor
 import org.tomlj.TomlParseResult
 import java.io.File
+import java.lang.StringBuilder
 
 interface Configuration {
 
-    companion object {
+    // 定义依赖项目是否存在
+    class Depend {
 
-        class Depend {
+        companion object {
 
-            companion object {
+            var MiraiMC = false
+            var PlaceholderAPI = false
 
-                var MiraiMC = false
-                var PlaceholderAPI = false
-
-            }
         }
+    }
+
+    companion object {
 
         /**
          * 获取插件配置文件
@@ -36,9 +39,7 @@ interface Configuration {
 
         /**
          * 获取Bot
-         *
          * @param id BotID
-         *
          * @return BotCode
          */
         fun getBot(id: String): Long? {
@@ -47,9 +48,7 @@ interface Configuration {
 
         /**
          * 获取Group
-         *
          * @param id GroupID
-         *
          * @return GroupCode
          */
         fun getGroup(id: String): Long? {
@@ -62,6 +61,8 @@ interface Configuration {
         fun saveConfig() {
             val file = listOf(
                 "config.toml",
+                "mirai.toml",
+                "use-config.toml",
                 "lang/zh_CN.json"
             )
             file.forEach {
@@ -83,14 +84,22 @@ interface Configuration {
                 Depend.PlaceholderAPI = true
             }
 
-            listOf(
+            val authorsbr = StringBuilder()
+            CatSero.INSTANCE.description.authors.forEach {
+                authorsbr.append("$it, ")
+            }
+            val authors = authorsbr.substring(0, authorsbr.length - 2)
+
+            val info = listOf(
+                "------ CatSero v3 ------",
+                "版本: ${CatSero.INSTANCE.description.version}",
+                "服务器: ${Bukkit.getBukkitVersion()} - ${Bukkit.getVersion()}",
                 "",
-                "------ &bCatSero &dv3 ------",
-                "&3版本: &e${CatSero.INSTANCE.description.version}",
-                "&3服务器: &e${Bukkit.getBukkitVersion()}&r - &d${Bukkit.getVersion()}",
-
+                "CatSero v${CatSero.INSTANCE.description.version}",
+                "由 $authors 制作",
+                "----------------------------"
             )
-
+            Logger.info(info)
         }
 
         private fun isPluginInstall(n: String): Boolean {
