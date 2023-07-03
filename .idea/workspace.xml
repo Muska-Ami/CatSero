@@ -10,147 +10,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="Copy the pr #125">
-      <change afterPath="$PROJECT_DIR$/lib/groovy-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-ant-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-ant-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-astbuilder-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-astbuilder-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-cli-commons-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-cli-commons-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-cli-picocli-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-cli-picocli-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-console-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-console-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-contracts-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-contracts-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-datetime-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-datetime-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-dateutil-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-dateutil-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-docgenerator-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-docgenerator-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-ginq-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-ginq-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-groovydoc-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-groovydoc-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-groovysh-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-groovysh-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-jmx-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-jmx-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-json-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-json-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-jsr223-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-jsr223-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-macro-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-macro-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-macro-library-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-macro-library-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-nio-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-nio-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-servlet-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-servlet-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-sql-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-sql-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-swing-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-swing-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-templates-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-templates-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-test-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-test-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-test-junit5-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-test-junit5-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-testng-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-testng-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-toml-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-toml-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-typecheckers-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-typecheckers-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-xml-4.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/groovy-xml-4.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/CatSero.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/util/Logger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/Configuration.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/util/TomlUtil.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lang/zh_CN.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="I18n接口">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/I18n.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/lang/zh_CN/format.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/lang/zh_CN/message.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/config.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/CatSero.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Configuration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/I18n.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/Updater.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/EventCaller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/events/bridge/ParseTool.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/Register.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/OnCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/debug.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/reload.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/version.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/catsero/whitelist.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/executors/cms/OnCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/Register.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/advancementForward/OnPlayerAdvancementDone.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/chatForward/OnCommonChatToQQ.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/chatForward/OnGroupMessageToMC.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/chatForward/OnTrChatToQQ.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/deathForward/OnPlayerDeath.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/getOnlineList/OnGroupMessageRequestList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/getTPS/OnGroupMessageRequestTPS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/heyFriend/OnPlayerJoin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/heyFriend/SimpleYamlDB.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/joinQuitForward/OnPlayerJoin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/joinQuitForward/OnPlayerQuit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/listeners/newGroupMemberNotification/OnMemberJoin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/timers/infoPlaceholder/BotNamePlaceholder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/timers/infoPlaceholder/OnServerDisable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/timers/infoPlaceholder/ReplacePlaceholders.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/uses/timers/infoPlaceholder/TitlePlaceholder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/CommandSender.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Envrionment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/HttpClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Logger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/MessageSender.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/PAPI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/WhiteListDatabase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/timers/TPSCalculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/utils/timers/bStatsMetrics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/util/Metrics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/events/OnQQFriendCommandEvent.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/events/OnQQGroupCommandEvent.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/uses/listeners/groupMemberLeaveNotification/OnMemberLeave.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/uses/listeners/qCmd/OnRequestExecuteCommand.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/uses/listeners/qWhitelist/RefuseNoWhiteList.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/uses/listeners/qWhitelist/SelfApplication.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/uses/listeners/qWhitelist/WhiteListEditor.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/Filter.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/utils/timers/NotNPP.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/extra-configs/command-alias.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/extra-configs/sql.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/extra-configs/trchat.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/locale/zh_CN.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mirai-configs/bot.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mirai-configs/group.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mirai-configs/qq-op.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/uses-config.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/CatSero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/util/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/util/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/Configuration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/Configuration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnVanillaChat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnVanillaChat.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lang/zh_CN.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,8 +78,8 @@
       <list>
         <option value="AnnotationType" />
         <option value="Interface" />
-        <option value="Kotlin Class" />
         <option value="Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -256,23 +131,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "dev",
-    "jdk.selected.JAVA_MODULE": "corretto-1.8",
-    "last_directory_selection": "F:/CatSero/src/main/kotlin/moe/xmcn/catsero/v3",
-    "last_opened_file_path": "F:/CatSero/server-test/plugins",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "CodeWithMe"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-1.8&quot;,
+    &quot;last_directory_selection&quot;: &quot;F:/CatSero/src/main/kotlin/moe/xmcn/catsero/v3&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/CatSero/server-test/plugins&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeWithMe&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\CatSero\server-test\plugins" />
@@ -282,12 +157,14 @@
       <recent name="F:\CatSero\server-test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\CatSero\src\main\resources\lang\zh_CN" />
       <recent name="F:\CatSero\server-test\plugins" />
       <recent name="F:\CatSero\src\test\java" />
       <recent name="E:\IdeaProjects\CatSero\server-test\plugins" />
       <recent name="D:\Otr\IdeaProjects\CatSero\" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="moe.xmcn.catsero.v3.core" />
       <recent name="moe.xmcn.catsero.utils.timers" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -747,7 +624,7 @@
       <option name="project" value="LOCAL" />
       <updated>1681018523198</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -769,14 +646,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="简单的命令执行工具 #94" />
-    <MESSAGE value="[fix] 修复一堆问题，优化结构" />
-    <MESSAGE value="[fix] 修复卡服务问题，更改命令解析器，改为可扩展的事件" />
-    <MESSAGE value="更新版本号和依赖" />
-    <MESSAGE value="build" />
-    <MESSAGE value="finish all jobs" />
-    <MESSAGE value="fix ci" />
-    <MESSAGE value="2.4 首次提交&#10;优化聊天转发屏蔽词请求方案" />
     <MESSAGE value="Administrator 进行的变更" />
     <MESSAGE value="[ci skip] 又空指针咯~" />
     <MESSAGE value="[ci skip] 没整完 但是我就是要推送（" />
@@ -794,7 +663,15 @@
     <MESSAGE value="修正类位置" />
     <MESSAGE value="修复 #119" />
     <MESSAGE value="Copy the pr #125" />
-    <option name="LAST_COMMIT_MESSAGE" value="Copy the pr #125" />
+    <MESSAGE value="v3 #1 unfinished" />
+    <MESSAGE value="[ci skip]README" />
+    <MESSAGE value="[ci skip]添加频道联系" />
+    <MESSAGE value="[ci skip]Logo" />
+    <MESSAGE value="[ci skip]添加一点基本方法，改为最低支持Java 11" />
+    <MESSAGE value="test" />
+    <MESSAGE value="基本工具" />
+    <MESSAGE value="I18n接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="I18n接口" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
