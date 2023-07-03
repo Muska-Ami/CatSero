@@ -2,7 +2,7 @@ name: b-main Gradle - Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ v3 ]
 
 jobs:
   build:
