@@ -10,22 +10,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="I18n接口">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/I18n.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lang/zh_CN/format.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lang/zh_CN/message.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="[ci skip]build fix">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/util/MessageSender.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/CatSero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/CatSero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/util/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/util/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/Configuration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/Configuration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/I18n.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/I18n.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/CoreRegister.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/CoreRegister.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnVanillaChat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnVanillaChat.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/lang/zh_CN.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lang/zh_CN/format.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/lang/zh_CN/format.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/use-config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/use-config.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +79,7 @@
         <option value="Interface" />
         <option value="Class" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Interface" />
       </list>
     </option>
   </component>
@@ -624,7 +624,7 @@
       <option name="project" value="LOCAL" />
       <updated>1681018523198</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -646,8 +646,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="Administrator 进行的变更" />
-    <MESSAGE value="[ci skip] 又空指针咯~" />
     <MESSAGE value="[ci skip] 没整完 但是我就是要推送（" />
     <MESSAGE value="[ci skip] 怎么就空指针了（恼" />
     <MESSAGE value="[ci skip] 修复空指针" />
@@ -671,7 +669,9 @@
     <MESSAGE value="test" />
     <MESSAGE value="基本工具" />
     <MESSAGE value="I18n接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="I18n接口" />
+    <MESSAGE value="更新 pr-check.yml" />
+    <MESSAGE value="[ci skip]build fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ci skip]build fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

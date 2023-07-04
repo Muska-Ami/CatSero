@@ -2,6 +2,9 @@
 ## 配置文件文档请参阅：
 ## https://docs.ovome.icu/CatSero/config/
 
+[general]
+time-format = "HH:mm:ss, yyyy-MM-dd"
+
 [chat-forward]
 enable = false
 mirai = ["geKo", "hikari"]

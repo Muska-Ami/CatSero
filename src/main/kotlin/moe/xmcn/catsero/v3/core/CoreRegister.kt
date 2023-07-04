@@ -10,7 +10,7 @@ class CoreRegister {
 
     companion object {
 
-        val config = Configuration.getUsesConfig()
+        private val config = Configuration.getUsesConfig()
 
         fun registerListener() {
 
