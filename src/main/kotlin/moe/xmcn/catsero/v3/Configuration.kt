@@ -24,16 +24,13 @@ interface Configuration {
         /**
          * 获取插件配置文件
          */
-        fun getPluginConfig(): TomlParseResult {
-            return TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("config.toml"))
-        }
+        val pluginConfig: TomlParseResult = TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("config.toml"))
+
 
         /**
          * 获取功能配置文件
          */
-        fun getUsesConfig(): TomlParseResult {
-            return TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("use-config.toml"))
-        }
+        val usesConfig: TomlParseResult = TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("use-config.toml"))
 
         /**
          * 获取Bot

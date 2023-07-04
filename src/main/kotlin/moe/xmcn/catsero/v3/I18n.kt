@@ -11,7 +11,7 @@ interface I18n {
     companion object {
 
         private val lang: String?
-            get() = Configuration.getPluginConfig().getString("plugin . lang")
+            get() = Configuration.pluginConfig.getString("plugin . lang")
 
         private val messageJSON: JSONObject
             get() = JSON.parseObject(Files.readString(Paths.get("${CatSero.INSTANCE.dataFolder}/lang/$lang/message.json")))
