@@ -1,5 +1,5 @@
 {
-    "chat-forward": {
+    "chatForward": {
         "to-mc": "[&aQQ&r]&b%name%&r: %message%",
         "to-qq": "[MC]%name%:\n%message%",
         "time": ""

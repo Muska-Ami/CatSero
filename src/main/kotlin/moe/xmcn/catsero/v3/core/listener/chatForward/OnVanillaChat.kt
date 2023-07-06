@@ -16,8 +16,8 @@ import java.util.*
 class OnVanillaChat : Listener {
 
     private val config = Configuration.usesConfig
-    private val bot = Configuration.getBot(config.getArray("chat-forward . mirai")?.get(0).toString())
-    private val group = Configuration.getBot(config.getArray("chat-forward . mirai")?.get(1).toString())
+    private val bot = Configuration.getBot(config.getArray("chatForward . mirai")?.get(0).toString())
+    private val group = Configuration.getBot(config.getArray("chatForward . mirai")?.get(1).toString())
 
     @EventHandler
     fun onAsyncChatEvent(event: AsyncPlayerChatEvent) {
@@ -31,7 +31,7 @@ class OnVanillaChat : Listener {
             )
             val date = Date(System.currentTimeMillis())
 
-            val format = I18n.getFormat("chat-forward.to-qq")
+            val format = I18n.getFormat("chatForward.to-qq")
 
             var res = format.replace("%player%", player.name)
                 .replace("%message%", message)
@@ -39,7 +39,7 @@ class OnVanillaChat : Listener {
             res = PAPI.transPlaceholders(res, player)
 
             Filter.fullWords.forEach {
-                res = res.replace(it, Configuration.usesConfig.getString("chat-forward.filter . replace ")?: "**")
+                res = res.replace(it, Configuration.usesConfig.getString("chatForward.filter . replace ")?: "**")
             }
 
             object : BukkitRunnable() {

@@ -6,7 +6,6 @@ import moe.xmcn.catsero.v3.core.listener.chatForward.OnVanillaChat
 import moe.xmcn.catsero.v3.core.timer.chatForward.Filter
 import moe.xmcn.catsero.v3.util.Logger
 import org.bukkit.event.Listener
-import org.bukkit.scheduler.BukkitRunnable
 
 class CoreRegister {
 
@@ -21,20 +20,19 @@ class CoreRegister {
             val list = listOf(
                 listOf(
                     OnVanillaChat(),
-                    "chat-forward . enable",
+                    "chatForward . enable",
                 ),
             )
 
             list.forEach {
-                Logger.warn(config.getBoolean(it[1] as String).toString())
                 if (config.getBoolean(it[1] as String) == true) {
-                    Logger.info("注册：${it[0]}")
+                    Logger.info("注册：${it[0].javaClass}")
                     CatSero.INSTANCE.server.pluginManager.registerEvents(it[0] as Listener, CatSero.INSTANCE)
                 }
             }
 
             /*
-            if (config.getBoolean("chat-forward . enable")!!) {
+            if (config.getBoolean("chatForward . enable")!!) {
                 CatSero.INSTANCE.server.pluginManager.registerEvents(OnVanillaChat(), CatSero.INSTANCE)
             }
              */
@@ -48,13 +46,13 @@ class CoreRegister {
             val list = listOf(
                 listOf(
                     Filter.startUpdate(),
-                    "chat-forward . enable",
+                    "chatForward . enable",
                 ),
             )
 
             list.forEach {
                 if (config.getBoolean(it[1] as String) == true) {
-                    Logger.info("注册：${it[0]}")
+                    Logger.info("注册：${it[0].javaClass}")
                     it[0]
                 }
             }

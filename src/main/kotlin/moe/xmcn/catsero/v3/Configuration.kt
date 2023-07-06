@@ -24,13 +24,13 @@ interface Configuration {
         /**
          * 获取插件配置文件
          */
-        val pluginConfig: TomlParseResult = TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("config.toml"))
+        val pluginConfig: TomlParseResult = TomlUtil.getTomlResult("config.toml")
 
 
         /**
          * 获取功能配置文件
          */
-        val usesConfig: TomlParseResult = TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("use-config.toml"))
+        val usesConfig: TomlParseResult = TomlUtil.getTomlResult("use-config.toml")
 
         /**
          * 获取Bot
@@ -38,7 +38,7 @@ interface Configuration {
          * @return BotCode
          */
         fun getBot(id: String): Long? {
-            return TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("mirai.toml")).getLong("bot . $id")
+            return TomlUtil.getTomlResult("mirai.toml").getLong("bot . $id")
         }
 
         /**
@@ -47,7 +47,7 @@ interface Configuration {
          * @return GroupCode
          */
         fun getGroup(id: String): Long? {
-            return TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("mirai.toml")).getLong("group . $id")
+            return TomlUtil.getTomlResult("mirai.toml").getLong("group . $id")
         }
 
         /**

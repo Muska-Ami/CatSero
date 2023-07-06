@@ -14,6 +14,7 @@ libraries:
   - "org.jetbrains.kotlin:kotlin-stdlib:1.8.22"
   - "com.alibaba:fastjson:2.0.34"
   - "org.tomlj:tomlj:1.1.0"
+  - "com.squareup.okhttp3:okhttp:4.11.0"
 commands:
   catsero:
     description: "CatSero 基础方法"

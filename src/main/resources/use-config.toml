@@ -6,26 +6,26 @@
 time-format = "HH:mm:ss, yyyy-MM-dd"
 
 # 聊天转发
-[chat-forward]
+[chatForward]
 # 是否启用该功能
 enable = false
 # Bot定义
 mirai = ["geKo", "hikari"]
 # 屏蔽词
-[chat-forward.filter]
+[chatForward.filter]
 # 是否启用该功能
 enable = false
 # 替换成的字符
 replace = "**"
 # 本地屏蔽词
-[chat-forward.filter.local]
+[chatForward.filter.local]
 # 启用该功能
 enable = false
 # 本地屏蔽词文件列表
 # 请填写文件绝对路径
 local-files = []
 # 远程屏蔽词
-[chat-forward.filter.remote]
+[chatForward.filter.remote]
 # 是否启用该功能
 enable = false
 # 远程屏蔽词列表
@@ -34,8 +34,8 @@ enable = false
 remote-urls = [
     "https://cdn.jsdelivr.net/gh/Yurinann/Filter-Thesaurus-Cloud@main/database.json"
 ]
-# 自动更新远程源
-[chat-forward.filter.remote.auto-update]
+# 自动更新源
+[chatForward.filter.auto-update]
 # 是否启用该功能
 enable = true
 # 更新间隔
