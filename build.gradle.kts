@@ -30,7 +30,7 @@ dependencies {
     //implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     //implementation("com.zaxxer:HikariCP:4.0.3")
     //implementation("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.22")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
