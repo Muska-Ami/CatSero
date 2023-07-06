@@ -10,7 +10,6 @@ import java.util.Objects;
 
 public class CatSero extends JavaPlugin {
 
-    private static final TomlParseResult config = Configuration.Companion.getPluginConfig();
     public static CatSero INSTANCE;
 
     @Override
@@ -21,6 +20,7 @@ public class CatSero extends JavaPlugin {
     @Override
     public void onEnable() {
         INSTANCE = this;
+        TomlParseResult config = Configuration.Companion.getPluginConfig();
         Logger.info("初始化 CatSero");
         Configuration.Companion.saveConfig();
         Configuration.Companion.loadEnv();
@@ -37,6 +37,7 @@ public class CatSero extends JavaPlugin {
 
                 // 核心事件注册
                 CoreRegister.Companion.registerListener();
+                CoreRegister.Companion.registerTimer();
             } catch (Exception e) {
                 Logger.catchEx(e);
             }

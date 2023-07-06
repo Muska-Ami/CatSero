@@ -1,8 +1,7 @@
 {
-    "chat-forward": {
-        "format": {
-            "to-mc": "[&aQQ&r]&b%name%&r: %message%",
-            "to-qq": "[MC]%name%:\n%message%"
-        }
+    "chatForward": {
+        "to-mc": "[&aQQ&r]&b%sender_name%&r(&e%group_name%/%group_id%&r): %message%",
+        "to-qq": "[MC]%name%:\n%message%",
+        "time": ""
     }
 }

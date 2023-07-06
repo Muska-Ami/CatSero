@@ -6,9 +6,19 @@
 [plugin]
 # 接受bStats统计
 allow-bstats = true
+# 启用PlaceholderAPI支持
+# 前置: PlaceholderAPI
+enable-papi-support = true
 # 语言模式
 # 自动读取 `lang/${lang}` 目录下的语言
 lang = "zh_CN"
+# 输出DEBUG日志
+debug-log = false
+
+# mirai扩展配置
+[mirai]
+# 启用miraiCode
+enable-miraicode-support = false
 
 # 插件更新设置
 [update]

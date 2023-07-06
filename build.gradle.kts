@@ -24,15 +24,16 @@ dependencies {
     implementation("org.tomlj:tomlj:1.1.0")
     implementation("org.bstats:bstats-bukkit:3.0.2")
     implementation("me.clip:placeholderapi:2.11.2")
-    implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.8-pre1")
+    implementation("io.github.dreamvoid:MiraiMC-Bukkit:1.8-pre2")
     implementation("com.alibaba:fastjson:2.0.34")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
     //implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     //implementation("com.zaxxer:HikariCP:4.0.3")
     //implementation("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.22")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
     testImplementation(kotlin("test"))
 }
 java {

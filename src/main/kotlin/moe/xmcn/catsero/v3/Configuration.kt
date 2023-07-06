@@ -1,5 +1,6 @@
 package moe.xmcn.catsero.v3
 
+import me.arasple.mc.trchat.TrChat
 import moe.xmcn.catsero.v3.util.Logger
 import moe.xmcn.catsero.v3.util.TomlUtil
 import org.bukkit.Bukkit
@@ -15,6 +16,7 @@ interface Configuration {
 
             var MiraiMC = false
             var PlaceholderAPI = false
+            var TrChat = false
 
         }
     }
@@ -24,16 +26,13 @@ interface Configuration {
         /**
          * 获取插件配置文件
          */
-        fun getPluginConfig(): TomlParseResult {
-            return TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("config.toml"))
-        }
+        val pluginConfig: TomlParseResult = TomlUtil.getTomlResult("config.toml")
+
 
         /**
          * 获取功能配置文件
          */
-        fun getUsesConfig(): TomlParseResult {
-            return TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("use-config.toml"))
-        }
+        val usesConfig: TomlParseResult = TomlUtil.getTomlResult("use-config.toml")
 
         /**
          * 获取Bot
@@ -41,7 +40,7 @@ interface Configuration {
          * @return BotCode
          */
         fun getBot(id: String): Long? {
-            return TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("mirai.toml")).getLong("bot . $id")
+            return TomlUtil.getTomlResult("mirai.toml").getLong("bot . $id")
         }
 
         /**
@@ -50,7 +49,7 @@ interface Configuration {
          * @return GroupCode
          */
         fun getGroup(id: String): Long? {
-            return TomlUtil.getTomlResult(CatSero.INSTANCE.getResource("mirai.toml")).getLong("group . $id")
+            return TomlUtil.getTomlResult("mirai.toml").getLong("group . $id")
         }
 
         /**
@@ -81,6 +80,9 @@ interface Configuration {
             }
             if (isPluginInstall("PlaceholderAPI")) {
                 Depend.PlaceholderAPI = true
+            }
+            if (isPluginInstall("TrChat")) {
+                Depend.TrChat = true
             }
 
             val authorsbr = StringBuilder()

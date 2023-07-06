@@ -1,11 +1,9 @@
 package moe.xmcn.catsero.v3.util;
 
 import moe.xmcn.catsero.v3.CatSero;
+import moe.xmcn.catsero.v3.Configuration;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public interface Logger {
 
@@ -13,7 +11,6 @@ public interface Logger {
 
     /**
      * 输出INFO类型的日志
-     *
      * @param message 消息
      */
     static void info(String message) {
@@ -22,7 +19,6 @@ public interface Logger {
 
     /**
      * 输出INFO类型的日志
-     *
      * @param message 消息组
      */
     static void info(String[] message) {
@@ -33,7 +29,6 @@ public interface Logger {
 
     /**
      * 输出INFO类型的日志
-     *
      * @param message 消息组
      */
     static void info(List<String> message) {
@@ -44,7 +39,6 @@ public interface Logger {
 
     /**
      * 输出WARN类型的日志
-     *
      * @param message 消息组
      */
     static void warn(String message) {
@@ -53,7 +47,6 @@ public interface Logger {
 
     /**
      * 输出WARN类型的日志
-     *
      * @param message 消息组
      */
     static void warn(String[] message) {
@@ -64,7 +57,6 @@ public interface Logger {
 
     /**
      * 输出WARN类型的日志
-     *
      * @param message 消息组
      */
     static void warn(List<String> message) {
@@ -75,7 +67,6 @@ public interface Logger {
 
     /**
      * 输出ERROR类型的日志
-     *
      * @param message 消息组
      */
     static void error(String message) {
@@ -84,7 +75,6 @@ public interface Logger {
 
     /**
      * 输出ERROR类型的日志
-     *
      * @param message 消息组
      */
     static void error(String[] message) {
@@ -95,7 +85,6 @@ public interface Logger {
 
     /**
      * 输出ERROR类型的日志
-     *
      * @param message 消息组
      */
     static void error(List<String> message) {
@@ -118,6 +107,24 @@ public interface Logger {
         ).toArray(new String[0]);
 
         error(message);
+    }
+
+    /**
+     * 输出DEBUG类型的日志
+     * @param message 消息
+     */
+    static void debug(String message) {
+        if (Objects.requireNonNullElse(Configuration.Companion.getPluginConfig().getBoolean("plugin . debug-log"), false))
+            info("[DEBUG] " + message);
+    }
+    /**
+     * 输出DEBUG类型的日志
+     * @param message 消息组
+     */
+    static void debug(List<String> message) {
+        for (int i = 1; i <= message.toArray().length; i++) {
+            debug(message.toArray()[i - 1].toString());
+        }
     }
 
 }

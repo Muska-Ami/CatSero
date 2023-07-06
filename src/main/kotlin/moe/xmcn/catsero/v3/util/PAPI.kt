@@ -1,6 +1,7 @@
 package moe.xmcn.catsero.v3.util
 
 import me.clip.placeholderapi.PlaceholderAPI
+import moe.xmcn.catsero.v3.Configuration
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
@@ -17,7 +18,9 @@ interface PAPI {
          * @return 已转换的文本
          */
         fun transPlaceholders(s: String, player: Player): String {
-            return PlaceholderAPI.setBracketPlaceholders(player, s)
+            return if (Configuration.Depend.PlaceholderAPI)
+                PlaceholderAPI.setBracketPlaceholders(player, s)
+            else s
         }
 
         /**
@@ -29,7 +32,9 @@ interface PAPI {
          * @return 已转换的文本
          */
         fun transPlaceholders(s: String, player: CommandSender): String {
-            return PlaceholderAPI.setBracketPlaceholders(player as Player, s)
+            return if (Configuration.Depend.PlaceholderAPI)
+                PlaceholderAPI.setBracketPlaceholders(player as Player, s)
+            else s
         }
 
     }
