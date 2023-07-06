@@ -13,7 +13,9 @@ import java.nio.file.Paths
 class Filter: Runnable {
 
     companion object {
+        @JvmStatic
         private var lastImportLength: Int = 0
+        @JvmStatic
         val fullWords = ArrayList<String>()
 
         fun startUpdate() {
