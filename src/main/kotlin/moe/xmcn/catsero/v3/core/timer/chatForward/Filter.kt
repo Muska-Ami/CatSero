@@ -47,6 +47,7 @@ class Filter: Runnable {
         var jsonData: JSONArray? = null
 
         if (Configuration.usesConfig.getBoolean("chatForward.filter.local . enable") == true) {
+            Logger.debug("更新本地屏蔽词")
             localFiles ?: ArrayList<String>().toList().forEach { path ->
                 run {
                     //读取文件
@@ -63,6 +64,7 @@ class Filter: Runnable {
                     }
 
                     if (jsonData != null) {
+                        Logger.debug("LOCAL: $jsonData")
                         // 遍历并添加屏蔽词
                         val wordsLength = jsonData!!.toArray().size
                         for (i in 0 until wordsLength) {
@@ -75,6 +77,7 @@ class Filter: Runnable {
         }
 
         if (Configuration.usesConfig.getBoolean("chatForward.filter.remote . enable") == true) {
+            Logger.debug("更新远程屏蔽词")
             remoteUrls ?: ArrayList<String>().toList().forEach { url ->
                 run {
                     val res: String?
@@ -97,6 +100,7 @@ class Filter: Runnable {
                         }
 
                         if (jsonData != null) {
+                            Logger.debug("REMOTE: $jsonData")
                             // 遍历并添加屏蔽词
                             val wordsLength = jsonData!!.toArray().size
                             for (i in 0 until wordsLength) {

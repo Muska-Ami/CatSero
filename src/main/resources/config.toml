@@ -12,14 +12,13 @@ enable-papi-support = true
 # 语言模式
 # 自动读取 `lang/${lang}` 目录下的语言
 lang = "zh_CN"
+# 输出DEBUG日志
+debug-log = false
 
 # mirai扩展配置
 [mirai]
 # 启用miraiCode
-# HTTP API模式无效
 enable-miraicode-support = false
-# 启用HTTP API
-http-api = false
 
 # 插件更新设置
 [update]

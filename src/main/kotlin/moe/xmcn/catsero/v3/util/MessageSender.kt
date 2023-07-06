@@ -15,21 +15,11 @@ interface MessageSender {
          * @param group 群
          */
         fun sendGroupMessage(message: String, bot: Long, group: Long) {
-            // 是否启用HTTP API
-            if (Configuration.pluginConfig.getBoolean("mirai . http-api") == true)
-                // miraiCode支持
-                if (Configuration.pluginConfig.getBoolean("mirai . enable-miraicode-support") == true)
-                    MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
-                else
-                    MiraiBot.getBot(bot).getGroup(group).sendMessage(message)
-            else {
-                // 为什么HTTP API没有注释，***
-                MiraiHttpAPI.INSTANCE.sendGroupMessage(
-                    MiraiHttpAPI.Bots[bot],
-                    group,
-                    message
-                )
-            }
+            // miraiCode支持
+            if (Configuration.pluginConfig.getBoolean("mirai . enable-miraicode-support") == true)
+                MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
+            else
+                MiraiBot.getBot(bot).getGroup(group).sendMessage(message)
         }
 
     }

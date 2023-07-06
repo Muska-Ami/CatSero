@@ -1,11 +1,9 @@
 package moe.xmcn.catsero.v3.util;
 
 import moe.xmcn.catsero.v3.CatSero;
+import moe.xmcn.catsero.v3.Configuration;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public interface Logger {
 
@@ -116,7 +114,8 @@ public interface Logger {
      * @param message 消息
      */
     static void debug(String message) {
-        info("[DEBUG] " + message);
+        if (Objects.requireNonNullElse(Configuration.Companion.getPluginConfig().getBoolean("plugin . debug-log"), false))
+            info("[DEBUG] " + message);
     }
     /**
      * 输出DEBUG类型的日志
