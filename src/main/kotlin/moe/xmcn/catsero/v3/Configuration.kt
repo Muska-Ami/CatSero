@@ -64,7 +64,7 @@ interface Configuration {
                 "lang/zh_CN/format.json"
             )
             file.forEach {
-                if (!File(CatSero.INSTANCE.dataFolder.toString() + "/$it").exists()) {
+                if (!File("${CatSero.INSTANCE.dataFolder}/$it").exists()) {
                     Logger.info("保存文件: $it")
                     CatSero.INSTANCE.saveResource(it, false)
                 }

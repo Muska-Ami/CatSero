@@ -5,6 +5,7 @@ import moe.xmcn.catsero.v3.Configuration
 import moe.xmcn.catsero.v3.core.listener.chatForward.OnQQGroupChat
 import moe.xmcn.catsero.v3.core.listener.chatForward.OnTrChatChat
 import moe.xmcn.catsero.v3.core.listener.chatForward.OnVanillaChat
+import moe.xmcn.catsero.v3.core.listener.joinQuitForward.OnPlayerJoin
 import moe.xmcn.catsero.v3.core.timer.chatForward.Filter
 import moe.xmcn.catsero.v3.util.Logger
 import org.bukkit.event.Listener
@@ -37,6 +38,10 @@ class CoreRegister {
                 listOf(
                     OnQQGroupChat(),
                     "chatForward . enable",
+                ),
+                listOf(
+                    OnPlayerJoin(),
+                    "joinQuitForward . enable",
                 )
             )
 

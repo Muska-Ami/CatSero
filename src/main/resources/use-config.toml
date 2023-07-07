@@ -40,3 +40,10 @@ remoteUrls = [
 enable = true
 # 更新间隔
 interval = 300
+
+# 加入推出转发
+[joinQuitForward]
+# 是否启用该功能
+enable = false
+# 从接收的事件中同步消息
+copyMessage = false

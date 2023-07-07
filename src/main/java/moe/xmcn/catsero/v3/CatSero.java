@@ -20,9 +20,9 @@ public class CatSero extends JavaPlugin {
     @Override
     public void onEnable() {
         INSTANCE = this;
-        TomlParseResult config = Configuration.Companion.getPluginConfig();
         Logger.info("初始化 CatSero");
         Configuration.Companion.saveConfig();
+        TomlParseResult config = Configuration.Companion.getPluginConfig();
         Configuration.Companion.loadEnv();
 
         // 检测是否安装必要依赖
