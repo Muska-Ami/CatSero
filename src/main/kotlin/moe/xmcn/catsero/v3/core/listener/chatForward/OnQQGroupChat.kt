@@ -26,7 +26,7 @@ class OnQQGroupChat: Listener {
         val message = event.message
 
         val formatter = SimpleDateFormat(
-            config.getString("general . time-format")
+            config.getString("general . timeFormat")
                 ?: "HH:mm:ss, yyyy-MM-dd"
         )
         val date = Date(System.currentTimeMillis())
