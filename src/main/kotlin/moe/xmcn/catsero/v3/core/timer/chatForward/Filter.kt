@@ -20,14 +20,14 @@ class Filter: Runnable {
 
         fun startUpdate() {
             // 聊天转发屏蔽词
-            if (Configuration.usesConfig.getBoolean("chatForward.filter . enable") == true) {
-                if (Configuration.usesConfig.getBoolean("chatForward.filter.autoUpdate . enable") == true) {
+            if (Configuration.usesConfig!!.getBoolean("chatForward.filter . enable") == true) {
+                if (Configuration.usesConfig!!.getBoolean("chatForward.filter.autoUpdate . enable") == true) {
                     Logger.info("Start chatForward filter auto-update.")
                     CatSero.INSTANCE.server.scheduler.runTaskTimerAsynchronously(
                         CatSero.INSTANCE,
                         Filter(),
                         0L,
-                        (Configuration.usesConfig.getLong("chatForward.filter.autoUpdate . interval") ?: 300) * 20L
+                        (Configuration.usesConfig!!.getLong("chatForward.filter.autoUpdate . interval") ?: 300) * 20L
                     )
                 } else {
                     Logger.info("Update chatForward filter words.")
@@ -38,15 +38,15 @@ class Filter: Runnable {
     }
 
     private fun updateList() {
-        val remoteUrls = Configuration.usesConfig.getArray("chatForward.filter.remote . remoteUrls")
-        val localFiles = Configuration.usesConfig.getArray("chatForward.filter.local . localFiles")
+        val remoteUrls = Configuration.usesConfig!!.getArray("chatForward.filter.remote . remoteUrls")
+        val localFiles = Configuration.usesConfig!!.getArray("chatForward.filter.local . localFiles")
         val publicWords = ArrayList<String>()
 
         val client = OkHttpClient()
 
         var jsonData: JSONArray? = null
 
-        if (Configuration.usesConfig.getBoolean("chatForward.filter.local . enable") == true) {
+        if (Configuration.usesConfig!!.getBoolean("chatForward.filter.local . enable") == true) {
             Logger.debug("更新本地屏蔽词")
             localFiles!!.toList().forEach { path ->
                 run {
@@ -77,7 +77,7 @@ class Filter: Runnable {
             }
         }
 
-        if (Configuration.usesConfig.getBoolean("chatForward.filter.remote . enable") == true) {
+        if (Configuration.usesConfig!!.getBoolean("chatForward.filter.remote . enable") == true) {
             Logger.debug("更新远程屏蔽词")
             remoteUrls!!.toList().forEach { url ->
                 run {

@@ -22,8 +22,8 @@ public class CatSero extends JavaPlugin {
         INSTANCE = this;
         Logger.info("初始化 CatSero");
         Configuration.Companion.saveConfig();
-        TomlParseResult config = Configuration.Companion.getPluginConfig();
         Configuration.Companion.loadEnv();
+        TomlParseResult config = Configuration.Companion.getPluginConfig();
 
         // 检测是否安装必要依赖
         if (Configuration.Depend.Companion.getMiraiMC()) {

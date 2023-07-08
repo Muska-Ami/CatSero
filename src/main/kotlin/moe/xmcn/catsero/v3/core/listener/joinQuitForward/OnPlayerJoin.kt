@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable
 
 class OnPlayerJoin: Listener {
 
-    private val config = Configuration.usesConfig
+    private val config = Configuration.usesConfig!!
     private val bot = Configuration.getBot(config.getArray("joinQuitForward . mirai")?.get(0).toString())
     private val group = Configuration.getGroup(config.getArray("joinQuitForward . mirai")?.get(1).toString())
 

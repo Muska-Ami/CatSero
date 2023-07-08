@@ -14,7 +14,7 @@ import java.util.*
 
 class OnQQGroupChat: Listener {
 
-    private val config = Configuration.usesConfig
+    private val config = Configuration.usesConfig!!
 
     @EventHandler
     fun onMiraiGroupMessageEvent(event: MiraiGroupMessageEvent) {
@@ -44,7 +44,7 @@ class OnQQGroupChat: Listener {
                 .replace("%time%", formatter.format(date))
 
             Filter.fullWords.forEach {
-                res = res.replace(it, Configuration.usesConfig.getString("chatForward.filter . replace") ?: "**")
+                res = res.replace(it, config.getString("chatForward.filter . replace") ?: "**")
             }
             if (CatSero.INSTANCE.server.onlinePlayers.isNotEmpty())
                 CatSero.INSTANCE.server.broadcastMessage(ChatColor.translateAlternateColorCodes('&', res))

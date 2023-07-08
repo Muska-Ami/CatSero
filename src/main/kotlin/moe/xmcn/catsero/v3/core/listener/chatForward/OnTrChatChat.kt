@@ -16,7 +16,7 @@ import java.util.*
 
 class OnTrChatChat: Listener {
 
-    private val config = Configuration.usesConfig
+    private val config = Configuration.usesConfig!!
     private val bot = Configuration.getBot(config.getArray("chatForward . mirai")?.get(0).toString())
     private val group = Configuration.getGroup(config.getArray("chatForward . mirai")?.get(1).toString())
 
@@ -41,7 +41,7 @@ class OnTrChatChat: Listener {
                 res = PAPI.transPlaceholders(res, player)
 
                 Filter.fullWords.forEach {
-                    res = res.replace(it, Configuration.usesConfig.getString("chatForward.filter . replace") ?: "**")
+                    res = res.replace(it, config.getString("chatForward.filter . replace") ?: "**")
                 }
 
                 object : BukkitRunnable() {
