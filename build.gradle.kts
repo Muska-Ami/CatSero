@@ -10,8 +10,9 @@ group = "moe.xmcn.catsero"
 version = "3.0.1"
 
 repositories {
-    maven("https://crystal.app.lss233.com/repositories/minecraft")
+    maven("https://maven.fastmirror.net/repositories/minecraft")
     maven("https://repo.opencollab.dev/maven-snapshots/")
+    maven("https://crystal.app.lss233.com/repositories/minecraft")
     mavenCentral()
 }
 

@@ -41,9 +41,19 @@ enable = true
 # 更新间隔
 interval = 300
 
-# 加入推出转发
+# 加入退出转发
 [joinQuitForward]
 # 是否启用该功能
 enable = false
+# Bot定义
+mirai = ["geKo", "hikari"]
 # 从接收的事件中同步消息
 copyMessage = false
+
+# 附加设置
+[extra]
+# 启用自动兼容模式
+autoCompatibilityMode = true
+# TrChat
+[extra.trchat]
+channels = ["Global", "Normal"]

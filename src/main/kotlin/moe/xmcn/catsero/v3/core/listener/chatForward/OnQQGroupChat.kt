@@ -15,39 +15,47 @@ import java.util.*
 class OnQQGroupChat: Listener {
 
     private val config = Configuration.usesConfig!!
+    private val bot = Configuration.getBot(config.getArray("chatForward . mirai")?.get(0).toString())
+    private val group = Configuration.getGroup(config.getArray("chatForward . mirai")?.get(1).toString())
+
 
     @EventHandler
     fun onMiraiGroupMessageEvent(event: MiraiGroupMessageEvent) {
         try {
-            val groupName = event.groupName
-            val groupId = event.groupID
-            val senderName = if (event.senderNameCard != "")
-                event.senderNameCard
-            else
-                event.senderName
-            val senderId = event.senderID
-            val message = event.message
+            if (
+                event.botID == bot
+                && event.groupID == group
+            ) {
+                val groupName = event.groupName
+                val groupId = event.groupID
+                val senderName = if (event.senderNameCard != "")
+                    event.senderNameCard
+                else
+                    event.senderName
+                val senderId = event.senderID
+                val message = event.message
 
-            val formatter = SimpleDateFormat(
-                config.getString("general . timeFormat")
-                    ?: "HH:mm:ss, yyyy-MM-dd"
-            )
-            val date = Date(System.currentTimeMillis())
+                val formatter = SimpleDateFormat(
+                    config.getString("general . timeFormat")
+                        ?: "HH:mm:ss, yyyy-MM-dd"
+                )
+                val date = Date(System.currentTimeMillis())
 
-            val format = I18n.getFormat("chatForward.to-mc")
+                val format = I18n.getFormat("chatForward.to-mc")
 
-            var res = format.replace("%sender_name%", senderName)
-                .replace("%sender_id%", senderId.toString())
-                .replace("%group_name%", groupName)
-                .replace("%group_id%", groupId.toString())
-                .replace("%message%", message)
-                .replace("%time%", formatter.format(date))
+                var res = format.replace("%sender_name%", senderName)
+                    .replace("%sender_id%", senderId.toString())
+                    .replace("%group_name%", groupName)
+                    .replace("%group_id%", groupId.toString())
+                    .replace("%message%", message)
+                    .replace("%time%", formatter.format(date))
 
-            Filter.fullWords.forEach {
-                res = res.replace(it, config.getString("chatForward.filter . replace") ?: "**")
+                Filter.fullWords.forEach {
+                    res = res.replace(it, config.getString("chatForward.filter . replace") ?: "**")
+                }
+                if (CatSero.INSTANCE.server.onlinePlayers.isNotEmpty())
+                    CatSero.INSTANCE.server.broadcastMessage(ChatColor.translateAlternateColorCodes('&', res))
             }
-            if (CatSero.INSTANCE.server.onlinePlayers.isNotEmpty())
-                CatSero.INSTANCE.server.broadcastMessage(ChatColor.translateAlternateColorCodes('&', res))
         } catch (e: Exception) {
             Logger.catchEx(e)
         }

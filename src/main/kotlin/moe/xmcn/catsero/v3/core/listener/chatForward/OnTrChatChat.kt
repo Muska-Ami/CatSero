@@ -26,7 +26,9 @@ class OnTrChatChat: Listener {
             if (!event.isCancelled) {
                 val player = event.session.player
                 val message = event.message
+                val channel = event.channel
 
+                config.getArray("extra.trchat . channel")
                 val formatter = SimpleDateFormat(
                     config.getString("general . timeFormat")
                         ?: "HH:mm:ss, yyyy-MM-dd"

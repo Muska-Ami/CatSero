@@ -19,22 +19,27 @@ class OnPlayerJoin: Listener {
 
     @EventHandler
     fun onPlayerJoin(event: PlayerJoinEvent) {
+        Logger.debug("joinQuitForward 有反应就吱一声吧")
         try {
             val player = event.player
 
-            var res: String
+            var res: String? = null
             // Copy from event.joinMessage()
-            if (config.getBoolean("joinQuitForward . copyMessage") == false) {
+            if (config.getBoolean("joinQuitForward . copyMessage") != true) {
+                Logger.debug("不从事件中复制加入消息")
                 val format = I18n.getFormat("joinQuitForward.join")
                 res = format.replace("%name%", player.name)
                 res = PAPI.transPlaceholders(res, player)
             } else {
-                res = ChatColor.stripColor(event.joinMessage)
+                Logger.debug("从事件中复制加入消息")
+                if (event.joinMessage != null)
+                    res = ChatColor.stripColor(event.joinMessage)
             }
 
             object : BukkitRunnable() {
                 override fun run() {
-                    MessageSender.sendGroupMessage(res, bot ?: 0, group ?: 0)
+                    if (res != null)
+                        MessageSender.sendGroupMessage(res, bot ?: 0, group ?: 0)
                 }
             }
         } catch (e: Exception) {
