@@ -1,3 +1,6 @@
+> Notice:
+> This plugin is no longer maintained.
+
 <img src="https://pan.ovome.icu/f/R5xtd/CatSero-v3.png" alt="" style="width: 100%" />
 
 # CatSero `v3`
