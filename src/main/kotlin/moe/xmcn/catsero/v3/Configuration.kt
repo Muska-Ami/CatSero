@@ -26,13 +26,13 @@ interface Configuration {
         /**
          * 获取插件配置文件
          */
-        val pluginConfig: TomlParseResult = TomlUtil.getTomlResult("config.toml")
+        var pluginConfig: TomlParseResult? = null
 
 
         /**
          * 获取功能配置文件
          */
-        val usesConfig: TomlParseResult = TomlUtil.getTomlResult("use-config.toml")
+        var usesConfig: TomlParseResult? = null
 
         /**
          * 获取Bot
@@ -64,7 +64,7 @@ interface Configuration {
                 "lang/zh_CN/format.json"
             )
             file.forEach {
-                if (!File(CatSero.INSTANCE.dataFolder.toString() + "/$it").exists()) {
+                if (!File("${CatSero.INSTANCE.dataFolder}/$it").exists()) {
                     Logger.info("保存文件: $it")
                     CatSero.INSTANCE.saveResource(it, false)
                 }
@@ -75,6 +75,10 @@ interface Configuration {
          * 初始化环境变量
          */
         fun loadEnv() {
+
+            pluginConfig = TomlUtil.getTomlResult("config.toml")
+            usesConfig = TomlUtil.getTomlResult("use-config.toml")
+
             if (isPluginInstall("MiraiMC")) {
                 Depend.MiraiMC = true
             }

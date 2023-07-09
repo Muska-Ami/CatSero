@@ -4,6 +4,7 @@ import moe.xmcn.catsero.v3.CatSero
 import moe.xmcn.catsero.v3.Configuration
 import moe.xmcn.catsero.v3.I18n
 import moe.xmcn.catsero.v3.core.timer.chatForward.Filter
+import moe.xmcn.catsero.v3.util.Logger
 import moe.xmcn.catsero.v3.util.MessageSender
 import moe.xmcn.catsero.v3.util.PAPI
 import org.bukkit.event.EventHandler
@@ -15,38 +16,42 @@ import java.util.*
 
 class OnVanillaChat : Listener {
 
-    private val config = Configuration.usesConfig
+    private val config = Configuration.usesConfig!!
     private val bot = Configuration.getBot(config.getArray("chatForward . mirai")?.get(0).toString())
     private val group = Configuration.getGroup(config.getArray("chatForward . mirai")?.get(1).toString())
 
     @EventHandler
     fun onAsyncChatEvent(event: AsyncPlayerChatEvent) {
-        if (!event.isCancelled) {
-            val player = event.player
-            val message = event.message
+        try {
+            if (!event.isCancelled) {
+                val player = event.player
+                val message = event.message
 
-            val formatter = SimpleDateFormat(
-                config.getString("general . time-format")
-                    ?: "HH:mm:ss, yyyy-MM-dd"
-            )
-            val date = Date(System.currentTimeMillis())
+                val formatter = SimpleDateFormat(
+                    config.getString("general . timeFormat")
+                        ?: "HH:mm:ss, yyyy-MM-dd"
+                )
+                val date = Date(System.currentTimeMillis())
 
-            val format = I18n.getFormat("chatForward.to-qq")
+                val format = I18n.getFormat("chatForward.to-qq")
 
-            var res = format.replace("%name%", player.name)
-                .replace("%message%", message)
-                .replace("%time%", formatter.format(date))
-            res = PAPI.transPlaceholders(res, player)
+                var res = format.replace("%name%", player.name)
+                    .replace("%message%", message)
+                    .replace("%time%", formatter.format(date))
+                res = PAPI.transPlaceholders(res, player)
 
-            Filter.fullWords.forEach {
-                res = res.replace(it, Configuration.usesConfig.getString("chatForward.filter . replace ")?: "**")
-            }
-
-            object : BukkitRunnable() {
-                override fun run() {
-                    MessageSender.sendGroupMessage(res, bot?: 0, group?: 0)
+                Filter.fullWords.forEach {
+                    res = res.replace(it, config.getString("chatForward.filter . replace ") ?: "**")
                 }
-            }.runTaskAsynchronously(CatSero.INSTANCE)
+
+                object : BukkitRunnable() {
+                    override fun run() {
+                        MessageSender.sendGroupMessage(res, bot ?: 0, group ?: 0)
+                    }
+                }.runTaskAsynchronously(CatSero.INSTANCE)
+            }
+        } catch (e: Exception) {
+            Logger.catchEx(e)
         }
     }
 

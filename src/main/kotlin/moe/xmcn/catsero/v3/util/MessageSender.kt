@@ -16,7 +16,7 @@ interface MessageSender {
          */
         fun sendGroupMessage(message: String, bot: Long, group: Long) {
             // miraiCode支持
-            if (Configuration.pluginConfig.getBoolean("mirai . enable-miraicode-support") == true)
+            if (Configuration.pluginConfig!!.getBoolean("mirai . enable-miraicode-support") == true)
                 MiraiBot.getBot(bot).getGroup(group).sendMessageMirai(message)
             else
                 MiraiBot.getBot(bot).getGroup(group).sendMessage(message)

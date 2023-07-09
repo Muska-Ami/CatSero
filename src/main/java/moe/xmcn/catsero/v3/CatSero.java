@@ -20,10 +20,10 @@ public class CatSero extends JavaPlugin {
     @Override
     public void onEnable() {
         INSTANCE = this;
-        TomlParseResult config = Configuration.Companion.getPluginConfig();
         Logger.info("初始化 CatSero");
         Configuration.Companion.saveConfig();
         Configuration.Companion.loadEnv();
+        TomlParseResult config = Configuration.Companion.getPluginConfig();
 
         // 检测是否安装必要依赖
         if (Configuration.Depend.Companion.getMiraiMC()) {

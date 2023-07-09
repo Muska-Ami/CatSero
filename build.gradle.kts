@@ -3,15 +3,16 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id("java")
-    kotlin("jvm") version "1.8.22"
+    kotlin("jvm") version "1.9.0"
 }
 
 group = "moe.xmcn.catsero"
-version = "3.0.0"
+version = "3.0.1"
 
 repositories {
-    maven("https://crystal.app.lss233.com/repositories/minecraft")
+    maven("https://maven.fastmirror.net/repositories/minecraft")
     maven("https://repo.opencollab.dev/maven-snapshots/")
+    maven("https://crystal.app.lss233.com/repositories/minecraft")
     mavenCentral()
 }
 
@@ -30,7 +31,7 @@ dependencies {
     //implementation("com.github.CroaBeast:AdvancementInfo:2.0.2")
     //implementation("com.zaxxer:HikariCP:4.0.3")
     //implementation("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.22")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")

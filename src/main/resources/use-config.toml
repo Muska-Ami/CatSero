@@ -3,7 +3,7 @@
 ## https://docs.ovome.icu/CatSero/config/
 
 [general]
-time-format = "HH:mm:ss, yyyy-MM-dd"
+timeFormat = "HH:mm:ss, yyyy-MM-dd"
 
 # 聊天转发
 [chatForward]
@@ -23,7 +23,7 @@ replace = "**"
 enable = false
 # 本地屏蔽词文件列表
 # 请填写文件绝对路径
-local-files = []
+localFiles = []
 # 远程屏蔽词
 [chatForward.filter.remote]
 # 是否启用该功能
@@ -31,12 +31,29 @@ enable = false
 # 远程屏蔽词列表
 # 此处使用的是TrChat的默认远程源
 # 感谢 @南城 提供的词库(已改为Jsdelivr CDN)
-remote-urls = [
-    "https://cdn.jsdelivr.net/gh/Yurinann/Filter-Thesaurus-Cloud@main/database.json"
+remoteUrls = [
+    "https://fastly.jsdelivr.net/gh/Yurinann/Filter-Thesaurus-Cloud@main/database.json"
 ]
 # 自动更新源
-[chatForward.filter.auto-update]
+[chatForward.filter.autoUpdate]
 # 是否启用该功能
 enable = true
 # 更新间隔
 interval = 300
+
+# 加入退出转发
+[joinQuitForward]
+# 是否启用该功能
+enable = false
+# Bot定义
+mirai = ["geKo", "hikari"]
+# 从接收的事件中同步消息
+copyMessage = false
+
+# 附加设置
+[extra]
+# 启用自动兼容模式
+autoCompatibilityMode = true
+# TrChat
+[extra.trchat]
+channels = ["Global", "Normal"]

@@ -20,14 +20,14 @@ class Filter: Runnable {
 
         fun startUpdate() {
             // 聊天转发屏蔽词
-            if (Configuration.usesConfig.getBoolean("chatForward.filter . enable") == true) {
-                if (Configuration.usesConfig.getBoolean("chatForward.filter.auto-update . enable") == true) {
+            if (Configuration.usesConfig!!.getBoolean("chatForward.filter . enable") == true) {
+                if (Configuration.usesConfig!!.getBoolean("chatForward.filter.autoUpdate . enable") == true) {
                     Logger.info("Start chatForward filter auto-update.")
                     CatSero.INSTANCE.server.scheduler.runTaskTimerAsynchronously(
                         CatSero.INSTANCE,
                         Filter(),
                         0L,
-                        (Configuration.usesConfig.getLong("chatForward.filter.auto-update . interval") ?: 300) * 20L
+                        (Configuration.usesConfig!!.getLong("chatForward.filter.autoUpdate . interval") ?: 300) * 20L
                     )
                 } else {
                     Logger.info("Update chatForward filter words.")
@@ -38,20 +38,21 @@ class Filter: Runnable {
     }
 
     private fun updateList() {
-        val remoteUrls = Configuration.usesConfig.getArray("chatForward.filter.remote . remote-urls")
-        val localFiles = Configuration.usesConfig.getArray("chatForward.filter.local . local-files")
+        val remoteUrls = Configuration.usesConfig!!.getArray("chatForward.filter.remote . remoteUrls")
+        val localFiles = Configuration.usesConfig!!.getArray("chatForward.filter.local . localFiles")
         val publicWords = ArrayList<String>()
 
         val client = OkHttpClient()
 
         var jsonData: JSONArray? = null
 
-        if (Configuration.usesConfig.getBoolean("chatForward.filter.local . enable") == true) {
+        if (Configuration.usesConfig!!.getBoolean("chatForward.filter.local . enable") == true) {
             Logger.debug("更新本地屏蔽词")
-            localFiles ?: ArrayList<String>().toList().forEach { path ->
+            localFiles!!.toList().forEach { path ->
                 run {
+                    Logger.debug("运行了一次更新：$path")
                     //读取文件
-                    val lines = Files.readAllLines(Paths.get(path))
+                    val lines = Files.readAllLines(Paths.get(path as String))
                     val data = StringBuilder()
                     lines.forEach(
                         data::append
@@ -76,16 +77,23 @@ class Filter: Runnable {
             }
         }
 
-        if (Configuration.usesConfig.getBoolean("chatForward.filter.remote . enable") == true) {
+        if (Configuration.usesConfig!!.getBoolean("chatForward.filter.remote . enable") == true) {
             Logger.debug("更新远程屏蔽词")
-            remoteUrls ?: ArrayList<String>().toList().forEach { url ->
+            remoteUrls!!.toList().forEach { url ->
                 run {
+                    Logger.debug("运行了一次更新：$url")
                     val res: String?
                     try {
                         val getRequest = Request.Builder()
-                            .url(url)
+                            .url(url as String)
                             .build()
-                        res = client.newCall(getRequest).execute().body?.string()
+                        val response = client.newCall(getRequest).execute()
+                        if (response.isSuccessful) {
+                            res = response.body?.string()
+                        } else {
+                            Logger.warn("无法请求远程源屏蔽词: " + response.code + " | 源: " + url)
+                            return
+                        }
                     } catch (e: Exception) {
                         Logger.warn("无法请求远程源屏蔽词: " + e.message + " | 源: " + url)
                         return
@@ -114,10 +122,12 @@ class Filter: Runnable {
         }
 
         fullWords.addAll(publicWords)
+        Logger.debug("当前屏蔽词列表：$fullWords")
 
         if (lastImportLength != publicWords.size) {
             Logger.info("成功更新了 " + (publicWords.size - lastImportLength) + " 个屏蔽词，当前屏蔽词数量: " + publicWords.size)
             lastImportLength = publicWords.size
+            Logger.debug("屏蔽词计数：$lastImportLength")
         }
     }
 

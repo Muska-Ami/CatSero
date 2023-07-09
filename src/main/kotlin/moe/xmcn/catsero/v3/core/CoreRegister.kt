@@ -5,6 +5,7 @@ import moe.xmcn.catsero.v3.Configuration
 import moe.xmcn.catsero.v3.core.listener.chatForward.OnQQGroupChat
 import moe.xmcn.catsero.v3.core.listener.chatForward.OnTrChatChat
 import moe.xmcn.catsero.v3.core.listener.chatForward.OnVanillaChat
+import moe.xmcn.catsero.v3.core.listener.joinQuitForward.OnPlayerJoin
 import moe.xmcn.catsero.v3.core.timer.chatForward.Filter
 import moe.xmcn.catsero.v3.util.Logger
 import org.bukkit.event.Listener
@@ -13,7 +14,7 @@ class CoreRegister {
 
     companion object {
 
-        private val config = Configuration.usesConfig
+        private val config = Configuration.usesConfig!!
 
         fun registerListener() {
 
@@ -28,6 +29,7 @@ class CoreRegister {
               - 追加兼容条件(Optional)
              */
             val list = listOf(
+                // chatForward
                 listOf(
                     OnVanillaChat(),
                     "chatForward . enable",
@@ -37,20 +39,29 @@ class CoreRegister {
                 listOf(
                     OnQQGroupChat(),
                     "chatForward . enable",
+                ),
+                // joinQuitForward
+                listOf(
+                    OnPlayerJoin(),
+                    "joinQuitForward . enable",
                 )
             )
 
             list.forEach {
-                    Logger.info("注册：${it[0].javaClass}")
                     if (it.size == 4) {
                         // 当追加监听时
-                        if (config.getBoolean(it[1] as String) == true) {
+                        if (
+                            config.getBoolean("extra . autoCompatibilityMode") == true
+                            && config.getBoolean(it[1] as String) == true
+                            ) {
                             if (it[3] as Boolean) {
+                                Logger.info("注册：${it[2].javaClass}")
                                 CatSero.INSTANCE.server.pluginManager.registerEvents(
                                     it[2] as Listener,
                                     CatSero.INSTANCE
                                 )
                             } else {
+                                Logger.info("注册：${it[0].javaClass}")
                                 CatSero.INSTANCE.server.pluginManager.registerEvents(
                                     it[0] as Listener,
                                     CatSero.INSTANCE
@@ -60,6 +71,7 @@ class CoreRegister {
                     } else if (it.size == 2) {
                         // 当不追加监听时
                         if (config.getBoolean(it[1] as String) == true) {
+                            Logger.info("注册：${it[0].javaClass}")
                             CatSero.INSTANCE.server.pluginManager.registerEvents(
                                 it[0] as Listener,
                                 CatSero.INSTANCE

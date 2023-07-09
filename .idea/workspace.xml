@@ -10,9 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="DEBUG Logger &amp;&amp; 静态屏蔽词">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnQQGroupChat.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnTrChatChat.kt" afterDir="false" />
+    <list default="true" id="8258646c-1a2f-4913-bc04-e0dd65b8fe75" name="变更" comment="修复一个判定Bug，添加自动兼容开关">
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -21,14 +19,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/util/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/moe/xmcn/catsero/v3/util/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/Configuration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/Configuration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/CoreRegister.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/CoreRegister.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnVanillaChat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnVanillaChat.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/timer/chatForward/Filter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/timer/chatForward/Filter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/util/MessageSender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/util/MessageSender.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/lang/zh_CN/format.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/lang/zh_CN/format.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnQQGroupChat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnQQGroupChat.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnTrChatChat.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/chatForward/OnTrChatChat.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/joinQuitForward/OnPlayerJoin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/moe/xmcn/catsero/v3/core/listener/joinQuitForward/OnPlayerJoin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/use-config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/use-config.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,23 +131,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "dev",
-    "jdk.selected.JAVA_MODULE": "corretto-1.8",
-    "last_directory_selection": "F:/CatSero/src/main/kotlin/moe/xmcn/catsero/v3",
-    "last_opened_file_path": "F:/CatSero/server-test/plugins",
-    "project.structure.last.edited": "工件",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "CodeWithMe"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-1.8&quot;,
+    &quot;last_directory_selection&quot;: &quot;F:/CatSero/src/main/kotlin/moe/xmcn/catsero/v3&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/CatSero/server-test/plugins&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;工件&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeWithMe&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\CatSero\server-test\plugins" />
@@ -629,7 +625,7 @@
       <option name="project" value="LOCAL" />
       <updated>1681018523198</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -651,12 +647,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/de" />
     </ignored-roots>
-    <MESSAGE value="修复几个错误，将MC命令提取为单独的类" />
-    <MESSAGE value="#91 支持动态修改群名称" />
-    <MESSAGE value="[ci skip]无修改" />
-    <MESSAGE value="网络问题构建失败 恼（" />
-    <MESSAGE value="#" />
-    <MESSAGE value="#91 支持动态修改Bot群名称" />
     <MESSAGE value="[ci skip]暂停开发" />
     <MESSAGE value="修正类位置" />
     <MESSAGE value="修复 #119" />
@@ -676,7 +666,13 @@
     <MESSAGE value="不理解" />
     <MESSAGE value="修复Toml读取&#10;原本使用的Plugin.getResource()方法读取的是Jar内的文件，应该读取插件目录下文件" />
     <MESSAGE value="DEBUG Logger &amp;&amp; 静态屏蔽词" />
-    <option name="LAST_COMMIT_MESSAGE" value="DEBUG Logger &amp;&amp; 静态屏蔽词" />
+    <MESSAGE value="v3 - 01: 聊天转发&#10;暂时不支持Filter屏蔽词，原因我懒了，在修" />
+    <MESSAGE value="v3 - 02: 修复屏蔽词系统" />
+    <MESSAGE value="?" />
+    <MESSAGE value="Fix" />
+    <MESSAGE value="修复初始化" />
+    <MESSAGE value="修复一个判定Bug，添加自动兼容开关" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复一个判定Bug，添加自动兼容开关" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
